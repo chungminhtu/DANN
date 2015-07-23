@@ -1,0 +1,63 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "DanhMucDonViTinh", Action = "GridView1Partial" };
+        settings.Width = Unit.Percentage(100);
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DanhMucDonViTinh", Action = "GridView1PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DanhMucDonViTinh", Action = "GridView1PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DanhMucDonViTinh", Action = "GridView1PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        //settings.KeyFieldName = "MaDonViTinh";
+
+        //settings.SettingsPager.Visible = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        //settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        //settings.Columns.Add("KyHieuDonVi");
+        //settings.Columns.Add("TenDonViTinh");
+
+
+        settings.SettingsCommandButton.DeleteButton.Text = "Xóa";
+        settings.SettingsCommandButton.NewButton.Text = "Thêm mới";
+        settings.SettingsCommandButton.EditButton.Text = "Sửa";
+        settings.SettingsCommandButton.UpdateButton.Text = "Lưu lại";
+
+        settings.KeyFieldName = "MaDonViTinh";
+
+        settings.SettingsPager.Visible = true;
+        //settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.Settings.ShowFilterRowMenu = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "KyHieuDonVi";
+            column.Width = Unit.Percentage(30);
+            column.Caption = "Ký hiệu";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TenDonViTinh";
+            column.Width = Unit.Percentage(80);
+            column.Caption = "Tên đơn vị tính";
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

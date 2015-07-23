@@ -1,0 +1,457 @@
+﻿
+<link rel="stylesheet" media="all" href="@Url.Content("~/Content/jquery-jvectormap-2.0.1.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/spectrum.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/jquery-ui.css")" />
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.10.3.js")"></script>
+<script src="@Url.Content("~/Scripts/spectrum.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-jvectormap-2.0.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/rgbcolor.js")"></script>
+<script src="@Url.Content("~/Scripts/canvg.js")"></script>
+<script src="@Url.Content("~/Scripts/html2canvas.js")"></script>
+<script src="@Url.Content("~/maps/vn/jquery-jvectormap-data-vn-vietnam.js")"></script>
+
+<script>
+    var cdata = GetDataCallMethordWithAjax("/Map/GetDataThongKe", null);
+    var unitTitle = "nghìn người";
+
+    function chkValue(val) {
+        var x;
+        if (typeof val === "undefined") {
+            x = "";
+        } else {
+            x = val;
+        }
+        return x;
+    };
+
+
+    //Begin Document.ready
+    $(document).ready(function () {
+        var myMap;
+
+        $(".colorPicker").spectrum({
+            preferredFormat: "hex",
+            showButtons: false,
+            move: function () {
+                if (this.id == "colorBackground") {
+                    myMap.setBackgroundColor($("#colorBackground").spectrum("get").toString());
+                } else {
+                    reLoadMap();
+                }
+            },
+            showInput: true,
+            showInitial: true,
+            showPalette: true,
+            palette: [
+				["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
+					"rgb(204, 204, 204)", "rgb(217, 217, 217)", "rgb(255, 255, 255)"
+				],
+				["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+					"rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"
+				],
+				["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+					"rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+					"rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+					"rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+					"rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
+					"rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+					"rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+					"rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+					"rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
+					"rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"
+				]
+            ]
+        });
+
+        var init = function () {
+            $("#mapVietNam").empty();
+            // function LoadMap(LegendTitle){
+            var mapname = 'vn_vietnam';
+
+            myMap = new jvm.MultiMap({
+                container: $('#mapVietNam'),
+                maxLevel: 2,
+                main: {
+                    map: mapname,
+                    regionStyle: {
+                        initial: {
+                            fill: 'white',
+                            "fill-opacity": 1,
+                            stroke: $("#colorBorderMap").spectrum("get").toString(),
+                            "stroke-width": 0.7,
+                            "stroke-opacity": 1
+                        },
+                        hover: {
+                            "fill-opacity": 0.8,
+                            cursor: 'pointer'
+                        },
+                        selected: {
+                            fill: 'yellow'
+                        },
+                        selectedHover: {}
+                    },
+                    series: {
+                        //this is the object for passing country/region data into
+                        regions: [{
+                            //define the range of color values
+                            scale: $("#colorStart").spectrum("get").toString() != $("#colorEnd").spectrum("get").toString() ? [$("#colorStart").spectrum("get").toString(), $("#colorEnd").spectrum("get").toString()] : [$("#colorStart").spectrum("get").toString()],
+                            //define the function that maps data to color range
+                            legend: {
+                                vertical: false,
+                                horizontal: true,
+                                title: "Bản đồ dân số demo (" + unitTitle + ")."
+                            },
+                            normalizeFunction: 'linear',
+                            //define the coloration method
+                            attribute: 'fill',
+                            //define the array of country data
+                            values: cdata,
+                            displayLabel: $("#cbxLabels").val(),
+                            displayValues: $("#cbxValues").val(),
+                            unitTitle: unitTitle
+                        }]
+                    },
+                    labels: {
+                        regions: {
+                            render: function (code) {
+                                return chkValue(cdata[code]);
+                            }
+                        }
+                    },
+                },
+
+                mapUrlByCode: function (code, multiMap) {
+                    return './maps/vn/BanDo63TinhFull/' + code.replace("_", "/").toLowerCase() + '.js';
+                }
+            });
+
+            $("#btnChangeTitle").click(function () {
+                myMap.setLegendTitle($("#MapName").val() + "(" + unitTitle + ").");
+            });
+        };
+
+        init();
+
+        var defaultgWidth = $(document).find("#mapVietNam").find("svg").find("g")[0].getBoundingClientRect().width;
+        var defaultgHeight = $(document).find("#mapVietNam").find("svg").find("g")[0].getBoundingClientRect().height;
+        var gWidth, gHeight;
+
+        $("#idPopupMainMap").css("display", "none");
+
+        documentResize();
+
+        $(document).on("click", "#btnCaptureFullMap", function () {
+            if (myMap.history.length > 1) {
+                gWidth = myMap.getDefaultWidthSvgG(myMap.history.length);
+                gHeight = myMap.getDefaultHeightSvgG(myMap.history.length);
+            } else {
+                gWidth = defaultgWidth;
+                gHeight = defaultgHeight;
+            }
+            var gCurrent = $(document).find("#mapVietNam").find('div').find("svg").find("g")[$(document).find("#mapVietNam").find('div').find("svg").find("g").length - 4];
+            $("#mapVietNamCopy").height(gCurrent.getBoundingClientRect().height);
+            $("#mapVietNamCopy").width(gCurrent.getBoundingClientRect().width);
+            var currentMap = myMap.history[myMap.history.length - 1];
+            var tempMap = jQuery.extend({}, currentMap);
+            currentMap.setScale(currentMap.centerScale, 0, 0, false, false, true, currentMap.scale, currentMap.zoomStep, 0, 0);
+            $("#mapVietNamCopy").html($("#mapVietNam").html());
+            currentMap.setScale(tempMap.centerScale, tempMap.centerX, tempMap.centerY, false, false, true, tempMap.scale,
+					tempMap.zoomStep, tempMap.transX, tempMap.transY);
+            var svg = $("#mapVietNamCopy").find("svg");
+            if (svg != null) {
+                var gCurrentWidth = gCurrent.getBoundingClientRect().width < gWidth ? gWidth : gCurrent.getBoundingClientRect().width;
+                var gCurrentHeight = gCurrent.getBoundingClientRect().height < gHeight ? gHeight : gCurrent.getBoundingClientRect().height;
+                var defaultMapWidth = $(document).find("#mapVietNam").width();
+                var defaultMapHeight = $(document).find("#mapVietNam").height();
+                var heightMap = (gCurrentHeight * defaultMapHeight) / gHeight;
+                var widthMap = (gCurrentWidth * defaultMapWidth) / gWidth;
+                svg.height(heightMap);
+                svg.width(widthMap);
+                $("#mapVietNamCopy").height(heightMap);
+                $("#mapVietNamCopy").width(widthMap);
+            }
+            canvg();
+            mapVietNameConvertImage();
+        });
+
+        $(document).on("click", "#btnCaptureMap", function () {
+            $("#mapVietNamCopy").height($("#mapVietNam").height());
+            $("#mapVietNamCopy").width($("#mapVietNam").width());
+            $("#mapVietNamCopy").html($("#mapVietNam").html());
+            canvg();
+            mapVietNameConvertImage();
+        });
+
+        function mapVietNameConvertImage() {
+            $("#mapVietNamCopy .jvectormap-zoomin").remove();
+            $("#mapVietNamCopy .jvectormap-zoomout").remove();
+            $("#mapVietNamCopy .jvectormap-goback").remove();
+            $("#mapVietNamCopy .jvectormap-settings").remove();
+            $("#mapVietNamCopy .jvectormap-close").remove();
+            $("#mapVietNamCopy .jvectormap-capture").remove();
+            $("#mapVietNamCopy .jvectormap-fullscreen").remove();
+            $("#beforeMapVietNamCopy").css("display", "block");
+            $("#mapVietNamCopy").css("display", "block");
+            html2canvas($("#mapVietNamCopy"), {
+                onrendered: function (canvas) {
+                    var dataUrl = canvas.toDataURL("image/png");
+                    $("#picturePreview").attr("src", dataUrl);
+                    $("#aDownload").attr("href", dataUrl);
+                    $("#idPopupMap").css("display", "block");
+                    $("#mapVietNamCopy").css("display", "none");
+                    $("#beforeMapVietNamCopy").css("display", "none");
+                    $("#optionDialog").dialog("close");
+                    $("#captureDialog").dialog("close");
+                }
+            });
+        };
+
+        var transitions = ["explode", "fade", "slide", 'blind', "clip", "scale", "fold"];
+        $("#optionDialog").dialog({
+            autoOpen: false,
+            position: ['center', 'center'],
+            show: transitions[randomFromTo(0, transitions.length - 1)],
+            hide: transitions[randomFromTo(0, transitions.length - 1)],
+            width: 500,
+            height: 400,
+            modal: true,
+            open: function (event, ui) {
+                $('.ui-dialog').css('z-index', 1006);
+                $('.ui-widget-overlay').css('z-index', 1005);
+                $('.ui-dialog .ui-dialog-titlebar').css('width', "95%");
+            },
+        });
+
+        $("#captureDialog").dialog({
+            autoOpen: false,
+            position: ['center', 'top'],
+            show: transitions[randomFromTo(0, transitions.length - 1)],
+            hide: transitions[randomFromTo(0, transitions.length - 1)],
+            width: 330,
+            height: 180,
+            modal: true,
+            open: function (event, ui) {
+                $('.ui-dialog').css('z-index', 1012);
+                $('.ui-widget-overlay').css('z-index', 1011);
+                $('.ui-dialog .ui-dialog-titlebar').css('background', "#DDDDDD");
+                $('.ui-dialog .ui-dialog-titlebar').css('border', 0);
+                $('.ui-dialog .ui-dialog-titlebar').css('border-radius', 0);
+                $('.ui-dialog .ui-dialog-titlebar').css('width', "92%");
+                $('.ui-dialog .ui-dialog-titlebar').css('margin', "-4px 0 0 -4px");
+            },
+        });
+
+        function randomFromTo(from, to) {
+            return Math.floor(Math.random() * (to - from + 1) + from);
+        }
+
+        $(document).on("click", ".jvectormap-settings", function () {
+            $("#optionDialog").dialog("open");
+        });
+
+        $(document).on("click", ".jvectormap-capture", function () {
+            $("#captureDialog").dialog("open");
+        });
+
+        $(document).on("click", ".jvectormap-close", function () {
+            $("#idPopupMainMap").css("display", "none");
+        });
+
+        $(document).on("click", "#btnShowMap", function () {
+            $("#idPopupMainMap").css("display", "block");
+            reLoadMap();
+        });
+
+        $(document).on("click", ".jvectormap-fullscreen", function () {
+            toggleFullScreen();
+        });
+
+        $(document).on("keydown", function (e) {
+            if (e.keyCode == 122) {
+                return false;
+            }
+            return true;
+        });
+
+        $(".ShowHiddenLabel").change(function () {
+            reLoadMap();
+        });
+
+        function reLoadMap() {
+            var tempHistory = myMap.history[myMap.history.length - 1];
+            var arrMapName = [];
+            myMap.history.forEach(function (item) {
+                arrMapName.push(item.params.map);
+            });
+            arrMapName.splice(0, 1);
+            init();
+
+            var currentMap;
+            arrMapName.forEach(function (name) {
+                currentMap = myMap.history[myMap.history.length - 1];
+                myMap.addMap(name, {
+                    map: name,
+                    backgroundColor: currentMap.params.backgroundColor,
+                    multiMapLevel: currentMap.params.multiMapLevel + 1,
+                    series: currentMap.params.series,
+                    labels: currentMap.params.labels,
+                    regionStyle: currentMap.params.regionStyle
+                });
+                currentMap.params.container.hide();
+                myMap.history.push(myMap.maps[name]);
+                myMap.backButton.show();
+
+                var svgGCurrentMap = myMap.history[myMap.history.length - 1].container[0].childNodes[0].childNodes[myMap.history[myMap.history.length - 1].container[0].childNodes[0].childNodes.length - 4].getBoundingClientRect();
+                myMap.setDefaultHeightSvgG(myMap.history.length, svgGCurrentMap.height);
+                myMap.setDefaultWidthSvgG(myMap.history.length, svgGCurrentMap.width);
+            });
+
+            currentMap = myMap.history[myMap.history.length - 1];
+            currentMap.centerScale = tempHistory.centerScale;
+            currentMap.scale = tempHistory.scale;
+            currentMap.zoomStep = tempHistory.zoomStep;
+            currentMap.centerX = tempHistory.centerX;
+            currentMap.centerY = tempHistory.centerY;
+            currentMap.transX = tempHistory.transX;
+            currentMap.transY = tempHistory.transY;
+
+            myMap.setBackgroundColor(tempHistory.params.backgroundColor);
+            myMap.setLegendTitle(tempHistory.params.series.regions[0].legend.title);
+            if (tempHistory.centerScale != null) {
+                currentMap.setScale(tempHistory.centerScale, tempHistory.centerX, tempHistory.centerY, false, false, true, tempHistory.scale,
+					tempHistory.zoomStep, tempHistory.transX, tempHistory.transY);
+            }
+        }
+
+        $(window).resize(function () {
+            MapResize();
+            reLoadMap();
+        });
+    });    ///End Document.ready
+
+
+
+    function MapResize() {
+        if ($(window).height() > $("#mapVietNam").height() && $(window).height() > 700) {
+            $("#mapVietNam").height($(window).height());
+            $("#mapVietNam").width(($(window).width() * $("#mapVietNam").height()) / $("#mapVietNam").width());
+        } else {
+            $("#mapVietNam").height(600);
+            $("#mapVietNam").width(900);
+        }
+        //var marginTop = ($(window).height() - $("#mapVietNam").height()) / 2;
+        //var marginLeft = ($(window).width() - $("#mapVietNam").width()) / 2;
+        //$("#mapVietNam").css("margin-top", marginTop);
+        //$("#mapVietNam").css("margin-left", marginLeft);
+    }
+
+    function documentResize() {
+        var marginTop = 10;// ($(window).height() - $(".popupPicture").height()) / 2;
+        var marginLeft = 10;//($(window).width() - $(".popupPicture").width()) / 2;
+        //$(".popupPicture").css("top", marginTop);
+        //$(".popupPicture").css("left", marginLeft);
+    }
+
+    function GetDataCallMethordWithAjax(url, data) {
+        var result;
+        if (data == null) {
+            result = $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: false
+            }).responseText;
+        } else {
+            result = $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'text',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data),
+                async: false
+            }).responseText;
+        }
+        var jsonObject = JSON.parse(result);
+        return jsonObject;
+    }
+
+    // toggle full screen
+    function toggleFullScreen() {
+        if (!document.fullscreenElement &&    // alternative standard method
+			!document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+        } else {
+            if (document.cancelFullScreen) {
+                document.cancelFullScreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            }
+        }
+    }
+</script>
+
+<div id="optionDialog" title="Tùy chỉnh bản đồ">
+    <span class="spanLabelTitle">Tiêu đề dải màu:</span>
+    <input type="text" id="MapName" class="txtTitleDialog"></input>
+    <button id="btnChangeTitle">Title</button>
+    <br />
+    <span class="spanLabelTitle">Màu nền:</span>
+    <input type="text" id="colorBackground" class="colorPicker" value="#EDEDED" />
+    <br />
+    <span class="spanLabelTitle">Dải màu scale:</span>
+    <input type="text" id="colorStart" class="colorPicker" value="#c9daf8" />
+    <input type="text" id="colorEnd" class="colorPicker" value="#4a86e8" />
+    <br />
+    <span class="spanLabelTitle">Màu đường biên:</span>
+    <input type="text" id="colorBorderMap" class="colorPicker" value="#20124d" />
+    <br />
+    <span class="spanLabelTitle">Ẩn/Hiện tên Tỉnh:</span>
+    <select id="cbxLabels" class="ShowHiddenLabel">
+        <option selected value="auto">Tự động</option>
+        <option value="Show">Hiển thị</option>
+        <option value="Hidden">Ẩn</option>
+    </select>
+    <br />
+    <span class="spanLabelTitle">Ẩn/Hiện giá trị:</span>
+    <select id="cbxValues" class="ShowHiddenLabel">
+        <option selected value="auto">Tự động</option>
+        <option value="Show">Hiển thị</option>
+        <option value="Hidden">Ẩn</option>
+    </select>
+</div>
+
+<div id="captureDialog" title="Tùy chọn chụp ảnh bản đồ">
+    <div id="btnCaptureFullMap" class="btnCapture">Chụp toàn bản đồ</div>
+    <div id="btnCaptureMap" class="btnCapture">Chụp bản đồ được hiển thị</div>
+</div>
+
+<button id="btnShowMap">Hiển thị Bản đồ</button>
+<div id="idPopupMainMap">
+    <div class="popupBackground"></div>
+    <div id="mapVietNam" class="divMapStyle"></div>
+</div>
+
+<div id="mapVietNamCopy" class="divMapStyle" style="display: none"></div>
+<div id="beforeMapVietNamCopy" style="width: 100%; height: 1000px; display: none;"></div>
+<div id="idPopupMap" style="display: none;">
+    <div class="popupBackground"></div>
+    <div class="popupPicture">
+        <!-- <div id="mainMap" class="mainMap"></div> -->
+        <img id="picturePreview" />
+        <div id="btnDownload" class="btnDownload">
+            <a id="aDownload" href="#" class="aDownload" download="bando.png">
+                Tải về
+            </a>
+        </div>
+    </div>
+</div> 

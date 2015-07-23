@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item Text="Home" NavigateUrl="#" />
+  <item Text="ChiTieuNghiepVu" NavigateUrl="ChiTieuNghiepVu"  />
+  <item Text="DanhMucChiTieu" NavigateUrl="DanhMucChiTieu"  />
+  <item Text="DanhMucDonViTinh" NavigateUrl="DanhMucDonViTinh"  />
+  <item Text="DanhMucNghiepVu" NavigateUrl="DanhMucNghiepVu"  />
+  <item Text="DanhMucNhomChiTieu" NavigateUrl="DanhMucNhomChiTieu"  />
+  <item Text="Map" NavigateUrl="Map"  /> 
+  
+</items>

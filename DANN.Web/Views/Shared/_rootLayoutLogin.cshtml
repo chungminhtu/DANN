@@ -1,0 +1,60 @@
+@using System.Drawing
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+    
+    @Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout } 
+)
+    @Html.DevExpress().GetScripts(
+    new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout } 
+)
+</head>
+<body>
+    @Html.DevExpress().Splitter(settings => {
+        settings.Name = "MainSplitter";
+        settings.AllowResize = false;
+        settings.Orientation = Orientation.Vertical;
+        settings.FullscreenMode = true;
+        settings.SeparatorVisible = false;
+        settings.Styles.Pane.Border.BorderWidth = Unit.Pixel(0);
+        settings.Styles.Pane.Paddings.Padding = Unit.Pixel(0);
+
+        settings.Panes.Add(pane =>
+        {
+            pane.Name = "Header";
+            pane.AutoHeight = true;
+            pane.PaneStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
+            pane.PaneStyle.CssClass = "headerPane";
+            pane.SetContent(() =>
+            {
+                Html.RenderPartial("HeaderPartialViewLogin");    
+            });
+        });
+
+        settings.Panes.Add(pane => {
+            pane.Name = "Content";
+            pane.PaneStyle.CssClass = "mainContentPane";
+            pane.MinSize = Unit.Pixel(375);
+            pane.PaneStyle.BackColor = Color.White;
+            pane.PaneStyle.BorderBottom.BorderWidth = Unit.Pixel(1);
+            pane.SetContent(RenderBody().ToHtmlString());
+        });
+
+        settings.Panes.Add(pane =>
+        {
+            pane.Name = "Footer";
+            pane.MaxSize = Unit.Pixel(40);
+            pane.PaneStyle.CssClass = "footerPane";
+            pane.SetContent(() =>
+            {
+                Html.RenderPartial("FooterPartialView");
+            });
+        });
+    }).GetHtml()
+</body>
+</html>

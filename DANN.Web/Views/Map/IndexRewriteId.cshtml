@@ -1,0 +1,8 @@
+﻿@{
+	@Html.DevExpress().Button( settings => {
+		settings.Name = "btnAccept";
+		settings.Text = "Accept";
+		settings.UseSubmitBehavior = true;
+		settings.RouteValues = new { Controller = "Map", Action = "CallBackIndexRewriteId" };
+	}).GetHtml()
+}

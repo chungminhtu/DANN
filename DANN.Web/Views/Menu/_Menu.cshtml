@@ -1,0 +1,105 @@
+﻿@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
+        settings.Name = "AD_Menu_TreeList";
+
+        //Data binding
+        settings.CallbackRouteValues = new { Controller = "Menu", Action = "Menu" };
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "Menu", Action = "MenuAddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "Menu", Action = "MenuUpdate" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "Menu", Action = "MenuDelete" };
+        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "Menu", Action = "MenuMove" };
+
+
+        //Settings
+        settings.CommandColumn.Visible = false;
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+        settings.SettingsPager.Visible = true;
+        settings.SettingsSelection.Enabled = true;
+        settings.SettingsSelection.AllowSelectAll = true;
+        settings.SettingsBehavior.AllowFocusedNode = true;
+        settings.SettingsBehavior.AutoExpandAllNodes = true;
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
+        settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
+
+        //Events
+        settings.ClientSideEvents.ContextMenu = "OnContextMenu";
+        settings.ClientSideEvents.NodeDblClick = "NodeDoubleClick";
+        settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChanged";
+
+
+        //Columns
+        settings.KeyFieldName = "Menu_Id";
+        settings.ParentFieldName = "Menu_ParentId";
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MenuText";
+            column.Caption = "Tên Menu";
+            column.Width = 300;
+            column.AllowSort = DefaultBoolean.False;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MenuAction";
+            column.Caption = "Đường dẫn";
+            column.AllowSort = DefaultBoolean.False;
+        });
+
+        settings.Columns.Add(column =>
+        {
+
+            column.FieldName = "MenuIcon";
+            column.Caption = "Icon Menu";
+            column.Width = 100;
+            column.ColumnType = MVCxTreeListColumnType.ComboBox;
+            column.AllowSort = DefaultBoolean.False;
+            column.SetDataCellTemplateContent(c =>
+            {
+                Html.DevExpress().Image(image =>
+                {
+                    image.Name = "Image" + c.NodeKey;
+                    image.ImageUrl = c.Value + "";
+                    image.Width = 20;
+                    image.Height = 20;
+                }).GetHtml();
+            });
+            var properties = column.PropertiesEdit as ComboBoxProperties;
+
+            //properties.Width = Unit.Pixel(200);
+            properties.TextField = "imageName";
+            properties.ValueField = "imageURL";
+            properties.ImageUrlField = "imageURL"; 
+
+            properties.DataSource = ViewBag.ListImages;
+            properties.ShowImageInEditBox = true;
+            properties.DropDownHeight = Unit.Pixel(660);
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "MenuSort";
+            //column.Visible = false;
+            column.SortIndex = 0;
+            column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Menu_Id"; 
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Menu_ParentId"; 
+        });
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        treeList.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@treeList.Bind(Model).GetHtml()

@@ -1,0 +1,1493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37B5414C-A1BA-4E9C-B48B-046F8F212DFC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DANN.Web</RootNamespace>
+    <AssemblyName>DANN.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AquaDANN">
+      <HintPath>D:\ClinicalStudyTheme\AquaDANN.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Web, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Web.Mvc5, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGauges.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxRichEdit.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxScheduler.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.Mvc5.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.Web, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.1.Presets, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1.Web, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.3\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\NWind.mdf" />
+    <Content Include="App_Data\SideMenu.xml" />
+    <Content Include="App_Data\ImageList.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\TopMenu.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\handsontable.full.css" />
+    <Content Include="Content\handsontable_20140331.css" />
+    <Content Include="Content\icon\16\Accounting_16x16.png" />
+    <Content Include="Content\icon\16\AddNewDataSource_16x16.png" />
+    <Content Include="Content\icon\16\Add_16x16.png" />
+    <Content Include="Content\icon\16\Apply_16x16.png" />
+    <Content Include="Content\icon\16\AutoExpand_16x16.png" />
+    <Content Include="Content\icon\16\BarArgument_16x16.png" />
+    <Content Include="Content\icon\16\BarSeries_16x16.png" />
+    <Content Include="Content\icon\16\BOCustomer_16x16.png" />
+    <Content Include="Content\icon\16\BOPosition2_16x16.png" />
+    <Content Include="Content\icon\16\Cancel_16x16.png" />
+    <Content Include="Content\icon\16\Chart2_16x16.png" />
+    <Content Include="Content\icon\16\CheckBox2_16x16.png" />
+    <Content Include="Content\icon\16\CheckBox_16x16.png" />
+    <Content Include="Content\icon\16\CheckButtons_16x16.png" />
+    <Content Include="Content\icon\16\Clear_16x16.png" />
+    <Content Include="Content\icon\16\Close_16x16.png" />
+    <Content Include="Content\icon\16\Copy_16x16.png" />
+    <Content Include="Content\icon\16\Currency2_16x16.png" />
+    <Content Include="Content\icon\16\Customer_16x16.png" />
+    <Content Include="Content\icon\16\Customization_16x16.png" />
+    <Content Include="Content\icon\16\Cut_16x16.png" />
+    <Content Include="Content\icon\16\DecreaseDecimal_16x16.png" />
+    <Content Include="Content\icon\16\DefaultMap_16x16.png" />
+    <Content Include="Content\icon\16\DeleteDataSource2_16x16.png" />
+    <Content Include="Content\icon\16\DeleteDataSource_16x16.png" />
+    <Content Include="Content\icon\16\Delete_16x16.png" />
+    <Content Include="Content\icon\16\DocumentMap_16x16.png" />
+    <Content Include="Content\icon\16\Download_16x16.png" />
+    <Content Include="Content\icon\16\EditName_16x16.png" />
+    <Content Include="Content\icon\16\Edit_16x16.png" />
+    <Content Include="Content\icon\16\Feeds_16x16.png" />
+    <Content Include="Content\icon\16\Find_16x16.png" />
+    <Content Include="Content\icon\16\FullStackedColumn3D_16x16.png" />
+    <Content Include="Content\icon\16\Group2_16x16.png" />
+    <Content Include="Content\icon\16\Group_16x16.png" />
+    <Content Include="Content\icon\16\Home_16x16.png" />
+    <Content Include="Content\icon\16\ImportImage_16x16.png" />
+    <Content Include="Content\icon\16\InlineSizeLegend_16x16.png" />
+    <Content Include="Content\icon\16\Insert_16x16.png" />
+    <Content Include="Content\icon\16\Logical_16x16.png" />
+    <Content Include="Content\icon\16\Map_16x16.png" />
+    <Content Include="Content\icon\16\Merge_16x16.png" />
+    <Content Include="Content\icon\16\Paste_16x16.png" />
+    <Content Include="Content\icon\16\PieMap_16x16.png" />
+    <Content Include="Content\icon\16\PieSeries_16x16.png" />
+    <Content Include="Content\icon\16\Printer_16x16.png" />
+    <Content Include="Content\icon\16\Reading_16x16.png" />
+    <Content Include="Content\icon\16\RecentlyUse_16x16.png" />
+    <Content Include="Content\icon\16\Refresh_16x16.png" />
+    <Content Include="Content\icon\16\Remove_16x16.png" />
+    <Content Include="Content\icon\16\Reset2_16x16.png" />
+    <Content Include="Content\icon\16\SaveAll_16x16.png" />
+    <Content Include="Content\icon\16\SaveAndNew_16x16.png" />
+    <Content Include="Content\icon\16\SaveTo_16x16.png" />
+    <Content Include="Content\icon\16\Save_16x16.png" />
+    <Content Include="Content\icon\16\UserGroup_16x16.png" />
+    <Content Include="Content\icon\16\Zoom_16x16.png" />
+    <Content Include="Content\icon\32\Accounting_32x32.png" />
+    <Content Include="Content\icon\32\AddNewDataSource_32x32.png" />
+    <Content Include="Content\icon\32\Add_32x32.png" />
+    <Content Include="Content\icon\32\Apply_32x32.png" />
+    <Content Include="Content\icon\32\AutoExpand_32x32.png" />
+    <Content Include="Content\icon\32\BarArgument_32x32.png" />
+    <Content Include="Content\icon\32\BarSeries_32x32.png" />
+    <Content Include="Content\icon\32\BOCustomer_32x32.png" />
+    <Content Include="Content\icon\32\BOPosition2_32x32.png" />
+    <Content Include="Content\icon\32\Cancel_32x32.png" />
+    <Content Include="Content\icon\32\Chart_32x32.png" />
+    <Content Include="Content\icon\32\CheckBox_32x32.png" />
+    <Content Include="Content\icon\32\CheckButtons_32x32.png" />
+    <Content Include="Content\icon\32\Clear_32x32.png" />
+    <Content Include="Content\icon\32\Close_32x32.png" />
+    <Content Include="Content\icon\32\Copy_32x32.png" />
+    <Content Include="Content\icon\32\Currency2_32x32.png" />
+    <Content Include="Content\icon\32\Customer_32x32.png" />
+    <Content Include="Content\icon\32\Customization_32x32.png" />
+    <Content Include="Content\icon\32\Cut_32x32.png" />
+    <Content Include="Content\icon\32\DecreaseDecimal_32x32.png" />
+    <Content Include="Content\icon\32\DefaultMap_32x32.png" />
+    <Content Include="Content\icon\32\DeleteDataSource_32x32.png" />
+    <Content Include="Content\icon\32\Delete_32x32.png" />
+    <Content Include="Content\icon\32\DocumentMap_32x32.png" />
+    <Content Include="Content\icon\32\Download_32x32.png" />
+    <Content Include="Content\icon\32\EditName_32x32.png" />
+    <Content Include="Content\icon\32\Edit_32x32.png" />
+    <Content Include="Content\icon\32\ExportFile_32x32.png" />
+    <Content Include="Content\icon\32\ExportModelDifferences_32x32.png" />
+    <Content Include="Content\icon\32\ExportToCSV_32x32.png" />
+    <Content Include="Content\icon\32\ExportToDOCX_32x32.png" />
+    <Content Include="Content\icon\32\ExportToDOC_32x32.png" />
+    <Content Include="Content\icon\32\ExportToPDF_32x32.png" />
+    <Content Include="Content\icon\32\ExportToTXT_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXLSX_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXLS_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXML_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXPS_32x32.png" />
+    <Content Include="Content\icon\32\Export_32x32.png" />
+    <Content Include="Content\icon\32\Feeds_32x32.png" />
+    <Content Include="Content\icon\32\Financial_32x32.png" />
+    <Content Include="Content\icon\32\Find_32x32.png" />
+    <Content Include="Content\icon\32\FullStackedColumn3D_32x32.png" />
+    <Content Include="Content\icon\32\Home_32x32.png" />
+    <Content Include="Content\icon\32\ImportImage_32x32.png" />
+    <Content Include="Content\icon\32\InlineSizeLegend_32x32.png" />
+    <Content Include="Content\icon\32\Logical_32x32.png" />
+    <Content Include="Content\icon\32\LongDate_32x32.png" />
+    <Content Include="Content\icon\32\Lookup&amp;Reference_32x32.png" />
+    <Content Include="Content\icon\32\ManageDatasource_32x32.png" />
+    <Content Include="Content\icon\32\Map_32x32.png" />
+    <Content Include="Content\icon\32\Merge_32x32.png" />
+    <Content Include="Content\icon\32\Open2_32x32.png" />
+    <Content Include="Content\icon\32\Paste_32x32.png" />
+    <Content Include="Content\icon\32\PieMap_32x32.png" />
+    <Content Include="Content\icon\32\PieSeries_32x32.png" />
+    <Content Include="Content\icon\32\Printer_32x32.png" />
+    <Content Include="Content\icon\32\Print_32x32.png" />
+    <Content Include="Content\icon\32\Reading_32x32.png" />
+    <Content Include="Content\icon\32\RecentlyUse_32x32.png" />
+    <Content Include="Content\icon\32\Refresh2_32x32.png" />
+    <Content Include="Content\icon\32\Refresh_32x32.png" />
+    <Content Include="Content\icon\32\Remove_32x32.png" />
+    <Content Include="Content\icon\32\Reset2_32x32.png" />
+    <Content Include="Content\icon\32\Reset_32x32.png" />
+    <Content Include="Content\icon\32\SaveAll_32x32.png" />
+    <Content Include="Content\icon\32\SaveAndNew_32x32.png" />
+    <Content Include="Content\icon\32\SaveTo_32x32.png" />
+    <Content Include="Content\icon\32\Save_32x32.png" />
+    <Content Include="Content\icon\32\SelectData_32x32.png" />
+    <Content Include="Content\icon\32\settings.png" />
+    <Content Include="Content\icon\32\settings_16.png" />
+    <Content Include="Content\icon\32\ShapeLabels_32x32.png" />
+    <Content Include="Content\icon\32\Show_32x32.png" />
+    <Content Include="Content\icon\32\Stretch_32x32.png" />
+    <Content Include="Content\icon\32\Summary_32x32.png" />
+    <Content Include="Content\icon\32\Text_32x32.png" />
+    <Content Include="Content\icon\32\TreeView_32x32.png" />
+    <Content Include="Content\icon\32\Up_32x32.png" />
+    <Content Include="Content\icon\32\UserGroup_32x32.png" />
+    <Content Include="Content\icon\32\Zoom_32x32.png" />
+    <Content Include="Content\Images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\Images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\Images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\Images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\Images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\Images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\Images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\Images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-jvectormap-2.0.1.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\spectrum.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Global.asax" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ak-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-al-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ar-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-az-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ca-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-co-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ct-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-dc-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-de-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-fl-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ga-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-hi-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ia-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-id-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-il-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-in-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ks-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ky-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-la-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ma-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-md-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-me-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-mi-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-mn-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-mo-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ms-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-mt-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-nc-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-nd-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ne-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-nh-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-nj-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-nm-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-nv-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ny-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-oh-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ok-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-or-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-pa-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ri-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-sc-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-sd-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-tn-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-tx-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-ut-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-va-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-vt-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-wa-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-wi-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-wv-lcc-en.js" />
+    <Content Include="maps\us\jquery-jvectormap-data-us-wy-lcc-en.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\HuyệnCờĐỏ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\HuyệnPhongĐiền.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\HuyệnThớiLai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\HuyệnVĩnhThạnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\QuậnBìnhThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\QuậnCáiRăng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\QuậnNinhKiều.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\QuậnThốtNốt.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốCầnThơ\QuậnÔMôn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnBaVì.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnChươngMỹ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnGiaLâm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnHoàiĐức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnMêLinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnMỹĐức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnPhúcThọ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnPhúXuyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnQuốcOai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnSócSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnThanhOai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnThanhTrì.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnThườngTín.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnThạchThất.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnĐanPhượng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnĐôngAnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\HuyệnỨngHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnBaĐình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnBắcTừLiêm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnCầuGiấy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnHaiBàTrưng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnHoàngMai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnHoànKiếm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnHàĐông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnLongBiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnNamTừLiêm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnThanhXuân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnTâyHồ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\QuậnĐốngĐa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHàNội\ThịXãSơnTây.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\HuyệnAnDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\HuyệnAnLão.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\HuyệnCátHải.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\HuyệnKiếnThụy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\HuyệnThủyNguyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\HuyệnTiênLãng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\HuyệnVĩnhBảo.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\QuậnDươngKinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\QuậnHảiAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\QuậnHồngBàng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\QuậnKiếnAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\QuậnLêChân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\QuậnNgôQuyền.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHảiPhòng\QuậnĐồSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\HuyệnBìnhChánh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\HuyệnCầnGiờ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\HuyệnCủChi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\HuyệnHócMôn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\HuyệnNhàBè.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận1.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận10.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận11.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận12.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận2.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận3.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận4.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận5.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận6.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận7.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận8.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\Quận9.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\QuậnBìnhThạnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\QuậnBìnhTân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\QuậnGòVấp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\QuậnPhúNhuận.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\QuậnThủĐức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\QuậnTânBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốHồChíMinh\QuậnTânPhú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng\HuyệnHòaVang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng\QuậnCẩmLệ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng\QuậnHảiChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng\QuậnLiênChiểu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng\QuậnNgũHànhSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng\QuậnSơnTrà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\ThànhPhốĐàNẵng\QuậnThanhKhê.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnAnPhú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnChâuPhú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnChợMới.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnPhúTân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnThoạiSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnTriTôn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\HuyệnTịnhBiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\ThànhPhốChâuĐốc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\ThànhPhốLongXuyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhAnGiang\ThịXãTânChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu\HuyệnChâuĐức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu\HuyệnLongĐiền.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu\HuyệnTânThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu\HuyệnXuyênMộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu\HuyệnĐấtĐỏ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu\ThànhPhốBàRịa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBàRịa-VũngTàu\ThànhPhốVũngTàu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\HuyệnBàuBàng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\HuyệnBắcTânUyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\HuyệnDầuTiếng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\HuyệnPhúGiáo.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\ThànhPhốThủDầuMột.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\ThịXãBếnCát.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\ThịXãDĩAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\ThịXãThuậnAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhDương\ThịXãTânUyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\HuyệnBùGiaMập.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\HuyệnBùĐăng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\HuyệnBùĐốp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\HuyệnChơnThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\HuyệnHớnQuản.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\HuyệnLộcNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\HuyệnĐồngPhú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\ThịXãBìnhLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\ThịXãPhướcLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhPhước\ThịXãĐồngXoài.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnBắcBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnHàmThuậnBắc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnHàmThuậnNam.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnHàmTân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnTuyPhong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnTánhLinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnĐảoPhúQuý.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\HuyệnĐứcLinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\ThànhPhốPhanThiết.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhThuận\ThịXãLaGi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnAnLão.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnHoàiNhơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnHoàiÂn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnPhùCát.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnPhùMỹ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnTuyPhước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnTâySơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnVânCanh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\HuyệnVĩnhThạnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\ThànhPhốQuyNhơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBìnhĐịnh\ThịXãAnNhơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu\HuyệnGiáRai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu\HuyệnHòaBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu\HuyệnHồngDân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu\HuyệnPhướcLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu\HuyệnVĩnhLợi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu\HuyệnĐôngHải.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBạcLiêu\ThànhPhốBạcLiêu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnHiệpHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnLạngGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnLụcNam.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnLụcNgạn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnSơnĐộng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnTânYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnViệtYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnYênDũng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\HuyệnYênThế.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcGiang\ThànhPhốBắcGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\HuyệnBaBể.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\HuyệnBạchThông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\HuyệnChợMới.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\HuyệnChợĐồn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\HuyệnNaRì.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\HuyệnNgânSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\HuyệnPácNặm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcKạn\ThịXãBắcKạn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\HuyệnGiaBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\HuyệnLươngTài.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\HuyệnQuếVõ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\HuyệnThuậnThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\HuyệnTiênDu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\HuyệnYênPhong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\ThànhPhốBắcNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBắcNinh\ThịXãTừSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnBaTri.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnBìnhĐại.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnChợLách.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnGiồngTrôm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnMỏCàyBắc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnMỏCàyNam.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\HuyệnThạnhPhú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhBếnTre\ThànhPhốBếnTre.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnBảoLâm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnBảoLạc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnHàQuảng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnHòaAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnHạLang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnNguyênBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnPhụcHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnQuảngUyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnThôngNông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnThạchAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnTràLĩnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\HuyệnTrùngKhánh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCaoBằng\ThànhPhốCaoBằng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnCáiNước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnNgọcHiển.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnNămCăn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnPhúTân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnThớiBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnTrầnVănThời.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnUMinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\HuyệnĐầmDơi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhCàMau\ThànhPhốCàMau.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnChưPrông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnChưPăh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnChưPưh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnChưSê.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnIaGrai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnIaPa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnKBang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnKrôngPa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnKôngChro.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnMangYang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnPhúThiện.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnĐăkPơ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnĐăkĐoa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\HuyệnĐứcCơ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\ThànhPhốPleiku.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\ThịXãAnKhê.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhGiaLai\ThịXãAYunPa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnBắcMê.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnBắcQuang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnHoàngSuPhì.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnMèoVạc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnQuangBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnQuảnBạ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnVịXuyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnXínMần.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnYênMinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\HuyệnĐồngVăn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàGiang\ThànhPhốHàGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàNam.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàNam\HuyệnBìnhLục.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàNam\HuyệnDuyTiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàNam\HuyệnKimBảng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàNam\HuyệnLýNhân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàNam\HuyệnThanhLiêm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàNam\ThànhPhốPhủLý.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnCanLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnCẩmXuyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnHươngKhê.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnHươngSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnKỳAnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnLộcHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnNghiXuân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnThạchHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnVũQuang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\HuyệnĐứcThọ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\ThànhPhốHàTĩnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHàTĩnh\ThịXãHồngLĩnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnCaoPhong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnKimBôi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnKỳSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnLươngSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnLạcSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnLạcThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnMaiChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnTânLạc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnYênThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\HuyệnĐàBắc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHòaBình\ThànhPhốHòaBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnKhoáiChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnKimĐộng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnMỹHào.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnPhùCừ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnTiênLữ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnVănGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnVănLâm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnYênMỹ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\HuyệnÂnThi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHưngYên\ThànhPhốHưngYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnBìnhGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnCẩmGiàng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnGiaLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnKimThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnKinhMôn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnNamSách.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnNinhGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnThanhHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnThanhMiện.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\HuyệnTứKỳ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\ThànhPhốHảiDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHảiDương\ThịXãChíLinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang\HuyệnChâuThànhA.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang\HuyệnLongMỹ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang\HuyệnPhụngHiệp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang\HuyệnVịThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang\ThànhPhốVịThanh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhHậuGiang\ThịXãNgãBảy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\HuyệnCamLâm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\HuyệnDiênKhánh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\HuyệnKhánhSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\HuyệnKhánhVĩnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\HuyệnVạnNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\ThànhPhốCamRanh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\ThànhPhốNhaTrang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKhánhHòa\ThịXãNinhHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnAnBiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnAnMinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnGiangThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnGiồngRiềng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnGòQuao.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnHònĐất.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnKiênHải.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnKiênLương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnPhúQuốc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnTânHiệp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnUMinhThượng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\HuyệnVĩnhThuận.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\ThànhPhốRạchGiá.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKiênGiang\ThịXãHàTiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnKonPlông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnKonRẫy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnNgọcHồi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnSaThầy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnTuMơRông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnĐắkGlei.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnĐắkHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\HuyệnĐắkTô.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhKonTum\ThànhPhốKonTum.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu\HuyệnMườngTè.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu\HuyệnPhongThổ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu\HuyệnSìnHồ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu\HuyệnTamĐường.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu\HuyệnThanUyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu\HuyệnTânUyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLaiChâu\ThànhPhốLaiChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnBếnLức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnCầnGiuộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnCầnĐước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnMộcHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnThạnhHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnThủThừa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnTânHưng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnTânThạnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnTânTrụ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnVĩnhHưng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnĐứcHuệ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\HuyệnĐứcHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\ThànhPhốTânAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLongAn\ThịXãKiếnTường.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnBátXát.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnBảoThắng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnBảoYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnBắcHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnMườngKhương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnSaPa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnSiMaCai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\HuyệnVănBàn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLàoCai\ThànhPhốLàoCai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnBảoLâm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnCátTiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnDiLinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnLâmHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnLạcDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnĐamRông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnĐơnDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnĐạHuoai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnĐạTẻh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\HuyệnĐứcTrọng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\ThànhPhốBảoLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLâmĐồng\ThànhPhốĐàLạt.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnBìnhGia.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnBắcSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnCaoLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnChiLăng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnHữuLũng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnLộcBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnTràngĐịnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnVănLãng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnVănQuan.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\HuyệnĐìnhLập.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhLạngSơn\ThànhPhốLạngSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnGiaoThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnHảiHậu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnMỹLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnNamTrực.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnNghĩaHưng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnTrựcNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnVụBản.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnXuânTrường.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\HuyệnÝYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNamĐịnh\ThànhPhốNamĐịnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnAnhSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnConCuông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnDiễnChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnHưngNguyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnKỳSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnNamĐàn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnNghiLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnNghĩaĐàn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnQuếPhong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnQuỳChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnQuỳHợp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnQuỳnhLưu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnThanhChương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnTânKỳ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnTươngDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnYênThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\HuyệnĐôLương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\ThànhPhốVinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\ThịXãCửaLò.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\ThịXãHoàngMai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNghệAn\ThịXãTháiHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\HuyệnGiaViễn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\HuyệnHoaLư.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\HuyệnKimSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\HuyệnNhoQuan.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\HuyệnYênKhánh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\HuyệnYênMô.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\ThànhPhốNinhBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhBình\ThịXãTamĐiệp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận\HuyệnBácAi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận\HuyệnNinhHải.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận\HuyệnNinhPhước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận\HuyệnNinhSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận\HuyệnThuậnBắc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận\HuyệnThuậnNam.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhNinhThuận\ThànhPhốPhanRang-ThápChàm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnCẩmKhê.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnHạHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnLâmThao.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnPhùNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnTamNông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnThanhBa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnThanhSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnThanhThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnTânSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnYênLập.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\HuyệnĐoanHùng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\ThànhPhốViệtTrì.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúThọ\ThịXãPhúThọ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\HuyệnPhúHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\HuyệnSôngHinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\HuyệnSơnHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\HuyệnTuyAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\HuyệnTâyHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\HuyệnĐôngHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\HuyệnĐồngXuân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\ThànhPhốTuyHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhPhúYên\ThịXãSôngCầu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\HuyệnBốTrạch.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\HuyệnLệThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\HuyệnMinhHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\HuyệnQuảngNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\HuyệnQuảngTrạch.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\HuyệnTuyênHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\ThànhPhốĐồngHới.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngBình\ThịXãBaĐồn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnBắcTràMy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnDuyXuyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnHiệpĐức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnNamGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnNamTràMy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnNôngSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnNúiThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnPhúNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnPhướcSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnQuếSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnThăngBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnTiênPhước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnTâyGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnĐiệnBàn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnĐôngGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\HuyệnĐạiLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\ThànhPhốHộiAn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNam\ThànhPhốTamKỳ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnBaTơ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnBìnhSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnLýSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnMinhLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnMộĐức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnNghĩaHành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnSơnHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnSơnTây.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnSơnTịnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnTràBồng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnTâyTrà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnTưNghĩa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\HuyệnĐứcPhổ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNgãi\ThànhPhốQuảngNgãi.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnBaChẽ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnBìnhLiêu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnCôTô.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnHoànhBồ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnHảiHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnTiênYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnVânĐồn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnĐôngTriều.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\HuyệnĐầmHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\ThànhPhốCẩmPhả.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\ThànhPhốHạLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\ThànhPhốMóngCái.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\ThànhPhốUôngBí.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngNinh\ThịXãQuảngYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\HuyệnCamLộ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\HuyệnGioLinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\HuyệnHướngHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\HuyệnHảiLăng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\HuyệnTriệuPhong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\HuyệnVĩnhLinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\HuyệnĐaKrông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\ThànhPhốĐôngHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhQuảngTrị\ThịXãQuảngTrị.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnCùLaoDung.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnKếSách.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnLongPhú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnMỹTú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnMỹXuyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnThạnhTrị.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\HuyệnTrầnĐề.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\ThànhPhốSócTrăng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\ThịXãNgãNăm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSócTrăng\ThịXãVĩnhChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnBắcYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnMaiSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnMườngLa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnMộcChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnPhùYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnQuỳnhNhai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnSôngMã.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnSốpCộp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnThuậnChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnVânHồ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\HuyệnYênChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhSơnLa\ThànhPhốSơnLa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnBáThước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnCẩmThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnHoằngHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnHàTrung.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnHậuLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnLangChánh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnMườngLát.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnNgaSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnNgọcLặc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnNhưThanh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnNhưXuân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnNôngCống.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnQuanHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnQuanSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnQuảngXương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnThiệuHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnThườngXuân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnThạchThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnThọXuân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnTriệuSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnTĩnhGia.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnVĩnhLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnYênĐịnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\HuyệnĐôngSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\ThànhPhốThanhHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\ThịXãBỉmSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThanhHóa\ThịXãSầmSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\HuyệnHưngHà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\HuyệnKiếnXương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\HuyệnQuỳnhPhụ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\HuyệnTháiThụy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\HuyệnTiềnHải.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\HuyệnVũThư.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\HuyệnĐôngHưng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiBình\ThànhPhốTháiBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\HuyệnPhúBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\HuyệnPhúLương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\HuyệnPhổYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\HuyệnVõNhai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\HuyệnĐạiTừ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\HuyệnĐịnhHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\HuyệnĐồngHỷ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\ThànhPhốTháiNguyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTháiNguyên\ThịXãSôngCông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\HuyệnALưới.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\HuyệnNamĐông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\HuyệnPhongĐiền.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\HuyệnPhúLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\HuyệnPhúVang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\HuyệnQuảngĐiền.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\ThànhPhốHuế.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\ThịXãHươngThủy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhThừaThiênHuế\ThịXãHươngTrà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnCaiLậy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnChợGạo.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnCáiBè.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnGòCôngTây.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnGòCôngĐông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnTânPhúĐông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\HuyệnTânPhước.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\ThànhPhốMỹTho.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\ThịXãCaiLậy.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTiềnGiang\ThịXãGòCông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\HuyệnCàngLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\HuyệnCầuKè.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\HuyệnCầuNgang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\HuyệnDuyênHải.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\HuyệnTiểuCần.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\HuyệnTràCú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTràVinh\ThànhPhốTràVinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang\HuyệnChiêmHóa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang\HuyệnHàmYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang\HuyệnLâmBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang\HuyệnNaHang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang\HuyệnSơnDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang\HuyệnYênSơn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTuyênQuang\ThànhPhốTuyênQuang.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnBếnCầu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnDươngMinhChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnGòDầu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnHòaThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnTrảngBàng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnTânBiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\HuyệnTânChâu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhTâyNinh\ThànhPhốTâyNinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\HuyệnBìnhTân.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\HuyệnLongHồ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\HuyệnMangThít.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\HuyệnTamBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\HuyệnTràÔn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\HuyệnVũngLiêm.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\ThànhPhốVĩnhLong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhLong\ThịXãBìnhMinh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\HuyệnBìnhXuyên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\HuyệnLậpThạch.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\HuyệnSôngLô.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\HuyệnTamDương.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\HuyệnTamĐảo.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\HuyệnVĩnhTường.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\HuyệnYênLạc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\ThànhPhốVĩnhYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhVĩnhPhúc\ThịXãPhúcYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\HuyệnLụcYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\HuyệnMùCangChải.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\HuyệnTrạmTấu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\HuyệnTrấnYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\HuyệnVănChấn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\HuyệnVănYên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\HuyệnYênBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\ThànhPhốYênBái.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhYênBái\ThịXãNghĩaLộ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnMườngChà.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnMườngNhé.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnMườngẢng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnNậmPồ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnTuầnGiáo.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnTủaChùa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnĐiệnBiên.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\HuyệnĐiệnBiênĐông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\ThànhPhốĐiệnBiênPhủ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐiệnBiên\ThịXãMườngLay.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnBuônĐôn.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnCưKuin.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnCưM`Gar.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnEaH`Leo.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnEaKar.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnEaSúp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnKrôngAna.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnKrôngBông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnKrôngBúk.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnKrôngNăng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnKrôngPăk.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnLắk.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\HuyệnM`Đrắk.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\ThànhPhốBuônMaThuột.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkLắk\ThịXãBuônHồ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\HuyệnCưJút.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\HuyệnKrôngNô.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\HuyệnTuyĐức.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\HuyệnĐắkGlong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\HuyệnĐắkMil.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\HuyệnĐắkRlấp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\HuyệnĐắkSong.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐắkNông\ThịXãGiaNghĩa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnCẩmMỹ.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnLongThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnNhơnTrạch.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnThốngNhất.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnTrảngBom.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnTânPhú.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnVĩnhCửu.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnXuânLộc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\HuyệnĐịnhQuán.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\ThànhPhốBiênHòa.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngNai\ThịXãLongKhánh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnCaoLãnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnChâuThành.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnHồngNgự.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnLaiVung.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnLấpVò.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnTamNông.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnThanhBình.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnThápMười.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\HuyệnTânHồng.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\ThànhPhốCaoLãnh.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\ThànhPhốSaĐéc.js" />
+    <Content Include="maps\vn\BanDo63TinhFull\TỉnhĐồngTháp\ThịXãHồngNgự.js" />
+    <Content Include="maps\vn\canthotp.js" />
+    <Content Include="maps\vn\jquery-jvectormap-data-vn-vietnam - Copy.js" />
+    <Content Include="maps\vn\jquery-jvectormap-data-vn-vietnam.js" />
+    <Content Include="maps\vn\ThànhPhốHàNội.js" />
+    <Content Include="maps\vn\TỉnhBắcNinh.js" />
+    <Content Include="maps\vn\TỉnhBắcNinh\HuyệnGiaBình.js" />
+    <Content Include="maps\vn\TỉnhBắcNinh\HuyệnQuếVõ.js" />
+    <Content Include="maps\vn\TỉnhBắcNinh\thuanthanhh.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\canvg.js" />
+    <Content Include="Scripts\GeneratorHeaderToTable.js" />
+    <Content Include="Scripts\GenHeader.js" />
+    <Content Include="Scripts\globalize.cultures.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\handsontable.full.js" />
+    <Content Include="Scripts\html2canvas.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-jvectormap-2.0.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jvectorMapCustom.js" />
+    <Content Include="Scripts\knockout-3.0.0.debug.js" />
+    <Content Include="Scripts\knockout-3.0.0.js" />
+    <Content Include="packages.config" />
+    <EntityDeploy Include="Models\BDVTW_DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BDVTW_DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BDVTW_DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDVTW_DB.edmx</DependentUpon>
+      <LastGenOutput>BDVTW_DB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BDVTW_DB.edmx.diagram">
+      <DependentUpon>BDVTW_DB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BDVTW_DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDVTW_DB.edmx</DependentUpon>
+      <LastGenOutput>BDVTW_DB.cs</LastGenOutput>
+    </Content>
+    <Content Include="maps\vn\Ban Do 63 Tinh Full Connverted.rar" />
+    <Content Include="maps\vn\SCALED_Edited.rar" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\rgbcolor.js" />
+    <Content Include="Scripts\spectrum.js" />
+    <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\ChiTieuNghiepVu\Index.cshtml" />
+    <Content Include="Views\ChiTieuNghiepVu\_TreeListPartial.cshtml" />
+    <Content Include="Views\DanhMucNhomChiTieu\Index.cshtml" />
+    <Content Include="Views\DanhMucNhomChiTieu\_GridViewPartial.cshtml" />
+    <Content Include="Views\DanhMucDonViTinh\Index.cshtml" />
+    <Content Include="Views\DanhMucDonViTinh\_GridView1Partial.cshtml" />
+    <Content Include="Views\DanhMucNghiepVu\Index.cshtml" />
+    <Content Include="Views\DanhMucNghiepVu\_GridView3Partial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_lightLayout.cshtml" />
+    <Content Include="Views\Shared\_mainLayout.cshtml" />
+    <Content Include="Views\Shared\_rootLayout.cshtml" />
+    <Content Include="Views\Shared\ContentLeftPartialView.cshtml" />
+    <Content Include="Views\Shared\ContentRightPartialView.cshtml" />
+    <Content Include="Views\Shared\FooterPartialView.cshtml" />
+    <Content Include="Views\Shared\HeaderPartialView.cshtml" />
+    <Content Include="Views\Shared\LogOnPartialView.cshtml" />
+    <Content Include="Views\Home\GridViewPartialView.cshtml" />
+    <Content Include="Views\Map\Index.cshtml" />
+    <Content Include="Views\Map\IndexRewriteId.cshtml" />
+    <Content Include="Views\DanhMucChiTieu\Index.cshtml" />
+    <Content Include="Views\DanhMucChiTieu\_TreeListPartial.cshtml" />
+    <Content Include="Views\Grid\Index.cshtml" />
+    <Content Include="Views\TKChiTieu\Index.cshtml" />
+    <Content Include="Views\TKChiTieu\_TKChiTieuTreePartial.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\HeaderPartialViewLogin.cshtml" />
+    <Content Include="Views\Shared\_rootLayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_loginLayout.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\_Menu.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChiTieuNghiepVuController.cs" />
+    <Compile Include="Controllers\DanhMucChiTieuController.cs" />
+    <Compile Include="Controllers\DanhMucDonViTinhController.cs" />
+    <Compile Include="Controllers\DanhMucNghiepVuController.cs" />
+    <Compile Include="Controllers\DanhMucNhomChiTieuController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\TKChiTieuController.cs" />
+    <Compile Include="Controllers\GridController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\BDVTW_DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDVTW_DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDVTW_DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDVTW_DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDVTW_DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CapDiaPhuong.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanhMucChiTieu.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanhMucDiaPhuong.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanhMucNhomChiTieu.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiaPhuong.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DMNghiepVu.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonViTinh.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KyBaoCao.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NghiepVuChiTieu.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThongKe.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VungDiaPhuong.cs">
+      <DependentUpon>BDVTW_DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DANN.Model\DANN.Model.csproj">
+      <Project>{d58fb484-fa36-46ba-a2b4-8b23b89ba449}</Project>
+      <Name>DANN.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:15124/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+</Project>

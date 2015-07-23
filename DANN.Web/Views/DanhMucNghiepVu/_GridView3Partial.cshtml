@@ -1,0 +1,33 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView3";
+        settings.CallbackRouteValues = new { Controller = "DanhMucNghiepVu", Action = "GridView3Partial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DanhMucNghiepVu", Action = "GridView3PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DanhMucNghiepVu", Action = "GridView3PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DanhMucNghiepVu", Action = "GridView3PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "MaNghiepVu";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add("TenNghiepVu");
+        settings.Columns.Add("MoTa");
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

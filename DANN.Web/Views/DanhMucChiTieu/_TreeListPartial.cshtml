@@ -1,0 +1,75 @@
+﻿@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
+        settings.Name = "TreeList";
+        settings.CallbackRouteValues = new { Controller = "DanhMucChiTieu", Action = "TreeListPartial" };
+
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "DanhMucChiTieu", Action = "TreeListPartialAddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "DanhMucChiTieu", Action = "TreeListPartialUpdate" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "DanhMucChiTieu", Action = "TreeListPartialDelete" };
+        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "DanhMucChiTieu", Action = "TreeListPartialMove" };
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowTreeLines = true;
+        settings.AutoGenerateColumns = false;
+
+        settings.SettingsText.CommandCancel = "Cancel";
+        settings.SettingsText.CommandDelete = "Xóa";
+        settings.SettingsText.CommandUpdate = "Cập nhật";
+        settings.SettingsText.CommandNew = "Thêm mới";
+        settings.SettingsText.CommandEdit = "Sửa";
+
+        settings.Settings.GridLines = System.Web.UI.WebControls.GridLines.Both;
+        settings.SettingsBehavior.AutoExpandAllNodes = true;
+        settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+
+        settings.KeyFieldName = "MaChiTieu";
+        settings.ParentFieldName = "MaChiTieuCha";
+
+        settings.Columns.Add(
+        column =>
+        {
+            column.FieldName = "MaNhomChiTieu";
+            column.Visible = false;
+        }
+       );
+
+        settings.Columns.Add(
+        column =>
+        {
+            column.FieldName = "TenChiTieu";
+            column.Caption = "Tên chỉ tiêu";
+            column.Width = Unit.Percentage(50);
+            column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        }
+         );
+
+
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "Tên đơn vị tính";
+            column.FieldName = "MaDonViTinh";
+            column.Width = Unit.Percentage(20);
+            column.ColumnType = MVCxTreeListColumnType.ComboBox;
+            ComboBoxProperties propertiesComboBox = column.PropertiesEdit as ComboBoxProperties;
+            propertiesComboBox.DataSource = ViewData["LstDonViTinh"];
+            propertiesComboBox.TextField = "TenDonViTinh";
+            propertiesComboBox.ValueField = "MaDonViTinh";
+
+        });
+
+        settings.SettingsPager.Visible = true;
+        settings.SettingsSelection.Enabled = true;
+    });
+    if (ViewData["EditError"] != null)
+    {
+        treeList.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@treeList.Bind(Model).GetHtml()

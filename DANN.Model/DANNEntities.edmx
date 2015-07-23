@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBDANNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AD_LichSu">
+          <Key>
+            <PropertyRef Name="LichSu_Id" />
+          </Key>
+          <Property Name="LichSu_Id" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Menu_Id" Type="int" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Variables" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AD_Menu">
+          <Key>
+            <PropertyRef Name="Menu_Id" />
+          </Key>
+          <Property Name="Menu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Menu_ParentId" Type="int" />
+          <Property Name="MenuText" Type="nvarchar" MaxLength="250" />
+          <Property Name="MenuAction" Type="varchar" MaxLength="100" />
+          <Property Name="MenuIcon" Type="varchar" MaxLength="50" />
+          <Property Name="MenuSort" Type="int" />
+        </EntityType>
+        <EntityType Name="AD_User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
+          <Property Name="SoDienThoai" Type="varchar" MaxLength="50" />
+          <Property Name="ChucVu" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhongBan" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="AD_User_Menu">
+          <Key>
+            <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Menu_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Menu_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BM_BieuMau">
+          <Key>
+            <PropertyRef Name="BieuMau_Id" />
+          </Key>
+          <Property Name="BieuMau_Id" Type="int" Nullable="false" />
+          <Property Name="TenBieuMau" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BM_Cot">
+          <Key>
+            <PropertyRef Name="BieuMau_Id" />
+            <PropertyRef Name="Cot_Id" />
+          </Key>
+          <Property Name="BieuMau_Id" Type="int" Nullable="false" />
+          <Property Name="Cot_Id" Type="int" Nullable="false" />
+          <Property Name="Cot_ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="BM_Dong">
+          <Key>
+            <PropertyRef Name="BieuMau_Id" />
+            <PropertyRef Name="Dong_Id" />
+          </Key>
+          <Property Name="BieuMau_Id" Type="int" Nullable="false" />
+          <Property Name="Dong_Id" Type="int" Nullable="false" />
+          <Property Name="Dong_ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="DM_Code">
+          <Key>
+            <PropertyRef Name="CodeKind" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="CodeKind" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="CodeKindName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DM_DiaPhuong">
+          <Key>
+            <PropertyRef Name="DiaPhuong_Id" />
+          </Key>
+          <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
+          <Property Name="DiaPhuong_ParentId" Type="int" />
+          <Property Name="TenDiaPhuong" Type="nvarchar" MaxLength="200" />
+          <Property Name="IDBanDo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Loai" Type="varchar" MaxLength="5" />
+          <Property Name="Longitude" Type="varchar" MaxLength="20" />
+          <Property Name="Latitude" Type="varchar" MaxLength="20" />
+          <Property Name="TelCode" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DM_DonViTinh">
+          <Key>
+            <PropertyRef Name="DonViTinh_Id" />
+          </Key>
+          <Property Name="DonViTinh_Id" Type="int" Nullable="false" />
+          <Property Name="TenDonViTinh" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LoaiDonViTinh" Type="nvarchar" MaxLength="20" />
+          <Property Name="ValueFormat" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DM_KyBaoCao">
+          <Key>
+            <PropertyRef Name="KyBaoCao_Id" />
+          </Key>
+          <Property Name="KyBaoCao_Id" Type="int" Nullable="false" />
+          <Property Name="TenKyBaoCao" Type="nvarchar" MaxLength="100" />
+          <Property Name="LoaiBaoCao" Type="nvarchar" MaxLength="50" />
+          <Property Name="NguonBaoCao" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DM_PhanHe">
+          <Key>
+            <PropertyRef Name="PhanHe_Id" />
+          </Key>
+          <Property Name="PhanHe_Id" Type="int" Nullable="false" />
+          <Property Name="TenPhanHe" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TK_ChiTieu">
+          <Key>
+            <PropertyRef Name="ChiTieu_Id" />
+          </Key>
+          <Property Name="ChiTieu_Id" Type="int" Nullable="false" />
+          <Property Name="ChiTieu_ParentId" Type="int" />
+          <Property Name="TenChiTieu" Type="nvarchar" MaxLength="300" />
+          <Property Name="PhanHe_Id" Type="int" />
+          <Property Name="DonViTinh_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="TK_DoiTuong">
+          <Key>
+            <PropertyRef Name="DoiTuong_Id" />
+          </Key>
+          <Property Name="DoiTuong_Id" Type="int" Nullable="false" />
+          <Property Name="DoiTuong_ParentId" Type="int" />
+          <Property Name="TenDoiTuong" Type="nvarchar" MaxLength="200" />
+          <Property Name="Nhom_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="TK_ThongKe">
+          <Key>
+            <PropertyRef Name="ChiTieu_Id" />
+            <PropertyRef Name="DoiTuong_Id" />
+            <PropertyRef Name="KyBaoCao_Id" />
+            <PropertyRef Name="Nhom_Id" />
+            <PropertyRef Name="DiaPhuong_Id" />
+          </Key>
+          <Property Name="ChiTieu_Id" Type="int" Nullable="false" />
+          <Property Name="DoiTuong_Id" Type="int" Nullable="false" />
+          <Property Name="KyBaoCao_Id" Type="int" Nullable="false" />
+          <Property Name="Nhom_Id" Type="int" Nullable="false" />
+          <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
+          <Property Name="GiaTriThongKe" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_TK_ChiTieu_DM_DonViTinh">
+          <End Role="DM_DonViTinh" Type="Self.DM_DonViTinh" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TK_ChiTieu" Type="Self.TK_ChiTieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_DonViTinh">
+              <PropertyRef Name="DonViTinh_Id" />
+            </Principal>
+            <Dependent Role="TK_ChiTieu">
+              <PropertyRef Name="DonViTinh_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_DM_KyBaoCao">
+          <End Role="DM_KyBaoCao" Type="Self.DM_KyBaoCao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_KyBaoCao">
+              <PropertyRef Name="KyBaoCao_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="KyBaoCao_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_DM_Nhom">
+          <End Role="DM_PhanHe" Type="Self.DM_PhanHe" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_PhanHe">
+              <PropertyRef Name="PhanHe_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="Nhom_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_TK_ChiTieu">
+          <End Role="TK_ChiTieu" Type="Self.TK_ChiTieu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TK_ChiTieu">
+              <PropertyRef Name="ChiTieu_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="ChiTieu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_TK_DoiTuong">
+          <End Role="TK_DoiTuong" Type="Self.TK_DoiTuong" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TK_DoiTuong">
+              <PropertyRef Name="DoiTuong_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="DoiTuong_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBDANNModelStoreContainer">
+          <EntitySet Name="AD_LichSu" EntityType="Self.AD_LichSu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AD_Menu" EntityType="Self.AD_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AD_User" EntityType="Self.AD_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AD_User_Menu" EntityType="Self.AD_User_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BM_BieuMau" EntityType="Self.BM_BieuMau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BM_Cot" EntityType="Self.BM_Cot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BM_Dong" EntityType="Self.BM_Dong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Code" EntityType="Self.DM_Code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_DiaPhuong" EntityType="Self.DM_DiaPhuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_DonViTinh" EntityType="Self.DM_DonViTinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_KyBaoCao" EntityType="Self.DM_KyBaoCao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_PhanHe" EntityType="Self.DM_PhanHe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TK_ChiTieu" EntityType="Self.TK_ChiTieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TK_DoiTuong" EntityType="Self.TK_DoiTuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TK_ThongKe" EntityType="Self.TK_ThongKe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TK_ChiTieu_DM_DonViTinh" Association="Self.FK_TK_ChiTieu_DM_DonViTinh">
+            <End Role="DM_DonViTinh" EntitySet="DM_DonViTinh" />
+            <End Role="TK_ChiTieu" EntitySet="TK_ChiTieu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_DM_KyBaoCao" Association="Self.FK_TK_ThongKe_DM_KyBaoCao">
+            <End Role="DM_KyBaoCao" EntitySet="DM_KyBaoCao" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_DM_Nhom" Association="Self.FK_TK_ThongKe_DM_Nhom">
+            <End Role="DM_PhanHe" EntitySet="DM_PhanHe" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_TK_ChiTieu" Association="Self.FK_TK_ThongKe_TK_ChiTieu">
+            <End Role="TK_ChiTieu" EntitySet="TK_ChiTieu" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_TK_DoiTuong" Association="Self.FK_TK_ThongKe_TK_DoiTuong">
+            <End Role="TK_DoiTuong" EntitySet="TK_DoiTuong" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBDANNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DANNEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AD_LichSu" EntityType="DBDANNModel.AD_LichSu" />
+          <EntitySet Name="AD_User" EntityType="DBDANNModel.AD_User" />
+          <EntitySet Name="AD_User_Menu" EntityType="DBDANNModel.AD_User_Menu" />
+          <EntitySet Name="BM_BieuMau" EntityType="DBDANNModel.BM_BieuMau" />
+          <EntitySet Name="BM_Cot" EntityType="DBDANNModel.BM_Cot" />
+          <EntitySet Name="BM_Dong" EntityType="DBDANNModel.BM_Dong" />
+          <EntitySet Name="DM_Code" EntityType="DBDANNModel.DM_Code" />
+          <EntitySet Name="DM_DiaPhuong" EntityType="DBDANNModel.DM_DiaPhuong" />
+          <EntitySet Name="DM_DonViTinh" EntityType="DBDANNModel.DM_DonViTinh" />
+          <EntitySet Name="DM_KyBaoCao" EntityType="DBDANNModel.DM_KyBaoCao" />
+          <EntitySet Name="DM_PhanHe" EntityType="DBDANNModel.DM_PhanHe" />
+          <EntitySet Name="sysdiagrams" EntityType="DBDANNModel.sysdiagram" />
+          <EntitySet Name="TK_ChiTieu" EntityType="DBDANNModel.TK_ChiTieu" />
+          <EntitySet Name="TK_DoiTuong" EntityType="DBDANNModel.TK_DoiTuong" />
+          <EntitySet Name="TK_ThongKe" EntityType="DBDANNModel.TK_ThongKe" />
+          <AssociationSet Name="FK_TK_ChiTieu_DM_DonViTinh" Association="DBDANNModel.FK_TK_ChiTieu_DM_DonViTinh">
+            <End Role="DM_DonViTinh" EntitySet="DM_DonViTinh" />
+            <End Role="TK_ChiTieu" EntitySet="TK_ChiTieu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_DM_KyBaoCao" Association="DBDANNModel.FK_TK_ThongKe_DM_KyBaoCao">
+            <End Role="DM_KyBaoCao" EntitySet="DM_KyBaoCao" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_DM_Nhom" Association="DBDANNModel.FK_TK_ThongKe_DM_Nhom">
+            <End Role="DM_PhanHe" EntitySet="DM_PhanHe" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_TK_ChiTieu" Association="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu">
+            <End Role="TK_ChiTieu" EntitySet="TK_ChiTieu" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TK_ThongKe_TK_DoiTuong" Association="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong">
+            <End Role="TK_DoiTuong" EntitySet="TK_DoiTuong" />
+            <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
+          </AssociationSet>
+          <EntitySet Name="AD_Menu" EntityType="DBDANNModel.AD_Menu" />
+        </EntityContainer>
+        <EntityType Name="AD_LichSu">
+          <Key>
+            <PropertyRef Name="LichSu_Id" />
+          </Key>
+          <Property Name="LichSu_Id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Menu_Id" Type="Int32" />
+          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Variables" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AD_User">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChucVu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhongBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AD_User_Menu">
+          <Key>
+            <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Menu_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="Menu_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BM_BieuMau">
+          <Key>
+            <PropertyRef Name="BieuMau_Id" />
+          </Key>
+          <Property Name="BieuMau_Id" Type="Int32" Nullable="false" />
+          <Property Name="TenBieuMau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BM_Cot">
+          <Key>
+            <PropertyRef Name="BieuMau_Id" />
+            <PropertyRef Name="Cot_Id" />
+          </Key>
+          <Property Name="BieuMau_Id" Type="Int32" Nullable="false" />
+          <Property Name="Cot_Id" Type="Int32" Nullable="false" />
+          <Property Name="Cot_ParentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BM_Dong">
+          <Key>
+            <PropertyRef Name="BieuMau_Id" />
+            <PropertyRef Name="Dong_Id" />
+          </Key>
+          <Property Name="BieuMau_Id" Type="Int32" Nullable="false" />
+          <Property Name="Dong_Id" Type="Int32" Nullable="false" />
+          <Property Name="Dong_ParentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DM_Code">
+          <Key>
+            <PropertyRef Name="CodeKind" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="CodeKind" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="CodeKindName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DM_DiaPhuong">
+          <Key>
+            <PropertyRef Name="DiaPhuong_Id" />
+          </Key>
+          <Property Name="DiaPhuong_Id" Type="Int32" Nullable="false" />
+          <Property Name="DiaPhuong_ParentId" Type="Int32" />
+          <Property Name="TenDiaPhuong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IDBanDo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Loai" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TelCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DM_DonViTinh">
+          <Key>
+            <PropertyRef Name="DonViTinh_Id" />
+          </Key>
+          <Property Name="DonViTinh_Id" Type="Int32" Nullable="false" />
+          <Property Name="TenDonViTinh" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiDonViTinh" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ValueFormat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TK_ChiTieu" Relationship="DBDANNModel.FK_TK_ChiTieu_DM_DonViTinh" FromRole="DM_DonViTinh" ToRole="TK_ChiTieu" />
+        </EntityType>
+        <EntityType Name="DM_KyBaoCao">
+          <Key>
+            <PropertyRef Name="KyBaoCao_Id" />
+          </Key>
+          <Property Name="KyBaoCao_Id" Type="Int32" Nullable="false" />
+          <Property Name="TenKyBaoCao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiBaoCao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NguonBaoCao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TK_ThongKe" Relationship="DBDANNModel.FK_TK_ThongKe_DM_KyBaoCao" FromRole="DM_KyBaoCao" ToRole="TK_ThongKe" />
+        </EntityType>
+        <EntityType Name="DM_PhanHe">
+          <Key>
+            <PropertyRef Name="PhanHe_Id" />
+          </Key>
+          <Property Name="PhanHe_Id" Type="Int32" Nullable="false" />
+          <Property Name="TenPhanHe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TK_ThongKe" Relationship="DBDANNModel.FK_TK_ThongKe_DM_Nhom" FromRole="DM_PhanHe" ToRole="TK_ThongKe" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TK_ChiTieu">
+          <Key>
+            <PropertyRef Name="ChiTieu_Id" />
+          </Key>
+          <Property Name="ChiTieu_Id" Type="Int32" Nullable="false" />
+          <Property Name="ChiTieu_ParentId" Type="Int32" />
+          <Property Name="TenChiTieu" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PhanHe_Id" Type="Int32" />
+          <Property Name="DonViTinh_Id" Type="Int32" />
+          <NavigationProperty Name="DM_DonViTinh" Relationship="DBDANNModel.FK_TK_ChiTieu_DM_DonViTinh" FromRole="TK_ChiTieu" ToRole="DM_DonViTinh" />
+          <NavigationProperty Name="TK_ThongKe" Relationship="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu" FromRole="TK_ChiTieu" ToRole="TK_ThongKe" />
+        </EntityType>
+        <EntityType Name="TK_DoiTuong">
+          <Key>
+            <PropertyRef Name="DoiTuong_Id" />
+          </Key>
+          <Property Name="DoiTuong_Id" Type="Int32" Nullable="false" />
+          <Property Name="DoiTuong_ParentId" Type="Int32" />
+          <Property Name="TenDoiTuong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Nhom_Id" Type="Int32" />
+          <NavigationProperty Name="TK_ThongKe" Relationship="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" FromRole="TK_DoiTuong" ToRole="TK_ThongKe" />
+        </EntityType>
+        <EntityType Name="TK_ThongKe">
+          <Key>
+            <PropertyRef Name="ChiTieu_Id" />
+            <PropertyRef Name="DoiTuong_Id" />
+            <PropertyRef Name="KyBaoCao_Id" />
+            <PropertyRef Name="Nhom_Id" />
+            <PropertyRef Name="DiaPhuong_Id" />
+          </Key>
+          <Property Name="ChiTieu_Id" Type="Int32" Nullable="false" />
+          <Property Name="DoiTuong_Id" Type="Int32" Nullable="false" />
+          <Property Name="KyBaoCao_Id" Type="Int32" Nullable="false" />
+          <Property Name="Nhom_Id" Type="Int32" Nullable="false" />
+          <Property Name="DiaPhuong_Id" Type="Int32" Nullable="false" />
+          <Property Name="GiaTriThongKe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DM_KyBaoCao" Relationship="DBDANNModel.FK_TK_ThongKe_DM_KyBaoCao" FromRole="TK_ThongKe" ToRole="DM_KyBaoCao" />
+          <NavigationProperty Name="DM_PhanHe" Relationship="DBDANNModel.FK_TK_ThongKe_DM_Nhom" FromRole="TK_ThongKe" ToRole="DM_PhanHe" />
+          <NavigationProperty Name="TK_ChiTieu" Relationship="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu" FromRole="TK_ThongKe" ToRole="TK_ChiTieu" />
+          <NavigationProperty Name="TK_DoiTuong" Relationship="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" FromRole="TK_ThongKe" ToRole="TK_DoiTuong" />
+        </EntityType>
+        <Association Name="FK_TK_ChiTieu_DM_DonViTinh">
+          <End Type="DBDANNModel.DM_DonViTinh" Role="DM_DonViTinh" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBDANNModel.TK_ChiTieu" Role="TK_ChiTieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_DonViTinh">
+              <PropertyRef Name="DonViTinh_Id" />
+            </Principal>
+            <Dependent Role="TK_ChiTieu">
+              <PropertyRef Name="DonViTinh_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_DM_KyBaoCao">
+          <End Type="DBDANNModel.DM_KyBaoCao" Role="DM_KyBaoCao" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_KyBaoCao">
+              <PropertyRef Name="KyBaoCao_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="KyBaoCao_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_DM_Nhom">
+          <End Type="DBDANNModel.DM_PhanHe" Role="DM_PhanHe" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_PhanHe">
+              <PropertyRef Name="PhanHe_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="Nhom_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_TK_ChiTieu">
+          <End Type="DBDANNModel.TK_ChiTieu" Role="TK_ChiTieu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TK_ChiTieu">
+              <PropertyRef Name="ChiTieu_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="ChiTieu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TK_ThongKe_TK_DoiTuong">
+          <End Type="DBDANNModel.TK_DoiTuong" Role="TK_DoiTuong" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TK_DoiTuong">
+              <PropertyRef Name="DoiTuong_Id" />
+            </Principal>
+            <Dependent Role="TK_ThongKe">
+              <PropertyRef Name="DoiTuong_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AD_Menu">
+          <Key>
+            <PropertyRef Name="Menu_Id" />
+          </Key>
+          <Property Name="Menu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Menu_ParentId" Type="Int32" />
+          <Property Name="MenuText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MenuAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MenuSort" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBDANNModelStoreContainer" CdmEntityContainer="DANNEntities">
+          <EntitySetMapping Name="AD_LichSu">
+            <EntityTypeMapping TypeName="DBDANNModel.AD_LichSu">
+              <MappingFragment StoreEntitySet="AD_LichSu">
+                <ScalarProperty Name="Variables" ColumnName="Variables" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LichSu_Id" ColumnName="LichSu_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AD_User">
+            <EntityTypeMapping TypeName="DBDANNModel.AD_User">
+              <MappingFragment StoreEntitySet="AD_User">
+                <ScalarProperty Name="PhongBan" ColumnName="PhongBan" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AD_User_Menu">
+            <EntityTypeMapping TypeName="DBDANNModel.AD_User_Menu">
+              <MappingFragment StoreEntitySet="AD_User_Menu">
+                <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BM_BieuMau">
+            <EntityTypeMapping TypeName="DBDANNModel.BM_BieuMau">
+              <MappingFragment StoreEntitySet="BM_BieuMau">
+                <ScalarProperty Name="TenBieuMau" ColumnName="TenBieuMau" />
+                <ScalarProperty Name="BieuMau_Id" ColumnName="BieuMau_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BM_Cot">
+            <EntityTypeMapping TypeName="DBDANNModel.BM_Cot">
+              <MappingFragment StoreEntitySet="BM_Cot">
+                <ScalarProperty Name="Cot_ParentId" ColumnName="Cot_ParentId" />
+                <ScalarProperty Name="Cot_Id" ColumnName="Cot_Id" />
+                <ScalarProperty Name="BieuMau_Id" ColumnName="BieuMau_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BM_Dong">
+            <EntityTypeMapping TypeName="DBDANNModel.BM_Dong">
+              <MappingFragment StoreEntitySet="BM_Dong">
+                <ScalarProperty Name="Dong_ParentId" ColumnName="Dong_ParentId" />
+                <ScalarProperty Name="Dong_Id" ColumnName="Dong_Id" />
+                <ScalarProperty Name="BieuMau_Id" ColumnName="BieuMau_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Code">
+            <EntityTypeMapping TypeName="DBDANNModel.DM_Code">
+              <MappingFragment StoreEntitySet="DM_Code">
+                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+                <ScalarProperty Name="CodeKindName" ColumnName="CodeKindName" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CodeKind" ColumnName="CodeKind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_DiaPhuong">
+            <EntityTypeMapping TypeName="DBDANNModel.DM_DiaPhuong">
+              <MappingFragment StoreEntitySet="DM_DiaPhuong">
+                <ScalarProperty Name="TelCode" ColumnName="TelCode" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="IDBanDo" ColumnName="IDBanDo" />
+                <ScalarProperty Name="TenDiaPhuong" ColumnName="TenDiaPhuong" />
+                <ScalarProperty Name="DiaPhuong_ParentId" ColumnName="DiaPhuong_ParentId" />
+                <ScalarProperty Name="DiaPhuong_Id" ColumnName="DiaPhuong_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_DonViTinh">
+            <EntityTypeMapping TypeName="DBDANNModel.DM_DonViTinh">
+              <MappingFragment StoreEntitySet="DM_DonViTinh">
+                <ScalarProperty Name="ValueFormat" ColumnName="ValueFormat" />
+                <ScalarProperty Name="LoaiDonViTinh" ColumnName="LoaiDonViTinh" />
+                <ScalarProperty Name="TenDonViTinh" ColumnName="TenDonViTinh" />
+                <ScalarProperty Name="DonViTinh_Id" ColumnName="DonViTinh_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_KyBaoCao">
+            <EntityTypeMapping TypeName="DBDANNModel.DM_KyBaoCao">
+              <MappingFragment StoreEntitySet="DM_KyBaoCao">
+                <ScalarProperty Name="NguonBaoCao" ColumnName="NguonBaoCao" />
+                <ScalarProperty Name="LoaiBaoCao" ColumnName="LoaiBaoCao" />
+                <ScalarProperty Name="TenKyBaoCao" ColumnName="TenKyBaoCao" />
+                <ScalarProperty Name="KyBaoCao_Id" ColumnName="KyBaoCao_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_PhanHe">
+            <EntityTypeMapping TypeName="DBDANNModel.DM_PhanHe">
+              <MappingFragment StoreEntitySet="DM_PhanHe">
+                <ScalarProperty Name="TenPhanHe" ColumnName="TenPhanHe" />
+                <ScalarProperty Name="PhanHe_Id" ColumnName="PhanHe_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBDANNModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TK_ChiTieu">
+            <EntityTypeMapping TypeName="DBDANNModel.TK_ChiTieu">
+              <MappingFragment StoreEntitySet="TK_ChiTieu">
+                <ScalarProperty Name="DonViTinh_Id" ColumnName="DonViTinh_Id" />
+                <ScalarProperty Name="PhanHe_Id" ColumnName="PhanHe_Id" />
+                <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
+                <ScalarProperty Name="ChiTieu_ParentId" ColumnName="ChiTieu_ParentId" />
+                <ScalarProperty Name="ChiTieu_Id" ColumnName="ChiTieu_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TK_DoiTuong">
+            <EntityTypeMapping TypeName="DBDANNModel.TK_DoiTuong">
+              <MappingFragment StoreEntitySet="TK_DoiTuong">
+                <ScalarProperty Name="Nhom_Id" ColumnName="Nhom_Id" />
+                <ScalarProperty Name="TenDoiTuong" ColumnName="TenDoiTuong" />
+                <ScalarProperty Name="DoiTuong_ParentId" ColumnName="DoiTuong_ParentId" />
+                <ScalarProperty Name="DoiTuong_Id" ColumnName="DoiTuong_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TK_ThongKe">
+            <EntityTypeMapping TypeName="DBDANNModel.TK_ThongKe">
+              <MappingFragment StoreEntitySet="TK_ThongKe">
+                <ScalarProperty Name="GiaTriThongKe" ColumnName="GiaTriThongKe" />
+                <ScalarProperty Name="DiaPhuong_Id" ColumnName="DiaPhuong_Id" />
+                <ScalarProperty Name="Nhom_Id" ColumnName="Nhom_Id" />
+                <ScalarProperty Name="KyBaoCao_Id" ColumnName="KyBaoCao_Id" />
+                <ScalarProperty Name="DoiTuong_Id" ColumnName="DoiTuong_Id" />
+                <ScalarProperty Name="ChiTieu_Id" ColumnName="ChiTieu_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AD_Menu">
+            <EntityTypeMapping TypeName="DBDANNModel.AD_Menu">
+              <MappingFragment StoreEntitySet="AD_Menu">
+                <ScalarProperty Name="MenuSort" ColumnName="MenuSort" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="MenuAction" ColumnName="MenuAction" />
+                <ScalarProperty Name="MenuText" ColumnName="MenuText" />
+                <ScalarProperty Name="Menu_ParentId" ColumnName="Menu_ParentId" />
+                <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

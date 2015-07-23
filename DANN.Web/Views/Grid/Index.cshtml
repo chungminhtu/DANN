@@ -1,0 +1,22 @@
+﻿
+
+<link rel="stylesheet" href="@Url.Content("~/Content/handsontable.full.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/handsontable_20140331.css")" />
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/handsontable.full.js")"></script>
+<script src="@Url.Content("~/Scripts/GeneratorHeaderToTable.js")"></script>
+<script src="@Url.Content("~/Scripts/GenHeader.js")"></script>
+
+
+<input type="button" value="Lấy Giá Trị Grid" id="btnGetValue" />
+<input type="button" value="Export to Excel" id="btnExport" onclick="tableToExcel('htCore', 'W3C Example Table')" />
+<input id="log_Changes" name="log_Changes" type="text" />
+<input type="button" value="Call API" id="btnCallMethod" />
+<button id="btnExportExcel" onclick="fnExcelReport()">Export</button>
+<br/>
+<select id="cbxNhomChiTieu">
+    <option value="0">Chọn nhóm chỉ tiêu</option>
+</select>
+<input type="button" id="btnChuyen" value="Chuyển Menu" />
+<div id="example1"></div>
+<div id="pagination" class="pagination"></div>
