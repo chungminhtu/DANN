@@ -43,8 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AquaDANN">
-      <HintPath>D:\ClinicalStudyTheme\AquaDANN.dll</HintPath>
+    <Reference Include="AquaDANN, Version=15.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App_Data\AquaDANN.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
