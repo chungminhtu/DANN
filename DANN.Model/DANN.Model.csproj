@@ -71,6 +71,7 @@
     <Compile Include="BM_Dong.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Common\LinqExtensions.cs" />
     <Compile Include="Common\ListImageModel.cs" />
     <Compile Include="DM_PhanHe.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>

@@ -376,7 +376,7 @@
     <Content Include="Content\icon\32\InlineSizeLegend_32x32.png" />
     <Content Include="Content\icon\32\Logical_32x32.png" />
     <Content Include="Content\icon\32\LongDate_32x32.png" />
-    <Content Include="Content\icon\32\Lookup&amp;Reference_32x32.png" />
+    <Content Include="Content\icon\32\LookupReference_32x32.png" />
     <Content Include="Content\icon\32\ManageDatasource_32x32.png" />
     <Content Include="Content\icon\32\Map_32x32.png" />
     <Content Include="Content\icon\32\Merge_32x32.png" />

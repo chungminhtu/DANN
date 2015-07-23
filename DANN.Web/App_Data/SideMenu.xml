@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <menu>
-  <group Text="Platform">
-    <item Text="Windows" />
+  <group Text="Platform" imageURL="~\Content\icon\16\SaveAll_16x16.png" >
+    <item Text="Windows" imageURL="~\Content\icon\16\SaveAll_16x16.png"  />
     <item Text="Linux" />
     <item Text="Mac OS" />
   </group>

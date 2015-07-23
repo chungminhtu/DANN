@@ -1,5 +1,15 @@
 ﻿@model System.Collections.IEnumerable
 <script type="text/javascript">
+
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13 && AD_Menu_TreeList.IsEditing())
+            AD_Menu_TreeList.UpdateEdit();
+        if (e.keyCode == 13 && !AD_Menu_TreeList.IsEditing())
+            AD_Menu_TreeList.StartEdit(AD_Menu_TreeList.GetFocusedNodeKey());
+        if (e.keyCode == 27 && AD_Menu_TreeList.IsEditing())
+            AD_Menu_TreeList.CancelEdit(); 
+    });
+
     var nodeKey;
     var parentNodeKey;
 
@@ -13,6 +23,14 @@
             var node = s.GetNodeHtmlElement(nodeKey);
             AD_Menu_TreeList.SetFocusedNodeKey(nodeKey);
             parentNodeKey = node.getAttribute("ParentNodeKey");
+        }
+    }
+
+
+    function MenuEndCallback(s, e) {
+        if (AD_Menu_TreeList.IsEditing())
+        {
+            AD_Menu_TreeList.FocusEditor("MenuText");
         }
     }
 
@@ -31,23 +49,29 @@
 
     function OnItemClick(s, e) {
         switch (e.item.name) {
-            case "CollapseAll":
-                AD_Menu_TreeList.CollapseAll();
+            case "Expand":
+                AD_Menu_TreeList.ExpandNode(nodeKey);
                 break;
             case "ExpandAll":
                 AD_Menu_TreeList.ExpandAll();
                 break;
+            case "CollapseAll":
+                AD_Menu_TreeList.CollapseAll();
+                break; 
             case "NewRoot":
-                AD_Menu_TreeList.StartEditNewNode();
-                AD_Menu_TreeList.MakeNodeVisible(nodeKey); 
+                AD_Menu_TreeList.SetFocusedNodeKey(null); 
+                AD_Menu_TreeList.StartEditNewNode(); 
+                AD_Menu_TreeList.MakeNodeVisible(nodeKey);
                 break;
             case "NewSibling":
+                AD_Menu_TreeList.SetFocusedNodeKey(null);
                 AD_Menu_TreeList.StartEditNewNode(parentNodeKey);
-                AD_Menu_TreeList.MakeNodeVisible(nodeKey); 
+                AD_Menu_TreeList.MakeNodeVisible(nodeKey);  
                 break;
             case "NewChild":
+                AD_Menu_TreeList.SetFocusedNodeKey(null);
                 AD_Menu_TreeList.StartEditNewNode(nodeKey);
-                AD_Menu_TreeList.MakeNodeVisible(nodeKey); 
+                AD_Menu_TreeList.MakeNodeVisible(nodeKey);  
                 break;
             case "Edit":
                 AD_Menu_TreeList.StartEdit(nodeKey);
@@ -62,6 +86,7 @@
 {
     settings.Name = "PopupMenu";
     settings.AllowSelectItem = false;
+    settings.Items.Add("Mở rộng nút này", "Expand", "~/Content/icon/16/Merge_16x16.png");
     settings.Items.Add("Mở rộng toàn bộ", "ExpandAll", "~/Content/icon/16/Group2_16x16.png");
     settings.Items.Add("Thu gọn toàn bộ", "CollapseAll", "~/Content/icon/16/Group_16x16.png");
     settings.Items.Add("Thêm - Nút gốc", "NewRoot", "~/Content/icon/16/Add_16x16.png").BeginGroup = true;
@@ -95,7 +120,7 @@
                                     myButton =>
                                     {
                                         myButton.Name = "btnSua";
-                                        myButton.Text = "Sửa";
+                                        myButton.Text = "Sửa (Enter)";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                         myButton.Images.Image.Url = "~/Content/icon/16/Edit_16x16.png";
                                         myButton.ClientSideEvents.Click = "function( ) { AD_Menu_TreeList.StartEdit(AD_Menu_TreeList.GetFocusedNodeKey()); }";
@@ -106,7 +131,7 @@
                                     myButton =>
                                     {
                                         myButton.Name = "btnXoa";
-                                        myButton.Text = "Xóa";
+                                        myButton.Text = "Xóa (Delete)";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                         myButton.Images.Image.Url = "~/Content/icon/16/Close_16x16.png";
                                         myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) AD_Menu_TreeList.DeleteNode(AD_Menu_TreeList.GetFocusedNodeKey()); }";
@@ -117,7 +142,7 @@
                                  myButton =>
                                  {
                                      myButton.Name = "btnLuu";
-                                     myButton.Text = "Lưu";
+                                     myButton.Text = "Lưu (Enter)";
                                      myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                      myButton.Images.Image.Url = "~/Content/icon/16/SaveAll_16x16.png";
                                      myButton.ClientSideEvents.Click = "function( ) { AD_Menu_TreeList.UpdateEdit(); }";
@@ -128,7 +153,7 @@
                                   myButton =>
                                   {
                                       myButton.Name = "btnHuy";
-                                      myButton.Text = "Hủy";
+                                      myButton.Text = "Hủy (ESC)";
                                       myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                                       myButton.Images.Image.Url = "~/Content/icon/16/Reset2_16x16.png";
                                       myButton.ClientSideEvents.Click = "function( ) { AD_Menu_TreeList.CancelEdit();  }";
@@ -139,7 +164,7 @@
                                     myButton =>
                                     {
                                         myButton.Name = "btnRefresh";
-                                        myButton.Text = "Xem kết quả";
+                                        myButton.Text = "Xem thay đổi (F5)";
                                         myButton.Images.Image.Url = "~/Content/icon/16/DocumentMap_16x16.png";
                                         myButton.ClientSideEvents.Click = "function( ) { location.reload();  }";
                                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);

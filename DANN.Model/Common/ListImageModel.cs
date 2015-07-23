@@ -121,7 +121,7 @@ namespace DANN.Model.Common
             LImage.Add(new image { imageName = "InlineSizeLegend", imageURL = @"~\Content\icon\32\InlineSizeLegend_32x32.png" });
             LImage.Add(new image { imageName = "Logical", imageURL = @"~\Content\icon\32\Logical_32x32.png" });
             LImage.Add(new image { imageName = "LongDate", imageURL = @"~\Content\icon\32\LongDate_32x32.png" });
-            LImage.Add(new image { imageName = "Lookup&Reference", imageURL = @"~\Content\icon\32\Lookup&Reference_32x32.png" });
+            LImage.Add(new image { imageName = "Lookup&Reference", imageURL = @"~\Content\icon\32\LookupReference_32x32.png" });
             LImage.Add(new image { imageName = "ManageDatasource", imageURL = @"~\Content\icon\32\ManageDatasource_32x32.png" });
             LImage.Add(new image { imageName = "Map", imageURL = @"~\Content\icon\32\Map_32x32.png" });
             LImage.Add(new image { imageName = "Merge", imageURL = @"~\Content\icon\32\Merge_32x32.png" });
@@ -143,8 +143,6 @@ namespace DANN.Model.Common
             LImage.Add(new image { imageName = "SaveTo", imageURL = @"~\Content\icon\32\SaveTo_32x32.png" });
             LImage.Add(new image { imageName = "Save", imageURL = @"~\Content\icon\32\Save_32x32.png" });
             LImage.Add(new image { imageName = "SelectData", imageURL = @"~\Content\icon\32\SelectData_32x32.png" });
-            LImage.Add(new image { imageName = "settings", imageURL = @"~\Content\icon\32\settings_32x32.png" });
-            LImage.Add(new image { imageName = "settings_16", imageURL = @"~\Content\icon\32\settings_16_32x32.png" });
             LImage.Add(new image { imageName = "ShapeLabels", imageURL = @"~\Content\icon\32\ShapeLabels_32x32.png" });
             LImage.Add(new image { imageName = "Show", imageURL = @"~\Content\icon\32\Show_32x32.png" });
             LImage.Add(new image { imageName = "Stretch", imageURL = @"~\Content\icon\32\Stretch_32x32.png" });

@@ -11,48 +11,65 @@ namespace DANN.Web.Controllers
 
     public static class MyClass
     {
+        public static IEnumerable<AD_Menu> GetList(int? parentID = null)
+        {
+            DANNContext db = new DANNContext();
+
+            foreach (var item in db.AD_Menu
+                .Where(x => x.Menu_ParentId == parentID)
+               .OrderBy(x => x.MenuSort)
+               .ToList())
+            {
+
+                yield return item;
+
+                foreach (var child in GetList(item.Menu_Id))
+                {
+                    yield return child;
+                }
+            }
+        }
+
         public static ASPxMenu BuildMenu(ASPxMenu menu)
         {
             DANNContext db = new DANNContext();
-            //DevSampleEntities db = new DevSampleEntities();
-            List<AD_Menu> items = db.AD_Menu.OrderBy(m => m.Menu_Id).ToList();
 
-            for (int i = 0; i < items.Count; i++)
+            List<AD_Menu> menus = GetList().ToList();
+
+            for (int i = 0; i < menus.Count; i++)
             {
-                AD_Menu row = items[i];
-                MenuItem item = CreateMenuItem(row);
-                string itemID = row.Menu_Id + "";
+                AD_Menu row = menus[i];
+                MenuItem item = new MenuItem() { Name = row.Menu_Id + "", Text = row.MenuText, NavigateUrl = row.MenuAction };
+                item.Image.Url = row.MenuIcon;
+
                 string parentID = row.Menu_ParentId + "";
 
-                menu.Items.Add(item);
-
-            }
-
-            for (int j = 0; j < items.Count; j++)
-            {
-                AD_Menu row = items[j];
-                MenuItem item = CreateMenuItem(row);
-                string itemID = row.Menu_Id + "";
-                string parentID = row.Menu_ParentId + "";
-
-
-                if (menu.Items[j].Name == itemID)
+                if (i == 0 || parentID == "")
                 {
-                    menu.Items[j].Items.Add(item);
+                    menu.Items.Add(item);
+                }
+                else
+                {
+                    GetNodes(menu.Items, parentID, item);
                 }
             }
+            
             return menu;
         }
-
-        static MenuItem CreateMenuItem(AD_Menu row)
+        public static void GetNodes(MenuItemCollection menus, string parentID, MenuItem item)
         {
-            MenuItem ret = new MenuItem();
-            ret.DataItem = row.Menu_Id;
-            ret.Name = row.Menu_ParentId + "";
-            ret.Text = row.MenuText;
-            ret.NavigateUrl = row.MenuAction;
-            ret.Image.Url = row.MenuIcon;
-            return ret;
+            if (menus == null)
+            {
+                return;
+            }
+            foreach (MenuItem myitem in menus)
+            {
+                if (myitem.Name == parentID)
+                {
+                    myitem.Items.Add(item);
+                }
+                GetNodes(myitem.Items, parentID, item);
+            }
         }
     }
 
@@ -155,6 +172,13 @@ namespace DANN.Web.Controllers
             }
             return PartialView("_Menu", model.ToList());
         }
+
+
+        #endregion
+
+        #region Custom TreeList
+
+
         #endregion
     }
 
