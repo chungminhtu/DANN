@@ -7,23 +7,25 @@
         settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeAddNew" };
         settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeUpdate" };
         settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeDelete" };
-        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeMove" };
+        //settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeMove" };
 
         //Settings
         settings.CommandColumn.Visible = false;
-
-        settings.SettingsPager.PageSize = 40;
+        
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        settings.SettingsPager.PageSize = 25;
         settings.SettingsPager.Mode = TreeListPagerMode.ShowPager;
         settings.SettingsPager.Visible = true;
-        settings.SettingsSelection.Enabled = false;
+
+        settings.SettingsSelection.Enabled = false; 
         settings.SettingsSelection.AllowSelectAll = false;
+        settings.SettingsBehavior.AllowFocusedNode = true;
         settings.SettingsBehavior.AllowSort = false;
         settings.SettingsBehavior.AllowDragDrop = false;
-        settings.SettingsBehavior.AllowFocusedNode = true;
         settings.SettingsBehavior.FocusNodeOnLoad = false;
         settings.SettingsBehavior.AutoExpandAllNodes = false;
-        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
-        settings.SettingsSelection.Recursive = true;
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn; 
         settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
         settings.KeyboardSupport = true;
 

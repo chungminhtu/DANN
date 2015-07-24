@@ -1,0 +1,38 @@
+﻿<script type="text/javascript">
+
+    var CodeKind = 0;
+    var CodeKindName = "";
+
+    function Grid1FocusedChanged(s, e) {
+        if (s.GetFocusedRowIndex() != -1) {
+            CodeKind = s.GetRowKey(s.GetFocusedRowIndex());
+            control2.PerformCallback();
+        }
+    }
+
+</script>
+<table>
+    <tr>
+        <td>
+            @Html.Partial("_GridCommand1")
+        </td>
+        <td width="20px"></td>
+        <td>
+            @Html.Partial("_GridCommand2")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Action("CodeKindGrid")
+        </td>
+        <td></td>
+        <td>
+            @Html.Action("CodeGrid")
+        </td>
+    </tr>
+</table>
+
+
+
+
+

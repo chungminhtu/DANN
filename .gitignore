@@ -789,3 +789,5 @@ packages/Newtonsoft.Json.7.0.1/lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newt
 packages/Newtonsoft.Json.7.0.1/Newtonsoft.Json.7.0.1.nupkg
 packages/Newtonsoft.Json.7.0.1/tools/install.ps1
 packages/repositories.config
+/DANN.Web/bin
+/DANN.Model/obj/Debug/TempPE

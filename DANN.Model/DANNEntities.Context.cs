@@ -26,12 +26,14 @@ namespace DANN.Model
         }
     
         public virtual DbSet<AD_LichSu> AD_LichSu { get; set; }
+        public virtual DbSet<AD_Menu> AD_Menu { get; set; }
         public virtual DbSet<AD_User> AD_User { get; set; }
         public virtual DbSet<AD_User_Menu> AD_User_Menu { get; set; }
         public virtual DbSet<BM_BieuMau> BM_BieuMau { get; set; }
         public virtual DbSet<BM_Cot> BM_Cot { get; set; }
         public virtual DbSet<BM_Dong> BM_Dong { get; set; }
         public virtual DbSet<DM_Code> DM_Code { get; set; }
+        public virtual DbSet<DM_CodeKind> DM_CodeKind { get; set; }
         public virtual DbSet<DM_DiaPhuong> DM_DiaPhuong { get; set; }
         public virtual DbSet<DM_DonViTinh> DM_DonViTinh { get; set; }
         public virtual DbSet<DM_KyBaoCao> DM_KyBaoCao { get; set; }
@@ -40,6 +42,5 @@ namespace DANN.Model
         public virtual DbSet<TK_ChiTieu> TK_ChiTieu { get; set; }
         public virtual DbSet<TK_DoiTuong> TK_DoiTuong { get; set; }
         public virtual DbSet<TK_ThongKe> TK_ThongKe { get; set; }
-        public virtual DbSet<AD_Menu> AD_Menu { get; set; }
     }
 }

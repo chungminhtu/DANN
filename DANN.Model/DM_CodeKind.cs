@@ -12,15 +12,16 @@ namespace DANN.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DM_Code
+    public partial class DM_CodeKind
     {
-        public int Code { get; set; }
-        public int CodeValue { get; set; }
-        public string CodeName { get; set; }
-        public int CodeKind { get; set; }
+        public DM_CodeKind()
+        {
+            this.DM_Code = new HashSet<DM_Code>();
+        }
     
-        public virtual DM_Code DM_Code1 { get; set; }
-        public virtual DM_Code DM_Code2 { get; set; }
-        public virtual DM_CodeKind DM_CodeKind { get; set; }
+        public int CodeKind { get; set; }
+        public string CodeKindName { get; set; }
+    
+        public virtual ICollection<DM_Code> DM_Code { get; set; }
     }
 }

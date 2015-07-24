@@ -2,23 +2,41 @@
 	var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "DonViTinhGridView";
         settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGrid" };
-
-				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridAddNew" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridDelete" };
-        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+   
+         
+        //Settings 
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
         settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
 
-		settings.CommandColumn.Visible = true;
-        settings.CommandColumn.ShowNewButton = true;
-        settings.CommandColumn.ShowDeleteButton = true;
-        settings.CommandColumn.ShowEditButton = true;
+        // settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
 
+
+
+        /*Events*/
+        //settings.ClientSideEvents.FocusedRowChanged = "OnGridRowChanged";
+        settings.ClientSideEvents.Init = "function (s, e) { "
+                                      + "control = DonViTinhGridView;"
+                                                + "}";
+        
+        
 		settings.KeyFieldName = "DonViTinh_Id";
-
-		settings.SettingsPager.Visible = true;
-		settings.Settings.ShowGroupPanel = true;
-		settings.Settings.ShowFilterRow = true;
+         
 		settings.SettingsBehavior.AllowSelectByRowClick = true;
 
 				settings.Columns.Add("TenDonViTinh");

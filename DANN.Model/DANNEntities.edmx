@@ -75,13 +75,19 @@
         </EntityType>
         <EntityType Name="DM_Code">
           <Key>
-            <PropertyRef Name="CodeKind" />
             <PropertyRef Name="Code" />
           </Key>
-          <Property Name="CodeKind" Type="int" Nullable="false" />
-          <Property Name="Code" Type="int" Nullable="false" />
-          <Property Name="CodeKindName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodeValue" Type="int" Nullable="false" />
           <Property Name="CodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodeKind" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DM_CodeKind">
+          <Key>
+            <PropertyRef Name="CodeKind" />
+          </Key>
+          <Property Name="CodeKind" Type="int" Nullable="false" />
+          <Property Name="CodeKindName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="DM_DiaPhuong">
           <Key>
@@ -165,6 +171,32 @@
           <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
           <Property Name="GiaTriThongKe" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_DM_Code_DM_Code">
+          <End Role="DM_Code" Type="Self.DM_Code" Multiplicity="1" />
+          <End Role="DM_Code1" Type="Self.DM_Code" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Code">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="DM_Code1">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DM_Code_DM_CodeKind">
+          <End Role="DM_CodeKind" Type="Self.DM_CodeKind" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DM_Code" Type="Self.DM_Code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_CodeKind">
+              <PropertyRef Name="CodeKind" />
+            </Principal>
+            <Dependent Role="DM_Code">
+              <PropertyRef Name="CodeKind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TK_ChiTieu_DM_DonViTinh">
           <End Role="DM_DonViTinh" Type="Self.DM_DonViTinh" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -244,6 +276,7 @@
           <EntitySet Name="BM_Cot" EntityType="Self.BM_Cot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BM_Dong" EntityType="Self.BM_Dong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_Code" EntityType="Self.DM_Code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_CodeKind" EntityType="Self.DM_CodeKind" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_DiaPhuong" EntityType="Self.DM_DiaPhuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_DonViTinh" EntityType="Self.DM_DonViTinh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DM_KyBaoCao" EntityType="Self.DM_KyBaoCao" Schema="dbo" store:Type="Tables" />
@@ -252,6 +285,14 @@
           <EntitySet Name="TK_ChiTieu" EntityType="Self.TK_ChiTieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_DoiTuong" EntityType="Self.TK_DoiTuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_ThongKe" EntityType="Self.TK_ThongKe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DM_Code_DM_Code" Association="Self.FK_DM_Code_DM_Code">
+            <End Role="DM_Code" EntitySet="DM_Code" />
+            <End Role="DM_Code1" EntitySet="DM_Code" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DM_Code_DM_CodeKind" Association="Self.FK_DM_Code_DM_CodeKind">
+            <End Role="DM_CodeKind" EntitySet="DM_CodeKind" />
+            <End Role="DM_Code" EntitySet="DM_Code" />
+          </AssociationSet>
           <AssociationSet Name="FK_TK_ChiTieu_DM_DonViTinh" Association="Self.FK_TK_ChiTieu_DM_DonViTinh">
             <End Role="DM_DonViTinh" EntitySet="DM_DonViTinh" />
             <End Role="TK_ChiTieu" EntitySet="TK_ChiTieu" />
@@ -279,12 +320,14 @@
       <Schema Namespace="DBDANNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DANNEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AD_LichSu" EntityType="DBDANNModel.AD_LichSu" />
+          <EntitySet Name="AD_Menu" EntityType="DBDANNModel.AD_Menu" />
           <EntitySet Name="AD_User" EntityType="DBDANNModel.AD_User" />
           <EntitySet Name="AD_User_Menu" EntityType="DBDANNModel.AD_User_Menu" />
           <EntitySet Name="BM_BieuMau" EntityType="DBDANNModel.BM_BieuMau" />
           <EntitySet Name="BM_Cot" EntityType="DBDANNModel.BM_Cot" />
           <EntitySet Name="BM_Dong" EntityType="DBDANNModel.BM_Dong" />
           <EntitySet Name="DM_Code" EntityType="DBDANNModel.DM_Code" />
+          <EntitySet Name="DM_CodeKind" EntityType="DBDANNModel.DM_CodeKind" />
           <EntitySet Name="DM_DiaPhuong" EntityType="DBDANNModel.DM_DiaPhuong" />
           <EntitySet Name="DM_DonViTinh" EntityType="DBDANNModel.DM_DonViTinh" />
           <EntitySet Name="DM_KyBaoCao" EntityType="DBDANNModel.DM_KyBaoCao" />
@@ -293,6 +336,14 @@
           <EntitySet Name="TK_ChiTieu" EntityType="DBDANNModel.TK_ChiTieu" />
           <EntitySet Name="TK_DoiTuong" EntityType="DBDANNModel.TK_DoiTuong" />
           <EntitySet Name="TK_ThongKe" EntityType="DBDANNModel.TK_ThongKe" />
+          <AssociationSet Name="FK_DM_Code_DM_Code" Association="DBDANNModel.FK_DM_Code_DM_Code">
+            <End Role="DM_Code" EntitySet="DM_Code" />
+            <End Role="DM_Code1" EntitySet="DM_Code" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DM_Code_DM_CodeKind" Association="DBDANNModel.FK_DM_Code_DM_CodeKind">
+            <End Role="DM_CodeKind" EntitySet="DM_CodeKind" />
+            <End Role="DM_Code" EntitySet="DM_Code" />
+          </AssociationSet>
           <AssociationSet Name="FK_TK_ChiTieu_DM_DonViTinh" Association="DBDANNModel.FK_TK_ChiTieu_DM_DonViTinh">
             <End Role="DM_DonViTinh" EntitySet="DM_DonViTinh" />
             <End Role="TK_ChiTieu" EntitySet="TK_ChiTieu" />
@@ -313,7 +364,6 @@
             <End Role="TK_DoiTuong" EntitySet="TK_DoiTuong" />
             <End Role="TK_ThongKe" EntitySet="TK_ThongKe" />
           </AssociationSet>
-          <EntitySet Name="AD_Menu" EntityType="DBDANNModel.AD_Menu" />
         </EntityContainer>
         <EntityType Name="AD_LichSu">
           <Key>
@@ -324,6 +374,18 @@
           <Property Name="Menu_Id" Type="Int32" />
           <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Variables" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AD_Menu">
+          <Key>
+            <PropertyRef Name="Menu_Id" />
+          </Key>
+          <Property Name="Menu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Menu_ParentId" Type="Int32" />
+          <Property Name="MenuText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MenuAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MenuSort" Type="Int32" />
+          <Property Name="MenuSeparator" Type="Boolean" />
         </EntityType>
         <EntityType Name="AD_User">
           <Key>
@@ -373,13 +435,23 @@
         </EntityType>
         <EntityType Name="DM_Code">
           <Key>
-            <PropertyRef Name="CodeKind" />
             <PropertyRef Name="Code" />
           </Key>
-          <Property Name="CodeKind" Type="Int32" Nullable="false" />
-          <Property Name="Code" Type="Int32" Nullable="false" />
-          <Property Name="CodeKindName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodeValue" Type="Int32" Nullable="false" />
           <Property Name="CodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CodeKind" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DM_Code1" Relationship="DBDANNModel.FK_DM_Code_DM_Code" FromRole="DM_Code" ToRole="DM_Code1" />
+          <NavigationProperty Name="DM_Code2" Relationship="DBDANNModel.FK_DM_Code_DM_Code" FromRole="DM_Code1" ToRole="DM_Code" />
+          <NavigationProperty Name="DM_CodeKind" Relationship="DBDANNModel.FK_DM_Code_DM_CodeKind" FromRole="DM_Code" ToRole="DM_CodeKind" />
+        </EntityType>
+        <EntityType Name="DM_CodeKind">
+          <Key>
+            <PropertyRef Name="CodeKind" />
+          </Key>
+          <Property Name="CodeKind" Type="Int32" Nullable="false" />
+          <Property Name="CodeKindName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DM_Code" Relationship="DBDANNModel.FK_DM_Code_DM_CodeKind" FromRole="DM_CodeKind" ToRole="DM_Code" />
         </EntityType>
         <EntityType Name="DM_DiaPhuong">
           <Key>
@@ -473,6 +545,32 @@
           <NavigationProperty Name="TK_ChiTieu" Relationship="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu" FromRole="TK_ThongKe" ToRole="TK_ChiTieu" />
           <NavigationProperty Name="TK_DoiTuong" Relationship="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" FromRole="TK_ThongKe" ToRole="TK_DoiTuong" />
         </EntityType>
+        <Association Name="FK_DM_Code_DM_Code">
+          <End Type="DBDANNModel.DM_Code" Role="DM_Code" Multiplicity="1" />
+          <End Type="DBDANNModel.DM_Code" Role="DM_Code1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Code">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="DM_Code1">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DM_Code_DM_CodeKind">
+          <End Type="DBDANNModel.DM_CodeKind" Role="DM_CodeKind" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBDANNModel.DM_Code" Role="DM_Code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_CodeKind">
+              <PropertyRef Name="CodeKind" />
+            </Principal>
+            <Dependent Role="DM_Code">
+              <PropertyRef Name="CodeKind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TK_ChiTieu_DM_DonViTinh">
           <End Type="DBDANNModel.DM_DonViTinh" Role="DM_DonViTinh" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -543,18 +641,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AD_Menu">
-          <Key>
-            <PropertyRef Name="Menu_Id" />
-          </Key>
-          <Property Name="Menu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Menu_ParentId" Type="Int32" />
-          <Property Name="MenuText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="MenuAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MenuSort" Type="Int32" />
-          <Property Name="MenuSeparator" Type="Boolean" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -569,6 +655,19 @@
                 <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="LichSu_Id" ColumnName="LichSu_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AD_Menu">
+            <EntityTypeMapping TypeName="DBDANNModel.AD_Menu">
+              <MappingFragment StoreEntitySet="AD_Menu">
+                <ScalarProperty Name="MenuSeparator" ColumnName="MenuSeparator" />
+                <ScalarProperty Name="MenuSort" ColumnName="MenuSort" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="MenuAction" ColumnName="MenuAction" />
+                <ScalarProperty Name="MenuText" ColumnName="MenuText" />
+                <ScalarProperty Name="Menu_ParentId" ColumnName="Menu_ParentId" />
+                <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -623,9 +722,17 @@
           <EntitySetMapping Name="DM_Code">
             <EntityTypeMapping TypeName="DBDANNModel.DM_Code">
               <MappingFragment StoreEntitySet="DM_Code">
+                <ScalarProperty Name="CodeKind" ColumnName="CodeKind" />
                 <ScalarProperty Name="CodeName" ColumnName="CodeName" />
-                <ScalarProperty Name="CodeKindName" ColumnName="CodeKindName" />
+                <ScalarProperty Name="CodeValue" ColumnName="CodeValue" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_CodeKind">
+            <EntityTypeMapping TypeName="DBDANNModel.DM_CodeKind">
+              <MappingFragment StoreEntitySet="DM_CodeKind">
+                <ScalarProperty Name="CodeKindName" ColumnName="CodeKindName" />
                 <ScalarProperty Name="CodeKind" ColumnName="CodeKind" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -713,19 +820,6 @@
                 <ScalarProperty Name="KyBaoCao_Id" ColumnName="KyBaoCao_Id" />
                 <ScalarProperty Name="DoiTuong_Id" ColumnName="DoiTuong_Id" />
                 <ScalarProperty Name="ChiTieu_Id" ColumnName="ChiTieu_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AD_Menu">
-            <EntityTypeMapping TypeName="DBDANNModel.AD_Menu">
-              <MappingFragment StoreEntitySet="AD_Menu">
-                <ScalarProperty Name="MenuSeparator" ColumnName="MenuSeparator" />
-                <ScalarProperty Name="MenuSort" ColumnName="MenuSort" />
-                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
-                <ScalarProperty Name="MenuAction" ColumnName="MenuAction" />
-                <ScalarProperty Name="MenuText" ColumnName="MenuText" />
-                <ScalarProperty Name="Menu_ParentId" ColumnName="Menu_ParentId" />
-                <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

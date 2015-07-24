@@ -5,27 +5,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7ea0784906974ddd83da4683cbc6b4f7" Name="Diagram1">
-        <EntityTypeShape EntityType="DBDANNModel.AD_LichSu" Width="1.5" PointX="5.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DBDANNModel.AD_User" Width="1.5" PointX="7.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DBDANNModel.AD_User_Menu" Width="1.5" PointX="5.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DBDANNModel.BM_BieuMau" Width="1.5" PointX="7.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DBDANNModel.BM_Cot" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBDANNModel.BM_Dong" Width="1.5" PointX="9.75" PointY="3.75" />
-        <EntityTypeShape EntityType="DBDANNModel.DM_Code" Width="1.5" PointX="9.75" PointY="6.75" />
-        <EntityTypeShape EntityType="DBDANNModel.DM_DiaPhuong" Width="1.5" PointX="9.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DBDANNModel.AD_LichSu" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBDANNModel.AD_Menu" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DBDANNModel.AD_User" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DBDANNModel.AD_User_Menu" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBDANNModel.BM_BieuMau" Width="1.5" PointX="9.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DBDANNModel.BM_Cot" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DBDANNModel.BM_Dong" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBDANNModel.DM_Code" Width="1.5" PointX="8" PointY="5" />
+        <EntityTypeShape EntityType="DBDANNModel.DM_CodeKind" Width="1.5" PointX="5.75" PointY="5.375" />
+        <EntityTypeShape EntityType="DBDANNModel.DM_DiaPhuong" Width="1.5" PointX="11.75" PointY="6.75" />
         <EntityTypeShape EntityType="DBDANNModel.DM_DonViTinh" Width="1.5" PointX="0.75" PointY="1.5" />
         <EntityTypeShape EntityType="DBDANNModel.DM_KyBaoCao" Width="1.5" PointX="3" PointY="7.875" />
         <EntityTypeShape EntityType="DBDANNModel.DM_PhanHe" Width="1.5" PointX="3" PointY="10.625" />
-        <EntityTypeShape EntityType="DBDANNModel.sysdiagram" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBDANNModel.sysdiagram" Width="1.5" PointX="9.75" PointY="11.75" />
         <EntityTypeShape EntityType="DBDANNModel.TK_ChiTieu" Width="1.5" PointX="3" PointY="1.25" />
         <EntityTypeShape EntityType="DBDANNModel.TK_DoiTuong" Width="1.5" PointX="3" PointY="5.125" />
         <EntityTypeShape EntityType="DBDANNModel.TK_ThongKe" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="DBDANNModel.FK_DM_Code_DM_Code" />
+        <AssociationConnector Association="DBDANNModel.FK_DM_Code_DM_CodeKind" />
         <AssociationConnector Association="DBDANNModel.FK_TK_ChiTieu_DM_DonViTinh" />
         <AssociationConnector Association="DBDANNModel.FK_TK_ThongKe_DM_KyBaoCao" />
         <AssociationConnector Association="DBDANNModel.FK_TK_ThongKe_DM_Nhom" />
         <AssociationConnector Association="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu" />
         <AssociationConnector Association="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" />
-        <EntityTypeShape EntityType="DBDANNModel.AD_Menu" Width="1.5" PointX="5.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

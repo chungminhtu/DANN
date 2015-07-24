@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AD_LichSu.cs">
+      <DependentUpon>DANNEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="AD_Menu.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
@@ -55,11 +58,6 @@
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="AD_User_Menu.cs">
-      <DependentUpon>DANNEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Common\AuditableEntity.cs" />
-    <Compile Include="Common\Entity.cs" />
-    <Compile Include="AD_LichSu.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="BM_BieuMau.cs">
@@ -71,7 +69,24 @@
     <Compile Include="BM_Dong.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Common\AuditableEntity.cs" />
+    <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\ListImageModel.cs" />
+    <Compile Include="DM_Code.cs">
+      <DependentUpon>DANNEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DM_CodeKind.cs">
+      <DependentUpon>DANNEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DM_DiaPhuong.cs">
+      <DependentUpon>DANNEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DM_DonViTinh.cs">
+      <DependentUpon>DANNEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DM_KyBaoCao.cs">
+      <DependentUpon>DANNEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DM_PhanHe.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
@@ -91,19 +106,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DANNEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DM_Code.cs">
-      <DependentUpon>DANNEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DM_DiaPhuong.cs">
-      <DependentUpon>DANNEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DM_DonViTinh.cs">
-      <DependentUpon>DANNEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DM_KyBaoCao.cs">
-      <DependentUpon>DANNEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\DANNContext.cs" />
     <Compile Include="sysdiagram.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
@@ -116,8 +121,6 @@
     <Compile Include="TK_ThongKe.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Common\DANNContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

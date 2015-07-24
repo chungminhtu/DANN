@@ -1,0 +1,63 @@
+﻿@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "CodeGridView";
+        settings.CallbackRouteValues = new { Controller = "ADCode", Action = "CodeGrid" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "CodeGridAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADCode", Action = "CodeGridUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADCode", Action = "CodeGridDelete" };
+
+        settings.ClientSideEvents.BeginCallback = "function(s,e) {if(CodeKind == 0) {alert('chưa chọn Bảng'); return false;} else { e.customArgs['pCodeKind'] = CodeKind;} }";
+
+
+        //Settings
+        settings.Width = Unit.Percentage(100);
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        //settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        //settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        //settings.SettingsPager.Visible = true;
+        
+        // settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsBehavior.AutoExpandAllGroups = true;
+    
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+
+
+
+        /*Events*/
+        settings.ClientSideEvents.RowDblClick = "Grid2DoubleClick";
+        //settings.ClientSideEvents.FocusedRowChanged = "Grid2FocusedChanged";
+        settings.ClientSideEvents.Init = "function (s, e) { "
+                                      + "control2 = CodeGridView;"
+                                                + "}";
+
+        settings.KeyFieldName = "Code";
+         
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CodeValue";
+            column.Width = Unit.Percentage(20);
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CodeName";
+            column.Width = Unit.Percentage(30);
+        });
+        
+        
+	});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

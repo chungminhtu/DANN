@@ -1,0 +1,64 @@
+﻿@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "CodeKindGridView";
+        settings.CallbackRouteValues = new { Controller = "ADCode", Action = "CodeKindGrid" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "CodeKindGridAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADCode", Action = "CodeKindGridUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADCode", Action = "CodeKindGridDelete" };
+
+
+
+        //Settings
+        settings.Width = Unit.Percentage(100);
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        //settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        //settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        //settings.SettingsPager.Visible = true;
+
+        // settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsBehavior.AutoExpandAllGroups = true;
+
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+
+
+
+        /*Events*/
+        settings.ClientSideEvents.RowDblClick = "Grid1DoubleClick";
+        settings.ClientSideEvents.FocusedRowChanged = "Grid1FocusedChanged";
+        settings.ClientSideEvents.Init = "function (s, e) { "
+                                      + "control1 = CodeKindGridView;"
+                                                + "}";
+
+        settings.KeyFieldName = "CodeKind";
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CodeKind";
+            column.Caption = "Mã";
+            column.Width = Unit.Percentage(20); 
+        }); 
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CodeKindName";
+            column.Caption = "Tên Bảng";
+            column.Width = Unit.Percentage(80); 
+        });  
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
