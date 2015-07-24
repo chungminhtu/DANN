@@ -1,0 +1,33 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "LichSuGridView";
+        settings.CallbackRouteValues = new { Controller = "ADLichSu", Action = "LichSuGrid" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADLichSu", Action = "LichSuGridAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADLichSu", Action = "LichSuGridUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADLichSu", Action = "LichSuGridDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "LichSu_Id";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("UserName");
+				settings.Columns.Add("Menu_Id");
+				settings.Columns.Add("ActionName");
+				settings.Columns.Add("Variables");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

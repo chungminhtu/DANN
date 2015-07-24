@@ -2,10 +2,32 @@
 
 <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
 
- 
+
 <table style="background-color:#0ca3d2; width:100%; height: 100%">
     <tr>
-        <td style="padding: 50px 100px 50px 100px;vertical-align: middle;">
+
+        <td style="padding: 50px 100px 50px 100px;vertical-align: middle;float:left;">
+            @Html.DevExpress().ImageSlider(
+                    settings =>
+                    {
+                        settings.Name = "ImageSlider";
+                        settings.ShowNavigationBar = true;
+                        settings.Width = 700;
+                        settings.Height =500;
+
+                        settings.SettingsImageArea.ItemTextVisibility = ElementVisibilityMode.None;
+                        settings.SettingsImageArea.NavigationButtonVisibility = ElementVisibilityMode.OnMouseOver;
+                        settings.SettingsImageArea.ImageSizeMode = ImageSizeMode.FillAndCrop;
+
+                        settings.SettingsSlideShow.AutoPlay = true;
+                        settings.SettingsSlideShow.Interval = 3000;
+                        settings.SettingsSlideShow.PausePlayingWhenMouseOver = true;
+                        settings.SettingsImageArea.AnimationType = AnimationType.Fade;
+
+                    }
+                 ).BindToFolder(@"~\Content\Slides").GetHtml()
+        </td>
+        <td style="padding-left: 50px;padding-top: 200px;vertical-align: middle; float:left;">
             <div class="login">
                 <h1>ĐĂNG NHẬP HỆ THỐNG</h1>
                 @using (Html.BeginForm("Login", "Login"))
@@ -17,7 +39,7 @@
                         @Html.PasswordFor(model => model.Password, new { placeholder = "Mật khẩu" })
                     </p>
                     <p class="submit"><input type="submit" name="commit" value="Đăng nhập"></p>
-                } 
+                }
                 <div style="margin-top: 10px;color: red;">
                     @{
                         if (ViewData["EditError"] != null)
@@ -28,26 +50,7 @@
                 </div>
             </div>
         </td>
-        <td style="vertical-align:middle">
-            @Html.DevExpress().ImageSlider(
-                    settings =>
-                    {
-                        settings.Name = "ImageSlider";
-                        settings.ShowNavigationBar = true;
-                        settings.Width = 650;
-                        settings.Height = 450;
 
-                        settings.SettingsImageArea.ItemTextVisibility = ElementVisibilityMode.OnMouseOver;
-                        settings.SettingsImageArea.NavigationButtonVisibility = ElementVisibilityMode.OnMouseOver;
-                        settings.SettingsImageArea.ImageSizeMode = ImageSizeMode.FillAndCrop;
-
-                        settings.SettingsSlideShow.AutoPlay = true;
-                        settings.SettingsSlideShow.Interval = 2000;
-                        settings.SettingsSlideShow.PausePlayingWhenMouseOver = true; 
-
-                    }
-                 ).BindToFolder(@"~\Content\Slides").GetHtml()
-        </td>
     </tr>
 
 </table> 

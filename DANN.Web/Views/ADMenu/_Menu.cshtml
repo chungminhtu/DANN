@@ -1,7 +1,7 @@
 ﻿@{
     var treeList = Html.DevExpress().TreeList(settings =>
     {
-        settings.Name = "AD_Menu_TreeList";
+        settings.Name = "MenuTree";
 
         //Data binding
         settings.CallbackRouteValues = new { Controller = "ADMenu", Action = "Menu" };
@@ -33,7 +33,7 @@
         settings.ClientSideEvents.NodeDblClick = "NodeDoubleClick";
         settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChanged";
         settings.ClientSideEvents.EndCallback = "TreeEndCallback";
-        settings.ClientSideEvents.Init = "function (s, e) { ctree = AD_Menu_TreeList; control = AD_Menu_TreeList; }";
+        settings.ClientSideEvents.Init = "function (s, e) { ctree = MenuTree; control = MenuTree; }";
 
 
         //Columns

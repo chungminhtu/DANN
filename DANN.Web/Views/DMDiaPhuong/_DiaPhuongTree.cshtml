@@ -1,55 +1,108 @@
-@{
-	var treeList = Html.DevExpress().TreeList(settings => {
+﻿@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
         settings.Name = "DiaPhuongTreeList";
         settings.CallbackRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTree" };
 
-				settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeAddNew" };
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeAddNew" };
         settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeUpdate" };
         settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeDelete" };
-				settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeMove" };
+        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeMove" };
 
-		settings.CommandColumn.Visible = true;
-        settings.CommandColumn.NewButton.Visible = true;
-        settings.CommandColumn.DeleteButton.Visible = true;
-        settings.CommandColumn.EditButton.Visible = true;
+        //Settings
+        settings.CommandColumn.Visible = false;
 
-				settings.KeyFieldName = "DiaPhuong_Id";
-		settings.ParentFieldName = "DiaPhuong_ParentId";
-				settings.Columns.Add(
-            column => {
-                column.FieldName = "TenDiaPhuong";
-            }
-        );
-				settings.Columns.Add(
-            column => {
-                column.FieldName = "IDBanDo";
-            }
-        );
-				settings.Columns.Add(
-            column => {
-                column.FieldName = "Loai";
-            }
-        );
-				settings.Columns.Add(
-            column => {
-                column.FieldName = "Longitude";
-            }
-        );
-				settings.Columns.Add(
-            column => {
-                column.FieldName = "Latitude";
-            }
-        );
-				settings.Columns.Add(
-            column => {
-                column.FieldName = "TelCode";
-            }
-        );
+        settings.SettingsPager.PageSize = 40;
+        settings.SettingsPager.Mode = TreeListPagerMode.ShowPager;
+        settings.SettingsPager.Visible = true;
+        settings.SettingsSelection.Enabled = false;
+        settings.SettingsSelection.AllowSelectAll = false;
+        settings.SettingsBehavior.AllowSort = false;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsBehavior.AllowFocusedNode = true;
+        settings.SettingsBehavior.FocusNodeOnLoad = false;
+        settings.SettingsBehavior.AutoExpandAllNodes = false;
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
+        settings.SettingsSelection.Recursive = true;
+        settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
+        settings.KeyboardSupport = true;
 
-		settings.SettingsPager.Visible = true;
-		settings.SettingsSelection.Enabled = true;
-	});
-		if (ViewData["EditError"] != null){
+        //Events
+        settings.ClientSideEvents.ContextMenu = "OnContextMenu";
+        settings.ClientSideEvents.NodeDblClick = "NodeDoubleClick";
+        settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChanged";
+        settings.ClientSideEvents.EndCallback = "TreeEndCallback";
+        settings.ClientSideEvents.Init = "function (s, e) { "
+                                        +"ctree = DiaPhuongTreeList;"
+                                        +"control = DiaPhuongTreeList;" 
+                                                  +"}";
+
+
+        settings.KeyFieldName = "DiaPhuong_Id";
+        settings.ParentFieldName = "DiaPhuong_ParentId";
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "TenDiaPhuong";
+        column.Caption = "Tên địa phương";
+        column.Width = Unit.Percentage(20);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "IDBanDo";
+        column.Caption = "Mã bản đồ";
+        column.Width = Unit.Percentage(40);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "Loai";
+        column.Caption = "Phân loại";
+        column.Width = Unit.Percentage(20);
+        column.ColumnType = MVCxTreeListColumnType.ComboBox;
+
+        var properties = column.PropertiesEdit as ComboBoxProperties;
+        properties.Items.Add("Nước", "N");
+        properties.Items.Add("Vùng, Khu vực", "V");
+        properties.Items.Add("Tỉnh, Thành phố", "P");
+        properties.Items.Add("Quận, Huyện", "D");
+        properties.Items.Add("Xã, Phường, Thị Trấn", "W");
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "Longitude";
+        column.Caption = "Kinh độ";
+        column.Width = Unit.Percentage(10);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "Latitude";
+        column.Caption = "Vĩ độ";
+        column.Width = Unit.Percentage(10);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "TelCode";
+        column.SortIndex = 0;
+        column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+        column.Width = Unit.Percentage(10);
+    }
+);
+
+        settings.SettingsPager.Visible = true;
+        settings.SettingsSelection.Enabled = true;
+    });
+    if (ViewData["EditError"] != null)
+    {
         treeList.SetEditErrorText((string)ViewData["EditError"]);
     }
 }

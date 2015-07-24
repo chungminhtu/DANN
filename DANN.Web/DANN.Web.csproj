@@ -258,7 +258,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\NWind.mdf" />
+    <Content Include="App_Data\DANNDB.mdf" />
+    <Content Include="App_Data\DANNDB_log.ldf">
+      <DependentUpon>DANNDB.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\ImageList.xml">
       <SubType>Designer</SubType>
@@ -1361,6 +1364,9 @@
     <Content Include="Views\TKDoiTuong\_DoiTuongTree.cshtml" />
     <Content Include="Views\Shared\Common\_TreeListPopupMenu.cshtml" />
     <Content Include="Views\Shared\Common\_PanelCommand.cshtml" />
+    <Content Include="Views\ADLichSu\Index.cshtml" />
+    <Content Include="Views\ADLichSu\_LichSuGrid.cshtml" />
+    <Content Include="Views\THSoLieuDaNhap\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1381,6 +1387,7 @@
     <Compile Include="Controllers\ADLichSuController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ADMenuController.cs" />
+    <Compile Include="Controllers\THSoLieuDaNhapController.cs" />
     <Compile Include="Controllers\TKChiTieuController.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1451,9 +1458,7 @@
       <Name>DANN.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\LichSu\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

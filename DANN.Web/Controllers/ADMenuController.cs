@@ -10,7 +10,7 @@ using DevExpress.Web.Mvc;
 namespace DANN.Web.Controllers
 {
 
-    public static class MyClass
+    public static class MenuCommon
     {
         public static IEnumerable<AD_Menu> GetList(int? parentID = null)
         {
@@ -46,7 +46,7 @@ namespace DANN.Web.Controllers
                 item.NavigateUrl = DevExpressHelper.GetUrl(new { Controller = row.MenuAction, Action = "Index" }); ;
                 item.Image.Url = row.MenuIcon;
                 item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
-                 
+
                 if (i == 0 || row.Menu_ParentId + "" == "")
                 {
                     menu.Items.Add(item);
