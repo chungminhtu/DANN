@@ -1359,6 +1359,8 @@
     <Content Include="Views\DMPhanHe\_PhanHeGrid.cshtml" />
     <Content Include="Views\TKChiTieu\_ChiTieuTree.cshtml" />
     <Content Include="Views\TKDoiTuong\_DoiTuongTree.cshtml" />
+    <Content Include="Views\Shared\Common\ContextMenu.cshtml" />
+    <Content Include="Views\Shared\Common\CommandPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
