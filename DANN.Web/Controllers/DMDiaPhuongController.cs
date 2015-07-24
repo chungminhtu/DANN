@@ -7,28 +7,26 @@ using DevExpress.Web.Mvc;
 
 namespace DANN.Web.Controllers
 {
-    public class ChiTieuNghiepVuController : Controller
+    public class DMDiaPhuongController : Controller
     {
-        //
-        // GET: /ChiTieuNghiepVu/
         public ActionResult Index()
         {
             return View();
         }
 
-        DANN.Web.Models.BDVTW_DBEntities db = new DANN.Web.Models.BDVTW_DBEntities();
+        DANN.Model.DANNContext db = new DANN.Model.DANNContext();
 
         [ValidateInput(false)]
-        public ActionResult TreeListPartial()
+        public ActionResult DiaPhuongTree()
         {
-            var model = db.NghiepVuChiTieux;
-            return PartialView("_TreeListPartial", model.ToList());
+            var model = db.DM_DiaPhuong;
+            return PartialView("_DiaPhuongTree", model.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult TreeListPartialAddNew(DANN.Web.Models.NghiepVuChiTieu item)
+        public ActionResult DiaPhuongTreeAddNew(DANN.Model.DM_DiaPhuong item)
         {
-            var model = db.NghiepVuChiTieux;
+            var model = db.DM_DiaPhuong;
             if (ModelState.IsValid)
             {
                 try
@@ -43,17 +41,17 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_TreeListPartial", model.ToList());
+            return PartialView("_DiaPhuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult TreeListPartialUpdate(DANN.Web.Models.NghiepVuChiTieu item)
+        public ActionResult DiaPhuongTreeUpdate(DANN.Model.DM_DiaPhuong item)
         {
-            var model = db.NghiepVuChiTieux;
+            var model = db.DM_DiaPhuong;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.MaChiTieu == item.MaChiTieu);
+                    var modelItem = model.FirstOrDefault(it => it.DiaPhuong_Id == item.DiaPhuong_Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -67,17 +65,17 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_TreeListPartial", model.ToList());
+            return PartialView("_DiaPhuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult TreeListPartialDelete(System.Guid? MaChiTieu)
+        public ActionResult DiaPhuongTreeDelete(System.Int32 DiaPhuong_Id)
         {
-            var model = db.NghiepVuChiTieux;
-            if (MaChiTieu != null)
+            var model = db.DM_DiaPhuong;
+            if (DiaPhuong_Id != null)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.MaChiTieu == MaChiTieu);
+                    var item = model.FirstOrDefault(it => it.DiaPhuong_Id == DiaPhuong_Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -87,24 +85,24 @@ namespace DANN.Web.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_TreeListPartial", model.ToList());
+            return PartialView("_DiaPhuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult TreeListPartialMove(System.Guid? MaChiTieu, System.Guid? MaChiTieuCha)
+        public ActionResult DiaPhuongTreeMove(System.Int32 DiaPhuong_Id, System.Int32? DiaPhuong_ParentId)
         {
-            var model = db.NghiepVuChiTieux;
+            var model = db.DM_DiaPhuong;
             try
             {
-                var item = model.FirstOrDefault(it => it.MaChiTieu == MaChiTieu);
+                var item = model.FirstOrDefault(it => it.DiaPhuong_Id == DiaPhuong_Id);
                 if (item != null)
-                    item.MaChiTieuCha = MaChiTieuCha;
+                    item.DiaPhuong_ParentId = DiaPhuong_ParentId;
                 db.SaveChanges();
             }
             catch (Exception e)
             {
                 ViewData["EditError"] = e.Message;
             }
-            return PartialView("_TreeListPartial", model.ToList());
+            return PartialView("_DiaPhuongTree", model.ToList());
         }
-	}
+    }
 }
