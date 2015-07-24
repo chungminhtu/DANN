@@ -21,7 +21,6 @@ namespace DANN.Web.Controllers
                .OrderBy(x => x.MenuSort)
                .ToList())
             {
-
                 yield return item;
 
                 foreach (var child in GetList(item.Menu_Id))
@@ -77,7 +76,7 @@ namespace DANN.Web.Controllers
         }
     }
 
-    public class MenuController : Controller
+    public class ADMenuController : Controller
     {
         DANNContext db = new DANNContext();
         public ActionResult Index()
