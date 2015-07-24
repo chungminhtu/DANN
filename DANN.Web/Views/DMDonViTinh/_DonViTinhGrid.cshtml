@@ -1,0 +1,32 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "DonViTinhGridView";
+        settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGrid" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "DonViTinh_Id";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("TenDonViTinh");
+				settings.Columns.Add("LoaiDonViTinh");
+				settings.Columns.Add("ValueFormat");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

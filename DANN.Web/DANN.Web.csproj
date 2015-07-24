@@ -1318,14 +1318,6 @@
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
-    <Content Include="Views\ChiTieuNghiepVu\Index.cshtml" />
-    <Content Include="Views\ChiTieuNghiepVu\_TreeListPartial.cshtml" />
-    <Content Include="Views\DanhMucNhomChiTieu\Index.cshtml" />
-    <Content Include="Views\DanhMucNhomChiTieu\_GridViewPartial.cshtml" />
-    <Content Include="Views\DanhMucDonViTinh\Index.cshtml" />
-    <Content Include="Views\DanhMucDonViTinh\_GridView1Partial.cshtml" />
-    <Content Include="Views\DanhMucNghiepVu\Index.cshtml" />
-    <Content Include="Views\DanhMucNghiepVu\_GridView3Partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -1335,10 +1327,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_lightLayout.cshtml" />
     <Content Include="Views\Shared\_mainLayout.cshtml" />
@@ -1351,17 +1339,26 @@
     <Content Include="Views\Home\GridViewPartialView.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Map\IndexRewriteId.cshtml" />
-    <Content Include="Views\DanhMucChiTieu\Index.cshtml" />
-    <Content Include="Views\DanhMucChiTieu\_TreeListPartial.cshtml" />
     <Content Include="Views\Grid\Index.cshtml" />
     <Content Include="Views\TKChiTieu\Index.cshtml" />
-    <Content Include="Views\TKChiTieu\_TKChiTieuTreePartial.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\HeaderPartialViewLogin.cshtml" />
     <Content Include="Views\Shared\_rootLayoutLogin.cshtml" />
     <Content Include="Views\Shared\_loginLayout.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Menu\_Menu.cshtml" />
+    <Content Include="Views\DMDonViTinh\Index.cshtml" />
+    <Content Include="Views\DMKyBaoCao\Index.cshtml" />
+    <Content Include="Views\DMDiaPhuong\Index.cshtml" />
+    <Content Include="Views\TKDoiTuong\Index.cshtml" />
+    <Content Include="Views\DMPhanHe\Index.cshtml" />
+    <Content Include="Views\BMBieuMau\Index.cshtml" />
+    <Content Include="Views\DMDiaPhuong\_DiaPhuongTree.cshtml" />
+    <Content Include="Views\DMDonViTinh\_DonViTinhGrid.cshtml" />
+    <Content Include="Views\DMKyBaoCao\_KyBaoCaoGrid.cshtml" />
+    <Content Include="Views\DMPhanHe\_PhanHeGrid.cshtml" />
+    <Content Include="Views\TKChiTieu\_ChiTieuTree.cshtml" />
+    <Content Include="Views\TKDoiTuong\_DoiTuongTree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1374,18 +1371,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ChiTieuNghiepVuController.cs" />
-    <Compile Include="Controllers\DanhMucChiTieuController.cs" />
-    <Compile Include="Controllers\DanhMucDonViTinhController.cs" />
-    <Compile Include="Controllers\DanhMucNghiepVuController.cs" />
-    <Compile Include="Controllers\DanhMucNhomChiTieuController.cs" />
+    <Compile Include="Controllers\BMBieuMauController.cs" />
+    <Compile Include="Controllers\DMDiaPhuongController.cs" />
+    <Compile Include="Controllers\DMDonViTinhController.cs" />
+    <Compile Include="Controllers\DMKyBaoCaoController.cs" />
+    <Compile Include="Controllers\DMPhanHeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\TKChiTieuController.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\TKDoiTuongController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

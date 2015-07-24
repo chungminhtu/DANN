@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using DANN.Model.Common;
+using DevExpress.Web.Mvc;
 
 namespace DANN.Web.Controllers
 {
@@ -43,7 +44,7 @@ namespace DANN.Web.Controllers
                 MenuItem item = new MenuItem();
                 item.Name = row.Menu_Id + "";
                 item.Text = row.MenuText;
-                item.NavigateUrl = row.MenuAction;
+                item.NavigateUrl = DevExpressHelper.GetUrl(new { Controller = row.MenuAction, Action = "Index" }); ;
                 item.Image.Url = row.MenuIcon;
                 item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
                  

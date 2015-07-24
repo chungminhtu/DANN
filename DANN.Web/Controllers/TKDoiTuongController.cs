@@ -7,7 +7,7 @@ using DevExpress.Web.Mvc;
 
 namespace DANN.Web.Controllers
 {
-    public class TKChiTieuController : Controller
+    public class TKDoiTuongController : Controller
     {
         public ActionResult Index()
         {
@@ -17,16 +17,16 @@ namespace DANN.Web.Controllers
         DANN.Model.DANNContext db = new DANN.Model.DANNContext();
 
         [ValidateInput(false)]
-        public ActionResult ChiTieuTree()
+        public ActionResult DoiTuongTree()
         {
-            var model = db.TK_ChiTieu;
-            return PartialView("_ChiTieuTree", model.ToList());
+            var model = db.TK_DoiTuong;
+            return PartialView("_DoiTuongTree", model.ToList());
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult ChiTieuTreeAddNew(DANN.Model.TK_ChiTieu item)
+        public ActionResult DoiTuongTreeAddNew(DANN.Model.TK_DoiTuong item)
         {
-            var model = db.TK_ChiTieu;
+            var model = db.TK_DoiTuong;
             if (ModelState.IsValid)
             {
                 try
@@ -41,17 +41,17 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_ChiTieuTree", model.ToList());
+            return PartialView("_DoiTuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult ChiTieuTreeUpdate(DANN.Model.TK_ChiTieu item)
+        public ActionResult DoiTuongTreeUpdate(DANN.Model.TK_DoiTuong item)
         {
-            var model = db.TK_ChiTieu;
+            var model = db.TK_DoiTuong;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ChiTieu_Id == item.ChiTieu_Id);
+                    var modelItem = model.FirstOrDefault(it => it.DoiTuong_Id == item.DoiTuong_Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -65,17 +65,17 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_ChiTieuTree", model.ToList());
+            return PartialView("_DoiTuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult ChiTieuTreeDelete(System.Int32 ChiTieu_Id)
+        public ActionResult DoiTuongTreeDelete(System.Int32 DoiTuong_Id)
         {
-            var model = db.TK_ChiTieu;
-            if (ChiTieu_Id != null)
+            var model = db.TK_DoiTuong;
+            if (DoiTuong_Id != null)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ChiTieu_Id == ChiTieu_Id);
+                    var item = model.FirstOrDefault(it => it.DoiTuong_Id == DoiTuong_Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -85,24 +85,24 @@ namespace DANN.Web.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_ChiTieuTree", model.ToList());
+            return PartialView("_DoiTuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult ChiTieuTreeMove(System.Int32 ChiTieu_Id, System.Int32? ChiTieu_ParentId)
+        public ActionResult DoiTuongTreeMove(System.Int32 DoiTuong_Id, System.Int32? DoiTuong_ParentId)
         {
-            var model = db.TK_ChiTieu;
+            var model = db.TK_DoiTuong;
             try
             {
-                var item = model.FirstOrDefault(it => it.ChiTieu_Id == ChiTieu_Id);
+                var item = model.FirstOrDefault(it => it.DoiTuong_Id == DoiTuong_Id);
                 if (item != null)
-                    item.ChiTieu_ParentId = ChiTieu_ParentId;
+                    item.DoiTuong_ParentId = DoiTuong_ParentId;
                 db.SaveChanges();
             }
             catch (Exception e)
             {
                 ViewData["EditError"] = e.Message;
             }
-            return PartialView("_ChiTieuTree", model.ToList());
+            return PartialView("_DoiTuongTree", model.ToList());
         }
     }
 }

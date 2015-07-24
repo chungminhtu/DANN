@@ -1,0 +1,56 @@
+@{
+	var treeList = Html.DevExpress().TreeList(settings => {
+        settings.Name = "DiaPhuongTreeList";
+        settings.CallbackRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTree" };
+
+				settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeAddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeUpdate" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeDelete" };
+				settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "DMDiaPhuong", Action = "DiaPhuongTreeMove" };
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+				settings.KeyFieldName = "DiaPhuong_Id";
+		settings.ParentFieldName = "DiaPhuong_ParentId";
+				settings.Columns.Add(
+            column => {
+                column.FieldName = "TenDiaPhuong";
+            }
+        );
+				settings.Columns.Add(
+            column => {
+                column.FieldName = "IDBanDo";
+            }
+        );
+				settings.Columns.Add(
+            column => {
+                column.FieldName = "Loai";
+            }
+        );
+				settings.Columns.Add(
+            column => {
+                column.FieldName = "Longitude";
+            }
+        );
+				settings.Columns.Add(
+            column => {
+                column.FieldName = "Latitude";
+            }
+        );
+				settings.Columns.Add(
+            column => {
+                column.FieldName = "TelCode";
+            }
+        );
+
+		settings.SettingsPager.Visible = true;
+		settings.SettingsSelection.Enabled = true;
+	});
+		if (ViewData["EditError"] != null){
+        treeList.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@treeList.Bind(Model).GetHtml()
