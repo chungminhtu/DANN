@@ -26,6 +26,15 @@ namespace DANN.Web
             ModelBinders.Binders.DefaultBinder = new DevExpress.Web.Mvc.DevExpressEditorsBinder();
 
             DevExpress.Web.ASPxWebControl.CallbackError += Application_Error;
+
+            ViewEngines.Engines.Add(new RazorViewEngine
+            {
+                PartialViewLocationFormats = new string[]
+                { 
+                    "~/Views/Shared/Common/{0}.cshtml"
+                }
+            });
+
         }
 
 

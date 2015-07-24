@@ -4,11 +4,11 @@
         settings.Name = "AD_Menu_TreeList";
 
         //Data binding
-        settings.CallbackRouteValues = new { Controller = "Menu", Action = "Menu" };
-        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "Menu", Action = "MenuAddNew" };
-        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "Menu", Action = "MenuUpdate" };
-        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "Menu", Action = "MenuDelete" };
-        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "Menu", Action = "MenuMove" };
+        settings.CallbackRouteValues = new { Controller = "ADMenu", Action = "Menu" };
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "ADMenu", Action = "MenuAddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "ADMenu", Action = "MenuUpdate" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "ADMenu", Action = "MenuDelete" };
+        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "ADMenu", Action = "MenuMove" };
 
 
         //Settings
@@ -32,7 +32,8 @@
         settings.ClientSideEvents.ContextMenu = "OnContextMenu";
         settings.ClientSideEvents.NodeDblClick = "NodeDoubleClick";
         settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChanged";
-        settings.ClientSideEvents.EndCallback = "MenuEndCallback";
+        settings.ClientSideEvents.EndCallback = "TreeEndCallback";
+        settings.ClientSideEvents.Init = "function (s, e) { ctree = AD_Menu_TreeList; control = AD_Menu_TreeList; }";
 
 
         //Columns

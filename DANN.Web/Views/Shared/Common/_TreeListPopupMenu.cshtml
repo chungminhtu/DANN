@@ -1,0 +1,111 @@
+﻿
+
+<script type="text/javascript">
+
+    //Đối tượng tree của màn hình hiện tại
+    var ctree = null; 
+
+    //Gọi events khi thao tác nhấn nút trên bàn phím
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13 && ctree.IsEditing())
+            ctree.UpdateEdit();
+        if (e.keyCode == 13 && !ctree.IsEditing())
+            ctree.StartEdit(ctree.GetFocusedNodeKey());
+        if (e.keyCode == 27 && ctree.IsEditing())
+            ctree.CancelEdit(); 
+    });
+
+    var nodeKey;
+    var parentNodeKey;
+      
+    //Hiển thị popup menu ở vị trí phải chuột lên màn hình
+    //Tự động focus vào dòng dữ liệu gần vị trí đó nhất
+    function OnContextMenu(s, e) {
+        if (e.objectType === "Node") {
+            var x = ASPxClientUtils.GetEventX(e.htmlEvent);
+            var y = ASPxClientUtils.GetEventY(e.htmlEvent);
+            PopupMenu.ShowAtPos(x, y);
+
+            nodeKey = e.objectKey;
+            var node = s.GetNodeHtmlElement(nodeKey);
+            ctree.SetFocusedNodeKey(nodeKey);
+            parentNodeKey = node.getAttribute("ParentNodeKey");
+        }
+    } 
+
+    //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu
+    function TreeEndCallback(s, e) {
+        if (ctree.IsEditing())
+        {
+            ctree.FocusEditor(0);
+        }
+    }
+
+    //Kích đúp thì sẽ edit row trực tiếp
+    function NodeDoubleClick(s, e) {
+        ctree.StartEdit(ctree.GetFocusedNodeKey());
+    }
+
+    //Tự động lưu sau khi focus sang nút khác
+    function NodeFocusedChanged(s, e) {
+        var editor0 = "#" + ctree.name + "_DXEDITOR0_I";
+        var editor1 = "#" + ctree.name + "_DXEDITOR1_I";
+
+        if ($(editor0).val() == "" && $(editor1).val() == "") {
+            ctree.CancelEdit();
+        }
+        else {
+            ctree.UpdateEdit(); 
+        }
+    }
+
+    //Xử lý events sau khi click menu popup
+    function OnItemClick(s, e) {
+        switch (e.item.name) {
+            case "Expand":
+                ctree.ExpandNode(nodeKey);
+                break;
+            case "ExpandAll":
+                ctree.ExpandAll();
+                break;
+            case "CollapseAll":
+                ctree.CollapseAll();
+                break; 
+            case "NewRoot":
+                ctree.SetFocusedNodeKey(null); 
+                ctree.StartEditNewNode(); 
+                ctree.MakeNodeVisible(nodeKey);
+                break;
+            case "NewSibling":
+                ctree.SetFocusedNodeKey(null);
+                ctree.StartEditNewNode(parentNodeKey);
+                ctree.MakeNodeVisible(nodeKey);  
+                break;
+            case "NewChild":
+                ctree.SetFocusedNodeKey(null);
+                ctree.StartEditNewNode(nodeKey);
+                ctree.MakeNodeVisible(nodeKey);  
+                break;
+            case "Edit":
+                ctree.StartEdit(nodeKey);
+                break;
+            case "Delete":
+                if (confirm('Bạn có chắc chắn xóa dữ liệu này không?')) { ctree.DeleteNode(nodeKey); } 
+                break;
+        }
+    }
+</script>
+@Html.DevExpress().PopupMenu(settings =>
+{
+    settings.Name = "PopupMenu";
+    settings.AllowSelectItem = false;
+    settings.Items.Add("Mở rộng nút này", "Expand", "~/Content/icon/16/Merge_16x16.png");
+    settings.Items.Add("Mở rộng toàn bộ", "ExpandAll", "~/Content/icon/16/Group2_16x16.png");
+    settings.Items.Add("Thu gọn toàn bộ", "CollapseAll", "~/Content/icon/16/Group_16x16.png");
+    settings.Items.Add("Thêm - Nút gốc", "NewRoot", "~/Content/icon/16/Add_16x16.png").BeginGroup = true;
+    settings.Items.Add("Thêm - Nút ngang hàng", "NewSibling", "~/Content/icon/16/Insert_16x16.png");
+    settings.Items.Add("Thêm - Nút con", "NewChild", "~/Content/icon/16/Add_16x16.png");
+    settings.Items.Add("Sửa nút", "Edit", "~/Content/icon/16/EditName_16x16.png").BeginGroup = true;
+    settings.Items.Add("Xóa nút", "Delete", "~/Content/icon/16/Cut_16x16.png");
+    settings.ClientSideEvents.ItemClick = "OnItemClick";
+}).GetHtml()
