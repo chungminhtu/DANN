@@ -12,10 +12,23 @@
                 {
                     settings.Name = "HeaderMenu";
 
-                    settings.ItemAutoWidth = false;
+                    settings.ItemAutoWidth = true;
+
+                    settings.AllowSelectItem = true;
+                    settings.EnableHotTrack = true;
+                    settings.EnableAnimation = false;
+                    settings.AppearAfter = 0;
+                    settings.DisappearAfter = 0;
+                    settings.ShowPopOutImages = DefaultBoolean.True;
+
+
+                    settings.Images.Item.Width = 24;
+                    
+                    
                     settings.Styles.Style.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
                     settings.Styles.Style.BorderTop.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
-
+             
+                    
                     settings.PreRender = (s, e) =>
                     {
                         ASPxMenu menu = (ASPxMenu)s;

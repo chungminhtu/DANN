@@ -25,6 +25,7 @@
           <Property Name="MenuAction" Type="varchar" MaxLength="100" />
           <Property Name="MenuIcon" Type="varchar" MaxLength="50" />
           <Property Name="MenuSort" Type="int" />
+          <Property Name="MenuSeparator" Type="bit" />
         </EntityType>
         <EntityType Name="AD_User">
           <Key>
@@ -552,6 +553,7 @@
           <Property Name="MenuAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MenuSort" Type="Int32" />
+          <Property Name="MenuSeparator" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -717,6 +719,7 @@
           <EntitySetMapping Name="AD_Menu">
             <EntityTypeMapping TypeName="DBDANNModel.AD_Menu">
               <MappingFragment StoreEntitySet="AD_Menu">
+                <ScalarProperty Name="MenuSeparator" ColumnName="MenuSeparator" />
                 <ScalarProperty Name="MenuSort" ColumnName="MenuSort" />
                 <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
                 <ScalarProperty Name="MenuAction" ColumnName="MenuAction" />

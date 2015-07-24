@@ -39,21 +39,24 @@ namespace DANN.Web.Controllers
             for (int i = 0; i < menus.Count; i++)
             {
                 AD_Menu row = menus[i];
-                MenuItem item = new MenuItem() { Name = row.Menu_Id + "", Text = row.MenuText, NavigateUrl = row.MenuAction };
+
+                MenuItem item = new MenuItem();
+                item.Name = row.Menu_Id + "";
+                item.Text = row.MenuText;
+                item.NavigateUrl = row.MenuAction;
                 item.Image.Url = row.MenuIcon;
-
-                string parentID = row.Menu_ParentId + "";
-
-                if (i == 0 || parentID == "")
+                item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
+                 
+                if (i == 0 || row.Menu_ParentId + "" == "")
                 {
                     menu.Items.Add(item);
                 }
                 else
                 {
-                    GetNodes(menu.Items, parentID, item);
+                    GetNodes(menu.Items, row.Menu_ParentId + "", item);
                 }
             }
-            
+
             return menu;
         }
         public static void GetNodes(MenuItemCollection menus, string parentID, MenuItem item)

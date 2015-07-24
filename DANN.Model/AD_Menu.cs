@@ -20,5 +20,6 @@ namespace DANN.Model
         public string MenuAction { get; set; }
         public string MenuIcon { get; set; }
         public Nullable<int> MenuSort { get; set; }
+        public Nullable<bool> MenuSeparator { get; set; }
     }
 }

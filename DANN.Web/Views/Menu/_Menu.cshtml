@@ -24,8 +24,9 @@
         settings.SettingsBehavior.FocusNodeOnLoad = false; 
         settings.SettingsBehavior.AutoExpandAllNodes = true;
         settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
+        settings.SettingsSelection.Recursive = true;
         settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
-        settings.KeyboardSupport = true;
+        settings.KeyboardSupport = true; 
 
         //Events
         settings.ClientSideEvents.ContextMenu = "OnContextMenu";
@@ -86,21 +87,20 @@
 
         settings.Columns.Add(column =>
         {
+            column.FieldName = "MenuSeparator";
+            column.Caption = "Ngăn cách menu";
+            column.ColumnType = MVCxTreeListColumnType.CheckBox;
+        });
+        
+        settings.Columns.Add(column =>
+        {
             column.FieldName = "MenuSort";
             //column.Visible = false;
             column.SortIndex = 0;
             column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
         });
 
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "Menu_Id";
-        });
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "Menu_ParentId";
-        });
-
+        
         //settings.InitNewNode = (s, e) =>
         //{
         //    e.NewValues["Menu_Id"] = 0;
