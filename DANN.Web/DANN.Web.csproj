@@ -1270,7 +1270,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\canvg.js" />
-    <Content Include="Scripts\Common\Control.js" />
     <Content Include="Scripts\GeneratorHeaderToTable.js" />
     <Content Include="Scripts\GenHeader.js" />
     <Content Include="Scripts\globalize.cultures.js" />
