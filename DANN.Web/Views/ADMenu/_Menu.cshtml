@@ -12,29 +12,29 @@
 
 
         //Settings
-        settings.CommandColumn.Visible = false;
-        settings.CommandColumn.ShowNewButtonInHeader = true;
-        settings.CommandColumn.NewButton.Visible = true;
-        settings.CommandColumn.DeleteButton.Visible = true;
-        settings.CommandColumn.EditButton.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
         settings.SettingsPager.Visible = true;
+        settings.SettingsPager.PageSize = 25;
+        
+        settings.CommandColumn.Visible = false; 
         settings.SettingsSelection.Enabled = true;
         settings.SettingsSelection.AllowSelectAll = true;
         settings.SettingsBehavior.AllowFocusedNode = true;
         settings.SettingsBehavior.FocusNodeOnLoad = false; 
-        settings.SettingsBehavior.AutoExpandAllNodes = true;
+        settings.SettingsBehavior.AutoExpandAllNodes = false;
         settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
         settings.SettingsSelection.Recursive = true;
         settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
         settings.KeyboardSupport = true; 
 
         //Events
-        settings.ClientSideEvents.ContextMenu = "OnContextMenu";
-        settings.ClientSideEvents.NodeDblClick = "NodeDoubleClick";
-        settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChanged";
-        settings.ClientSideEvents.EndCallback = "TreeEndCallback";
-        settings.ClientSideEvents.Init = "function (s, e) { ctree = MenuTree; control = MenuTree; }";
-
+        settings.ClientSideEvents.EndCallback = "TreeEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
+        settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
+        settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
+        settings.ClientSideEvents.NodeClick = "function (s, e){ currentControlType = 'Tree';currentControl = MenuTree ; }";
+       
 
         //Columns
         settings.KeyFieldName = "Menu_Id";

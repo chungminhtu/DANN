@@ -1,0 +1,190 @@
+﻿@model DANN.Web.Models.CommandPanelOptions
+
+<script type="text/javascript">
+
+    var currentControlType = "";
+    var currentControl= null;
+
+    //Gọi events khi thao tác nhấn nút trên bàn phím
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13 && currentControl.IsEditing())
+            currentControl.UpdateEdit();
+        if (e.keyCode == 13 && !currentControl.IsEditing()){
+            if (currentControlType =="Grid") {
+                currentControl.StartEditRow(currentControl.GetFocusedRowIndex());
+            }
+            else if (currentControlType =="Tree") {
+                currentControl.StartEdit(currentControl.GetFocusedNodeKey());
+            }
+        }
+        if (e.keyCode == 27 && currentControl.IsEditing())
+            currentControl.CancelEdit();
+    });
+
+    /*----------------------GRID FUNCTION---------------------*/
+
+    var ID = 0;
+    function GridBeginCallbackWithID(s, e) {
+        if(ID == 0) {
+            alert('chưa chọn Bảng'); return false;
+        }
+        else        {
+            e.customArgs['ID'] = ID;
+        }
+    }
+
+    //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu
+    function GridEndCallbackFocusToAddNew(s, e) {
+        if (s.IsEditing()) {
+            s.FocusEditor(0);
+        }
+    }
+
+    //Kích đúp thì sẽ edit row trực tiếp
+    function GridDoubleClickToEdit(s, e) {
+        s.StartEditRow(s.GetFocusedRowIndex());
+    }
+
+    //Tự động lưu sau khi focus sang nút khác
+    function GridFocusedChangedToSave@(Model.controlIndex)(s, e) {
+        var dk = @Html.Raw(Model.CondictionToAutoSave);
+        if (dk) { s.UpdateEdit(); }
+        else{ s.CancelEdit();}
+    }
+
+    //Tự động reload control 2 sau khi focus row control 1
+    function GridFocusedChangedReloadControl@(Model.controlIndex)(s, e) {
+        if (s.GetFocusedRowIndex() != -1) {
+            ID = s.GetRowKey(s.GetFocusedRowIndex());
+            var control = @Model.control2Name;
+            if (control) {
+                control.PerformCallback();
+            }
+        }
+    }
+
+    //Hiển thị popup menu ở vị trí phải chuột lên màn hình
+    //Tự động focus vào dòng dữ liệu gần vị trí đó nhất
+    function ShowGridContextMenu@(Model.controlIndex)(s, e) {
+
+        var x = ASPxClientUtils.GetEventX(e.htmlEvent);
+        var y = ASPxClientUtils.GetEventY(e.htmlEvent);
+        GridPopupMenu@(Model.controlIndex).ShowAtPos(x, y);
+
+        nodeKey = e.objectKey;
+    }
+
+    //Xử lý events sau khi click menu popup
+    function OnGridMenuItemClick(s, e) {
+        switch (e.item.name) {
+            case "Expand":
+                @(Model.controlName).ExpandNode(nodeKey);
+                break;
+            case "ExpandAll":
+                @(Model.controlName).ExpandAll();
+                break;
+            case "CollapseAll":
+                @(Model.controlName).CollapseAll();
+                break;
+            case "NewRoot": 
+                @(Model.controlName).AddNewRow(); 
+                break;
+            case "NewSibling":
+                @(Model.controlName).SetFocusedNodeKey(null);
+                @(Model.controlName).StartEditNewNode(parentNodeKey);
+                @(Model.controlName).MakeNodeVisible(nodeKey);
+                break;
+            case "NewChild":
+                @(Model.controlName).SetFocusedNodeKey(null);
+                @(Model.controlName).StartEditNewNode(nodeKey);
+                @(Model.controlName).MakeNodeVisible(nodeKey);
+                break;
+            case "Edit":
+                @(Model.controlName).StartEdit(nodeKey);
+                break;
+            case "Delete":
+                if (confirm('Bạn có chắc chắn xóa dữ liệu này không?')) { @(Model.controlName).DeleteNode(nodeKey); }
+                break;
+        }
+    }
+
+    /*----------------------END GRID FUNCTION---------------------*/
+
+
+    /*----------------------TREE FUNCTION---------------------*/
+    var nodeKey;
+    var parentNodeKey;
+
+
+    //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu
+    function TreeEndCallbackFocusToAddNew(s, e) {
+        if (s.IsEditing()) {
+            s.FocusEditor(0);
+        }
+    }
+
+    //Kích đúp thì sẽ edit row trực tiếp
+    function NodeDoubleClickToEdit(s, e) {
+        s.StartEdit(s.GetFocusedNodeKey());
+    }
+
+    //Tự động lưu sau khi focus sang nút khác
+    function NodeFocusedChangedToSave(s, e) {
+        var dk = @Html.Raw(Model.CondictionToAutoSave);
+        if (dk) { s.UpdateEdit(); }
+        else{ s.CancelEdit();}
+    }
+
+
+    //Hiển thị popup menu ở vị trí phải chuột lên màn hình
+    //Tự động focus vào dòng dữ liệu gần vị trí đó nhất
+    function ShowTreeContextMenu(s, e) {
+        if (e.objectType === "Node") {
+            var x = ASPxClientUtils.GetEventX(e.htmlEvent);
+            var y = ASPxClientUtils.GetEventY(e.htmlEvent);
+            TreePopupMenu@(Model.controlIndex).ShowAtPos(x, y);
+
+            nodeKey = e.objectKey;
+            var node = s.GetNodeHtmlElement(nodeKey);
+            s.SetFocusedNodeKey(nodeKey);
+            parentNodeKey = node.getAttribute("ParentNodeKey");
+        }
+    }
+
+    //Xử lý events sau khi click menu popup
+    function OnTreeMenuItemClick(s, e) {
+        switch (e.item.name) {
+            case "Expand":
+                @(Model.controlName).ExpandNode(nodeKey);
+                break;
+            case "ExpandAll":
+                @(Model.controlName).ExpandAll();
+                break;
+            case "CollapseAll":
+                @(Model.controlName).CollapseAll();
+                break;
+            case "NewRoot":
+                @(Model.controlName).SetFocusedNodeKey(null);
+                @(Model.controlName).StartEditNewNode();
+                @(Model.controlName).MakeNodeVisible(nodeKey);
+                break;
+            case "NewSibling":
+                @(Model.controlName).SetFocusedNodeKey(null);
+                @(Model.controlName).StartEditNewNode(parentNodeKey);
+                @(Model.controlName).MakeNodeVisible(nodeKey);
+                break;
+            case "NewChild":
+                @(Model.controlName).SetFocusedNodeKey(null);
+                @(Model.controlName).StartEditNewNode(nodeKey);
+                @(Model.controlName).MakeNodeVisible(nodeKey);
+                break;
+            case "Edit":
+                @(Model.controlName).StartEdit(nodeKey);
+                break;
+            case "Delete":
+                if (confirm('Bạn có chắc chắn xóa dữ liệu này không?')) { @(Model.controlName).DeleteNode(nodeKey); }
+                break;
+        }
+    }
+    /*----------------------END TREE FUNCTION---------------------*/
+</script>

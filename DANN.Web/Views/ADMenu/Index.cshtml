@@ -1,6 +1,16 @@
-﻿
-@Html.Partial("_TreeListPopupMenu")
-
-@Html.Partial("_PanelCommand")
+﻿@Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                    {
+                                        controlIndex = 1,
+                                        controlName = "MenuTree",
+                                        Add = true,
+                                        Edit = true,
+                                        Delete = true,
+                                        Save = true,
+                                        Cancel = true,
+                                        Reload = true,
+                                        Print = true,
+                                        CondictionToAutoSave = "$('#MenuTree_DXEDITOR0_I').val() != ''&& $('#MenuTree_DXEDITOR0_I').val() != ''",
+                                    })
  
 @Html.Action("Menu")
+ 

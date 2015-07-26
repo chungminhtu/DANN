@@ -1,10 +1,10 @@
 ﻿@model DANN.Web.Models.CommandPanelOptions
-  
+ 
 @Html.Partial("_FunctionTemplate", Model)
 
 @Html.DevExpress().Panel(panelButton =>
         {
-            panelButton.Name = "TreeCommandPanel" + @Model.controlIndex;
+            panelButton.Name = "GridCommandPanel" + @Model.controlIndex;
             panelButton.FixedPosition = PanelFixedPosition.None;
             panelButton.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
 
@@ -13,41 +13,41 @@
                 Html.DevExpress().Button(
                     myButton =>
                     {
-                        myButton.Name = "treebtnThemMoi" + @Model.controlIndex;
+                        myButton.Name = "gridbtnThemMoi" + @Model.controlIndex;
                         myButton.Text = "Thêm";
                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                         myButton.Images.Image.Url = "~/Content/icon/16/Add_16x16.png";
-                        myButton.ClientSideEvents.Click = "function() { " + @Model.controlName + ".StartEditNewNode(); }";
+                        myButton.ClientSideEvents.Click = "function(s, e) { " + @Model.controlName + ".AddNewRow(); }";
                         myButton.ClientVisible = @Model.Add;
                         myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                     }).GetHtml();
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "treebtnSua" + @Model.controlIndex;
-                            myButton.Text = "Sửa (Enter)";
+                            myButton.Name = "gridbtnSua" + @Model.controlIndex;
+                            myButton.Text = "Sửa";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/Edit_16x16.png";
-                            myButton.ClientSideEvents.Click = "function( ) { " + @Model.controlName + ".StartEdit(" + @Model.controlName + ".GetFocusedNodeKey()); }";
+                            myButton.ClientSideEvents.Click = "function( ) { " + @Model.controlName + ".StartEditRow(" + @Model.controlName + ".GetFocusedRowIndex()); }";
                             myButton.ClientVisible = @Model.Edit;
                             myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                         }).GetHtml();
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "treebtnXoa" + @Model.controlIndex;
-                            myButton.Text = "Xóa (Delete)";
+                            myButton.Name = "gridbtnXoa" + @Model.controlIndex;
+                            myButton.Text = "Xóa";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/Close_16x16.png";
-                            myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) " + @Model.controlName + ".DeleteNode(" + @Model.controlName + ".GetFocusedNodeKey()); }";
+                            myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) " + @Model.controlName + ".DeleteRow(" + @Model.controlName + ".GetFocusedRowIndex()); }";
                             myButton.ClientVisible = @Model.Delete;
                             myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                         }).GetHtml();
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "treebtnLuu" + @Model.controlIndex;
-                            myButton.Text = "Lưu (Enter)";
+                            myButton.Name = "gridbtnLuu" + @Model.controlIndex;
+                            myButton.Text = "Lưu";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/SaveAll_16x16.png";
                             myButton.ClientSideEvents.Click = "function( ) { " + @Model.controlName + ".UpdateEdit(); }";
@@ -57,31 +57,30 @@
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "treebtnHuy" + @Model.controlIndex;
-                            myButton.Text = "Hủy (ESC)";
+                            myButton.Name = "gridbtnHuy" + @Model.controlIndex;
+                            myButton.Text = "Hủy";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/Reset2_16x16.png";
                             myButton.ClientSideEvents.Click = "function( ) { " + @Model.controlName + ".CancelEdit();  }";
-                            myButton.ClientVisible = @Model.Cancel;
+                            myButton.ClientVisible = @Model.Reload;
                             myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                         }).GetHtml();
                 Html.DevExpress().Button(
-                        myButton =>
-                        {
-                            myButton.Name = "treebtnRefresh" + @Model.controlIndex;
-                            myButton.Text = "Xem thay đổi (F5)";
-                            myButton.Images.Image.Url = "~/Content/icon/16/DocumentMap_16x16.png";
-                            myButton.ClientSideEvents.Click = "function( ) { location.reload();  }";
-                            myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
-                            myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
-                            myButton.ClientVisible = @Model.Reload;
-                        }).GetHtml();
+                     myButton =>
+                     {
+                         myButton.Name = "gridbtnPrint" + @Model.controlIndex;
+                         myButton.Text = "In";
+                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                         myButton.Images.Image.Url = "~/Content/icon/16/Printer_16x16.png";
+                         myButton.ClientSideEvents.Click = "function( ) {   }";
+                         myButton.ClientVisible = @Model.Print;
+                         myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                     }).GetHtml();
             });
         }).GetHtml()
-
 @Html.DevExpress().PopupMenu(settings =>
 {
-    settings.Name = "TreePopupMenu" + @Model.controlIndex;
+    settings.Name = "GridPopupMenu" + @Model.controlIndex;
     settings.AllowSelectItem = false;
     settings.Items.Add("Mở rộng nút này", "Expand", "~/Content/icon/16/Merge_16x16.png");
     settings.Items.Add("Mở rộng toàn bộ", "ExpandAll", "~/Content/icon/16/Group2_16x16.png");
@@ -91,5 +90,5 @@
     settings.Items.Add("Thêm - Nút con", "NewChild", "~/Content/icon/16/Add_16x16.png");
     settings.Items.Add("Sửa nút", "Edit", "~/Content/icon/16/EditName_16x16.png").BeginGroup = true;
     settings.Items.Add("Xóa nút", "Delete", "~/Content/icon/16/Cut_16x16.png");
-    settings.ClientSideEvents.ItemClick = "OnTreeMenuItemClick";
+    settings.ClientSideEvents.ItemClick = "OnGridMenuItemClick";
 }).GetHtml()

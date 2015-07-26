@@ -17,7 +17,7 @@ namespace DANN.Web
             routes.MapRoute(
                 name: "Default", // Route name
                 url: "{controller}/{action}/{id}", // URL with parameters
-                defaults: new { controller = "Menu", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                defaults: new { controller = "ADMenu", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
         }
     }

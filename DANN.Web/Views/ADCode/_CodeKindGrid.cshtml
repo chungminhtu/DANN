@@ -31,30 +31,38 @@
 
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = false;
+        settings.KeyboardSupport = true;
 
-
-
+         
         /*Events*/
-        settings.ClientSideEvents.RowDblClick = "Grid1DoubleClick";
-        settings.ClientSideEvents.FocusedRowChanged = "Grid1FocusedChanged";
-        settings.ClientSideEvents.Init = "function (s, e) { "
-                                      + "control1 = CodeKindGridView;"
-                                                + "}";
+        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
+        settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = CodeKindGridView ; }";
 
+
+        settings.InitNewRow = (s, e) =>
+        {
+            e.NewValues["CodeKind"] = Convert.ToInt32( ViewBag.MaxCodeKind)+1; 
+
+        };
+        
         settings.KeyFieldName = "CodeKind";
 
+        settings.Columns.Add(column =>
+           {
+               column.FieldName = "CodeKindName";
+               column.Caption = "Tên Bảng";
+               column.Width = Unit.Percentage(80);
+           }); 
         settings.Columns.Add(column =>
         {
             column.FieldName = "CodeKind";
             column.Caption = "Mã";
             column.Width = Unit.Percentage(20); 
         }); 
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "CodeKindName";
-            column.Caption = "Tên Bảng";
-            column.Width = Unit.Percentage(80); 
-        });  
+       
     });
     if (ViewData["EditError"] != null)
     {

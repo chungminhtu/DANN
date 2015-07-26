@@ -16,7 +16,7 @@
         @RenderBody()
     </div>
 
-    @Html.DevExpress().Panel(settings => {
+    @*@Html.DevExpress().Panel(settings => {
         settings.Name = "RightPane";
         settings.FixedPosition = PanelFixedPosition.WindowRight;
         settings.Collapsible = true;
@@ -26,4 +26,4 @@
         settings.SetContent(() => {
             Html.RenderPartial("ContentRightPartialView");
         });
-    }).GetHtml()
+    }).GetHtml()*@

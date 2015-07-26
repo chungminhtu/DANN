@@ -1,24 +1,35 @@
-﻿<script type="text/javascript">
-
-    var CodeKind = 0;
-    var CodeKindName = "";
-
-    function Grid1FocusedChanged(s, e) {
-        if (s.GetFocusedRowIndex() != -1) {
-            CodeKind = s.GetRowKey(s.GetFocusedRowIndex());
-            control2.PerformCallback();
-        }
-    }
-
-</script>
+﻿
 <table>
     <tr>
         <td>
-            @Html.Partial("_GridCommand1")
+            @Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                            {
+                                                controlIndex = 1,
+                                                controlName = "CodeKindGridView",
+                                                control2Name = "CodeGridView",
+                                                Add = true,
+                                                Edit = true,
+                                                Delete = true,
+                                                Save = true,
+                                                Reload = true,
+                                                Print = true,
+                                                CondictionToAutoSave = "$('#CodeKindGridView_DXEditor0_I').val() != ''&& $('#CodeKindGridView_DXEditor1_I').val() != ''",
+                                            })
         </td>
         <td width="20px"></td>
         <td>
-            @Html.Partial("_GridCommand2")
+            @Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                            {
+                                                controlIndex = 2,
+                                                controlName = "CodeGridView",
+                                                Add = true,
+                                                Edit = true,
+                                                Delete = true,
+                                                Save = true,
+                                                Reload = true,
+                                                Print = true,
+                                                CondictionToAutoSave = "$('#CodeGridView_DXEditor0_I').val() != '' && $('#CodeGridView_DXEditor1_I').val() != ''",
+                                            })
         </td>
     </tr>
     <tr>
@@ -31,8 +42,3 @@
         </td>
     </tr>
 </table>
-
-
-
-
-

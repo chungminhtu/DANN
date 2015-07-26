@@ -24,30 +24,24 @@
     new Script { ExtensionSuite = ExtensionSuite.Report },
     new Script { ExtensionSuite = ExtensionSuite.TreeList }
 )
-
-</head>
+    </head>
 <body>
+ 
     @Html.DevExpress().Panel(settings =>
 {
     settings.Name = "HeaderPane";
     settings.FixedPosition = PanelFixedPosition.WindowTop;
     settings.Collapsible = true;
-    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 500;
+    settings.SettingsCollapsing.ExpandButton.Visible = true;
+    settings.SettingsCollapsing.AnimationType = AnimationType.Slide;
+    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 500; 
     settings.ControlStyle.CssClass = "headerPane";
     settings.Styles.Panel.CssClass = "panel";
     settings.Styles.ExpandBar.CssClass = "bar";
     settings.SetContent(() =>
     {
         Html.RenderPartial("HeaderPartialView");
-    });
-    //settings.SetExpandedPanelTemplateContent((c) =>
-    //{
-    //    Html.RenderPartial("HeaderPartialView", HeaderViewRenderMode.Menu);
-    //});
-    //settings.SetExpandBarTemplateContent((c) =>
-    //{
-    //    Html.RenderPartial("HeaderPartialView", HeaderViewRenderMode.Title);
-    //});
+    }); 
 }).GetHtml()
 
     @Html.DevExpress().Panel(settings =>

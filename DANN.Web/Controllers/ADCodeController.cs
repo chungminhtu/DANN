@@ -23,6 +23,7 @@ namespace DANN.Web.Controllers
         public ActionResult CodeKindGrid()
         {
             var model = db.DM_CodeKind;
+            ViewBag.MaxCodeKind = db.DM_CodeKind.Count() > 0 ? db.DM_CodeKind.Max(a => a.CodeKind) : 0;
             return PartialView("_CodeKindGrid", model.ToList());
         }
 
@@ -97,12 +98,13 @@ namespace DANN.Web.Controllers
         [ValidateInput(false)]
         public ActionResult CodeGrid()
         {
-            var s = Request.Params["pCodeKind"] + "";
+            var s = Request.Params["ID"] + "";
             List<DM_Code> model = null;
             if (s != "")
             {
                 model = db.DM_Code.Where(x => x.CodeKind.ToString().Contains(s)).ToList();
             }
+            ViewBag.MaxCodeValue = db.DM_Code.Where(x => x.CodeKind.ToString().Contains(s)).Count() > 0 ? db.DM_Code.Where(x => x.CodeKind.ToString().Contains(s)).Max(a => a.CodeValue) : 0;
             return PartialView("_CodeGrid", model);
         }
 
@@ -113,7 +115,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    item.CodeKind = Convert.ToInt32(Request.Params["pCodeKind"]);
+                    item.CodeKind = Convert.ToInt32(Request.Params["ID"]);
                     db.DM_Code.Add(item);
                     db.SaveChanges();
                 }
@@ -148,7 +150,7 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            int s = Convert.ToInt32(Request.Params["pCodeKind"]);
+            int s = Convert.ToInt32(Request.Params["ID"]);
             var model = db.DM_Code.Where(x => x.CodeKind == s).ToList();
             return PartialView("_CodeGrid", model);
         }

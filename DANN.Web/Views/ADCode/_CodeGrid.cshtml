@@ -1,13 +1,12 @@
 ﻿@{
-	var grid = Html.DevExpress().GridView(settings => {
+    var grid = Html.DevExpress().GridView(settings =>
+    {
         settings.Name = "CodeGridView";
         settings.CallbackRouteValues = new { Controller = "ADCode", Action = "CodeGrid" };
 
-				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "CodeGridAddNew" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "CodeGridAddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADCode", Action = "CodeGridUpdate" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADCode", Action = "CodeGridDelete" };
-
-        settings.ClientSideEvents.BeginCallback = "function(s,e) {if(CodeKind == 0) {alert('chưa chọn Bảng'); return false;} else { e.customArgs['pCodeKind'] = CodeKind;} }";
 
 
         //Settings
@@ -18,7 +17,7 @@
         //settings.SettingsPager.PageSizeItemSettings.Visible = true;
         //settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
         //settings.SettingsPager.Visible = true;
-        
+
         // settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
         settings.SettingsBehavior.AllowFocusedRow = true;
@@ -28,35 +27,45 @@
         //settings.SettingsSearchPanel.Visible = true;
         settings.SettingsBehavior.AllowDragDrop = false;
         settings.SettingsBehavior.AutoExpandAllGroups = true;
-    
+
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = false;
+        settings.KeyboardSupport = true;
 
 
 
         /*Events*/
-        settings.ClientSideEvents.RowDblClick = "Grid2DoubleClick";
-        //settings.ClientSideEvents.FocusedRowChanged = "Grid2FocusedChanged";
-        settings.ClientSideEvents.Init = "function (s, e) { "
-                                      + "control2 = CodeGridView;"
-                                                + "}";
+        settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
+        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
+        settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave2";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu2";
+        settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = CodeGridView ;}";
+
+        settings.InitNewRow = (s, e) =>
+        {
+            e.NewValues["CodeValue"] = Convert.ToInt32(ViewBag.MaxCodeValue) + 1;
+
+        };
 
         settings.KeyFieldName = "Code";
-         
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "CodeValue";
-            column.Width = Unit.Percentage(20);
-        });
+
         settings.Columns.Add(column =>
         {
             column.FieldName = "CodeName";
             column.Width = Unit.Percentage(30);
         });
-        
-        
-	});
-		if (ViewData["EditError"] != null){
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "CodeValue";
+            column.Width = Unit.Percentage(20);
+        });
+
+
+    });
+    if (ViewData["EditError"] != null)
+    {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
 }

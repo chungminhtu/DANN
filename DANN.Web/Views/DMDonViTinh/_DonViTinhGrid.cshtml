@@ -12,6 +12,7 @@
         settings.SettingsBehavior.ConfirmDelete = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        settings.SettingsPager.PageSize = 25;
 
         // settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
@@ -26,13 +27,16 @@
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = true;
 
+        settings.KeyboardSupport = true;
 
 
         /*Events*/
-        //settings.ClientSideEvents.FocusedRowChanged = "OnGridRowChanged";
-        settings.ClientSideEvents.Init = "function (s, e) { "
-                                      + "control = DonViTinhGridView;"
-                                                + "}";
+        //settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
+        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
+        settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = DonViTinhGridView ; }";
         
         
 		settings.KeyFieldName = "DonViTinh_Id";
