@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 
-namespace DANN.Web.Modules
+namespace DANN.Web
 {
     public class ServiceModule : Autofac.Module
     {

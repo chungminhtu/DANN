@@ -51,7 +51,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.PhanHe_Id == item.PhanHe_Id);
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -68,14 +68,14 @@ namespace DANN.Web.Controllers
             return PartialView("_PhanHeGrid", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult PhanHeGridDelete(System.Int32 PhanHe_Id)
+        public ActionResult PhanHeGridDelete(System.Int32 Id)
         {
             var model = db.DM_PhanHe;
-            if (PhanHe_Id >= 0)
+            if (Id >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.PhanHe_Id == PhanHe_Id);
+                    var item = model.FirstOrDefault(it => it.Id == Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();

@@ -14,7 +14,7 @@ namespace DANN.Model
     
     public partial class BM_BieuMau
     {
-        public int BieuMau_Id { get; set; }
+        public int Id { get; set; }
         public string TenBieuMau { get; set; }
     }
 }

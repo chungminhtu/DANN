@@ -16,13 +16,13 @@ namespace DANN.Web.Controllers
         public static IEnumerable<AD_Menu> GetList(int? parentID = null)
         {
             foreach (var item in db.AD_Menu
-                .Where(x => x.Menu_ParentId == parentID)
+                .Where(x => x.ParentId == parentID)
                .OrderBy(x => x.MenuSort)
                .ToList())
             {
                 yield return item;
 
-                foreach (var child in GetList(item.Menu_Id))
+                foreach (var child in GetList(item.Id))
                 {
                     yield return child;
                 }
@@ -38,19 +38,19 @@ namespace DANN.Web.Controllers
                 AD_Menu row = menus[i];
 
                 MenuItem item = new MenuItem();
-                item.Name = row.Menu_Id + "";
+                item.Name = row.Id + "";
                 item.Text = row.MenuText;
                 item.NavigateUrl = DevExpressHelper.GetUrl(new { Controller = row.MenuAction, Action = "Index" }); ;
                 item.Image.Url = row.MenuIcon;
                 item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
 
-                if (i == 0 || row.Menu_ParentId + "" == "")
+                if (i == 0 || row.ParentId + "" == "")
                 {
                     menu.Items.Add(item);
                 }
                 else
                 {
-                    GetNodes(menu.Items, row.Menu_ParentId + "", item);
+                    GetNodes(menu.Items, row.ParentId + "", item);
                 }
             }
 
@@ -77,13 +77,14 @@ namespace DANN.Web.Controllers
 
     }
 
-    public class ADMenuController : CommonController
+    public class ADMenuController : CommonController<AD_Menu>
     {
-        public ADMenuController(IAD_MenuService MenuService)
-            : base(MenuService)
+        public ADMenuController(IEntityService<AD_Menu> service)
+            : base(service)
         {
 
         }
+
         //DANNContext db = new DANNContext();
         //public ActionResult Index()
         //{
@@ -103,14 +104,14 @@ namespace DANN.Web.Controllers
         //{
         //    int i = 0;
         //    foreach (var item in db.AD_Menu
-        //        .Where(x => x.Menu_ParentId == parentID)
+        //        .Where(x => x.ParentId == parentID)
         //       .OrderBy(x => x.MenuSort)
         //       .ToList())
         //    {
         //        item.MenuSort = i++;
         //        yield return item;
         //        int j = 0;
-        //        foreach (var child in GetListOrdered(item.Menu_Id))
+        //        foreach (var child in GetListOrdered(item.Id))
         //        {
         //            child.MenuSort = j++;
         //            yield return child;
@@ -147,7 +148,7 @@ namespace DANN.Web.Controllers
         //    {
         //        try
         //        {
-        //            var modelItem = model.FirstOrDefault(it => it.Menu_Id == item.Menu_Id);
+        //            var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
         //            if (modelItem != null)
         //            {
         //                this.UpdateModel(modelItem);
@@ -164,14 +165,14 @@ namespace DANN.Web.Controllers
         //    return PartialView("_Menu", model.ToList());
         //}
         //[HttpPost, ValidateInput(false)]
-        //public ActionResult MenuDelete(Int32 Menu_Id)
+        //public ActionResult MenuDelete(Int32 Id)
         //{
         //    var model = db.AD_Menu;
-        //    if (Menu_Id != 0)
+        //    if (Id != 0)
         //    {
         //        try
         //        {
-        //            var item = model.FirstOrDefault(it => it.Menu_Id == Menu_Id);
+        //            var item = model.FirstOrDefault(it => it.Id == Id);
         //            if (item != null)
         //                model.Remove(item);
         //            db.SaveChanges();
@@ -184,14 +185,14 @@ namespace DANN.Web.Controllers
         //    return PartialView("_Menu", model.ToList());
         //}
         //[HttpPost, ValidateInput(false)]
-        //public ActionResult MenuMove(Int32 Menu_Id, Int32? Menu_ParentId)
+        //public ActionResult MenuMove(Int32 Id, Int32? ParentId)
         //{
         //    var model = db.AD_Menu;
         //    try
         //    {
-        //        var item = model.FirstOrDefault(it => it.Menu_Id == Menu_Id);
+        //        var item = model.FirstOrDefault(it => it.Id == Id);
         //        if (item != null)
-        //            item.Menu_ParentId = Menu_ParentId;
+        //            item.ParentId = ParentId;
         //        db.SaveChanges();
         //    }
         //    catch (Exception e)

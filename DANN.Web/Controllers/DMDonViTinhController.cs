@@ -51,7 +51,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.DonViTinh_Id == item.DonViTinh_Id);
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -68,14 +68,14 @@ namespace DANN.Web.Controllers
             return PartialView("_DonViTinhGrid", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DonViTinhGridDelete(System.Int32 DonViTinh_Id)
+        public ActionResult DonViTinhGridDelete(System.Int32 Id)
         {
             var model = db.DM_DonViTinh;
-            if (DonViTinh_Id >= 0)
+            if (Id >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.DonViTinh_Id == DonViTinh_Id);
+                    var item = model.FirstOrDefault(it => it.Id == Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();

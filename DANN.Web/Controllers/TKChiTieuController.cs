@@ -51,7 +51,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.ChiTieu_Id == item.ChiTieu_Id);
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -68,14 +68,14 @@ namespace DANN.Web.Controllers
             return PartialView("_ChiTieuTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult ChiTieuTreeDelete(System.Int32 ChiTieu_Id)
+        public ActionResult ChiTieuTreeDelete(Int32 Id)
         {
             var model = db.TK_ChiTieu;
-            if (ChiTieu_Id != null)
+            if (Id != 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.ChiTieu_Id == ChiTieu_Id);
+                    var item = model.FirstOrDefault(it => it.Id == Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -88,14 +88,14 @@ namespace DANN.Web.Controllers
             return PartialView("_ChiTieuTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult ChiTieuTreeMove(System.Int32 ChiTieu_Id, System.Int32? ChiTieu_ParentId)
+        public ActionResult ChiTieuTreeMove(Int32 Id, Int32? ParentId)
         {
             var model = db.TK_ChiTieu;
             try
             {
-                var item = model.FirstOrDefault(it => it.ChiTieu_Id == ChiTieu_Id);
+                var item = model.FirstOrDefault(it => it.Id == Id);
                 if (item != null)
-                    item.ChiTieu_ParentId = ChiTieu_ParentId;
+                    item.ParentId = ParentId;
                 db.SaveChanges();
             }
             catch (Exception e)

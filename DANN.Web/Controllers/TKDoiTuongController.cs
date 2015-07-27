@@ -51,7 +51,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.DoiTuong_Id == item.DoiTuong_Id);
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -68,14 +68,14 @@ namespace DANN.Web.Controllers
             return PartialView("_DoiTuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DoiTuongTreeDelete(System.Int32 DoiTuong_Id)
+        public ActionResult DoiTuongTreeDelete(Int32 Id)
         {
             var model = db.TK_DoiTuong;
-            if (DoiTuong_Id != null)
+            if (Id != 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.DoiTuong_Id == DoiTuong_Id);
+                    var item = model.FirstOrDefault(it => it.Id == Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -88,14 +88,14 @@ namespace DANN.Web.Controllers
             return PartialView("_DoiTuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DoiTuongTreeMove(System.Int32 DoiTuong_Id, System.Int32? DoiTuong_ParentId)
+        public ActionResult DoiTuongTreeMove(Int32 Id, Int32? ParentId)
         {
             var model = db.TK_DoiTuong;
             try
             {
-                var item = model.FirstOrDefault(it => it.DoiTuong_Id == DoiTuong_Id);
+                var item = model.FirstOrDefault(it => it.Id == Id);
                 if (item != null)
-                    item.DoiTuong_ParentId = DoiTuong_ParentId;
+                    item.ParentId = ParentId;
                 db.SaveChanges();
             }
             catch (Exception e)

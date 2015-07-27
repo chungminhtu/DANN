@@ -23,7 +23,7 @@ namespace DANN.Web.Controllers
         public ActionResult CodeKindGrid()
         {
             var model = db.DM_CodeKind;
-            ViewBag.MaxCodeKind = db.DM_CodeKind.Count() > 0 ? db.DM_CodeKind.Max(a => a.CodeKind) : 0;
+            ViewBag.MaxCodeKind = db.DM_CodeKind.Count() > 0 ? db.DM_CodeKind.Max(a => a.Id) : 0;
             return PartialView("_CodeKindGrid", model.ToList());
         }
 
@@ -55,7 +55,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.CodeKind == item.CodeKind);
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -72,14 +72,14 @@ namespace DANN.Web.Controllers
             return PartialView("_CodeKindGrid", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult CodeKindGridDelete(System.Int32 CodeKind)
+        public ActionResult CodeKindGridDelete(System.Int32 Id)
         {
             var model = db.DM_CodeKind;
-            if (CodeKind >= 0)
+            if (Id >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.CodeKind == CodeKind);
+                    var item = model.FirstOrDefault(it => it.Id == Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -102,9 +102,9 @@ namespace DANN.Web.Controllers
             List<DM_Code> model = null;
             if (s != "")
             {
-                model = db.DM_Code.Where(x => x.CodeKind.ToString().Contains(s)).ToList();
+                model = db.DM_Code.Where(x => x.CodeKind_Id.ToString().Contains(s)).ToList();
             }
-            ViewBag.MaxCodeValue = db.DM_Code.Where(x => x.CodeKind.ToString().Contains(s)).Count() > 0 ? db.DM_Code.Where(x => x.CodeKind.ToString().Contains(s)).Max(a => a.CodeValue) : 0;
+            ViewBag.MaxCodeValue = db.DM_Code.Where(x => x.CodeKind_Id.ToString().Contains(s)).Count() > 0 ? db.DM_Code.Where(x => x.CodeKind_Id.ToString().Contains(s)).Max(a => a.CodeValue) : 0;
             return PartialView("_CodeGrid", model);
         }
 
@@ -115,7 +115,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    item.CodeKind = Convert.ToInt32(Request.Params["ID"]);
+                    item.CodeKind_Id = Convert.ToInt32(Request.Params["ID"]);
                     db.DM_Code.Add(item);
                     db.SaveChanges();
                 }
@@ -126,7 +126,7 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            var model = db.DM_Code.Where(x => x.CodeKind == item.CodeKind).ToList();
+            var model = db.DM_Code.Where(x => x.Id == item.Id).ToList();
             return PartialView("_CodeGrid", model);
         }
         [HttpPost, ValidateInput(false)]
@@ -136,7 +136,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = db.DM_Code.FirstOrDefault(it => it.Code == item.Code);
+                    var modelItem = db.DM_Code.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -151,7 +151,7 @@ namespace DANN.Web.Controllers
             else
                 ViewData["EditError"] = "Please, correct all errors.";
             int s = Convert.ToInt32(Request.Params["ID"]);
-            var model = db.DM_Code.Where(x => x.CodeKind == s).ToList();
+            var model = db.DM_Code.Where(x => x.Id == s).ToList();
             return PartialView("_CodeGrid", model);
         }
         [HttpPost, ValidateInput(false)]
@@ -161,7 +161,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var item = db.DM_Code.FirstOrDefault(it => it.Code == Code);
+                    var item = db.DM_Code.FirstOrDefault(it => it.Id == Code);
                     if (item != null)
                         db.DM_Code.Remove(item);
                     db.SaveChanges();
@@ -171,7 +171,7 @@ namespace DANN.Web.Controllers
                     ViewData["EditError"] = e.Message;
                 }
             }
-            var model = db.DM_Code.Where(x => x.CodeKind == Code).ToList();
+            var model = db.DM_Code.Where(x => x.Id == Code).ToList();
             return PartialView("_CodeGrid", model);
         }
         #endregion

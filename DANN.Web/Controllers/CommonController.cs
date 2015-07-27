@@ -9,42 +9,43 @@ using System.Web.Mvc;
 
 namespace DANN.Web.Controllers
 {
-    public class CommonController : Controller
+    public class CommonController<T> : Controller
+        where T : BaseEntity
     {
+        IEntityService<T> _service;
 
-        IEntityService<AD_Menu> _MenuService;
-
-        public CommonController(IEntityService<AD_Menu> MenuService)
+        public CommonController(IEntityService<T> service)
         {
-            _MenuService = MenuService;
+            _service = service;
         }
 
-
         DANNContext db = new DANNContext();
+
         public ActionResult Index()
         {
             return View();
         }
 
         [ValidateInput(false)]
-        public ActionResult Menu()
+        public ActionResult Load()
         {
             ViewBag.ListImages = Common.ListAllImage32();
-            var model = _MenuService.GetAll().ToList();// GetListOrdered().ToList();
-            return PartialView(model);
+            var model = _service.GetAll().ToList();// GetListOrdered().ToList();
+            string viewName = typeof(T).Name.Split('_')[1];
+            return PartialView(viewName, model);
         }
         public IEnumerable<AD_Menu> GetListOrdered(int? parentID = null)
         {
             int i = 0;
             foreach (var item in db.AD_Menu
-                .Where(x => x.Menu_ParentId == parentID)
+                .Where(x => x.ParentId == parentID)
                .OrderBy(x => x.MenuSort)
                .ToList())
             {
                 item.MenuSort = i++;
                 yield return item;
                 int j = 0;
-                foreach (var child in GetListOrdered(item.Menu_Id))
+                foreach (var child in GetListOrdered(item.Id))
                 {
                     child.MenuSort = j++;
                     yield return child;
@@ -54,13 +55,13 @@ namespace DANN.Web.Controllers
 
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuAddNew(AD_Menu item)
+        public ActionResult AddNew(T item)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _MenuService.Create(item);
+                    _service.Create(item);
                 }
                 catch (Exception e)
                 {
@@ -69,16 +70,18 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_Menu", _MenuService.GetAll().ToList());
+            var model = _service.GetAll().ToList();
+            string viewName = typeof(T).Name.Split('_')[1];
+            return PartialView(viewName, model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuUpdate(AD_Menu item)
+        public ActionResult Update(T item)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _MenuService.Update(item);
+                    _service.Update(item);
                 }
                 catch (Exception e)
                 {
@@ -87,41 +90,45 @@ namespace DANN.Web.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_Menu", _MenuService.GetAll().ToList());
+            var model = _service.GetAll().ToList();
+            string viewName = typeof(T).Name.Split('_')[1];
+            return PartialView(viewName, model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuDelete(Int32 Menu_Id)
+        public ActionResult Delete(Int32 Id)
         {
-            if (Menu_Id != 0)
+            if (Id != 0)
             {
                 try
                 {
-                    _MenuService.Delete(_MenuService.FindBy(a => a.Menu_Id == Menu_Id).SingleOrDefault());
+                    _service.Delete(Id);
                 }
                 catch (Exception e)
                 {
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_Menu", _MenuService.GetAll().ToList());
+            var model = _service.GetAll().ToList();
+            string viewName = typeof(T).Name.Split('_')[1];
+            return PartialView(viewName, model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult MenuMove(Int32 Menu_Id, Int32? Menu_ParentId)
+        public ActionResult Move(Int32 Id, Int32? ParentId)
         {
-            var model = db.AD_Menu;
+            var model = _service.GetAll();
             try
             {
-                var item = model.FirstOrDefault(it => it.Menu_Id == Menu_Id);
+                var item = model.FirstOrDefault(it => it.Id == Id);
                 if (item != null)
-                    item.Menu_ParentId = Menu_ParentId;
+                    item.ParentId = ParentId;
                 db.SaveChanges();
             }
             catch (Exception e)
             {
                 ViewData["EditError"] = e.Message;
             }
-            return PartialView("_Menu", model.ToList());
+            string viewName = typeof(T).Name.Split('_')[1];
+            return PartialView(viewName, model);
         }
-
     }
 }

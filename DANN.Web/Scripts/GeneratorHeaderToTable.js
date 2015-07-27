@@ -26,7 +26,7 @@
 		var dataUnit = GetDataCallMethordWithAjax("/Grid/GetUnitFollowListChiTieu", dataInputLstChiTieu);
 		$("#example1").empty();
 		if ($("#btnChuyen").val() == "Chuyển Menu") {
-			var value = { lstChiTieu_Id: JSON.stringify(lstChiTieu), lstDoiTuong_Id: JSON.stringify(lstDoiTuong) };
+			var value = { lstId: JSON.stringify(lstChiTieu), lstId: JSON.stringify(lstDoiTuong) };
 			dataFill = GetDataCallMethordWithAjax("/Grid/GetListThongKe2", value);
 			BuildGridIncludeTopHeaderAndLeftHeader(lstDoiTuong, lstChiTieu, dataFill, dataUnit, "row", 970);
 			$("#btnChuyen").val("Chuyển Menu quay lại");
@@ -118,7 +118,7 @@ function GetListChiTieu() {
 }
 
 function GetDataFoGrid(lstChiTieu, lstDoiTuong) {
-	var value = { lstChiTieu_Id: JSON.stringify(lstChiTieu), lstDoiTuong_Id: JSON.stringify(lstDoiTuong) };
+	var value = { lstId: JSON.stringify(lstChiTieu), lstId: JSON.stringify(lstDoiTuong) };
 	var result = $.ajax({
 		url: '/Grid/GetListThongKe',
 		type: 'POST',

@@ -40,8 +40,8 @@ namespace DANN.Web.Controllers
                             ChiTieu_Id = idChiTieu,
                             DoiTuong_Id = idDoiTuong,
                             Nhom_Id = 1,
-                            DiaPhuong_Id = 1,
                             KyBaoCao_Id = 1,
+                            DiaPhuong_Id = 1,
                             GiaTriThongKe = item.Value
                         };
                         _db.TK_ThongKe.Add(tkItem);
@@ -63,9 +63,9 @@ namespace DANN.Web.Controllers
         {
             var lstDoiTuong = _db.TK_DoiTuong.Select(dt => new HeaderObject
                                                             {
-                                                                Id = dt.DoiTuong_Id,
+                                                                Id = dt.Id,
                                                                 Title = dt.TenDoiTuong,
-                                                                ParentId = dt.DoiTuong_ParentId.Value
+                                                                ParentId = dt.ParentId.Value
                                                             }).ToList();
             string result = new JavaScriptSerializer().Serialize(lstDoiTuong);
             return result;
@@ -76,11 +76,11 @@ namespace DANN.Web.Controllers
             int iNhom_Id;
             if (int.TryParse(Nhom_Id, out iNhom_Id))
             {
-                var lstChiTieu = _db.TK_ChiTieu.Where(ct => ct.PhanHe_Id == iNhom_Id).Select(dt => new HeaderObject
+                var lstChiTieu = _db.TK_ChiTieu.Where(ct => ct.Id == iNhom_Id).Select(dt => new HeaderObject
                 {
-                    Id = dt.ChiTieu_Id,
+                    Id = dt.Id,
                     Title = dt.TenChiTieu,
-                    ParentId = dt.ChiTieu_ParentId.Value,
+                    ParentId = dt.ParentId.Value,
                 }).ToList();
                 string result = new JavaScriptSerializer().Serialize(lstChiTieu);
                 return result;
@@ -88,13 +88,13 @@ namespace DANN.Web.Controllers
             return string.Empty;
         }
 
-        public string GetListThongKe(string lstChiTieu_Id, string lstDoiTuong_Id)
+        public string GetListThongKe(string lstChiTieu_Id, string lstId)
         {
             if (lstChiTieu_Id != null)
             {
             }
             var chiTieuData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstChiTieu_Id);
-            var doiTuongData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstDoiTuong_Id);
+            var doiTuongData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstId);
             var lstIdChiTieu = chiTieuData.Select(ct => ct.Id).ToList();
             var lstIdDoiTuong = doiTuongData.Select(dt => dt.Id).ToList();
             var result = _db.TK_ThongKe
@@ -102,7 +102,7 @@ namespace DANN.Web.Controllers
                              lstIdDoiTuong.Contains(tk.DoiTuong_Id)).ToList();
             //.Select(tk => new DataObject
             //                  {
-            //                      IdTop = tk.DoiTuong_Id,
+            //                      IdTop = tk.Id,
             //                      IdLeft = tk.ChiTieu_Id,
             //                      GiaTri = tk.GiaTriThongKe
             //                  }).ToList();
@@ -115,10 +115,10 @@ namespace DANN.Web.Controllers
             return new JavaScriptSerializer().Serialize(LstThongKe);
         }
 
-        public string GetListThongKe2(string lstChiTieu_Id, string lstDoiTuong_Id)
+        public string GetListThongKe2(string lstChiTieu_Id, string lstId)
         {
             var chiTieuData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstChiTieu_Id);
-            var doiTuongData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstDoiTuong_Id);
+            var doiTuongData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstId);
             var lstIdChiTieu = chiTieuData.Select(ct => ct.Id).ToList();
             var lstIdDoiTuong = doiTuongData.Select(dt => dt.Id).ToList();
             var result = _db.TK_ThongKe
@@ -126,7 +126,7 @@ namespace DANN.Web.Controllers
                              lstIdDoiTuong.Contains(tk.DoiTuong_Id));
             //.Select(tk => new DataObject
             //{
-            //    IdLeft = tk.DoiTuong_Id,
+            //    IdLeft = tk.Id,
             //    IdTop = tk.ChiTieu_Id,
             //    GiaTri = (decimal)tk.GiaTriThongKe
             //}).ToList();
@@ -134,7 +134,7 @@ namespace DANN.Web.Controllers
             List<DataObject> LstThongKe = new List<DataObject>();
             foreach (var thongke in result)
             {
-                LstThongKe.Add(new DataObject { IdLeft = thongke.DoiTuong_Id, IdTop = thongke.ChiTieu_Id, GiaTri = Convert.ToDecimal(thongke.GiaTriThongKe) });
+                LstThongKe.Add(new DataObject { IdLeft = thongke.ChiTieu_Id, IdTop = thongke.ChiTieu_Id, GiaTri = Convert.ToDecimal(thongke.GiaTriThongKe) });
             }
 
             return new JavaScriptSerializer().Serialize(LstThongKe);
@@ -144,7 +144,7 @@ namespace DANN.Web.Controllers
         {
             var lstNhomChiTieu = _db.DM_PhanHe.Select(nct => new HeaderObject
             {
-                Id = nct.PhanHe_Id,
+                Id = nct.Id,
                 Title = nct.TenPhanHe,
                 ParentId = 0,
             }).ToList();
@@ -158,10 +158,10 @@ namespace DANN.Web.Controllers
             var chiTieuData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstChiTieu);
             var lstIdChiTieu = chiTieuData.Select(ct => ct.Id).ToList();
             var data = _db.TK_ChiTieu
-                .Where(ct => lstIdChiTieu.Contains(ct.ChiTieu_Id))
+                .Where(ct => lstIdChiTieu.Contains(ct.Id))
                 .Select(ct => new DonViTinhObject
                                   {
-                                      Id = ct.ChiTieu_Id,
+                                      Id = ct.Id,
                                       Title = ct.DM_DonViTinh.TenDonViTinh,
                                       Value = ct.DM_DonViTinh.ValueFormat
                                   }).ToList();

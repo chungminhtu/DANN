@@ -12,9 +12,12 @@ namespace DANN.Service
      where T : BaseEntity
     {
         void Create(T entity);
-        void Delete(T entity);
-        IEnumerable<T> GetAll();
+        void Delete(int Id);
+
+        T GetById(int Id);
+
+        List<T> GetAll();
         void Update(T entity);
-        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
+        T FindBy(Expression<Func<T, bool>> predicate);
     }
 }

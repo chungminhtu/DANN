@@ -77,15 +77,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\CountryControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CountryServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DANN.Model\DANN.Model.csproj">
       <Project>{d58fb484-fa36-46ba-a2b4-8b23b89ba449}</Project>
@@ -94,10 +95,6 @@
     <ProjectReference Include="..\DANN.Service\DANN.Service.csproj">
       <Project>{dffab407-5349-4091-a652-b4c8fac25bdd}</Project>
       <Name>DANN.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DANN\DANN.csproj">
-      <Project>{8ee00434-2f04-473b-a645-0da04bff3700}</Project>
-      <Name>DANN</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

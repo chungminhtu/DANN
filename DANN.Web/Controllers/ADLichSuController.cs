@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
+using DANN.Model;
 
 namespace DANN.Web.Controllers
 {
@@ -14,7 +15,7 @@ namespace DANN.Web.Controllers
             return View();
         }
 
-        DANN.Model.DANNContext db = new DANN.Model.DANNContext();
+        DANNContext db = new DANNContext();
 
         [ValidateInput(false)]
         public ActionResult LichSuGrid()
@@ -24,7 +25,7 @@ namespace DANN.Web.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult LichSuGridAddNew(DANN.Model.AD_LichSu item)
+        public ActionResult LichSuGridAddNew(AD_LichSu item)
         {
             var model = db.AD_LichSu;
             if (ModelState.IsValid)
@@ -44,14 +45,14 @@ namespace DANN.Web.Controllers
             return PartialView("_LichSuGrid", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult LichSuGridUpdate(DANN.Model.AD_LichSu item)
+        public ActionResult LichSuGridUpdate(AD_LichSu item)
         {
             var model = db.AD_LichSu;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.LichSu_Id == item.LichSu_Id);
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -68,14 +69,14 @@ namespace DANN.Web.Controllers
             return PartialView("_LichSuGrid", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult LichSuGridDelete(System.Int32 LichSu_Id)
+        public ActionResult LichSuGridDelete(System.Int32 Id)
         {
             var model = db.AD_LichSu;
-            if (LichSu_Id >= 0)
+            if (Id >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.LichSu_Id == LichSu_Id);
+                    var item = model.FirstOrDefault(it => it.Id == Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();

@@ -4,10 +4,10 @@
         settings.Name = "MenuTree";
 
         //Data binding
-        settings.CallbackRouteValues = new { Controller = "ADMenu", Action = "Menu" };
-        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "ADMenu", Action = "MenuAddNew" };
-        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "ADMenu", Action = "MenuUpdate" };
-        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "ADMenu", Action = "MenuDelete" };
+        settings.CallbackRouteValues = new { Controller = "ADMenu", Action = "Load" };
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "ADMenu", Action = "AddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "ADMenu", Action = "Update" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "ADMenu", Action = "Delete" };
         settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "ADMenu", Action = "MenuMove" };
 
 
@@ -37,8 +37,8 @@
        
 
         //Columns
-        settings.KeyFieldName = "Menu_Id";
-        settings.ParentFieldName = "Menu_ParentId";
+        settings.KeyFieldName = "Id";
+        settings.ParentFieldName = "ParentId";
 
         settings.Columns.Add(column =>
         {

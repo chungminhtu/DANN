@@ -26,7 +26,7 @@ namespace DANN.Service
 
         public AD_Menu GetById(int Id)
         {
-            return _dbset.FirstOrDefault(x => x.Menu_Id == Id);
+            return _dbset.FirstOrDefault(x => x.Id == Id);
         }
     }
 

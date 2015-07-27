@@ -6,7 +6,7 @@ using System.Web;
 using Autofac;
 using DANN.Model;
 
-namespace DANN.Web.Modules
+namespace DANN.Web
 {
     public class EFModule : Module
     {

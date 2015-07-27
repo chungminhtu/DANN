@@ -51,7 +51,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.DiaPhuong_Id == item.DiaPhuong_Id);
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -68,14 +68,14 @@ namespace DANN.Web.Controllers
             return PartialView("_DiaPhuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DiaPhuongTreeDelete(System.Int32 DiaPhuong_Id)
+        public ActionResult DiaPhuongTreeDelete(Int32 Id)
         {
             var model = db.DM_DiaPhuong;
-            if (DiaPhuong_Id != null)
+            if (Id != 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.DiaPhuong_Id == DiaPhuong_Id);
+                    var item = model.FirstOrDefault(it => it.Id == Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();
@@ -88,14 +88,14 @@ namespace DANN.Web.Controllers
             return PartialView("_DiaPhuongTree", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult DiaPhuongTreeMove(System.Int32 DiaPhuong_Id, System.Int32? DiaPhuong_ParentId)
+        public ActionResult DiaPhuongTreeMove(Int32 Id, Int32? ParentId)
         {
             var model = db.DM_DiaPhuong;
             try
             {
-                var item = model.FirstOrDefault(it => it.DiaPhuong_Id == DiaPhuong_Id);
+                var item = model.FirstOrDefault(it => it.Id == Id);
                 if (item != null)
-                    item.DiaPhuong_ParentId = DiaPhuong_ParentId;
+                    item.ParentId = ParentId;
                 db.SaveChanges();
             }
             catch (Exception e)

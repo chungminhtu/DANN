@@ -41,23 +41,27 @@ namespace DANN.Service
             _context.SaveChanges();
         }
 
-        public virtual void Delete(T entity)
+        public virtual void Delete(int Id)
         {
+            var entity = GetById(Id);
             if (entity == null) throw new ArgumentNullException("entity");
             _dbset.Remove(entity);
             _context.SaveChanges();
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual List<T> GetAll()
         {
-            return _dbset.AsEnumerable<T>();
+            return _dbset.ToList<T>();
         }
 
-        public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public virtual T GetById(int Id)
         {
+            return _dbset.FirstOrDefault(x => x.Id == Id);
+        }
 
-            IQueryable<T> query = _dbset.Where(predicate);
-            return query;
+        public virtual T FindBy(Expression<Func<T, bool>> predicate)
+        {
+            return _dbset.Where(predicate).FirstOrDefault();
         }
     }
 }

@@ -14,8 +14,8 @@ namespace DANN.Model
     
     public partial class DM_DiaPhuong
     {
-        public int DiaPhuong_Id { get; set; }
-        public Nullable<int> DiaPhuong_ParentId { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> ParentId { get; set; }
         public string TenDiaPhuong { get; set; }
         public string IDBanDo { get; set; }
         public string Loai { get; set; }
