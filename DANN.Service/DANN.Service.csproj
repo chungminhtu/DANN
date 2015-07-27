@@ -39,6 +39,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=2.1.0.0, Culture=neutral, PublicKeyToken=667e828eb982ff2d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AlanWay.System.Linq.Dynamic.0.0.1\lib\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,7 +57,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\MenuService.cs" />
+    <Compile Include="Services\AD_UserService.cs" />
+    <Compile Include="Services\AD_User_MenuService.cs" />
+    <Compile Include="Services\DM_CodeKindService.cs" />
+    <Compile Include="Services\DM_CodeService.cs" />
+    <Compile Include="Services\BM_DongService.cs" />
+    <Compile Include="Services\AD_LichSuService.cs" />
+    <Compile Include="Services\BM_BieuMauService.cs" />
+    <Compile Include="Services\DM_DonViTinhService.cs" />
+    <Compile Include="Services\DM_DiaPhuongService.cs" />
+    <Compile Include="Services\DM_KyBaoCaoService.cs" />
+    <Compile Include="Services\DM_PhanHeService.cs" />
+    <Compile Include="Services\TK_ChiTieuService.cs" />
+    <Compile Include="Services\TK_DoiTuongService.cs" />
+    <Compile Include="Services\TK_ThongKeService.cs" />
+    <Compile Include="Services\BM_CotService.cs" />
+    <Compile Include="Services\AD_MenuService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

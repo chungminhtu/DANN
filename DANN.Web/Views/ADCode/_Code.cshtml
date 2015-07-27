@@ -2,11 +2,11 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "CodeGridView";
-        settings.CallbackRouteValues = new { Controller = "ADCode", Action = "CodeGrid" };
+        settings.CallbackRouteValues = new { Controller = "ADCode", Action = "Load1" };
 
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "CodeGridAddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADCode", Action = "CodeGridUpdate" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADCode", Action = "CodeGridDelete" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "AddNew1" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADCode", Action = "Update1" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADCode", Action = "Delete1" };
 
 
         //Settings
@@ -44,11 +44,11 @@
 
         settings.InitNewRow = (s, e) =>
         {
-            e.NewValues["CodeValue"] = Convert.ToInt32(ViewBag.MaxCodeValue) + 1;
+            e.NewValues["Id"] = Convert.ToInt32(ViewBag.MaxCodeValue) + 1;
 
         };
 
-        settings.KeyFieldName = "Code";
+        settings.KeyFieldName = "Id";
 
         settings.Columns.Add(column =>
         {

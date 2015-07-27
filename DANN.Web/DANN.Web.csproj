@@ -1375,11 +1375,11 @@
     <Content Include="Views\TKDoiTuong\_DoiTuongTree.cshtml" />
     <Content Include="Views\Shared\Common\_TreeListCommandPanel.cshtml" />
     <Content Include="Views\ADLichSu\Index.cshtml" />
-    <Content Include="Views\ADLichSu\_LichSuGrid.cshtml" />
+    <Content Include="Views\ADLichSu\_LichSu.cshtml" />
     <Content Include="Views\THSoLieuDaNhap\Index.cshtml" />
     <Content Include="Views\ADCode\Index.cshtml" />
-    <Content Include="Views\ADCode\_CodeKindGrid.cshtml" />
-    <Content Include="Views\ADCode\_CodeGrid.cshtml" />
+    <Content Include="Views\ADCode\_CodeKind.cshtml" />
+    <Content Include="Views\ADCode\_Code.cshtml" />
     <Content Include="Views\Shared\Common\_GridViewCommandPanel.cshtml" />
     <Content Include="Views\Shared\Common\_FunctionTemplate.cshtml" />
     <None Include="Web.Debug.config">

@@ -8,13 +8,13 @@ using DANN.Model;
 namespace DANN.Service
 {
 
-    public class AD_MenuService : EntityService<AD_Menu>
+    public class BM_BieuMauService : EntityService<BM_BieuMau>
     {
-        public AD_MenuService(IContext context)
+        public BM_BieuMauService(IContext context)
             : base(context)
         {
             _context = context;
-            _dbset = _context.Set<AD_Menu>();
+            _dbset = _context.Set<BM_BieuMau>();
         }
     }
 

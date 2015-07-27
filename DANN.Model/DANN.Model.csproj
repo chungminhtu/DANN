@@ -107,7 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DANNEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AD_Menu.cs">
+    <Compile Include="Models\BaseModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

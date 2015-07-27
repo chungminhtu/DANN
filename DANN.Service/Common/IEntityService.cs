@@ -8,16 +8,23 @@ using System.Linq.Expressions;
 
 namespace DANN.Service
 {
-    public interface IEntityService<T> 
+    public interface IEntityService<T>
      where T : BaseEntity
     {
+
         void Create(T entity);
         void Delete(int Id);
 
         T GetById(int Id);
-
         List<T> GetAll();
+        IQueryable<T> GetAllAsQueryable();
+        IEnumerable<T> GetAllAsIEnumerable();
         void Update(T entity);
-        T FindBy(Expression<Func<T, bool>> predicate);
+        T SearchFirst(string searchTerm);
+
+        List<T> SearchToList(string searchTerm);
+
+
+        List<T> GetListCodeByCodeKindId(int Id);
     }
 }

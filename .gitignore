@@ -811,3 +811,7 @@ packages/repositories.config
 /packages/Microsoft.AspNet.Mvc.5.1.0/lib/net45/System.Web.Mvc.xml
 /packages/Microsoft.AspNet.Mvc.5.1.0/Content/Web.config.uninstall.xdt
 /packages/Microsoft.AspNet.Mvc.5.1.0/Content/Web.config.install.xdt
+/DANN.Service/bin/Debug/System.Linq.Dynamic.dll
+/DANN.Test/bin/Debug/System.Linq.Dynamic.dll
+/packages/AlanWay.System.Linq.Dynamic.0.0.1/lib/System.Linq.Dynamic.dll
+/packages/AlanWay.System.Linq.Dynamic.0.0.1/AlanWay.System.Linq.Dynamic.0.0.1.nupkg

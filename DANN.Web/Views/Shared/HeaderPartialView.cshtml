@@ -1,3 +1,4 @@
+@model ASPxMenu
 
 <div class="headerTop">
     <div class="templateTitle">
@@ -23,17 +24,17 @@
 
 
                     settings.Images.Item.Width = 24;
-                    
-                    
+
+
                     settings.Styles.Style.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
                     settings.Styles.Style.BorderTop.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
-             
-                    
+
+
                     settings.PreRender = (s, e) =>
                     {
-                        ASPxMenu menu = (ASPxMenu)s;
-                        DANN.Web.Controllers.MenuCommon.BuildMenu(menu);
 
+                        ASPxMenu menu = (ASPxMenu)s;
+                        DANN.Web.Controllers.MenuCommon.BuildMenu(menu); 
                     };
                 }).GetHtml()
 </div>

@@ -12,16 +12,16 @@ using System.Threading.Tasks;
 namespace DANN.Model
 {
     public interface IContext
-    {  
+    {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-
         int SaveChanges();
     }
 
 
     public class DANNContext : DANNEntities, IContext
     {
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
