@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace DANN.Service
 {
-    public interface IEntityService<T> : IService
+    public interface IEntityService<T> 
      where T : BaseEntity
     {
         void Create(T entity);
