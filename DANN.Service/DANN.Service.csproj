@@ -49,6 +49,7 @@
     <Compile Include="Common\EntityService.cs" />
     <Compile Include="Common\IEntityService.cs" />
     <Compile Include="Common\IService.cs" />
+    <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

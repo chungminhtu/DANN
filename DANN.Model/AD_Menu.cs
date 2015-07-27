@@ -11,8 +11,8 @@ namespace DANN.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class AD_Menu
+
+    public partial class AD_Menu : Entity<int>
     {
         public int Menu_Id { get; set; }
         public Nullable<int> Menu_ParentId { get; set; }

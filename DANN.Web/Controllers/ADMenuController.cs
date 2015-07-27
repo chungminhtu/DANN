@@ -6,16 +6,15 @@ using System.Linq;
 using System.Web.Mvc;
 using DANN.Model.Common;
 using DevExpress.Web.Mvc;
-
+using DANN.Service;
 namespace DANN.Web.Controllers
 {
 
     public static class MenuCommon
     {
+        public static DANNContext db = new DANNContext();
         public static IEnumerable<AD_Menu> GetList(int? parentID = null)
         {
-            DANNContext db = new DANNContext();
-
             foreach (var item in db.AD_Menu
                 .Where(x => x.Menu_ParentId == parentID)
                .OrderBy(x => x.MenuSort)
@@ -32,8 +31,6 @@ namespace DANN.Web.Controllers
 
         public static ASPxMenu BuildMenu(ASPxMenu menu)
         {
-            DANNContext db = new DANNContext();
-
             List<AD_Menu> menus = GetList().ToList();
 
             for (int i = 0; i < menus.Count; i++)
@@ -74,110 +71,136 @@ namespace DANN.Web.Controllers
                 GetNodes(myitem.Items, parentID, item);
             }
         }
+
+
+
+
     }
 
-    public class ADMenuController : Controller
+    public class ADMenuController : CommonController
     {
-        DANNContext db = new DANNContext();
-        public ActionResult Index()
+        public ADMenuController(IAD_MenuService MenuService)
+            : base(MenuService)
         {
 
-            return View();
         }
+        //DANNContext db = new DANNContext();
+        //public ActionResult Index()
+        //{
 
-        #region MENU
-        [ValidateInput(false)]
-        public ActionResult Menu()
-        {
-            ViewBag.ListImages = Common.ListAllImage32();
-            var model = db.AD_Menu;
-            return PartialView("_Menu", model.ToList());
-        }
+        //    return View();
+        //}
 
-        [HttpPost, ValidateInput(false)]
-        public ActionResult MenuAddNew(AD_Menu item)
-        {
-            var model = db.AD_Menu;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    model.Add(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_Menu", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult MenuUpdate(AD_Menu item)
-        {
-            var model = db.AD_Menu;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var modelItem = model.FirstOrDefault(it => it.Menu_Id == item.Menu_Id);
-                    if (modelItem != null)
-                    {
-                        this.UpdateModel(modelItem);
-                        db.SaveChanges();
-                    }
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_Menu", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult MenuDelete(Int32 Menu_Id)
-        {
-            var model = db.AD_Menu;
-            if (Menu_Id != 0)
-            {
-                try
-                {
-                    var item = model.FirstOrDefault(it => it.Menu_Id == Menu_Id);
-                    if (item != null)
-                        model.Remove(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            return PartialView("_Menu", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult MenuMove(Int32 Menu_Id, Int32? Menu_ParentId)
-        {
-            var model = db.AD_Menu;
-            try
-            {
-                var item = model.FirstOrDefault(it => it.Menu_Id == Menu_Id);
-                if (item != null)
-                    item.Menu_ParentId = Menu_ParentId;
-                db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                ViewData["EditError"] = e.Message;
-            }
-            return PartialView("_Menu", model.ToList());
-        }
+        //#region MENU
+        //[ValidateInput(false)]
+        //public ActionResult Menu()
+        //{
+        //    ViewBag.ListImages = Common.ListAllImage32();
+        //    var model = GetListOrdered().ToList();
+        //    return PartialView("_Menu", model);
+        //}
+        //public IEnumerable<AD_Menu> GetListOrdered(int? parentID = null)
+        //{
+        //    int i = 0;
+        //    foreach (var item in db.AD_Menu
+        //        .Where(x => x.Menu_ParentId == parentID)
+        //       .OrderBy(x => x.MenuSort)
+        //       .ToList())
+        //    {
+        //        item.MenuSort = i++;
+        //        yield return item;
+        //        int j = 0;
+        //        foreach (var child in GetListOrdered(item.Menu_Id))
+        //        {
+        //            child.MenuSort = j++;
+        //            yield return child;
+        //        }
+        //    }
+        //}
 
 
-        #endregion
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult MenuAddNew(AD_Menu item)
+        //{
+        //    var model = db.AD_Menu;
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            model.Add(item);
+        //            db.SaveChanges();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            ViewData["EditError"] = e.Message;
+        //        }
+        //    }
+        //    else
+        //        ViewData["EditError"] = "Please, correct all errors.";
+        //    return PartialView("_Menu", model.ToList());
+        //}
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult MenuUpdate(AD_Menu item)
+        //{
+        //    var model = db.AD_Menu;
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var modelItem = model.FirstOrDefault(it => it.Menu_Id == item.Menu_Id);
+        //            if (modelItem != null)
+        //            {
+        //                this.UpdateModel(modelItem);
+        //                db.SaveChanges();
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            ViewData["EditError"] = e.Message;
+        //        }
+        //    }
+        //    else
+        //        ViewData["EditError"] = "Please, correct all errors.";
+        //    return PartialView("_Menu", model.ToList());
+        //}
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult MenuDelete(Int32 Menu_Id)
+        //{
+        //    var model = db.AD_Menu;
+        //    if (Menu_Id != 0)
+        //    {
+        //        try
+        //        {
+        //            var item = model.FirstOrDefault(it => it.Menu_Id == Menu_Id);
+        //            if (item != null)
+        //                model.Remove(item);
+        //            db.SaveChanges();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            ViewData["EditError"] = e.Message;
+        //        }
+        //    }
+        //    return PartialView("_Menu", model.ToList());
+        //}
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult MenuMove(Int32 Menu_Id, Int32? Menu_ParentId)
+        //{
+        //    var model = db.AD_Menu;
+        //    try
+        //    {
+        //        var item = model.FirstOrDefault(it => it.Menu_Id == Menu_Id);
+        //        if (item != null)
+        //            item.Menu_ParentId = Menu_ParentId;
+        //        db.SaveChanges();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewData["EditError"] = e.Message;
+        //    }
+        //    return PartialView("_Menu", model.ToList());
+        //} 
+        //#endregion
 
         #region Custom TreeList
 

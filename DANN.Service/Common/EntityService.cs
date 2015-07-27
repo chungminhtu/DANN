@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DANN.Model;
 
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace DANN.Service
 {
@@ -50,6 +51,13 @@ namespace DANN.Service
         public virtual IEnumerable<T> GetAll()
         {
             return _dbset.AsEnumerable<T>();
+        }
+
+        public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        {
+
+            IQueryable<T> query = _dbset.Where(predicate);
+            return query;
         }
     }
 }
