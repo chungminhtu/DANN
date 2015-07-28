@@ -25,12 +25,7 @@
 
     var ID = 0;
     function GridBeginCallbackWithID(s, e) {
-        if(ID == 0) {
-            alert('chưa chọn Bảng'); return false;
-        }
-        else {
             e.customArgs['ID'] = ID;
-        }
     }
 
     //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu

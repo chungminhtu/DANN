@@ -24,13 +24,13 @@ namespace DANN.Service
         public IEnumerable<AD_Menu> GetList(int? parentID = null)
         {
             foreach (var item in GetAll()
-                .Where(x => x.ParentId == parentID)
+                .Where(x => x.Menu_ParentId == parentID)
                .OrderBy(x => x.MenuSort)
                .ToList())
             {
                 yield return item;
 
-                foreach (var child in GetList(item.Id))
+                foreach (var child in GetList(item.Menu_Id))
                 {
                     yield return child;
                 }

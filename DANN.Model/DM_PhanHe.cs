@@ -19,7 +19,7 @@ namespace DANN.Model
             this.TK_ThongKe = new HashSet<TK_ThongKe>();
         }
     
-        public int Id { get; set; }
+        public int PhanHe_Id { get; set; }
         public string TenPhanHe { get; set; }
     
         public virtual ICollection<TK_ThongKe> TK_ThongKe { get; set; }

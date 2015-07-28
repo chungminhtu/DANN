@@ -195,6 +195,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=2.1.0.0, Culture=neutral, PublicKeyToken=667e828eb982ff2d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AlanWay.System.Linq.Dynamic.0.0.1\lib\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -1368,7 +1372,7 @@
     <Content Include="Views\DMPhanHe\Index.cshtml" />
     <Content Include="Views\BMBieuMau\Index.cshtml" />
     <Content Include="Views\DMDiaPhuong\_DiaPhuongTree.cshtml" />
-    <Content Include="Views\DMDonViTinh\_DonViTinhGrid.cshtml" />
+    <Content Include="Views\DMDonViTinh\_DonViTinh.cshtml" />
     <Content Include="Views\DMKyBaoCao\_KyBaoCaoGrid.cshtml" />
     <Content Include="Views\DMPhanHe\_PhanHeGrid.cshtml" />
     <Content Include="Views\TKChiTieu\_ChiTieuTree.cshtml" />

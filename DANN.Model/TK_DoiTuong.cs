@@ -19,8 +19,8 @@ namespace DANN.Model
             this.TK_ThongKe = new HashSet<TK_ThongKe>();
         }
     
-        public int Id { get; set; }
-        public Nullable<int> ParentId { get; set; }
+        public int DoiTuong_Id { get; set; }
+        public Nullable<int> DoiTuong_ParentId { get; set; }
         public string TenDoiTuong { get; set; }
         public Nullable<int> Nhom_Id { get; set; }
     

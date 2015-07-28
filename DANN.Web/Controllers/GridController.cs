@@ -63,9 +63,9 @@ namespace DANN.Web.Controllers
         {
             var lstDoiTuong = _db.TK_DoiTuong.Select(dt => new HeaderObject
                                                             {
-                                                                Id = dt.Id,
+                                                                Id = dt.DoiTuong_Id,
                                                                 Title = dt.TenDoiTuong,
-                                                                ParentId = dt.ParentId.Value
+                                                                ParentId = dt.DoiTuong_ParentId.Value
                                                             }).ToList();
             string result = new JavaScriptSerializer().Serialize(lstDoiTuong);
             return result;
@@ -76,11 +76,11 @@ namespace DANN.Web.Controllers
             int iNhom_Id;
             if (int.TryParse(Nhom_Id, out iNhom_Id))
             {
-                var lstChiTieu = _db.TK_ChiTieu.Where(ct => ct.Id == iNhom_Id).Select(dt => new HeaderObject
+                var lstChiTieu = _db.TK_ChiTieu.Where(ct => ct.PhanHe_Id == iNhom_Id).Select(dt => new HeaderObject
                 {
-                    Id = dt.Id,
+                    Id = dt.ChiTieu_Id,
                     Title = dt.TenChiTieu,
-                    ParentId = dt.ParentId.Value,
+                    ParentId = dt.ChiTieu_ParentId.Value,
                 }).ToList();
                 string result = new JavaScriptSerializer().Serialize(lstChiTieu);
                 return result;
@@ -144,7 +144,7 @@ namespace DANN.Web.Controllers
         {
             var lstNhomChiTieu = _db.DM_PhanHe.Select(nct => new HeaderObject
             {
-                Id = nct.Id,
+                Id = nct.PhanHe_Id,
                 Title = nct.TenPhanHe,
                 ParentId = 0,
             }).ToList();
@@ -158,10 +158,10 @@ namespace DANN.Web.Controllers
             var chiTieuData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstChiTieu);
             var lstIdChiTieu = chiTieuData.Select(ct => ct.Id).ToList();
             var data = _db.TK_ChiTieu
-                .Where(ct => lstIdChiTieu.Contains(ct.Id))
+                .Where(ct => lstIdChiTieu.Contains(ct.ChiTieu_Id))
                 .Select(ct => new DonViTinhObject
                                   {
-                                      Id = ct.Id,
+                                      Id = ct.ChiTieu_Id,
                                       Title = ct.DM_DonViTinh.TenDonViTinh,
                                       Value = ct.DM_DonViTinh.ValueFormat
                                   }).ToList();

@@ -44,11 +44,11 @@
 
         settings.InitNewRow = (s, e) =>
         {
-            e.NewValues["Id"] = Convert.ToInt32(ViewBag.MaxCodeValue) + 1;
+            e.NewValues["Code_Id"] = Convert.ToInt32(ViewBag.MaxCodeValue) + 1;
 
         };
 
-        settings.KeyFieldName = "Id";
+        settings.KeyFieldName = "Code_Id";
 
         settings.Columns.Add(column =>
         {

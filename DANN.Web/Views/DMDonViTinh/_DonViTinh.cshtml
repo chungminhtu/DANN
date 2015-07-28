@@ -1,10 +1,10 @@
 @{
 	var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "DonViTinhGridView";
-        settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGrid" };
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridAddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridUpdate" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMDonViTinh", Action = "DonViTinhGridDelete" };
+        settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "Load" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMDonViTinh", Action = "Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMDonViTinh", Action = "Delete" };
    
          
         //Settings 
@@ -37,9 +37,9 @@
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = DonViTinhGridView ; }";
-        
-        
-		settings.KeyFieldName = "Id";
+
+
+        settings.KeyFieldName = "DonViTinh_Id";
          
 		settings.SettingsBehavior.AllowSelectByRowClick = true;
 

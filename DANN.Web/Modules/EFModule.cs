@@ -12,7 +12,7 @@ namespace DANN.Web
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType(typeof(DANNContext)).As(typeof(IContext)).InstancePerLifetimeScope();
+            builder.RegisterType(typeof(DANNContext)).As(typeof(IContext)).InstancePerDependency();//.InstancePerLifetimeScope();
         }
 
     }

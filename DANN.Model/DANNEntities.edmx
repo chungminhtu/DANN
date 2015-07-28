@@ -7,9 +7,9 @@
     <Schema Namespace="DBDANNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AD_LichSu">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="LichSu_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LichSu_Id" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="30" />
           <Property Name="Menu_Id" Type="int" />
           <Property Name="ActionName" Type="nvarchar" MaxLength="50" />
@@ -17,10 +17,10 @@
         </EntityType>
         <EntityType Name="AD_Menu">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ParentId" Type="int" />
+          <Property Name="Menu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Menu_ParentId" Type="int" />
           <Property Name="MenuText" Type="nvarchar" MaxLength="250" />
           <Property Name="MenuAction" Type="varchar" MaxLength="100" />
           <Property Name="MenuIcon" Type="varchar" MaxLength="50" />
@@ -29,9 +29,9 @@
         </EntityType>
         <EntityType Name="AD_User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="User_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
@@ -50,9 +50,9 @@
         </EntityType>
         <EntityType Name="BM_BieuMau">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BieuMau_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="BieuMau_Id" Type="int" Nullable="false" />
           <Property Name="TenBieuMau" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="BM_Cot">
@@ -75,26 +75,26 @@
         </EntityType>
         <EntityType Name="DM_Code">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Code_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code_Id" Type="int" Nullable="false" />
           <Property Name="CodeValue" Type="int" Nullable="false" />
           <Property Name="CodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CodeKind_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DM_CodeKind">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="CodeKind_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CodeKind_Id" Type="int" Nullable="false" />
           <Property Name="CodeKindName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="DM_DiaPhuong">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="DiaPhuong_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="ParentId" Type="int" />
+          <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
+          <Property Name="DiaPhuong_ParentId" Type="int" />
           <Property Name="TenDiaPhuong" Type="nvarchar" MaxLength="200" />
           <Property Name="IDBanDo" Type="nvarchar" MaxLength="200" />
           <Property Name="Loai" Type="varchar" MaxLength="5" />
@@ -104,27 +104,27 @@
         </EntityType>
         <EntityType Name="DM_DonViTinh">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="DonViTinh_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="DonViTinh_Id" Type="int" Nullable="false" />
           <Property Name="TenDonViTinh" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="LoaiDonViTinh" Type="nvarchar" MaxLength="20" />
           <Property Name="ValueFormat" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DM_KyBaoCao">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="KyBaoCao_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="KyBaoCao_Id" Type="int" Nullable="false" />
           <Property Name="TenKyBaoCao" Type="nvarchar" MaxLength="100" />
           <Property Name="LoaiBaoCao" Type="nvarchar" MaxLength="50" />
           <Property Name="NguonBaoCao" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DM_PhanHe">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="PhanHe_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PhanHe_Id" Type="int" Nullable="false" />
           <Property Name="TenPhanHe" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -139,20 +139,20 @@
         </EntityType>
         <EntityType Name="TK_ChiTieu">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ChiTieu_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="ParentId" Type="int" />
+          <Property Name="ChiTieu_Id" Type="int" Nullable="false" />
+          <Property Name="ChiTieu_ParentId" Type="int" />
           <Property Name="TenChiTieu" Type="nvarchar" MaxLength="300" />
           <Property Name="PhanHe_Id" Type="int" />
           <Property Name="DonViTinh_Id" Type="int" />
         </EntityType>
         <EntityType Name="TK_DoiTuong">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="DoiTuong_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="ParentId" Type="int" />
+          <Property Name="DoiTuong_Id" Type="int" Nullable="false" />
+          <Property Name="DoiTuong_ParentId" Type="int" />
           <Property Name="TenDoiTuong" Type="nvarchar" MaxLength="200" />
           <Property Name="Nhom_Id" Type="int" />
         </EntityType>
@@ -176,10 +176,10 @@
           <End Role="DM_Code1" Type="Self.DM_Code" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="DM_Code">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Code_Id" />
             </Principal>
             <Dependent Role="DM_Code1">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Code_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -190,7 +190,7 @@
           <End Role="DM_Code" Type="Self.DM_Code" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_CodeKind">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="CodeKind_Id" />
             </Principal>
             <Dependent Role="DM_Code">
               <PropertyRef Name="CodeKind_Id" />
@@ -204,7 +204,7 @@
           <End Role="TK_ChiTieu" Type="Self.TK_ChiTieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_DonViTinh">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="DonViTinh_Id" />
             </Principal>
             <Dependent Role="TK_ChiTieu">
               <PropertyRef Name="DonViTinh_Id" />
@@ -218,7 +218,7 @@
           <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_KyBaoCao">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="KyBaoCao_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="KyBaoCao_Id" />
@@ -232,7 +232,7 @@
           <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_PhanHe">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="PhanHe_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="Nhom_Id" />
@@ -246,7 +246,7 @@
           <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TK_ChiTieu">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ChiTieu_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="ChiTieu_Id" />
@@ -260,7 +260,7 @@
           <End Role="TK_ThongKe" Type="Self.TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TK_DoiTuong">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="DoiTuong_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="DoiTuong_Id" />
@@ -367,9 +367,9 @@
         </EntityContainer>
         <EntityType Name="AD_LichSu">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="LichSu_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LichSu_Id" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Menu_Id" Type="Int32" />
           <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -377,10 +377,10 @@
         </EntityType>
         <EntityType Name="AD_Menu">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Menu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Menu_ParentId" Type="Int32" />
           <Property Name="MenuText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="MenuAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -389,9 +389,9 @@
         </EntityType>
         <EntityType Name="AD_User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="User_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -410,9 +410,9 @@
         </EntityType>
         <EntityType Name="BM_BieuMau">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BieuMau_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="BieuMau_Id" Type="Int32" Nullable="false" />
           <Property Name="TenBieuMau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BM_Cot">
@@ -435,9 +435,9 @@
         </EntityType>
         <EntityType Name="DM_Code">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Code_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code_Id" Type="Int32" Nullable="false" />
           <Property Name="CodeValue" Type="Int32" Nullable="false" />
           <Property Name="CodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CodeKind_Id" Type="Int32" Nullable="false" />
@@ -447,18 +447,18 @@
         </EntityType>
         <EntityType Name="DM_CodeKind">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="CodeKind_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CodeKind_Id" Type="Int32" Nullable="false" />
           <Property Name="CodeKindName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DM_Code" Relationship="DBDANNModel.FK_DM_Code_DM_CodeKind" FromRole="DM_CodeKind" ToRole="DM_Code" />
         </EntityType>
         <EntityType Name="DM_DiaPhuong">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="DiaPhuong_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ParentId" Type="Int32" />
+          <Property Name="DiaPhuong_Id" Type="Int32" Nullable="false" />
+          <Property Name="DiaPhuong_ParentId" Type="Int32" />
           <Property Name="TenDiaPhuong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IDBanDo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Loai" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -468,9 +468,9 @@
         </EntityType>
         <EntityType Name="DM_DonViTinh">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="DonViTinh_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DonViTinh_Id" Type="Int32" Nullable="false" />
           <Property Name="TenDonViTinh" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LoaiDonViTinh" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ValueFormat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -478,9 +478,9 @@
         </EntityType>
         <EntityType Name="DM_KyBaoCao">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="KyBaoCao_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="KyBaoCao_Id" Type="Int32" Nullable="false" />
           <Property Name="TenKyBaoCao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LoaiBaoCao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NguonBaoCao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -488,9 +488,9 @@
         </EntityType>
         <EntityType Name="DM_PhanHe">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="PhanHe_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PhanHe_Id" Type="Int32" Nullable="false" />
           <Property Name="TenPhanHe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TK_ThongKe" Relationship="DBDANNModel.FK_TK_ThongKe_DM_Nhom" FromRole="DM_PhanHe" ToRole="TK_ThongKe" />
         </EntityType>
@@ -506,10 +506,10 @@
         </EntityType>
         <EntityType Name="TK_ChiTieu">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ChiTieu_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ChiTieu_Id" Type="Int32" Nullable="false" />
+          <Property Name="ChiTieu_ParentId" Type="Int32" />
           <Property Name="TenChiTieu" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="PhanHe_Id" Type="Int32" />
           <Property Name="DonViTinh_Id" Type="Int32" />
@@ -518,10 +518,10 @@
         </EntityType>
         <EntityType Name="TK_DoiTuong">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="DoiTuong_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ParentId" Type="Int32" />
+          <Property Name="DoiTuong_Id" Type="Int32" Nullable="false" />
+          <Property Name="DoiTuong_ParentId" Type="Int32" />
           <Property Name="TenDoiTuong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Nhom_Id" Type="Int32" />
           <NavigationProperty Name="TK_ThongKe" Relationship="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" FromRole="TK_DoiTuong" ToRole="TK_ThongKe" />
@@ -550,10 +550,10 @@
           <End Type="DBDANNModel.DM_Code" Role="DM_Code1" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="DM_Code">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Code_Id" />
             </Principal>
             <Dependent Role="DM_Code1">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Code_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -564,7 +564,7 @@
           <End Type="DBDANNModel.DM_Code" Role="DM_Code" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_CodeKind">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="CodeKind_Id" />
             </Principal>
             <Dependent Role="DM_Code">
               <PropertyRef Name="CodeKind_Id" />
@@ -578,7 +578,7 @@
           <End Type="DBDANNModel.TK_ChiTieu" Role="TK_ChiTieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_DonViTinh">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="DonViTinh_Id" />
             </Principal>
             <Dependent Role="TK_ChiTieu">
               <PropertyRef Name="DonViTinh_Id" />
@@ -592,7 +592,7 @@
           <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_KyBaoCao">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="KyBaoCao_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="KyBaoCao_Id" />
@@ -606,7 +606,7 @@
           <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DM_PhanHe">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="PhanHe_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="Nhom_Id" />
@@ -620,7 +620,7 @@
           <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TK_ChiTieu">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ChiTieu_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="ChiTieu_Id" />
@@ -634,7 +634,7 @@
           <End Type="DBDANNModel.TK_ThongKe" Role="TK_ThongKe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TK_DoiTuong">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="DoiTuong_Id" />
             </Principal>
             <Dependent Role="TK_ThongKe">
               <PropertyRef Name="DoiTuong_Id" />
@@ -654,7 +654,7 @@
                 <ScalarProperty Name="ActionName" ColumnName="ActionName" />
                 <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LichSu_Id" ColumnName="LichSu_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -666,8 +666,8 @@
                 <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
                 <ScalarProperty Name="MenuAction" ColumnName="MenuAction" />
                 <ScalarProperty Name="MenuText" ColumnName="MenuText" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Menu_ParentId" ColumnName="Menu_ParentId" />
+                <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -681,7 +681,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -697,7 +697,7 @@
             <EntityTypeMapping TypeName="DBDANNModel.BM_BieuMau">
               <MappingFragment StoreEntitySet="BM_BieuMau">
                 <ScalarProperty Name="TenBieuMau" ColumnName="TenBieuMau" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BieuMau_Id" ColumnName="BieuMau_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -725,7 +725,7 @@
                 <ScalarProperty Name="CodeKind_Id" ColumnName="CodeKind_Id" />
                 <ScalarProperty Name="CodeName" ColumnName="CodeName" />
                 <ScalarProperty Name="CodeValue" ColumnName="CodeValue" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code_Id" ColumnName="Code_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -733,7 +733,7 @@
             <EntityTypeMapping TypeName="DBDANNModel.DM_CodeKind">
               <MappingFragment StoreEntitySet="DM_CodeKind">
                 <ScalarProperty Name="CodeKindName" ColumnName="CodeKindName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CodeKind_Id" ColumnName="CodeKind_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -746,8 +746,8 @@
                 <ScalarProperty Name="Loai" ColumnName="Loai" />
                 <ScalarProperty Name="IDBanDo" ColumnName="IDBanDo" />
                 <ScalarProperty Name="TenDiaPhuong" ColumnName="TenDiaPhuong" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DiaPhuong_ParentId" ColumnName="DiaPhuong_ParentId" />
+                <ScalarProperty Name="DiaPhuong_Id" ColumnName="DiaPhuong_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -757,7 +757,7 @@
                 <ScalarProperty Name="ValueFormat" ColumnName="ValueFormat" />
                 <ScalarProperty Name="LoaiDonViTinh" ColumnName="LoaiDonViTinh" />
                 <ScalarProperty Name="TenDonViTinh" ColumnName="TenDonViTinh" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DonViTinh_Id" ColumnName="DonViTinh_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -767,7 +767,7 @@
                 <ScalarProperty Name="NguonBaoCao" ColumnName="NguonBaoCao" />
                 <ScalarProperty Name="LoaiBaoCao" ColumnName="LoaiBaoCao" />
                 <ScalarProperty Name="TenKyBaoCao" ColumnName="TenKyBaoCao" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KyBaoCao_Id" ColumnName="KyBaoCao_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -775,7 +775,7 @@
             <EntityTypeMapping TypeName="DBDANNModel.DM_PhanHe">
               <MappingFragment StoreEntitySet="DM_PhanHe">
                 <ScalarProperty Name="TenPhanHe" ColumnName="TenPhanHe" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhanHe_Id" ColumnName="PhanHe_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -796,8 +796,8 @@
                 <ScalarProperty Name="DonViTinh_Id" ColumnName="DonViTinh_Id" />
                 <ScalarProperty Name="PhanHe_Id" ColumnName="PhanHe_Id" />
                 <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChiTieu_ParentId" ColumnName="ChiTieu_ParentId" />
+                <ScalarProperty Name="ChiTieu_Id" ColumnName="ChiTieu_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -806,8 +806,8 @@
               <MappingFragment StoreEntitySet="TK_DoiTuong">
                 <ScalarProperty Name="Nhom_Id" ColumnName="Nhom_Id" />
                 <ScalarProperty Name="TenDoiTuong" ColumnName="TenDoiTuong" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DoiTuong_ParentId" ColumnName="DoiTuong_ParentId" />
+                <ScalarProperty Name="DoiTuong_Id" ColumnName="DoiTuong_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

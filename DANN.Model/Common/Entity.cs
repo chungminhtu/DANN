@@ -12,9 +12,7 @@ namespace DANN.Model
     }
     public abstract class BaseEntity
     {
-        public virtual int Id { get; set; }
-        public virtual int? ParentId { get; set; }
-        public virtual int? CodeKindId { get; set; }
+
     }
 
     public abstract class Entity<T> : BaseEntity, IEntity<T>

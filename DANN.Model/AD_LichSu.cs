@@ -14,7 +14,7 @@ namespace DANN.Model
     
     public partial class AD_LichSu
     {
-        public int Id { get; set; }
+        public int LichSu_Id { get; set; }
         public string UserName { get; set; }
         public Nullable<int> Menu_Id { get; set; }
         public string ActionName { get; set; }

@@ -4,6 +4,7 @@ using DANN.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Web;
 using System.Web.Mvc;
 
@@ -38,7 +39,7 @@ namespace DANN.Web.Controllers
         public ActionResult Load()
         {
             ViewBag.ListImages = Common.ListAllImage32();
-            ViewBag.MaxId = _service.GetAll().Count() > 0 ? _service.GetAll().Max(a => a.Id) : 0;
+            ViewBag.MaxId = _service.MaxId();
             var model = _service.GetAll().ToList();
             string viewName = typeof(T).Name.Split('_')[1];
             return PartialView(viewName, model);
@@ -85,20 +86,17 @@ namespace DANN.Web.Controllers
             return PartialView(viewName, model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult Delete(Int32 Id)
+        public ActionResult Delete(T item)
         {
-            if (Id != 0)
+            try
             {
-                try
-                {
-                    _service.Delete(Id);
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
+                _service.Delete(item);
             }
-            var model = _service.GetAll().ToList();
+            catch (Exception e)
+            {
+                ViewData["EditError"] = e.Message;
+            }
+            var model = _service.GetAll();
             string viewName = typeof(T).Name.Split('_')[1];
             return PartialView(viewName, model);
         }
@@ -108,10 +106,7 @@ namespace DANN.Web.Controllers
             var model = _service.GetAll();
             try
             {
-                var item = model.FirstOrDefault(it => it.Id == Id);
-                if (item != null)
-                    item.ParentId = ParentId;
-                db.SaveChanges();
+                _service.Move(Id, ParentId);
             }
             catch (Exception e)
             {
@@ -129,7 +124,7 @@ namespace DANN.Web.Controllers
         {
             int s = Request.Params["ID"] + "" != "" ? Convert.ToInt32(Request.Params["ID"]) : 0;
             var model = _service1.GetListCodeByCodeKindId(s);
-            ViewBag.MaxId1 = _service1.GetAll().Where(x => x.Id == s).Count() > 0 ? _service1.GetAll().Where(x => x.Id == s).Max(a => a.Id) : 0;
+            ViewBag.MaxId1 = _service1.MaxId();
             string viewName = typeof(T1).Name.Split('_')[1];
             return PartialView(viewName, model);
         }
@@ -176,18 +171,15 @@ namespace DANN.Web.Controllers
             return PartialView(viewName, model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult Delete1(Int32 Id)
+        public ActionResult Delete1(T1 item)
         {
-            if (Id != 0)
+            try
             {
-                try
-                {
-                    _service1.Delete(Id);
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
+                _service1.Delete(item);
+            }
+            catch (Exception e)
+            {
+                ViewData["EditError"] = e.Message;
             }
             var model = _service1.GetAll().ToList();
             string viewName = typeof(T1).Name.Split('_')[1];
@@ -199,10 +191,7 @@ namespace DANN.Web.Controllers
             var model = _service1.GetAll();
             try
             {
-                var item = model.FirstOrDefault(it => it.Id == Id);
-                if (item != null)
-                    item.ParentId = ParentId;
-                db.SaveChanges();
+                _service1.Move(Id, ParentId);
             }
             catch (Exception e)
             {
@@ -266,18 +255,15 @@ namespace DANN.Web.Controllers
             return PartialView(viewName, model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult Delete2(Int32 Id)
+        public ActionResult Delete2(T2 item)
         {
-            if (Id != 0)
+            try
             {
-                try
-                {
-                    _service2.Delete(Id);
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
+                _service2.Delete(item);
+            }
+            catch (Exception e)
+            {
+                ViewData["EditError"] = e.Message;
             }
             var model = _service2.GetAll().ToList();
             string viewName = typeof(T2).Name.Split('_')[1];
@@ -289,10 +275,7 @@ namespace DANN.Web.Controllers
             var model = _service2.GetAll();
             try
             {
-                var item = model.FirstOrDefault(it => it.Id == Id);
-                if (item != null)
-                    item.ParentId = ParentId;
-                db.SaveChanges();
+                _service2.Move(Id, ParentId);
             }
             catch (Exception e)
             {

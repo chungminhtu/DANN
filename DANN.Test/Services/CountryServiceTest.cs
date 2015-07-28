@@ -11,70 +11,100 @@ namespace DANN.Test.Services
 {
 
     [TestClass]
-    public class CountryServiceTest
+    public class DM_CodeKindServiceTest
     {
-        private ICountryService _service;
+        private IEntityService<DM_CodeKind> _service;
         Mock<IContext> _mockContext;
-        Mock<DbSet<Country>> _mockSet;
-        IQueryable<Country> listCountry;
+        Mock<DbSet<DM_CodeKind>> _mockSet;
+        IQueryable<DM_CodeKind> listDM_CodeKind;
 
         [TestInitialize]
         public void Initialize()
         {
-            listCountry = new List<Country>() {
-             new Country() { Id = 1, Name = "US" },
-             new Country() { Id = 2, Name = "India" },
-             new Country() { Id = 3, Name = "Russia" }
-            }.AsQueryable();
+            var temp = new List<DM_CodeKind>();
 
-            _mockSet = new Mock<DbSet<Country>>();
-            _mockSet.As<IQueryable<Country>>().Setup(m => m.Provider).Returns(listCountry.Provider);
-            _mockSet.As<IQueryable<Country>>().Setup(m => m.Expression).Returns(listCountry.Expression);
-            _mockSet.As<IQueryable<Country>>().Setup(m => m.ElementType).Returns(listCountry.ElementType);
-            _mockSet.As<IQueryable<Country>>().Setup(m => m.GetEnumerator()).Returns(listCountry.GetEnumerator());
+            for (int i = 1; i <= 99100; i++)
+            {
+                temp.Add(new DM_CodeKind() { CodeKind_Id = i, CodeKindName = "SomeThing" });
+            }
+
+            listDM_CodeKind = temp.AsQueryable();
+
+            _mockSet = new Mock<DbSet<DM_CodeKind>>();
+            _mockSet.As<IQueryable<DM_CodeKind>>().Setup(m => m.Provider).Returns(listDM_CodeKind.Provider);
+            _mockSet.As<IQueryable<DM_CodeKind>>().Setup(m => m.Expression).Returns(listDM_CodeKind.Expression);
+            _mockSet.As<IQueryable<DM_CodeKind>>().Setup(m => m.ElementType).Returns(listDM_CodeKind.ElementType);
+            _mockSet.As<IQueryable<DM_CodeKind>>().Setup(m => m.GetEnumerator()).Returns(listDM_CodeKind.GetEnumerator());
 
             _mockContext = new Mock<IContext>();
-            _mockContext.Setup(c => c.Set<Country>()).Returns(_mockSet.Object);
+            _mockContext.Setup(c => c.Set<DM_CodeKind>()).Returns(_mockSet.Object);
             //_mockContext.Setup(c => c.Countries).Returns(_mockSet.Object);
 
-            _service = new CountryService(_mockContext.Object);
+            _service = new DM_CodeKindService(_mockContext.Object);
 
         }
 
         [TestMethod]
-        public void Country_Get_All()
+        public void DM_CodeKind_Get_All()
         {
-
-
             //Act
-            List<Country> results = _service.GetAll().ToList() as List<Country>;
+            List<DM_CodeKind> results = _service.GetAll();
 
             //Assert
             Assert.IsNotNull(results);
-            Assert.AreEqual(3, results.Count);
+            Assert.AreEqual(99100, results.Count);
         }
 
 
         [TestMethod]
-        public void Can_Add_Country()
+        public void DM_CodeKind_Max()
+        {
+            //Act 
+            int max = _service.MaxId();
+            //Assert 
+            Assert.AreEqual(99100, max);
+        }
+
+        [TestMethod]
+        public void DM_CodeKind_GetByID()
+        {
+            //Act 
+            DM_CodeKind max = _service.GetById(99100);
+            //Assert 
+            Assert.AreEqual(99100, max.CodeKind_Id);
+        }
+
+
+        [TestMethod]
+        public void Can_Add_DM_CodeKind()
         {
             //Arrange
             int Id = 1;
-            Country country = new Country() { Name = "UK" };
+            DM_CodeKind codeKind = new DM_CodeKind() { CodeKindName = "UK" };
 
-            _mockSet.Setup(m => m.Add(country)).Returns((Country e) =>
+            _mockSet.Setup(m => m.Add(codeKind)).Returns((DM_CodeKind e) =>
             {
-                e.Id = Id;
+                e.CodeKind_Id = Id;
                 return e;
             });
 
 
             //Act
-            _service.Create(country);
+            _service.Create(codeKind);
 
             //Assert
-            Assert.AreEqual(Id, country.Id);
+            Assert.AreEqual(Id, codeKind.CodeKind_Id);
             _mockContext.Verify(m => m.SaveChanges(), Times.Once());
+        }
+
+        [TestMethod]
+        public void Can_Delete_DM_CodeKind()
+        {
+            //Arrange
+            _service.Delete(new DM_CodeKind() { CodeKind_Id = 1, CodeKindName = "UK" });
+
+            //Assert
+            Assert.AreEqual(null, _service.GetById(1));
         }
     }
 }

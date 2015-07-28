@@ -19,7 +19,7 @@ namespace DANN.Model
             this.DM_Code = new HashSet<DM_Code>();
         }
     
-        public int Id { get; set; }
+        public int CodeKind_Id { get; set; }
         public string CodeKindName { get; set; }
     
         public virtual ICollection<DM_Code> DM_Code { get; set; }

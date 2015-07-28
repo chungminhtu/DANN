@@ -19,7 +19,7 @@ namespace DANN.Model
             this.TK_ChiTieu = new HashSet<TK_ChiTieu>();
         }
     
-        public int Id { get; set; }
+        public int DonViTinh_Id { get; set; }
         public string TenDonViTinh { get; set; }
         public string LoaiDonViTinh { get; set; }
         public string ValueFormat { get; set; }

@@ -4,88 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
-
+using DANN.Model;
+using DANN.Service;
 namespace DANN.Web.Controllers
 {
-    public class DMPhanHeController : Controller
+    public class DMPhanHeController : CommonController<DM_PhanHe, DM_PhanHe, DM_PhanHe>
     {
-        public ActionResult Index()
+        public DMPhanHeController(IEntityService<DM_PhanHe> service, IEntityService<DM_PhanHe> service1, IEntityService<DM_PhanHe> service2)
+            : base(service, service1, service2)
         {
-            return View();
-        }
 
-        DANN.Model.DANNContext db = new DANN.Model.DANNContext();
-
-        [ValidateInput(false)]
-        public ActionResult PhanHeGrid()
-        {
-            var model = db.DM_PhanHe;
-            return PartialView("_PhanHeGrid", model.ToList());
         }
-
-        [HttpPost, ValidateInput(false)]
-        public ActionResult PhanHeGridAddNew(DANN.Model.DM_PhanHe item)
-        {
-            var model = db.DM_PhanHe;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    model.Add(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_PhanHeGrid", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult PhanHeGridUpdate(DANN.Model.DM_PhanHe item)
-        {
-            var model = db.DM_PhanHe;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
-                    if (modelItem != null)
-                    {
-                        this.UpdateModel(modelItem);
-                        db.SaveChanges();
-                    }
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_PhanHeGrid", model.ToList());
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult PhanHeGridDelete(System.Int32 Id)
-        {
-            var model = db.DM_PhanHe;
-            if (Id >= 0)
-            {
-                try
-                {
-                    var item = model.FirstOrDefault(it => it.Id == Id);
-                    if (item != null)
-                        model.Remove(item);
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            return PartialView("_PhanHeGrid", model.ToList());
-        }
+        
     }
 }

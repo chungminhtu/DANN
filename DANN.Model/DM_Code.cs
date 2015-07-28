@@ -14,7 +14,7 @@ namespace DANN.Model
     
     public partial class DM_Code
     {
-        public int Id { get; set; }
+        public int Code_Id { get; set; }
         public int CodeValue { get; set; }
         public string CodeName { get; set; }
         public int CodeKind_Id { get; set; }

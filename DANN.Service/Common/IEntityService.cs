@@ -13,13 +13,16 @@ namespace DANN.Service
     {
 
         void Create(T entity);
-        void Delete(int Id);
+        void Delete(T entity);
+        void Update(T entity);
+        void Move(Int32 Id, Int32? ParentId);
+
+        int MaxId();
 
         T GetById(int Id);
         List<T> GetAll();
         IQueryable<T> GetAllAsQueryable();
         IEnumerable<T> GetAllAsIEnumerable();
-        void Update(T entity);
         T SearchFirst(string searchTerm);
 
         List<T> SearchToList(string searchTerm);

@@ -51,7 +51,7 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
+                    var modelItem = model.FirstOrDefault(it => it.KyBaoCao_Id == item.KyBaoCao_Id);
                     if (modelItem != null)
                     {
                         this.UpdateModel(modelItem);
@@ -68,14 +68,14 @@ namespace DANN.Web.Controllers
             return PartialView("_KyBaoCaoGrid", model.ToList());
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult KyBaoCaoGridDelete(System.Int32 Id)
+        public ActionResult KyBaoCaoGridDelete(System.Int32 KyBaoCao_Id)
         {
             var model = db.DM_KyBaoCao;
-            if (Id >= 0)
+            if (KyBaoCao_Id >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.Id == Id);
+                    var item = model.FirstOrDefault(it => it.KyBaoCao_Id == KyBaoCao_Id);
                     if (item != null)
                         model.Remove(item);
                     db.SaveChanges();

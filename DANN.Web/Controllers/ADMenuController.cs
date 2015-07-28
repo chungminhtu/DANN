@@ -10,19 +10,21 @@ using DANN.Service;
 namespace DANN.Web.Controllers
 {
 
+
     public static class MenuCommon
     {
         public static DANNContext db = new DANNContext();
         public static IEnumerable<AD_Menu> GetList(int? parentID = null)
         {
-            foreach (var item in db.AD_Menu
-                .Where(x => x.ParentId == parentID)
-               .OrderBy(x => x.MenuSort)
-               .ToList())
+            var temp = db.AD_Menu
+                       .Where(x => x.Menu_ParentId == parentID)
+                       .OrderBy(x => x.MenuSort)
+                       .ToList();
+            foreach (var item in temp)
             {
                 yield return item;
 
-                foreach (var child in GetList(item.Id))
+                foreach (var child in GetList(item.Menu_Id))
                 {
                     yield return child;
                 }
@@ -38,19 +40,19 @@ namespace DANN.Web.Controllers
                 AD_Menu row = menus[i];
 
                 MenuItem item = new MenuItem();
-                item.Name = row.Id + "";
+                item.Name = row.Menu_Id + "";
                 item.Text = row.MenuText;
                 item.NavigateUrl = DevExpressHelper.GetUrl(new { Controller = row.MenuAction, Action = "Index" }); ;
                 item.Image.Url = row.MenuIcon;
                 item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
 
-                if (i == 0 || row.ParentId + "" == "")
+                if (i == 0 || row.Menu_ParentId + "" == "")
                 {
                     menu.Items.Add(item);
                 }
                 else
                 {
-                    GetNodes(menu.Items, row.ParentId + "", item);
+                    GetNodes(menu.Items, row.Menu_ParentId + "", item);
                 }
             }
 

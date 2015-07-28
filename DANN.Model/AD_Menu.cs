@@ -11,11 +11,11 @@ namespace DANN.Model
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class AD_Menu
     {
-        public int Id { get; set; }
-        public Nullable<int> ParentId { get; set; }
+        public int Menu_Id { get; set; }
+        public Nullable<int> Menu_ParentId { get; set; }
         public string MenuText { get; set; }
         public string MenuAction { get; set; }
         public string MenuIcon { get; set; }

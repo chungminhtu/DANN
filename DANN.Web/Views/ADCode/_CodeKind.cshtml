@@ -2,7 +2,7 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "CodeKindGridView";
-        settings.CallbackRouteValues = new { Controller = "ADCode", Action = "CodeKindGrid" };
+        settings.CallbackRouteValues = new { Controller = "ADCode", Action = "Load" };
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "AddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADCode", Action = "Update" };
@@ -39,16 +39,16 @@
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
-        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = CodeKindGridView ; }";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid'; currentControl = CodeKindGridView ; }";
 
 
         settings.InitNewRow = (s, e) =>
         {
-            e.NewValues["Id"] = Convert.ToInt32( ViewBag.MaxCodeKind)+1; 
+            e.NewValues["CodeKind_Id"] = Convert.ToInt32(ViewBag.MaxCodeKind) + 1; 
 
         };
-        
-        settings.KeyFieldName = "Id";
+
+        settings.KeyFieldName = "CodeKind_Id";
 
         settings.Columns.Add(column =>
            {
@@ -58,7 +58,7 @@
            }); 
         settings.Columns.Add(column =>
         {
-            column.FieldName = "Id";
+            column.FieldName = "CodeKind_Id";
             column.Caption = "Mã";
             column.Width = Unit.Percentage(20); 
         }); 
