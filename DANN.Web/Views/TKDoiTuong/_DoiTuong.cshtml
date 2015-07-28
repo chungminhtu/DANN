@@ -1,0 +1,61 @@
+@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
+        settings.Name = "DoiTuongTreeList";
+        settings.CallbackRouteValues = new { Controller = "TKDoiTuong", Action = "Load" };
+
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "TKDoiTuong", Action = "AddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "TKDoiTuong", Action = "Update" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "TKDoiTuong", Action = "Delete" };
+        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "TKDoiTuong", Action = "Move" };
+
+        /*Settings*/
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        settings.SettingsPager.PageSize = 25;
+
+        settings.CommandColumn.Visible = false;
+
+        settings.SettingsSelection.Enabled = true;
+        settings.SettingsSelection.AllowSelectAll = true;
+        settings.SettingsSelection.Recursive = true;
+
+        settings.SettingsBehavior.AllowSort = false;
+        settings.SettingsBehavior.AllowDragDrop = true;
+        settings.SettingsBehavior.AllowFocusedNode = true;
+        settings.SettingsBehavior.FocusNodeOnLoad = false;
+        settings.SettingsBehavior.AutoExpandAllNodes = false;
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
+
+        settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
+        settings.KeyboardSupport = true;
+
+        /*Events*/
+        settings.ClientSideEvents.EndCallback = "TreeEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
+        settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
+        settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
+        settings.ClientSideEvents.NodeClick = "function (s, e){ currentControlType = 'Tree';currentControl = DoiTuongTreeList ; }";
+
+
+        /*Fields*/
+        settings.KeyFieldName = "DoiTuong_Id";
+        settings.ParentFieldName = "DoiTuong_ParentId";
+        settings.Columns.Add(
+        column =>
+        {
+            column.FieldName = "TenDoiTuong";
+        });
+        settings.Columns.Add(
+        column =>
+        {
+            column.FieldName = "Nhom_Id";
+        }); 
+    });
+    if (ViewData["EditError"] != null)
+    {
+        treeList.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@treeList.Bind(Model).GetHtml()

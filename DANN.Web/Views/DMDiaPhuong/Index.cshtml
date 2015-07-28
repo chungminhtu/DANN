@@ -1,7 +1,15 @@
-﻿
+﻿@Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                    {
+                                        controlIndex = 1,
+                                        controlName = "DiaPhuongTreeList",
+                                        Add = true,
+                                        Edit = true,
+                                        Delete = true,
+                                        Save = true,
+                                        Cancel = true,
+                                        Reload = true,
+                                        Print = true,
+                                        CondictionToAutoSave = "$('#DiaPhuongTreeList_DXEDITOR0_I').val() != ''&& $('#DiaPhuongTreeList_DXEDITOR0_I').val() != ''",
+                                    })
 
-@Html.Partial("_TreeListPopupMenu")
-
-@Html.Partial("_TreeListCommandPanel")
-
-@Html.Action("DiaPhuongTree")
+@Html.Action("Load")

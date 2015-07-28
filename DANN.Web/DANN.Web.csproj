@@ -1371,12 +1371,12 @@
     <Content Include="Views\TKDoiTuong\Index.cshtml" />
     <Content Include="Views\DMPhanHe\Index.cshtml" />
     <Content Include="Views\BMBieuMau\Index.cshtml" />
-    <Content Include="Views\DMDiaPhuong\_DiaPhuongTree.cshtml" />
+    <Content Include="Views\DMDiaPhuong\_DiaPhuong.cshtml" />
     <Content Include="Views\DMDonViTinh\_DonViTinh.cshtml" />
-    <Content Include="Views\DMKyBaoCao\_KyBaoCaoGrid.cshtml" />
-    <Content Include="Views\DMPhanHe\_PhanHeGrid.cshtml" />
-    <Content Include="Views\TKChiTieu\_ChiTieuTree.cshtml" />
-    <Content Include="Views\TKDoiTuong\_DoiTuongTree.cshtml" />
+    <Content Include="Views\DMKyBaoCao\_KyBaoCao.cshtml" />
+    <Content Include="Views\DMPhanHe\_PhanHe.cshtml" />
+    <Content Include="Views\TKChiTieu\_ChiTieu.cshtml" />
+    <Content Include="Views\TKDoiTuong\_DoiTuong.cshtml" />
     <Content Include="Views\Shared\Common\_TreeListCommandPanel.cshtml" />
     <Content Include="Views\ADLichSu\Index.cshtml" />
     <Content Include="Views\ADLichSu\_LichSu.cshtml" />

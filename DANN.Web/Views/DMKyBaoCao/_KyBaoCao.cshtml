@@ -1,12 +1,12 @@
 @{
-	var grid = Html.DevExpress().GridView(settings => {
-        settings.Name = "DonViTinhGridView";
-        settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "Load" };
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "AddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMDonViTinh", Action = "Update" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMDonViTinh", Action = "Delete" };
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "KyBaoCaoGridView";
+        settings.CallbackRouteValues = new { Controller = "DMKyBaoCao", Action = "Load" };
 
-
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMKyBaoCao", Action = "AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMKyBaoCao", Action = "Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMKyBaoCao", Action = "Delete" };
 
         /*Settings*/
         settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
@@ -37,19 +37,17 @@
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
-        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = DonViTinhGridView ; }";
-
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = KyBaoCaoGridView ; }";
  
         /*Fields*/
-        settings.KeyFieldName = "DonViTinh_Id";
-         
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.KeyFieldName = "KyBaoCao_Id";
 
-				settings.Columns.Add("TenDonViTinh");
-				settings.Columns.Add("LoaiDonViTinh");
-				settings.Columns.Add("ValueFormat");
-			});
-		if (ViewData["EditError"] != null){
+        settings.Columns.Add("TenKyBaoCao");
+        settings.Columns.Add("LoaiBaoCao");
+        settings.Columns.Add("NguonBaoCao");
+    });
+    if (ViewData["EditError"] != null)
+    {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
 }

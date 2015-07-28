@@ -44,7 +44,7 @@
 
         settings.InitNewRow = (s, e) =>
         {
-            e.NewValues["CodeKind_Id"] = Convert.ToInt32(ViewBag.MaxCodeKind) + 1; 
+            e.NewValues["CodeKind_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1; 
 
         };
 
@@ -53,13 +53,11 @@
         settings.Columns.Add(column =>
            {
                column.FieldName = "CodeKindName";
-               column.Caption = "Tên Bảng";
                column.Width = Unit.Percentage(80);
            }); 
         settings.Columns.Add(column =>
         {
             column.FieldName = "CodeKind_Id";
-            column.Caption = "Mã";
             column.Width = Unit.Percentage(20); 
         }); 
        

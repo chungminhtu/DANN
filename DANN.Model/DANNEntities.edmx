@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="Menu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Menu_Id" Type="int" Nullable="false" />
           <Property Name="Menu_ParentId" Type="int" />
           <Property Name="MenuText" Type="nvarchar" MaxLength="250" />
           <Property Name="MenuAction" Type="varchar" MaxLength="100" />
@@ -31,9 +31,9 @@
           <Key>
             <PropertyRef Name="User_Id" />
           </Key>
-          <Property Name="User_Id" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="User_Id" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
           <Property Name="SoDienThoai" Type="varchar" MaxLength="50" />
@@ -45,7 +45,7 @@
             <PropertyRef Name="User_Id" />
             <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Menu_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BM_BieuMau">
@@ -78,9 +78,9 @@
             <PropertyRef Name="Code_Id" />
           </Key>
           <Property Name="Code_Id" Type="int" Nullable="false" />
+          <Property Name="CodeKind_Id" Type="int" Nullable="false" />
           <Property Name="CodeValue" Type="int" Nullable="false" />
           <Property Name="CodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="CodeKind_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DM_CodeKind">
           <Key>
@@ -171,18 +171,6 @@
           <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
           <Property Name="GiaTriThongKe" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_DM_Code_DM_Code">
-          <End Role="DM_Code" Type="Self.DM_Code" Multiplicity="1" />
-          <End Role="DM_Code1" Type="Self.DM_Code" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="DM_Code">
-              <PropertyRef Name="Code_Id" />
-            </Principal>
-            <Dependent Role="DM_Code1">
-              <PropertyRef Name="Code_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DM_Code_DM_CodeKind">
           <End Role="DM_CodeKind" Type="Self.DM_CodeKind" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -285,10 +273,6 @@
           <EntitySet Name="TK_ChiTieu" EntityType="Self.TK_ChiTieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_DoiTuong" EntityType="Self.TK_DoiTuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_ThongKe" EntityType="Self.TK_ThongKe" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_DM_Code_DM_Code" Association="Self.FK_DM_Code_DM_Code">
-            <End Role="DM_Code" EntitySet="DM_Code" />
-            <End Role="DM_Code1" EntitySet="DM_Code" />
-          </AssociationSet>
           <AssociationSet Name="FK_DM_Code_DM_CodeKind" Association="Self.FK_DM_Code_DM_CodeKind">
             <End Role="DM_CodeKind" EntitySet="DM_CodeKind" />
             <End Role="DM_Code" EntitySet="DM_Code" />
@@ -336,10 +320,6 @@
           <EntitySet Name="TK_ChiTieu" EntityType="DBDANNModel.TK_ChiTieu" />
           <EntitySet Name="TK_DoiTuong" EntityType="DBDANNModel.TK_DoiTuong" />
           <EntitySet Name="TK_ThongKe" EntityType="DBDANNModel.TK_ThongKe" />
-          <AssociationSet Name="FK_DM_Code_DM_Code" Association="DBDANNModel.FK_DM_Code_DM_Code">
-            <End Role="DM_Code" EntitySet="DM_Code" />
-            <End Role="DM_Code1" EntitySet="DM_Code" />
-          </AssociationSet>
           <AssociationSet Name="FK_DM_Code_DM_CodeKind" Association="DBDANNModel.FK_DM_Code_DM_CodeKind">
             <End Role="DM_CodeKind" EntitySet="DM_CodeKind" />
             <End Role="DM_Code" EntitySet="DM_Code" />
@@ -379,7 +359,7 @@
           <Key>
             <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="Menu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Menu_Id" Type="Int32" Nullable="false" />
           <Property Name="Menu_ParentId" Type="Int32" />
           <Property Name="MenuText" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="MenuAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -391,9 +371,9 @@
           <Key>
             <PropertyRef Name="User_Id" />
           </Key>
-          <Property Name="User_Id" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -405,7 +385,7 @@
             <PropertyRef Name="User_Id" />
             <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Menu_Id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="BM_BieuMau">
@@ -438,11 +418,9 @@
             <PropertyRef Name="Code_Id" />
           </Key>
           <Property Name="Code_Id" Type="Int32" Nullable="false" />
+          <Property Name="CodeKind_Id" Type="Int32" Nullable="false" />
           <Property Name="CodeValue" Type="Int32" Nullable="false" />
           <Property Name="CodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CodeKind_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DM_Code1" Relationship="DBDANNModel.FK_DM_Code_DM_Code" FromRole="DM_Code" ToRole="DM_Code1" />
-          <NavigationProperty Name="DM_Code2" Relationship="DBDANNModel.FK_DM_Code_DM_Code" FromRole="DM_Code1" ToRole="DM_Code" />
           <NavigationProperty Name="DM_CodeKind" Relationship="DBDANNModel.FK_DM_Code_DM_CodeKind" FromRole="DM_Code" ToRole="DM_CodeKind" />
         </EntityType>
         <EntityType Name="DM_CodeKind">
@@ -545,18 +523,6 @@
           <NavigationProperty Name="TK_ChiTieu" Relationship="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu" FromRole="TK_ThongKe" ToRole="TK_ChiTieu" />
           <NavigationProperty Name="TK_DoiTuong" Relationship="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" FromRole="TK_ThongKe" ToRole="TK_DoiTuong" />
         </EntityType>
-        <Association Name="FK_DM_Code_DM_Code">
-          <End Type="DBDANNModel.DM_Code" Role="DM_Code" Multiplicity="1" />
-          <End Type="DBDANNModel.DM_Code" Role="DM_Code1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="DM_Code">
-              <PropertyRef Name="Code_Id" />
-            </Principal>
-            <Dependent Role="DM_Code1">
-              <PropertyRef Name="Code_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DM_Code_DM_CodeKind">
           <End Type="DBDANNModel.DM_CodeKind" Role="DM_CodeKind" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -679,8 +645,8 @@
                 <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -722,9 +688,9 @@
           <EntitySetMapping Name="DM_Code">
             <EntityTypeMapping TypeName="DBDANNModel.DM_Code">
               <MappingFragment StoreEntitySet="DM_Code">
-                <ScalarProperty Name="CodeKind_Id" ColumnName="CodeKind_Id" />
                 <ScalarProperty Name="CodeName" ColumnName="CodeName" />
                 <ScalarProperty Name="CodeValue" ColumnName="CodeValue" />
+                <ScalarProperty Name="CodeKind_Id" ColumnName="CodeKind_Id" />
                 <ScalarProperty Name="Code_Id" ColumnName="Code_Id" />
               </MappingFragment>
             </EntityTypeMapping>

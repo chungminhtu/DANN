@@ -1,3 +1,15 @@
-﻿
+﻿@Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                    {
+                                        controlIndex = 1,
+                                        controlName = "ChiTieuTreeList",
+                                        Add = true,
+                                        Edit = true,
+                                        Delete = true,
+                                        Save = true,
+                                        Cancel = true,
+                                        Reload = true,
+                                        Print = true,
+                                        CondictionToAutoSave = "$('#ChiTieuTreeList_DXEDITOR0_I').val() != ''&& $('#ChiTieuTreeList_DXEDITOR0_I').val() != ''",
+                                    })
 
-@Html.Action("ChiTieuTree")
+@Html.Action("Load")

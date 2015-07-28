@@ -1,16 +1,17 @@
 @{
-	var grid = Html.DevExpress().GridView(settings => {
-        settings.Name = "DonViTinhGridView";
-        settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "Load" };
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "AddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMDonViTinh", Action = "Update" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMDonViTinh", Action = "Delete" };
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "PhanHeGridView";
+        settings.CallbackRouteValues = new { Controller = "DMPhanHe", Action = "Load" };
 
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMPhanHe", Action = "AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMPhanHe", Action = "Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMPhanHe", Action = "Delete" };
 
 
         /*Settings*/
         settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
-
+        
         settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
@@ -26,8 +27,8 @@
         settings.SettingsSearchPanel.Visible = false;
         settings.Settings.ShowTitlePanel = false;
         settings.Settings.ShowGroupPanel = false;
-        settings.Settings.ShowFilterRow = false;
-
+        settings.Settings.ShowFilterRow = false; 
+        
         settings.KeyboardSupport = true;
 
 
@@ -37,19 +38,20 @@
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
-        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = DonViTinhGridView ; }";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = PhanHeGridView ; }";
 
- 
+        settings.InitNewRow = (s, e) =>
+        {
+            e.NewValues["PhanHe_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1;
+        };
+        
         /*Fields*/
-        settings.KeyFieldName = "DonViTinh_Id";
-         
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.KeyFieldName = "PhanHe_Id";
 
-				settings.Columns.Add("TenDonViTinh");
-				settings.Columns.Add("LoaiDonViTinh");
-				settings.Columns.Add("ValueFormat");
-			});
-		if (ViewData["EditError"] != null){
+        settings.Columns.Add("TenPhanHe");
+    });
+    if (ViewData["EditError"] != null)
+    {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
 }

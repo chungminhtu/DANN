@@ -1,9 +1,9 @@
 ﻿@{
     var treeList = Html.DevExpress().TreeList(settings =>
     {
-        settings.Name = "MenuTree";
+        settings.Name = "MenuTreeList";
 
-        //Data binding
+        /*Data binding*/
         settings.CallbackRouteValues = new { Controller = "ADMenu", Action = "Load" };
         settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "ADMenu", Action = "AddNew" };
         settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "ADMenu", Action = "Update" };
@@ -11,35 +11,41 @@
         settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "ADMenu", Action = "Move" };
 
 
-        //Settings
+        /*Settings*/
+        settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
-        settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSize = 25;
         
         settings.CommandColumn.Visible = false; 
+        
         settings.SettingsSelection.Enabled = true;
         settings.SettingsSelection.AllowSelectAll = true;
+        settings.SettingsSelection.Recursive = true;
+
+        settings.SettingsBehavior.AllowSort = false;
+        settings.SettingsBehavior.AllowDragDrop = true;
         settings.SettingsBehavior.AllowFocusedNode = true;
         settings.SettingsBehavior.FocusNodeOnLoad = false; 
         settings.SettingsBehavior.AutoExpandAllNodes = false;
         settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
-        settings.SettingsSelection.Recursive = true;
+        
         settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
         settings.KeyboardSupport = true; 
 
-        //Events
+        /*Events*/
         settings.ClientSideEvents.EndCallback = "TreeEndCallbackFocusToAddNew";
         settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
         settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
         settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
-        settings.ClientSideEvents.NodeClick = "function (s, e){ currentControlType = 'Tree';currentControl = MenuTree ; }";
+        settings.ClientSideEvents.NodeClick = "function (s, e){ currentControlType = 'Tree';currentControl = MenuTreeList ; }";
        
 
-        //Columns
+        /*Fields*/
         settings.KeyFieldName = "Menu_Id";
         settings.ParentFieldName = "Menu_ParentId";
 
+          
         settings.Columns.Add(column =>
         {
             column.FieldName = "MenuText";
@@ -101,16 +107,12 @@
             column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
         });
 
-        
-        //settings.InitNewNode = (s, e) =>
-        //{
-        //    e.NewValues["Menu_Id"] = 0;
-        //    e.NewValues["MenuText"] = "abc";
-             
-        //};
 
-      
-
+        settings.InitNewNode = (s, e) =>
+        {
+            e.NewValues["Menu_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1;
+        };
+         
     });
     if (ViewData["EditError"] != null)
     {

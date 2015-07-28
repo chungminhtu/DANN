@@ -1,7 +1,7 @@
 ﻿@Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
                                     {
                                         controlIndex = 1,
-                                        controlName = "MenuTree",
+                                        controlName = "MenuTreeList",
                                         Add = true,
                                         Edit = true,
                                         Delete = true,
@@ -9,7 +9,7 @@
                                         Cancel = true,
                                         Reload = true,
                                         Print = true,
-                                        CondictionToAutoSave = "$('#MenuTree_DXEDITOR0_I').val() != ''&& $('#MenuTree_DXEDITOR0_I').val() != ''",
+                                        CondictionToAutoSave = "$('#MenuTreeList_DXEDITOR0_I').val() != ''&& $('#MenuTreeList_DXEDITOR0_I').val() != ''",
                                     })
  
 @Html.Action("Load")

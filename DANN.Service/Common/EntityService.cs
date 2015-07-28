@@ -26,22 +26,47 @@ namespace DANN.Service
             KeyName = typeof(T).GetProperties()[0].Name;
         }
 
+        #region Basic CRUD Functions
+
         public virtual void Create(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-
+            TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
             _dbset.Add(entity);
             _context.SaveChanges();
         }
+
+        public virtual void CreateWithParentID(T entity, int ParentID)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
+            TrySetProperty(entity, typeof(T).GetProperties()[1].Name, ParentID);
+            _dbset.Add(entity);
+            _context.SaveChanges();
+        }
+
+
         public virtual void Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
             _context.Entry(entity).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public virtual void UpdateWithParentID(T entity, int ParentID)
+        {
+            if (entity == null) throw new ArgumentNullException("entity");
+            TrySetProperty(entity, typeof(T).GetProperties()[1].Name, ParentID);
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
         public virtual void Delete(T entity)
         {
             var curentEntity = GetById(GetIdGeneric(entity));
@@ -50,29 +75,15 @@ namespace DANN.Service
             _context.SaveChanges();
         }
 
-        private int GetIdGeneric(T entity)
+        public void Move(T entity)
         {
-            var id = typeof(T).GetProperties()[0].GetValue(entity);
-            int result = 0;
-            int.TryParse(id + "", out result);
-            return result;
-        }
-
-        public void Move(Int32 Id, Int32? ParentId)
-        {
-            var entity = GetById(Id);
-            if (entity != null)
+            var cEntity = GetById(GetIdGeneric(entity));
+            if (cEntity != null)
             {
-                TrySetProperty(entity, typeof(T).GetProperties()[1].Name, ParentId);
+                int? cP = GetParentIdGeneric(entity);
+                TrySetProperty(cEntity, typeof(T).GetProperties()[1].Name, cP);
             }
             _context.SaveChanges();
-        }
-
-        private void TrySetProperty(object obj, string property, object value)
-        {
-            var prop = obj.GetType().GetProperty(property, BindingFlags.Public | BindingFlags.Instance);
-            if (prop != null && prop.CanWrite)
-                prop.SetValue(obj, value, null);
         }
 
         public int MaxId()
@@ -84,9 +95,23 @@ namespace DANN.Service
                 var query = typeof(T).GetProperties()[0].GetValue(lastEntity);
                 int.TryParse(query + "", out result);
             }
-
             return result;
         }
+        public int MaxCodeValue(int CodeKindID)
+        {
+            var lastEntity = _dbset.Where("CodeKind_Id = @0", CodeKindID).OrderBy("CodeValue").AsEnumerable<T>().LastOrDefault();
+            int result = 0;
+            if (lastEntity != null)
+            {
+                var query = typeof(T).GetProperties()[2].GetValue(lastEntity);
+                int.TryParse(query + "", out result);
+            }
+            return result;
+        }
+
+        #endregion
+
+        #region Search Filter Functions
 
         public virtual List<T> GetAll()
         {
@@ -109,10 +134,6 @@ namespace DANN.Service
             return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0", Id).FirstOrDefault();
         }
 
-        public virtual List<T> GetListCodeByCodeKindId(int Id)
-        {
-            return _dbset.Where("CodeKind_Id = @0", Id).ToList();
-        }
         public virtual T SearchFirst(string searchTerm)
         {
             return _dbset.Where(searchTerm).FirstOrDefault();
@@ -122,5 +143,36 @@ namespace DANN.Service
         {
             return _dbset.Where(searchTerm).ToList();
         }
+
+        #endregion
+
+        #region Support Functions
+
+        //Hàm gán giá trị cho thuộc tính generic của 1 object generic
+        private void TrySetProperty(object obj, string property, object value)
+        {
+            var prop = obj.GetType().GetProperty(property, BindingFlags.Public | BindingFlags.Instance);
+            if (prop != null && prop.CanWrite)
+                prop.SetValue(obj, value, null);
+        }
+
+        //Hàm lấy giá trị Id của 1 entity Generic
+        private int GetIdGeneric(T entity)
+        {
+            var id = typeof(T).GetProperties()[0].GetValue(entity);
+            int result = CommonFunctions.TryParseId(id + "");
+            return result;
+        }
+
+        //Hàm lấy giá trị ParentId của 1 entity Generic
+        private int? GetParentIdGeneric(T entity)
+        {
+            var id = typeof(T).GetProperties()[1].GetValue(entity);
+            int? result = CommonFunctions.TryParseParentId(id + "");
+            return result;
+        }
+
+
+        #endregion
     }
 }

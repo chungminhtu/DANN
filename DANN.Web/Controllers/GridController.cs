@@ -10,7 +10,7 @@ namespace DANN.Web.Controllers
 {
     public class GridController : Controller
     {
-        DANNContext _db = new DANNContext();
+        DANNContext _db = MenuCommon.db;
         public ActionResult Index()
         {
             return View();

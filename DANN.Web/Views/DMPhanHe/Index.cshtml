@@ -1,3 +1,14 @@
-﻿
+﻿@Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                            {
+                                                controlIndex = 1,
+                                                controlName = "PhanHeGridView",
+                                                Add = true,
+                                                Edit = true,
+                                                Delete = true,
+                                                Save = true,
+                                                Reload = true,
+                                                Print = true,
+                                                CondictionToAutoSave = "$('#PhanHeGridView_DXEditor0_I').val() != ''&& $('#PhanHeGridView_DXEditor1_I').val() != ''",
+                                            })
 
-@Html.Action("PhanHeGrid")
+@Html.Action("Load")

@@ -1,3 +1,15 @@
-﻿
+﻿@Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                    {
+                                        controlIndex = 1,
+                                        controlName = "DoiTuongTreeList",
+                                        Add = true,
+                                        Edit = true,
+                                        Delete = true,
+                                        Save = true,
+                                        Cancel = true,
+                                        Reload = true,
+                                        Print = true,
+                                        CondictionToAutoSave = "$('#DoiTuongTreeList_DXEDITOR0_I').val() != ''&& $('#DoiTuongTreeList_DXEDITOR0_I').val() != ''",
+                                    })
 
-@Html.Action("DoiTuongTree")
+@Html.Action("Load")

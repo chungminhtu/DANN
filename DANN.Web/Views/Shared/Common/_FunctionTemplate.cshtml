@@ -25,7 +25,7 @@
 
     var ID = 0;
     function GridBeginCallbackWithID(s, e) {
-            e.customArgs['ID'] = ID;
+        e.customArgs['ID'] = ID;
     }
 
     //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu
@@ -81,8 +81,8 @@
             case "CollapseAll":
                 @(Model.controlName).CollapseAll();
                 break;
-            case "NewRoot": 
-                @(Model.controlName).AddNewRow(); 
+            case "NewRoot":
+                @(Model.controlName).AddNewRow();
                 break;
             case "NewSibling":
                 @(Model.controlName).SetFocusedNodeKey(null);

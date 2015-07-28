@@ -1,3 +1,14 @@
-﻿
+﻿@Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                            {
+                                                controlIndex = 1,
+                                                controlName = "KyBaoCaoGridView",
+                                                Add = true,
+                                                Edit = true,
+                                                Delete = true,
+                                                Save = true,
+                                                Reload = true,
+                                                Print = true,
+                                                CondictionToAutoSave = "$('#KyBaoCaoGridView_DXEditor0_I').val() != ''&& $('#KyBaoCaoGridView_DXEditor1_I').val() != ''",
+                                            })
 
-@Html.Action("KyBaoCaoGrid")
+@Html.Action("Load")

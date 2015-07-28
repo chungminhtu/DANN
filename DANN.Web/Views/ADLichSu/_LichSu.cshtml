@@ -9,46 +9,41 @@
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADLichSu", Action = "Delete" };
 
 
-        //Settings
-        settings.Width = Unit.Percentage(100);
-        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
-        settings.SettingsBehavior.ConfirmDelete = true;
 
+        /*Settings*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+
+        settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
-        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.PageSize = 25;
 
-        // settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = false;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
         settings.SettingsBehavior.AllowFocusedRow = true;
-        //settings.Settings.ShowTitlePanel = true;
-        //settings.Settings.ShowGroupPanel = true;
-        //settings.Settings.ShowFilterRow = true;
-        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
         settings.SettingsBehavior.AllowDragDrop = false;
-        settings.SettingsBehavior.AutoExpandAllGroups = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
 
+        settings.SettingsSearchPanel.Visible = false;
+        settings.Settings.ShowTitlePanel = false;
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = false;
+
         settings.KeyboardSupport = true;
 
 
-
         /*Events*/
-        settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
+        //settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
         settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
-        settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid'; currentControl = LichSuGridView ;}";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = LichSuGridView ; }";
 
-
-
-        settings.KeyFieldName = "LichSu_Id";
-
-        settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
-        settings.Settings.ShowFilterRow = true;
+ 
+        /*Fields*/
+        settings.KeyFieldName = "LichSu_Id"; 
 
         settings.Columns.Add("UserName");
         settings.Columns.Add("Menu_Id");

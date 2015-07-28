@@ -14,7 +14,7 @@ namespace DANN.Model
     
     public partial class AD_User_Menu
     {
-        public int User_Id { get; set; }
+        public string User_Id { get; set; }
         public int Menu_Id { get; set; }
     }
 }
