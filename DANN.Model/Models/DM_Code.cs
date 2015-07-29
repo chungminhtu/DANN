@@ -10,21 +10,25 @@ namespace DANN.Model
     {
         public class DM_CodeMetadata
         {
-            [Required(ErrorMessage = "Bạn chưa nhập *")]
             [DisplayName("Mã CodeId")]
+            [Required(ErrorMessage = "Bạn chưa nhập Mã CodeId")]
+            [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số!")]
             public int Code_Id { get; set; }
 
-            [Required(ErrorMessage = "Bạn chưa nhập *")]
             [DisplayName("Mã bảng")]
+            [Required(ErrorMessage = "Bạn chưa nhập Mã bảng!")]
+            [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số!")]
             public int CodeKind_Id { get; set; }
 
-            [Required(ErrorMessage = "Bạn chưa nhập *")]
             [DisplayName("Mã giá trị")]
+            [Required(ErrorMessage = "Bạn chưa nhập Mã giá trị!")]
+            [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số!")]
             public int CodeValue { get; set; }
 
 
-            [Required(ErrorMessage = "Bạn chưa nhập *")]
             [DisplayName("Tên giá trị")]
+            [Required(ErrorMessage = "Bạn chưa nhập Tên giá trị!")]
+            [StringLength(100,ErrorMessage="Tên giá trị không được nhập quá 100 ký tự!")]
             public string CodeName { get; set; }
 
         }

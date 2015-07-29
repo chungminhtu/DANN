@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 namespace DANN.Model
 {
 
@@ -12,7 +13,13 @@ namespace DANN.Model
 
             public int ChiTieu_Id { get; set; }
             public Nullable<int> ChiTieu_ParentId { get; set; }
+           
+            [DisplayName("Tên Chỉ tiêu")]
+            [Required(ErrorMessage="Bạn chưa nhập Tên chỉ tiêu!")]
+            [StringLength(300,ErrorMessage="Tên chỉ tiêu không được nhập quá 300 ký tự!")]
             public string TenChiTieu { get; set; }
+            
+   
             public Nullable<int> PhanHe_Id { get; set; }
             public Nullable<int> DonViTinh_Id { get; set; }
 

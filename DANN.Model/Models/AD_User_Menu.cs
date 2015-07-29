@@ -10,11 +10,14 @@ namespace DANN.Model
     {
         public class AD_User_MenuMetadata
         {
-            [Required(ErrorMessage = "Bạn chưa nhập *")]
             [DisplayName("Tên đăng nhập")]
+            [Required(ErrorMessage = "Bạn chưa nhập Tên đăng nhập!")]
+            [StringLength(30,ErrorMessage="Tên đăng nhập không được vượt quá 30 ký tự!")]
             public string User_Id { get; set; }
-            [Required(ErrorMessage = "Bạn chưa nhập *")]
+
             [DisplayName("Quyền truy cập")]
+            [Required(ErrorMessage = "Bạn chưa nhập Quyền truy cập!")]
+            [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số!")]
             public int Menu_Id { get; set; }
         }
     }

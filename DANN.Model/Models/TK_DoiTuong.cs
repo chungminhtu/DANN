@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 namespace DANN.Model
 {
 
@@ -11,6 +12,10 @@ namespace DANN.Model
         {
             public int DoiTuong_Id { get; set; }
             public Nullable<int> DoiTuong_ParentId { get; set; }
+           
+            [DisplayName("Tên Đối tượng")]
+            [Required(ErrorMessage="Bạn chưa nhập Tên đối tượng!")]
+            [StringLength(200,ErrorMessage="Tên đối tượng không được nhập quá 200 ký tự!")]
             public string TenDoiTuong { get; set; }
             public Nullable<int> Nhom_Id { get; set; }
 
