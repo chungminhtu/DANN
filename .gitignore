@@ -817,3 +817,7 @@ packages/repositories.config
 /packages/AlanWay.System.Linq.Dynamic.0.0.1/AlanWay.System.Linq.Dynamic.0.0.1.nupkg
 /DANN.Test/bin/Debug
 /TestResults
+/DANN.Web/obj/Debug
+/DANN.Test/obj/Debug
+/DANN.Service/obj/Debug
+/DANN/obj/Debug
