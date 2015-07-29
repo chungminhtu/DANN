@@ -14,18 +14,18 @@ namespace DANN.Model
             public int KyBaoCao_Id { get; set; }
 
             [DisplayName("Tên kỳ báo cáo")]           
-            [Required(ErrorMessage = "Bạn chưa nhập *Tên kỳ báo cáo*")]
-            [StringLength(100, ErrorMessage= "Tên kỳ báo cáo dài quá 100 ký tự!")]
+            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [StringLength(100, ErrorMessage= "\"{0}\" dài quá 100 ký tự.")]
             public string TenKyBaoCao { get; set; }
            
             [DisplayName("Loại Kỳ báo cáo")]
-            [Required(ErrorMessage="Bạn chưa nhập Loại Kỳ báo cáo!")]
-            [StringLength(50,ErrorMessage="Loại kỳ báo cao không được nhập quá 50 ký tự!")]
+            [Required(ErrorMessage="Bạn chưa nhập\" {0}\"")]
+            [StringLength(50,ErrorMessage="\"{0}\" không được nhập quá 50 ký tự.")]
             public string LoaiBaoCao { get; set; }
            
             [DisplayName("Nguồn báo cáo")]
-            [Required(ErrorMessage="Bạn chưa nhập Nguồn báo cáo!")]
-            [StringLength(50,ErrorMessage="Nguồn báo cáo không được nhập quá 50 ký tự!")]
+            [Required(ErrorMessage="Bạn chưa nhập\" {0}\"")]
+            [StringLength(50,ErrorMessage="\"{0}\" không được nhập quá 50 ký tự.")]
             public string NguonBaoCao { get; set; }
 
             public virtual ICollection<TK_ThongKe> TK_ThongKe { get; set; }

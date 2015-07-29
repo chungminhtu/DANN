@@ -15,8 +15,8 @@ namespace DANN.Model
             public Nullable<int> ChiTieu_ParentId { get; set; }
            
             [DisplayName("Tên Chỉ tiêu")]
-            [Required(ErrorMessage="Bạn chưa nhập Tên chỉ tiêu!")]
-            [StringLength(300,ErrorMessage="Tên chỉ tiêu không được nhập quá 300 ký tự!")]
+            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [StringLength(300,ErrorMessage="\"{0}\" không được nhập quá 300 ký tự.")]
             public string TenChiTieu { get; set; }
             
    

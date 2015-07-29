@@ -11,13 +11,13 @@ namespace DANN.Model
         public class DM_CodeKindMetadata
         {
             [DisplayName("Mã bảng")]
-            [Required(ErrorMessage = "Bạn chưa nhập Mã bảng!")]
-            [Range(0, int.MaxValue, ErrorMessage="Bạn chỉ được nhập số!")]
+            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [Range(0, int.MaxValue, ErrorMessage="Bạn chỉ được nhập số.")]
             public int CodeKind_Id { get; set; }
            
             [DisplayName("Tên bảng")]
-            [Required(ErrorMessage = "Bạn chưa nhập Tên bảng!")]
-            [StringLength(100,ErrorMessage="Tên bảng không được nhập quá 100 ký tự!")]
+            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [StringLength(100,ErrorMessage="\"{0}\" không được nhập quá 100 ký tự.")]
             public string CodeKindName { get; set; }
         }
     }

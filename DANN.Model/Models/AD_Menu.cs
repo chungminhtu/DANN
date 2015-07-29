@@ -14,22 +14,22 @@ namespace DANN.Model
             public Nullable<int> Menu_ParentId { get; set; }
 
             [DisplayName("Tên Menu")]
-            [Required(ErrorMessage = "Bạn chưa nhập Tên Menu!")]
-            [StringLength(250,ErrorMessage="Tên Menu không được nhập quá 250 ký tự!")]
+            [Required(ErrorMessage = "Bạn chưa nhập\" {0}\"")]
+            [StringLength(250,ErrorMessage="\"{0}\" không được nhập quá 250 ký tự!")]
             public string MenuText { get; set; }
            
             [DisplayName("Tên URL")]
-            [Required(ErrorMessage="Bạn chưa nhập Tên URL!")]
-            [StringLength(100,ErrorMessage="Tên URL không được nhập quá 100 ký tự!")]
+            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [StringLength(100,ErrorMessage="\"{0}\" không được nhập quá 100 ký tự!")]
             public string MenuAction { get; set; }
 
             [DisplayName("Biểu tượng Menu")]
-            [Required(ErrorMessage="Bạn chưa nhập biểu tượng Menu!")]
-            [StringLength(50,ErrorMessage="Biểu tượng Menu không được nhập quá 50 ký tự!")]
+            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [StringLength(50,ErrorMessage="\"{0}\" không được nhập quá 50 ký tự!")]
             public string MenuIcon { get; set; }
            
             [DisplayName("Sắp xếp Menu")]
-            [Required(ErrorMessage="Bạn chưa Sắp xếp Menu!")]
+            [Required(ErrorMessage="Bạn chưa\"{0}\"")]
             [Range(0, int.MaxValue, ErrorMessage = "Bạn chỉ được nhập số!")]
             public Nullable<int> MenuSort { get; set; }
 

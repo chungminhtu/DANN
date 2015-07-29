@@ -14,8 +14,8 @@ namespace DANN.Model
             public int PhanHe_Id { get; set; }
            
             [DisplayName("Tên Phân hệ")]
-            [Required(ErrorMessage="Bạn chưa nhập Tên phân hệ!")]
-            [StringLength(200,ErrorMessage="Tên phân hệ không được nhập quá 200 ký tự!")]
+            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [StringLength(200,ErrorMessage="\"{0}\" không được nhập quá 200 ký tự.")]
             public string TenPhanHe { get; set; }
 
             public virtual ICollection<TK_ThongKe> TK_ThongKe { get; set; }
