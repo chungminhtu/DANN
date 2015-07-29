@@ -12,17 +12,17 @@ namespace DANN.Model
         {
             [DisplayName("Tên đăng nhập")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(30,ErrorMessage="\"{0}\" không được vượt quá 30 ký tự.")]
+            [StringLength(30, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string User_Id { get; set; }
            
             [DisplayName("Mật khẩu")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(20,ErrorMessage="\"{0}\" không được vượt quá 20 ký tự.")]
+            [StringLength(20, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string Password { get; set; }
            
             [DisplayName("Tên người dùng")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(50,ErrorMessage="\"{0}\" không được nhập quá 50 ký tự.")]
+            [StringLength(50, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string UserName { get; set; }
 
             [DisplayName("Địa chỉ Email")]
@@ -31,22 +31,22 @@ namespace DANN.Model
 
             [DisplayName("Địa chỉ hiện tại")]
             [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [StringLength(250,ErrorMessage="\"{0}\" không được nhập quá 250 ký tự.")]
+            [StringLength(250, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string DiaChi { get; set; }
 
             [DisplayName("Số điện thoại")]
             [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [Range(0,50,ErrorMessage="Bạn chỉ được nhập số")]
+            [Range(0, 50, ErrorMessage = DANN.Service.CommonMessages.Range)]
             public string SoDienThoai { get; set; }
 
             [DisplayName("Chức vụ")]
            // [Required("Bạn chưa nhập Chức vụ!")]
-            [StringLength(100,ErrorMessage="Chức vụ không được nhập quá 100 ký tự. ")]
+            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string ChucVu { get; set; }
          
             [DisplayName("Thuộc Phòng ban")]
            // [Required("Bạn chưa nhập Phòng ban!")]
-            [StringLength(100,ErrorMessage="Phòng ban không được nhập quá 100 ký tự.")]
+            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string PhongBan { get; set; }
         }
     }

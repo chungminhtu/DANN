@@ -10,7 +10,7 @@ namespace DANN.Model
     {
         public class TK_ThongKeMetadata
         {
-           [DisplayName("Mã Chỉ tiêu")]
+            [DisplayName("Mã Chỉ tiêu")]
             public int ChiTieu_Id { get; set; }
             [DisplayName("Mã Đối tượng")]
             public int DoiTuong_Id { get; set; }
@@ -22,8 +22,8 @@ namespace DANN.Model
             public int DiaPhuong_Id { get; set; }
 
             [DisplayName("Giá trị Thống kê")]
-            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [StringLength(50,ErrorMessage="\"{0}\" không được vượt quá 50 ký tự.")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [StringLength(50, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string GiaTriThongKe { get; set; }
 
             public virtual DM_KyBaoCao DM_KyBaoCao { get; set; }

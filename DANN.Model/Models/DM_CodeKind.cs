@@ -12,12 +12,12 @@ namespace DANN.Model
         {
             [DisplayName("Mã bảng")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [Range(0, int.MaxValue, ErrorMessage="Bạn chỉ được nhập số.")]
+            [Range(1, 100, ErrorMessage = DANN.Service.CommonMessages.Range)]
             public int CodeKind_Id { get; set; }
-           
+
             [DisplayName("Tên bảng")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(100,ErrorMessage="\"{0}\" không được nhập quá 100 ký tự.")]
+            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string CodeKindName { get; set; }
         }
     }

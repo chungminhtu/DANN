@@ -9,6 +9,9 @@ namespace DANN.Service
     class CommonMessages
     {
         public const string Required = "Bạn chưa nhập \"{0}\"";
-        public const string Lenght = "\"{0}\" không được vượt quá 30 ký tự";
+        public const string StringLenght = "\"{0}\" không được vượt quá {1} ký tự";
+        public const string Range = "{0} chỉ được nhập giá trị là số từ {1} đến {2}.";
+
+
     }
 }

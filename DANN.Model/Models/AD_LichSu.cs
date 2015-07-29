@@ -14,24 +14,24 @@ namespace DANN.Model
 
 
             [DisplayName("Tên người truy cập")]
-            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [StringLength(30,ErrorMessage="\"{0}\" không được vượt quá 30 ký tự!")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [StringLength(30, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string UserName { get; set; }
 
             [DisplayName("Mã MenuId")]
-            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số!")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [Range(1, int.MaxValue, ErrorMessage = DANN.Service.CommonMessages.Range)]
             public Nullable<int> Menu_Id { get; set; }
 
 
             [DisplayName("Thao tác")]
-            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [StringLength(50,ErrorMessage="Bạn không được nhập quá 50 ký tự!")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [StringLength(50, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string ActionName { get; set; }
 
             [DisplayName("Các giá trị thay đổi")]
-            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [StringLength(50,ErrorMessage="Bạn không được nhập quá 50 ký tự!")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [StringLength(50, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
 
             public string Variables { get; set; }
         }

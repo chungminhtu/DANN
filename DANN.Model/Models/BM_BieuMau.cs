@@ -14,7 +14,7 @@ namespace DANN.Model
 
             [DisplayName("Tên biểu mẫu")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(100,ErrorMessage="\"{0}\" không được nhập quá 100 ký tự.")]
+            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string TenBieuMau { get; set; }
         }
     }

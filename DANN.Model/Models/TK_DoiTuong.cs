@@ -12,10 +12,10 @@ namespace DANN.Model
         {
             public int DoiTuong_Id { get; set; }
             public Nullable<int> DoiTuong_ParentId { get; set; }
-           
+
             [DisplayName("Tên Đối tượng")]
-            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [StringLength(200, ErrorMessage="\"{0}\" không được nhập quá {200} ký tự.")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [StringLength(200, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string TenDoiTuong { get; set; }
             public Nullable<int> Nhom_Id { get; set; }
 

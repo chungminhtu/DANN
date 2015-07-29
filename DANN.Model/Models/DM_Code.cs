@@ -12,23 +12,23 @@ namespace DANN.Model
         {
            // [DisplayName("Mã CodeId")]
            // [Required(ErrorMessage = "Bạn chưa nhập Mã CodeId")]
-           // [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số!")]
+           // [Range(0,int.MaxValue,ErrorMessage=DANN.Service.CommonMessages.range)]
             public int Code_Id { get; set; }
 
          //   [DisplayName("Mã bảng")]
          //   [Required(ErrorMessage = "Bạn chưa nhập Mã bảng!")]
-         //   [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số!")]
+         //   [Range(0,int.MaxValue,ErrorMessage=DANN.Service.CommonMessages.range)]
             public int CodeKind_Id { get; set; }
 
             [DisplayName("Mã giá trị")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [Range(1,100,ErrorMessage="{0} chỉ được nhập số từ {1} đến {2}.")]
+            [Range(1, 100, ErrorMessage = DANN.Service.CommonMessages.Range)]
             public int CodeValue { get; set; }
 
 
             [DisplayName("Tên giá trị")]
             [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(100,ErrorMessage="\"Tên giá trị\" không được nhập quá 100 ký tự.")]
+            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string CodeName { get; set; }
 
         }

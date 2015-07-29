@@ -12,10 +12,10 @@ namespace DANN.Model
         {
 
             public int PhanHe_Id { get; set; }
-           
+
             [DisplayName("Tên Phân hệ")]
-            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
-            [StringLength(200,ErrorMessage="\"{0}\" không được nhập quá 200 ký tự.")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [StringLength(200, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string TenPhanHe { get; set; }
 
             public virtual ICollection<TK_ThongKe> TK_ThongKe { get; set; }
