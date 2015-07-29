@@ -1,17 +1,14 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                            {
+                                                controlIndex = 1,
+                                                controlName = "BieuMauGridView",
+                                                Add = true,
+                                                Edit = true,
+                                                Delete = true,
+                                                Save = true,
+                                                Reload = true,
+                                                Print = true,
+                                                CondictionToAutoSave = "$('#BieuMauGridView_DXEditor0_I').val() != ''&& $('#BieuMauGridView_DXEditor1_I').val() != ''",
+                                            })
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+@Html.Action("Load")

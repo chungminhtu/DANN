@@ -1,5 +1,6 @@
 @{
-	var grid = Html.DevExpress().GridView(settings => {
+    var grid = Html.DevExpress().GridView<DANN.Model.DM_DonViTinh>(settings =>
+    {
         settings.Name = "DonViTinhGridView";
         settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "Load" };
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "AddNew" };
@@ -29,7 +30,7 @@
         settings.Settings.ShowFilterRow = false;
 
         settings.KeyboardSupport = true;
-
+        settings.Width = Unit.Pixel(400);
 
         /*Events*/
         //settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
@@ -39,17 +40,28 @@
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = DonViTinhGridView ; }";
 
- 
+
         /*Fields*/
         settings.KeyFieldName = "DonViTinh_Id";
-         
-		settings.SettingsBehavior.AllowSelectByRowClick = true;
 
-				settings.Columns.Add("TenDonViTinh");
-				settings.Columns.Add("LoaiDonViTinh");
-				settings.Columns.Add("ValueFormat");
-			});
-		if (ViewData["EditError"] != null){
+        settings.Columns.Add(c => c.TenDonViTinh,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(50);
+                            });
+        settings.Columns.Add(c => c.LoaiDonViTinh,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(30);
+                            });
+        settings.Columns.Add(c => c.ValueFormat,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(20);
+                            });
+    });
+    if (ViewData["EditError"] != null)
+    {
         grid.SetEditErrorText((string)ViewData["EditError"]);
     }
 }

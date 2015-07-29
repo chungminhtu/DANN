@@ -1,12 +1,12 @@
 @{
-    var grid = Html.DevExpress().GridView<DANN.Model.DM_KyBaoCao>(settings =>
+    var grid = Html.DevExpress().GridView<DANN.Model.BM_BieuMau>(settings =>
     {
-        settings.Name = "KyBaoCaoGridView";
-        settings.CallbackRouteValues = new { Controller = "DMKyBaoCao", Action = "Load" };
+        settings.Name = "BieuMauGridView";
+        settings.CallbackRouteValues = new { Controller = "BMBieuMau", Action = "Load" };
 
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMKyBaoCao", Action = "AddNew" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMKyBaoCao", Action = "Update" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMKyBaoCao", Action = "Delete" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BMBieuMau", Action = "AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BMBieuMau", Action = "Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BMBieuMau", Action = "Delete" };
 
         /*Settings*/
         settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
@@ -37,26 +37,15 @@
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
-        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = KyBaoCaoGridView ; }";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = BieuMauGridView ; }";
  
         /*Fields*/
-        settings.KeyFieldName = "KyBaoCao_Id";
-
-        settings.Columns.Add(c=>c.TenKyBaoCao,
-                            column =>
-                            {
-                                column.Width = Unit.Percentage(30);
-                            });
-        settings.Columns.Add(c=>c.LoaiBaoCao,
-                            column =>
-                            {
-                                column.Width = Unit.Percentage(30);
-                            });
-        settings.Columns.Add(c=>c.NguonBaoCao,
-                            column =>
-                            { 
-                                column.Width = Unit.Percentage(30);
-                            });
+        settings.KeyFieldName = "BieuMau_Id";
+        settings.Columns.Add(c => c.TenBieuMau,
+                           column =>
+                           {
+                               column.Width = Unit.Percentage(100);
+                           });
     });
     if (ViewData["EditError"] != null)
     {

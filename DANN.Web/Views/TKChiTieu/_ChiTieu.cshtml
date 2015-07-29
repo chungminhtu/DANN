@@ -1,5 +1,5 @@
 @{
-    var treeList = Html.DevExpress().TreeList(settings =>
+    var treeList = Html.DevExpress().TreeList<DANN.Model.TK_ChiTieu>(settings =>
     {
         settings.Name = "ChiTieuTreeList";
         settings.CallbackRouteValues = new { Controller = "TKChiTieu", Action = "Load" };
@@ -46,31 +46,21 @@
         /*Fields*/
         settings.KeyFieldName = "ChiTieu_Id";
         settings.ParentFieldName = "ChiTieu_ParentId";
+ 
 
-        //settings.Columns.Add(
-        //  column =>
-        //  {
-        //      column.FieldName = "ChiTieu_Id";
-        //      column.Visible = false;
-        //  });
-
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "TenChiTieu";
-        });
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "PhanHe_Id";
-        });
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "DonViTinh_Id";
-        });
-
-
+        settings.Columns.Add(c=>c.TenChiTieu,
+                            column =>
+                            { 
+                                column.Width = Unit.Percentage(70);
+                                column.AllowSort = DefaultBoolean.False;
+                            }); 
+        
+        settings.Columns.Add(c=>c.DonViTinh_Id,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(30);
+                                column.AllowSort = DefaultBoolean.False;
+                            });  
     });
     if (ViewData["EditError"] != null)
     {
