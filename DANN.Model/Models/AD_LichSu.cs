@@ -13,7 +13,7 @@ namespace DANN.Model
             public int LichSu_Id { get; set; }
 
 
-            [DisplayName("Tên người truy cập")]
+            // [DisplayName("Tên người truy cập")]
             public string UserName { get; set; }
 
             [DisplayName("Mã MenuId")]

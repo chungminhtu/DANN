@@ -58,6 +58,8 @@ namespace DANN.Web.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Delete(T item)
         {
+
+
             return CommonAction(_service, "delete", item);
 
         }

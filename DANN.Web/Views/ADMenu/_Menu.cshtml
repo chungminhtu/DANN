@@ -12,6 +12,7 @@
 
 
         /*Settings*/
+        settings.SettingsEditing.Mode = TreeListEditMode.PopupEditForm;
         settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
@@ -48,23 +49,20 @@
           
         settings.Columns.Add(column =>
         {
-            column.FieldName = "MenuText";
-            column.Caption = "Tên Menu";
+            column.FieldName = "MenuText"; 
             column.Width = 300;
             column.AllowSort = DefaultBoolean.False;
         });
         settings.Columns.Add(column =>
         {
-            column.FieldName = "MenuAction";
-            column.Caption = "Đường dẫn";
+            column.FieldName = "MenuAction"; 
             column.AllowSort = DefaultBoolean.False;
         });
 
         settings.Columns.Add(column =>
         {
 
-            column.FieldName = "MenuIcon";
-            column.Caption = "Icon Menu";
+            column.FieldName = "MenuIcon"; 
             column.Width = 100;
             column.ColumnType = MVCxTreeListColumnType.ComboBox;
             column.AllowSort = DefaultBoolean.False;
@@ -79,8 +77,7 @@
                 }).GetHtml();
             });
             var properties = column.PropertiesEdit as ComboBoxProperties;
-
-            //properties.Width = Unit.Pixel(200);
+             
             properties.TextField = "imageName";
             properties.ValueField = "imageURL";
             properties.ImageUrlField = "imageURL";
@@ -94,8 +91,7 @@
 
         settings.Columns.Add(column =>
         {
-            column.FieldName = "MenuSeparator";
-            column.Caption = "Ngăn cách menu";
+            column.FieldName = "MenuSeparator"; 
             column.ColumnType = MVCxTreeListColumnType.CheckBox;
         });
         
@@ -108,10 +104,10 @@
         });
 
 
-        settings.InitNewNode = (s, e) =>
-        {
-            e.NewValues["Menu_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1;
-        };
+        //settings.InitNewNode = (s, e) =>
+        //{
+        //    e.NewValues["Menu_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1;
+        //};
          
     });
     if (ViewData["EditError"] != null)

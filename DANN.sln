@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DANN", "DANN\DANN.csproj", "{8EE00434-2F04-473B-A645-0DA04BFF3700}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DANN.Model", "DANN.Model\DANN.Model.csproj", "{D58FB484-FA36-46BA-A2B4-8B23B89BA449}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DANN.Service", "DANN.Service\DANN.Service.csproj", "{DFFAB407-5349-4091-A652-B4C8FAC25BDD}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8EE00434-2F04-473B-A645-0DA04BFF3700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EE00434-2F04-473B-A645-0DA04BFF3700}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EE00434-2F04-473B-A645-0DA04BFF3700}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EE00434-2F04-473B-A645-0DA04BFF3700}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D58FB484-FA36-46BA-A2B4-8B23B89BA449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D58FB484-FA36-46BA-A2B4-8B23B89BA449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D58FB484-FA36-46BA-A2B4-8B23B89BA449}.Release|Any CPU.ActiveCfg = Release|Any CPU
