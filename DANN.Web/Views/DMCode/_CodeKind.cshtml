@@ -1,12 +1,13 @@
 ﻿@{
-    var grid = Html.DevExpress().GridView<DANN.Model.DM_Code>(settings =>
+    var grid = Html.DevExpress().GridView<DANN.Model.DM_CodeKind>(settings =>
     {
-        settings.Name = "CodeGridView";
-        settings.CallbackRouteValues = new { Controller = "ADCode", Action = "Load1" };
+        settings.Name = "CodeKindGridView";
+        settings.CallbackRouteValues = new { Controller = "DMCode", Action = "Load" };
 
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADCode", Action = "AddNew1" };
-        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADCode", Action = "Update1" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADCode", Action = "Delete1" };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMCode", Action = "AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMCode", Action = "Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMCode", Action = "Delete" };
+
 
 
         //Settings
@@ -32,34 +33,34 @@
         settings.Settings.ShowFilterRow = false;
         settings.KeyboardSupport = true;
 
-
-
+         
         /*Events*/
-        settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
         settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
-        settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave2";
-        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu2";
-        settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = CodeGridView ;}";
+        settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid'; currentControl = CodeKindGridView ; }";
+
 
         settings.InitNewRow = (s, e) =>
         {
-            e.NewValues["CodeValue"] = Convert.ToInt32(ViewBag.MaxCodeValue) + 1;
+            e.NewValues["CodeKind_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1; 
+
         };
 
-        settings.KeyFieldName = "Code_Id";
+        settings.KeyFieldName = "CodeKind_Id";
 
-        settings.Columns.Add(c => c.CodeName,
+        settings.Columns.Add(c => c.CodeKindName,
                             column =>
-                            {
-                                column.Width = Unit.Percentage(30);
+                            { 
+                                column.Width = Unit.Percentage(80);
                             });
-
-        settings.Columns.Add(c => c.CodeValue,
+        settings.Columns.Add(c => c.CodeKind_Id,
                             column =>
-                            {
-                                column.Width = Unit.Percentage(20);
-                            });  
+                            { 
+                                column.Width = Unit.Percentage(20); 
+                            }); 
+       
     });
     if (ViewData["EditError"] != null)
     {

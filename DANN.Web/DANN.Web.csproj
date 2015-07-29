@@ -1380,9 +1380,9 @@
     <Content Include="Views\ADLichSu\Index.cshtml" />
     <Content Include="Views\ADLichSu\_LichSu.cshtml" />
     <Content Include="Views\THSoLieuDaNhap\Index.cshtml" />
-    <Content Include="Views\ADCode\Index.cshtml" />
-    <Content Include="Views\ADCode\_CodeKind.cshtml" />
-    <Content Include="Views\ADCode\_Code.cshtml" />
+    <Content Include="Views\DMCode\Index.cshtml" />
+    <Content Include="Views\DMCode\_CodeKind.cshtml" />
+    <Content Include="Views\DMCode\_Code.cshtml" />
     <Content Include="Views\Shared\Common\_GridViewCommandPanel.cshtml" />
     <Content Include="Views\Shared\Common\_FunctionTemplate.cshtml" />
     <Content Include="Views\BMBieuMau\Index.cshtml" />
@@ -1399,7 +1399,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ADCodeController.cs" />
+    <Compile Include="Controllers\DMCodeController.cs" />
     <Compile Include="Controllers\BMBieuMauController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\DMDiaPhuongController.cs" />

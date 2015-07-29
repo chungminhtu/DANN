@@ -7,8 +7,12 @@ using DANN.Model;
 
 namespace DANN.Service
 {
+    public interface IDM_CodeService
+    {
 
-    public class DM_CodeService : EntityService<DM_Code>
+    }
+
+    public class DM_CodeService : EntityService<DM_Code>, IDM_CodeService
     {
         public DM_CodeService(IContext context)
             : base(context)

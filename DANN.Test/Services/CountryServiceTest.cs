@@ -82,29 +82,31 @@ namespace DANN.Test.Services
             int Id = 1;
             DM_CodeKind codeKind = new DM_CodeKind() { CodeKindName = "UK" };
 
-            _mockSet.Setup(m => m.Add(codeKind)).Returns((DM_CodeKind e) =>
-            {
-                e.CodeKind_Id = Id;
-                return e;
-            });
+            //_mockSet.Setup(m => m.Add(codeKind)).Returns((DM_CodeKind e) =>
+            //{
+            //    e.CodeKind_Id = Id;
+            //    return e;
+            //});
 
 
             //Act
             _service.Create(codeKind);
 
             //Assert
-            Assert.AreEqual(Id, codeKind.CodeKind_Id);
-            _mockContext.Verify(m => m.SaveChanges(), Times.Once());
+            Assert.AreEqual(_service.MaxId() + 1, codeKind.CodeKind_Id);
+            // _mockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
 
         [TestMethod]
         public void Can_Delete_DM_CodeKind()
         {
+            _service = new DM_CodeKindService(_mockContext.Object);
             //Arrange
             _service.Delete(new DM_CodeKind() { CodeKind_Id = 1, CodeKindName = "UK" });
 
             //Assert
-            Assert.AreEqual(null, _service.GetById(1));
+            Assert.IsNull(_service.GetById(1));
+            _mockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
     }
 }

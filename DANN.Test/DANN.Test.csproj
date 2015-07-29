@@ -103,6 +103,10 @@
       <Project>{dffab407-5349-4091-a652-b4c8fac25bdd}</Project>
       <Name>DANN.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DANN.Web\DANN.Web.csproj">
+      <Project>{37b5414c-a1ba-4e9c-b48b-046f8f212dfc}</Project>
+      <Name>DANN.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

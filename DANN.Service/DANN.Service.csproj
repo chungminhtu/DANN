@@ -50,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CommonMessages.cs" />
     <Compile Include="Common\CommonFunctions.cs" />
+    <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\EntityService.cs">
       <SubType>Code</SubType>
     </Compile>

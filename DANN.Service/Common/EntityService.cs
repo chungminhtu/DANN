@@ -34,7 +34,7 @@ namespace DANN.Service
             {
                 throw new ArgumentNullException("entity");
             }
-            TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
+            CommonFunctions.TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
             _dbset.Add(entity);
             _context.SaveChanges();
         }
@@ -45,8 +45,8 @@ namespace DANN.Service
             {
                 throw new ArgumentNullException("entity");
             }
-            TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
-            TrySetProperty(entity, typeof(T).GetProperties()[1].Name, ParentID);
+            CommonFunctions.TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
+            CommonFunctions.TrySetProperty(entity, typeof(T).GetProperties()[1].Name, ParentID);
             _dbset.Add(entity);
             _context.SaveChanges();
         }
@@ -62,7 +62,7 @@ namespace DANN.Service
         public virtual void UpdateWithParentID(T entity, int ParentID)
         {
             if (entity == null) throw new ArgumentNullException("entity");
-            TrySetProperty(entity, typeof(T).GetProperties()[1].Name, ParentID);
+            CommonFunctions.TrySetProperty(entity, typeof(T).GetProperties()[1].Name, ParentID);
             _context.Entry(entity).State = EntityState.Modified;
             _context.SaveChanges();
         }
@@ -81,7 +81,7 @@ namespace DANN.Service
             if (cEntity != null)
             {
                 int? cP = GetParentIdGeneric(entity);
-                TrySetProperty(cEntity, typeof(T).GetProperties()[1].Name, cP);
+                CommonFunctions.TrySetProperty(cEntity, typeof(T).GetProperties()[1].Name, cP);
             }
             _context.SaveChanges();
         }
@@ -148,13 +148,6 @@ namespace DANN.Service
 
         #region Support Functions
 
-        //Hàm gán giá trị cho thuộc tính generic của 1 object generic
-        private void TrySetProperty(object obj, string property, object value)
-        {
-            var prop = obj.GetType().GetProperty(property, BindingFlags.Public | BindingFlags.Instance);
-            if (prop != null && prop.CanWrite)
-                prop.SetValue(obj, value, null);
-        }
 
         //Hàm lấy giá trị Id của 1 entity Generic
         private int GetIdGeneric(T entity)
