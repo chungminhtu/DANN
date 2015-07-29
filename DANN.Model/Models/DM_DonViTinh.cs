@@ -14,12 +14,12 @@ namespace DANN.Model
             public int DonViTinh_Id { get; set; }
             
             [DisplayName("Tên Đơn Vị Tính")]
-            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(100,ErrorMessage="\"{0}\" không được vượt quá 100 ký tự.")]
             public string TenDonViTinh { get; set; }
 
             [DisplayName("Loại Đơn Vị Tính")]
-            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(20,ErrorMessage="\"{0}\" không được nhập quá 20 ký tự.")]
             public string LoaiDonViTinh { get; set; }
            

@@ -14,17 +14,17 @@ namespace DANN.Model
             public int KyBaoCao_Id { get; set; }
 
             [DisplayName("Tên kỳ báo cáo")]           
-            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
             [StringLength(100, ErrorMessage= "\"{0}\" dài quá 100 ký tự.")]
             public string TenKyBaoCao { get; set; }
            
             [DisplayName("Loại Kỳ báo cáo")]
-            [Required(ErrorMessage="Bạn chưa nhập\" {0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(50,ErrorMessage="\"{0}\" không được nhập quá 50 ký tự.")]
             public string LoaiBaoCao { get; set; }
            
             [DisplayName("Nguồn báo cáo")]
-            [Required(ErrorMessage="Bạn chưa nhập\" {0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(50,ErrorMessage="\"{0}\" không được nhập quá 50 ký tự.")]
             public string NguonBaoCao { get; set; }
 

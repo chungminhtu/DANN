@@ -19,12 +19,12 @@ namespace DANN.Model
             public string MenuText { get; set; }
            
             [DisplayName("Tên URL")]
-            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(100,ErrorMessage="\"{0}\" không được nhập quá 100 ký tự!")]
             public string MenuAction { get; set; }
 
             [DisplayName("Biểu tượng Menu")]
-            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(50,ErrorMessage="\"{0}\" không được nhập quá 50 ký tự!")]
             public string MenuIcon { get; set; }
            

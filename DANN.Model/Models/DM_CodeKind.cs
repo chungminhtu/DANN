@@ -11,12 +11,12 @@ namespace DANN.Model
         public class DM_CodeKindMetadata
         {
             [DisplayName("Mã bảng")]
-            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
             [Range(0, int.MaxValue, ErrorMessage="Bạn chỉ được nhập số.")]
             public int CodeKind_Id { get; set; }
            
             [DisplayName("Tên bảng")]
-            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
             [StringLength(100,ErrorMessage="\"{0}\" không được nhập quá 100 ký tự.")]
             public string CodeKindName { get; set; }
         }

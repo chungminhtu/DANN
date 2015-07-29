@@ -69,6 +69,8 @@
     <Compile Include="BM_Dong.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Common\CommonConstants.cs" />
+    <Compile Include="Common\CommonMessages.cs" />
     <Compile Include="Common\DANNContext.cs">
       <SubType>Code</SubType>
     </Compile>

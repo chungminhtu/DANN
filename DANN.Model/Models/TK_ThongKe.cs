@@ -22,7 +22,7 @@ namespace DANN.Model
             public int DiaPhuong_Id { get; set; }
 
             [DisplayName("Giá trị Thống kê")]
-            [Required(ErrorMessage="Bạn chưa nhập\" {0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(50,ErrorMessage="\"{0}\" không được vượt quá 50 ký tự.")]
             public string GiaTriThongKe { get; set; }
 

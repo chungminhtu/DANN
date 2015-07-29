@@ -13,7 +13,7 @@ namespace DANN.Model
             public int BieuMau_Id { get; set; }
 
             [DisplayName("Tên biểu mẫu")]
-            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
             [StringLength(100,ErrorMessage="\"{0}\" không được nhập quá 100 ký tự.")]
             public string TenBieuMau { get; set; }
         }

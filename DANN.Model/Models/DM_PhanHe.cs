@@ -14,7 +14,7 @@ namespace DANN.Model
             public int PhanHe_Id { get; set; }
            
             [DisplayName("Tên Phân hệ")]
-            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
             [StringLength(200,ErrorMessage="\"{0}\" không được nhập quá 200 ký tự.")]
             public string TenPhanHe { get; set; }
 

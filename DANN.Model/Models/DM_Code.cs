@@ -21,13 +21,13 @@ namespace DANN.Model
             public int CodeKind_Id { get; set; }
 
             [DisplayName("Mã giá trị")]
-            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
-            [Range(0,int.MaxValue,ErrorMessage="Bạn chỉ được nhập số.")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            [Range(1,100,ErrorMessage="{0} chỉ được nhập số từ {1} đến {2}.")]
             public int CodeValue { get; set; }
 
 
             [DisplayName("Tên giá trị")]
-            [Required(ErrorMessage = "Bạn chưa nhập \"{0}\"")]
+            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
             [StringLength(100,ErrorMessage="\"Tên giá trị\" không được nhập quá 100 ký tự.")]
             public string CodeName { get; set; }
 

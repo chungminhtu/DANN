@@ -14,8 +14,8 @@ namespace DANN.Model
             public Nullable<int> DoiTuong_ParentId { get; set; }
            
             [DisplayName("Tên Đối tượng")]
-            [Required(ErrorMessage="Bạn chưa nhập \"{0}\"")]
-            [StringLength(200,ErrorMessage="\"{0}\" không được nhập quá 200 ký tự.")]
+            [Required(ErrorMessage=DANN.Service.CommonMessages.Required)]
+            [StringLength(200, ErrorMessage="\"{0}\" không được nhập quá {200} ký tự.")]
             public string TenDoiTuong { get; set; }
             public Nullable<int> Nhom_Id { get; set; }
 
