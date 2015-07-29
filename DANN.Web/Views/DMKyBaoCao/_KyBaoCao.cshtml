@@ -1,5 +1,5 @@
 @{
-    var grid = Html.DevExpress().GridView(settings =>
+    var grid = Html.DevExpress().GridView<DANN.Model.DM_KyBaoCao>(settings =>
     {
         settings.Name = "KyBaoCaoGridView";
         settings.CallbackRouteValues = new { Controller = "DMKyBaoCao", Action = "Load" };
@@ -42,9 +42,21 @@
         /*Fields*/
         settings.KeyFieldName = "KyBaoCao_Id";
 
-        settings.Columns.Add("TenKyBaoCao");
-        settings.Columns.Add("LoaiBaoCao");
-        settings.Columns.Add("NguonBaoCao");
+        settings.Columns.Add(c=>c.TenKyBaoCao,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(30);
+                            });
+        settings.Columns.Add(c=>c.LoaiBaoCao,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(30);
+                            });
+        settings.Columns.Add(c=>c.NguonBaoCao,
+                            column =>
+                            { 
+                                column.Width = Unit.Percentage(30);
+                            });
     });
     if (ViewData["EditError"] != null)
     {

@@ -1,5 +1,5 @@
 ﻿@{
-    var treeList = Html.DevExpress().TreeList(settings =>
+    var treeList = Html.DevExpress().TreeList<DANN.Model.AD_Menu>(settings =>
     {
         settings.Name = "MenuTreeList";
 
@@ -13,6 +13,7 @@
 
         /*Settings*/
         settings.SettingsEditing.Mode = TreeListEditMode.PopupEditForm;
+        
         settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
@@ -47,61 +48,60 @@
         settings.ParentFieldName = "Menu_ParentId";
 
           
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "MenuText"; 
-            column.Width = 300;
-            column.AllowSort = DefaultBoolean.False;
-        });
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "MenuAction"; 
-            column.AllowSort = DefaultBoolean.False;
-        });
+        settings.Columns.Add(c=>c.MenuText,
+                            column =>
+                            { 
+                                column.Width = 300;
+                                column.AllowSort = DefaultBoolean.False;
+                            });
+        settings.Columns.Add(c => c.MenuAction,
+                            column =>
+                            { 
+                                column.AllowSort = DefaultBoolean.False;
+                            });
 
-        settings.Columns.Add(column =>
-        {
-
-            column.FieldName = "MenuIcon"; 
-            column.Width = 100;
-            column.ColumnType = MVCxTreeListColumnType.ComboBox;
-            column.AllowSort = DefaultBoolean.False;
-            column.SetDataCellTemplateContent(c =>
-            {
-                Html.DevExpress().Image(image =>
-                {
-                    image.Name = "Image" + c.NodeKey;
-                    image.ImageUrl = c.Value + "";
-                    image.Width = 20;
-                    image.Height = 20;
-                }).GetHtml();
-            });
-            var properties = column.PropertiesEdit as ComboBoxProperties;
+        settings.Columns.Add(c => c.MenuIcon,
+                            column =>
+                            { 
+                                column.Width = 100;
+                                column.ColumnType = MVCxTreeListColumnType.ComboBox;
+                                column.AllowSort = DefaultBoolean.False;
+                                column.SetDataCellTemplateContent(c =>
+                                {
+                                    Html.DevExpress().Image(image =>
+                                    {
+                                        image.Name = "Image" + c.NodeKey;
+                                        image.ImageUrl = c.Value + "";
+                                        image.Width = 20;
+                                        image.Height = 20;
+                                    }).GetHtml();
+                                });
+                                var properties = column.PropertiesEdit as ComboBoxProperties;
              
-            properties.TextField = "imageName";
-            properties.ValueField = "imageURL";
-            properties.ImageUrlField = "imageURL";
+                                properties.TextField = "imageName";
+                                properties.ValueField = "imageURL";
+                                properties.ImageUrlField = "imageURL";
 
-            properties.DataSource = ViewBag.ListImages;
-            properties.ShowImageInEditBox = true;
-            properties.DropDownHeight = Unit.Pixel(400);
-            properties.Height = Unit.Pixel(16);
-            properties.ItemImage.Height = Unit.Pixel(16);
-        });
+                                properties.DataSource = ViewBag.ListImages;
+                                properties.ShowImageInEditBox = true;
+                                properties.DropDownHeight = Unit.Pixel(400);
+                                properties.Height = Unit.Pixel(16);
+                                properties.ItemImage.Height = Unit.Pixel(16);
+                            });
 
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "MenuSeparator"; 
-            column.ColumnType = MVCxTreeListColumnType.CheckBox;
-        });
-        
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "MenuSort";
-            //column.Visible = false;
-            column.SortIndex = 0;
-            column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
-        });
+        settings.Columns.Add(c => c.MenuSeparator,
+                            column =>
+                            { 
+                                column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                            });
+
+        settings.Columns.Add(c => c.MenuSort,
+                            column =>
+                            { 
+                                //column.Visible = false;
+                                column.SortIndex = 0;
+                                column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+                            });
 
 
         //settings.InitNewNode = (s, e) =>

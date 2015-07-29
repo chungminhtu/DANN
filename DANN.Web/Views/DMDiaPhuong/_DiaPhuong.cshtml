@@ -1,5 +1,5 @@
 ﻿@{
-    var treeList = Html.DevExpress().TreeList(settings =>
+    var treeList = Html.DevExpress().TreeList<DANN.Model.DM_DiaPhuong>(settings =>
     {
         settings.Name = "DiaPhuongTreeList";
         settings.CallbackRouteValues = new { Controller = "DMDiaPhuong", Action = "Load" };
@@ -43,57 +43,46 @@
         /*Fields*/
         settings.KeyFieldName = "DiaPhuong_Id";
         settings.ParentFieldName = "DiaPhuong_ParentId";
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "TenDiaPhuong";
-            column.Caption = "Tên địa phương";
-            column.Width = Unit.Percentage(20);
-        });
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "IDBanDo";
-            column.Caption = "Mã bản đồ";
-            column.Width = Unit.Percentage(40);
-        });
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "Loai";
-            column.Caption = "Phân loại";
-            column.Width = Unit.Percentage(20);
-            column.ColumnType = MVCxTreeListColumnType.ComboBox;
+        settings.Columns.Add(c => c.TenDiaPhuong,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(20);
+                            });
+        settings.Columns.Add(c => c.IDBanDo,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(40);
+                            });
+        settings.Columns.Add(c => c.Loai,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(20);
+                                column.ColumnType = MVCxTreeListColumnType.ComboBox;
 
-            var properties = column.PropertiesEdit as ComboBoxProperties;
-            properties.Items.Add("Nước", "N");
-            properties.Items.Add("Vùng, Khu vực", "V");
-            properties.Items.Add("Tỉnh, Thành phố", "P");
-            properties.Items.Add("Quận, Huyện", "D");
-            properties.Items.Add("Xã, Phường, Thị Trấn", "W");
-        });
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "Longitude";
-            column.Caption = "Kinh độ";
-            column.Width = Unit.Percentage(10);
-        });
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "Latitude";
-            column.Caption = "Vĩ độ";
-            column.Width = Unit.Percentage(10);
-        });
-        settings.Columns.Add(
-        column =>
-        {
-            column.FieldName = "TelCode";
-            column.SortIndex = 0;
-            column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
-            column.Width = Unit.Percentage(10);
-        }); 
+                                var properties = column.PropertiesEdit as ComboBoxProperties;
+                                properties.Items.Add("Nước", "N");
+                                properties.Items.Add("Vùng, Khu vực", "V");
+                                properties.Items.Add("Tỉnh, Thành phố", "P");
+                                properties.Items.Add("Quận, Huyện", "D");
+                                properties.Items.Add("Xã, Phường, Thị Trấn", "W");
+                            });
+        settings.Columns.Add(c => c.Longitude,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(10);
+                            });
+        settings.Columns.Add(c => c.Latitude,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(10);
+                            });
+        settings.Columns.Add(c => c.TelCode,
+                            column =>
+                            {
+                                column.SortIndex = 0;
+                                column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+                                column.Width = Unit.Percentage(10);
+                            });
     });
     if (ViewData["EditError"] != null)
     {

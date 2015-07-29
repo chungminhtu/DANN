@@ -1,5 +1,5 @@
 ﻿@{
-    var grid = Html.DevExpress().GridView(settings =>
+    var grid = Html.DevExpress().GridView<DANN.Model.DM_CodeKind>(settings =>
     {
         settings.Name = "CodeKindGridView";
         settings.CallbackRouteValues = new { Controller = "ADCode", Action = "Load" };
@@ -50,16 +50,16 @@
 
         settings.KeyFieldName = "CodeKind_Id";
 
-        settings.Columns.Add(column =>
-           {
-               column.FieldName = "CodeKindName";
-               column.Width = Unit.Percentage(80);
-           }); 
-        settings.Columns.Add(column =>
-        {
-            column.FieldName = "CodeKind_Id";
-            column.Width = Unit.Percentage(20); 
-        }); 
+        settings.Columns.Add(c => c.CodeKindName,
+                            column =>
+                            { 
+                                column.Width = Unit.Percentage(80);
+                            });
+        settings.Columns.Add(c => c.CodeKind_Id,
+                            column =>
+                            { 
+                                column.Width = Unit.Percentage(20); 
+                            }); 
        
     });
     if (ViewData["EditError"] != null)

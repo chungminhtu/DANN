@@ -1,5 +1,5 @@
 @{
-    var grid = Html.DevExpress().GridView(settings =>
+    var grid = Html.DevExpress().GridView<DANN.Model.AD_LichSu>(settings =>
     {
         settings.Name = "LichSuGridView";
         settings.CallbackRouteValues = new { Controller = "ADLichSu", Action = "Load" };
@@ -41,14 +41,30 @@
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = LichSuGridView ; }";
 
- 
-        /*Fields*/
-        settings.KeyFieldName = "LichSu_Id"; 
 
-        settings.Columns.Add("UserName");
-        settings.Columns.Add("Menu_Id");
-        settings.Columns.Add("ActionName");
-        settings.Columns.Add("Variables");
+        /*Fields*/
+        settings.KeyFieldName = "LichSu_Id";
+
+        settings.Columns.Add(c => c.UserName,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(20);
+                            });
+        settings.Columns.Add(c => c.Menu_Id,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(20);
+                            });
+        settings.Columns.Add(c => c.ActionName,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(30);
+                            });
+        settings.Columns.Add(c => c.Variables,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(20);
+                            });
     });
     if (ViewData["EditError"] != null)
     {

@@ -1,5 +1,5 @@
 @{
-    var grid = Html.DevExpress().GridView(settings =>
+    var grid = Html.DevExpress().GridView<DANN.Model.DM_PhanHe>(settings =>
     {
         settings.Name = "PhanHeGridView";
         settings.CallbackRouteValues = new { Controller = "DMPhanHe", Action = "Load" };
@@ -39,16 +39,15 @@
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = PhanHeGridView ; }";
-
-        settings.InitNewRow = (s, e) =>
-        {
-            e.NewValues["PhanHe_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1;
-        };
-        
+   
         /*Fields*/
         settings.KeyFieldName = "PhanHe_Id";
 
-        settings.Columns.Add("TenPhanHe");
+        settings.Columns.Add(c => c.TenPhanHe,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(100);
+                            }); 
     });
     if (ViewData["EditError"] != null)
     {
