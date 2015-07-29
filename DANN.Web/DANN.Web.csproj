@@ -1370,7 +1370,6 @@
     <Content Include="Views\DMDiaPhuong\Index.cshtml" />
     <Content Include="Views\TKDoiTuong\Index.cshtml" />
     <Content Include="Views\DMPhanHe\Index.cshtml" />
-    <Content Include="Views\BMBieuMau\Index.cshtml" />
     <Content Include="Views\DMDiaPhuong\_DiaPhuong.cshtml" />
     <Content Include="Views\DMDonViTinh\_DonViTinh.cshtml" />
     <Content Include="Views\DMKyBaoCao\_KyBaoCao.cshtml" />
@@ -1386,6 +1385,8 @@
     <Content Include="Views\ADCode\_Code.cshtml" />
     <Content Include="Views\Shared\Common\_GridViewCommandPanel.cshtml" />
     <Content Include="Views\Shared\Common\_FunctionTemplate.cshtml" />
+    <Content Include="Views\BMBieuMau\Index.cshtml" />
+    <Content Include="Views\BMBieuMau\_BieuMau.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

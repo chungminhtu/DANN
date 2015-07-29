@@ -1,0 +1,55 @@
+@{
+    var grid = Html.DevExpress().GridView<DANN.Model.BM_BieuMau>(settings =>
+    {
+        settings.Name = "BieuMauGridView";
+        settings.CallbackRouteValues = new { Controller = "BMBieuMau", Action = "Load" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "BMBieuMau", Action = "AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "BMBieuMau", Action = "Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "BMBieuMau", Action = "Delete" };
+
+        /*Settings*/
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        settings.SettingsPager.PageSize = 25;
+
+        settings.SettingsBehavior.AllowSelectByRowClick = false;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.SettingsSearchPanel.Visible = false;
+        settings.Settings.ShowTitlePanel = false;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+
+        settings.KeyboardSupport = true;
+
+
+        /*Events*/
+        //settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
+        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
+        settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = BieuMauGridView ; }";
+ 
+        /*Fields*/
+        settings.KeyFieldName = "BieuMau_Id";
+        settings.Columns.Add(c => c.TenBieuMau,
+                           column =>
+                           {
+                               column.Width = Unit.Percentage(100);
+                           });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
