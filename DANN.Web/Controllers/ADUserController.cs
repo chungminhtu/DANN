@@ -27,35 +27,35 @@ namespace DANN.Web.Controllers
         [ValidateInput(false)]
         public ActionResult LoadPhanQuyen()
         {
-            string selectedMenuIDs = Request.Params["selectedIDs"] + "";
             string UserID = Request.Params["UserID"] + "";
-            if (selectedMenuIDs != "" && UserID != "")
-            {
-                bool tatCaQuyen = Convert.ToBoolean(Request.Params["tatCaQuyen"]);
-                bool quyenXem = Convert.ToBoolean(Request.Params["quyenXem"]);
-                bool quyenThem = Convert.ToBoolean(Request.Params["quyenThem"]);
-                bool quyenSua = Convert.ToBoolean(Request.Params["quyenSua"]);
-                bool quyenXoa = Convert.ToBoolean(Request.Params["quyenXoa"]);
-                bool quyenLuu = Convert.ToBoolean(Request.Params["quyenLuu"]);
-                bool quyenIn = Convert.ToBoolean(Request.Params["quyenIn"]);
-                List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
-                foreach (var menuId in ListMenuIDs)
-                {
-                    AD_User_Menu aum = new AD_User_Menu()
-                    {
-                        User_Id = UserID,
-                        Menu_Id = Convert.ToInt32(menuId), 
-                        TatCaQuyen = tatCaQuyen,
-                        QuyenXem = quyenXem,
-                        QuyenThem = quyenThem,
-                        QuyenSua = quyenSua,
-                        QuyenXoa = quyenXoa,
-                        QuyenLuu = quyenLuu,
-                        QuyenIn = quyenIn
-                    };
-                    _serviceUserMenu.InsertOrUpdate2Key(aum);
-                }
-            }
+            //string selectedMenuIDs = Request.Params["selectedIDs"] + "";
+            //if (selectedMenuIDs != "" && UserID != "" && Request.IsAjaxRequest())
+            //{
+            //    bool tatCaQuyen = Convert.ToBoolean(Request.Params["tatCaQuyen"]);
+            //    bool quyenXem = Convert.ToBoolean(Request.Params["quyenXem"]);
+            //    bool quyenThem = Convert.ToBoolean(Request.Params["quyenThem"]);
+            //    bool quyenSua = Convert.ToBoolean(Request.Params["quyenSua"]);
+            //    bool quyenXoa = Convert.ToBoolean(Request.Params["quyenXoa"]);
+            //    bool quyenLuu = Convert.ToBoolean(Request.Params["quyenLuu"]);
+            //    bool quyenIn = Convert.ToBoolean(Request.Params["quyenIn"]);
+            //    List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
+            //    foreach (var menuId in ListMenuIDs)
+            //    {
+            //        AD_User_Menu aum = new AD_User_Menu()
+            //        {
+            //            User_Id = UserID,
+            //            Menu_Id = Convert.ToInt32(menuId), 
+            //            TatCaQuyen = tatCaQuyen,
+            //            QuyenXem = quyenXem,
+            //            QuyenThem = quyenThem,
+            //            QuyenSua = quyenSua,
+            //            QuyenXoa = quyenXoa,
+            //            QuyenLuu = quyenLuu,
+            //            QuyenIn = quyenIn
+            //        };
+            //        _serviceUserMenu.InsertOrUpdate2Key(aum);
+            //    }
+            //}
             List<Quyen> model = new List<Quyen>();
             List<AD_Menu> ListMenus = _serviceMenu.GetAll();
             List<AD_User_Menu> ListUserMenu = _serviceUserMenu.GetListById(UserID);
@@ -70,7 +70,7 @@ namespace DANN.Web.Controllers
                     MenuText = item.MenuText,
                     MenuSort = item.MenuSort,
                     TatCaQuyen = false,
-                    QuyenXem = true,
+                    QuyenXem = false,
                     QuyenThem = false,
                     QuyenSua = false,
                     QuyenXoa = false,
@@ -128,6 +128,43 @@ namespace DANN.Web.Controllers
                 _serviceUserMenu.InsertOrUpdate2Key(um);
             }
             return LoadPhanQuyen();
-        } 
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult UpdatePhanQuyenByListMenuIDs()
+        {
+            string selectedMenuIDs = Request.Params["selectedIDs"] + "";
+            string UserID = Request.Params["UserID"] + "";
+            if (selectedMenuIDs != "" && UserID != "" && Request.IsAjaxRequest())
+            {
+                bool tatCaQuyen = Convert.ToBoolean(Request.Params["tatCaQuyen"]);
+                bool quyenXem = Convert.ToBoolean(Request.Params["quyenXem"]);
+                bool quyenThem = Convert.ToBoolean(Request.Params["quyenThem"]);
+                bool quyenSua = Convert.ToBoolean(Request.Params["quyenSua"]);
+                bool quyenXoa = Convert.ToBoolean(Request.Params["quyenXoa"]);
+                bool quyenLuu = Convert.ToBoolean(Request.Params["quyenLuu"]);
+                bool quyenIn = Convert.ToBoolean(Request.Params["quyenIn"]);
+                List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
+                foreach (var menuId in ListMenuIDs)
+                {
+                    AD_User_Menu aum = new AD_User_Menu()
+                    {
+                        User_Id = UserID,
+                        Menu_Id = Convert.ToInt32(menuId),
+                        TatCaQuyen = tatCaQuyen,
+                        QuyenXem = quyenXem,
+                        QuyenThem = quyenThem,
+                        QuyenSua = quyenSua,
+                        QuyenXoa = quyenXoa,
+                        QuyenLuu = quyenLuu,
+                        QuyenIn = quyenIn
+                    };
+                    _serviceUserMenu.InsertOrUpdate2Key(aum);
+                }
+            }
+            return LoadPhanQuyen();
+        }
+
+
     }
 }

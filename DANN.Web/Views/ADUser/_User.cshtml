@@ -20,7 +20,7 @@
 
         // settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
-        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.SettingsBehavior.AllowFocusedRow = true; 
         //settings.Settings.ShowTitlePanel = true;
         //settings.Settings.ShowGroupPanel = true;
         //settings.Settings.ShowFilterRow = true;
@@ -41,6 +41,7 @@
         settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = UserGridView ;}";
+        settings.ClientSideEvents.Init = "function (s, e) { UserGridView.FocusedRowIndex = -1; }";
 
         //settings.InitNewRow = (s, e) =>
         //{

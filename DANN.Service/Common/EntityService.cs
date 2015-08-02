@@ -151,7 +151,7 @@ namespace DANN.Service
             int result = 0;
             if (lastEntity != null)
             {
-                var query = typeof(T).GetProperties()[2].GetValue(lastEntity);
+                var query = typeof(T).GetProperties()[3].GetValue(lastEntity);
                 int.TryParse(query + "", out result);
             }
             return result;
@@ -189,7 +189,7 @@ namespace DANN.Service
 
         public virtual T GetEntityBy2Key(object Id1, object Id2)
         {
-            return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0 and "+ typeof(T).GetProperties()[1].Name + " = @1", Id1, Id2).FirstOrDefault();
+            return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0 And "+ typeof(T).GetProperties()[1].Name + " = @1", Id1, Id2).FirstOrDefault();
         }
 
         public virtual T SearchFirst(string searchTerm)

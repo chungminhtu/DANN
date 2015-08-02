@@ -4,7 +4,7 @@
     }
 </style>
 <script type="text/javascript">
-   
+
     //Hàm lấy các node đang được check ở tree PhanQuyen
     function PhanQuyenTreeOnSelectionChanged(s, e) {
         PhanQuyenTreeList.GetSelectedNodeValues("Menu_Id", GetSelectedNodesValuesCallback);
@@ -14,46 +14,54 @@
     }
 
     var selectedIDs = "";
-    //Gán thông tin về server
+    //Reload lại tree Phân quyền, truyền các tham số vào hàm CallBack tự động
     function PhanQuyenTreeOnBeginCallback(s, e) {
         e.customArgs["UserID"] = ID;
-        e.customArgs["selectedIDs"] = selectedIDs;
-
-
-        e.customArgs["tatCaQuyen"] = $("#tatCaQuyen").prop("checked");
-        e.customArgs["quyenXem"] = $("#quyenXem").prop("checked");
-        e.customArgs["quyenThem"] = $("#quyenThem").prop("checked");
-        e.customArgs["quyenSua"] = $("#quyenSua").prop("checked");
-        e.customArgs["quyenXoa"] = $("#quyenXoa").prop("checked");
-        e.customArgs["quyenLuu"] = $("#quyenLuu").prop("checked");
-        e.customArgs["quyenIn"] = $("#quyenIn").prop("checked");
-
-        
+        e.customArgs["selectedIDs"] = selectedIDs; 
     }
-    function OnSubmitClick(s, e) { 
+
+
+    //Hàm thực hiện lưu hàng loạt quyền của nhiều menu, và reload lại tree Phân Quyền
+    function OnSubmitClick(s, e) {
         if (ID == null) {
             alert("Bạn chưa chọn người dùng muốn phân quyền.");
             e.processOnServer = false;
             return false;
-        } 
+        }
         var checkboxes = $("#ListPhanQuyenOption input:checkbox");
         var NerverCheck = true;
         for (var i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].checked) {
                 NerverCheck = false;
             }
-        }
-        if (NerverCheck == true) {
-            alert("Bạn chưa chọn quyền muốn gán.");
-            e.processOnServer = false;
-            return false;
-        }
+        } 
         if (selectedIDs == "") {
             alert("Bạn chưa chọn menu cần phân quyền.");
             e.processOnServer = false;
             return false;
         }
-        PhanQuyenTreeList.PerformCallback();
+
+        if (NerverCheck == true) {
+            alert("Nếu chưa chọn quyền thì toàn bộ menu bên dưới sẽ bị loại bỏ toàn bộ quyền!");
+         }
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UpdatePhanQuyenByListMenuIDs")",
+            data: {
+                UserID: ID,
+                selectedIDs: selectedIDs,
+                tatCaQuyen: $("#tatCaQuyen").prop("checked"),
+                quyenXem: $("#quyenXem").prop("checked"),
+                quyenThem: $("#quyenThem").prop("checked"),
+                quyenSua: $("#quyenSua").prop("checked"),
+                quyenXoa: $("#quyenXoa").prop("checked"),
+                quyenLuu: $("#quyenLuu").prop("checked"),
+                quyenIn: $("#quyenIn").prop("checked")
+            },
+            success: function (response) {
+                $("#container").html(response);
+            }
+        }); 
         selectedIDs = "";
         alert("Đã gán quyền thành công!");
     }
@@ -104,7 +112,6 @@
                  myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                  myButton.Images.Image.Url = "~/Content/icon/32/BOPosition2_32x32.png";
                  myButton.ToolTip = "Gán tất cả quyền cho toàn bộ các menu đã được chọn (tick) ở bên dưới";
-
                  myButton.ClientSideEvents.Click = "OnSubmitClick";
                  myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
              }).GetHtml();

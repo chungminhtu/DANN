@@ -4,16 +4,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 namespace DANN.Model
 {
-    public class PhanQuyen
-    {
-       // public List<AD_User> ListUsers { get; set; }
-        public List<AD_User_Menu> ListUserMenu { get; set; }
-        public List<AD_Menu> ListMenus { get; set; }
-
-        public List<Quyen> ListQuyen { get; set; }
-    }
-
-
     public class Quyen
     {
         public string User_Id { get; set; }
@@ -23,19 +13,19 @@ namespace DANN.Model
         [DisplayName("Tên màn hình")]
         public string MenuText { get; set; }
 
-        [DisplayName("Toàn bộ quyền")]
+        [DisplayName("Toàn bộ")]
         public bool? TatCaQuyen { get; set; }
-        [DisplayName("Quyền xem")]
+        [DisplayName("Xem")]
         public bool? QuyenXem { get; set; }
-        [DisplayName("Quyền thêm")]
+        [DisplayName("Thêm")]
         public bool? QuyenThem { get; set; }
-        [DisplayName("Quyền sửa")]
+        [DisplayName("Sửa")]
         public bool? QuyenSua { get; set; }
-        [DisplayName("Quyền xóa")]
+        [DisplayName("Xóa")]
         public bool? QuyenXoa { get; set; }
-        [DisplayName("Quyền lưu")]
+        [DisplayName("Lưu")]
         public bool? QuyenLuu { get; set; }
-        [DisplayName("Quyền In")]
+        [DisplayName("In")]
         public bool? QuyenIn { get; set; }
 
         public int? MenuSort { get; set; }
