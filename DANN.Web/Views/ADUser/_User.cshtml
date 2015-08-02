@@ -1,0 +1,114 @@
+﻿@{
+    var grid = Html.DevExpress().GridView<DANN.Model.AD_User>(settings =>
+    {
+        settings.Name = "UserGridView";
+        settings.CallbackRouteValues = new { Controller = "ADUser", Action = "Load" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADUser", Action = "AddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADUser", Action = "Update" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADUser", Action = "Delete" };
+
+
+        //Settings
+        settings.Width = Unit.Percentage(100);
+        settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        //settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        //settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        //settings.SettingsPager.Visible = true;
+
+        // settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        //settings.Settings.ShowTitlePanel = true;
+        //settings.Settings.ShowGroupPanel = true;
+        //settings.Settings.ShowFilterRow = true;
+        //settings.SettingsSearchPanel.Visible = true;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsBehavior.AutoExpandAllGroups = true;
+
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.KeyboardSupport = true;
+
+
+
+        /*Events*/
+        // settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
+        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
+        settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = UserGridView ;}";
+
+        //settings.InitNewRow = (s, e) =>
+        //{
+        //    e.NewValues["UserValue"] = Convert.ToInt32(ViewBag.MaxUserValue) + 1;
+        //};
+
+        settings.KeyFieldName = "User_Id";
+
+        settings.Columns.Add(c => c.PhongBan,
+                       column =>
+                       {
+                           column.Width = Unit.Percentage(30);
+                           column.GroupIndex = 0;
+                       });
+
+        settings.Columns.Add(c => c.ChucVu,
+                          column =>
+                          {
+                              column.Width = Unit.Percentage(30);
+                          });
+
+
+        settings.Columns.Add(c => c.UserName,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(10);
+                            });
+
+        settings.Columns.Add(c => c.User_Id,
+                             column =>
+                             {
+                                 column.Width = Unit.Pixel(0);
+                                 column.Visible = false;
+                                 column.EditFormSettings.Visible = DefaultBoolean.True;
+                             });
+        settings.Columns.Add(c => c.Password,
+                         column =>
+                         {
+                             column.Width = Unit.Pixel(0);
+                             column.Visible = false;
+                             column.EditFormSettings.Visible = DefaultBoolean.True;
+                         });
+        settings.Columns.Add(c => c.Email,
+                            column =>
+                            {
+                                column.Width = Unit.Pixel(0);
+                                column.Visible = false;
+                                column.EditFormSettings.Visible = DefaultBoolean.True;
+                            });
+        settings.Columns.Add(c => c.DiaChi,
+                            column =>
+                            {
+                                column.Width = Unit.Pixel(0);
+                                column.Visible = false;
+                                column.EditFormSettings.Visible = DefaultBoolean.True;
+                            });
+        settings.Columns.Add(c => c.SoDienThoai,
+                            column =>
+                            {
+                                column.Width = Unit.Pixel(0);
+                                column.Visible = false;
+                                column.EditFormSettings.Visible = DefaultBoolean.True;
+                            });
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

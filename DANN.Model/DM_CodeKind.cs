@@ -14,14 +14,7 @@ namespace DANN.Model
     
     public partial class DM_CodeKind
     {
-        public DM_CodeKind()
-        {
-            this.DM_Code = new HashSet<DM_Code>();
-        }
-    
         public int CodeKind_Id { get; set; }
         public string CodeKindName { get; set; }
-    
-        public virtual ICollection<DM_Code> DM_Code { get; set; }
     }
 }

@@ -1,0 +1,44 @@
+﻿
+<table>
+    <tr>
+        <td >
+            @Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+                                            {
+                                                controlIndex = 1,
+                                                controlName = "UserGridView",
+                                                control2Name = "PhanQuyenTreeList",
+                                                Add = true,
+                                                Edit = true,
+                                                Delete = true,
+                                                Save = true,
+                                                Reload = true,
+                                                Print = true,
+                                                CondictionToAutoSave = "$('#UserGridView_DXEditor0_I').val() != ''&& $('#UserGridView_DXEditor1_I').val() != ''",
+                                            })
+        </td> 
+        <td></td>
+        <td>
+            @Html.Partial("_PhanQuyenCommandPanel")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Action("Load")
+        </td>
+        <td></td>
+        <td>
+        @Html.Action("LoadPhanQuyen")
+        </td>
+    </tr>
+</table> 
+
+
+
+
+
+
+
+ 
+
+
+

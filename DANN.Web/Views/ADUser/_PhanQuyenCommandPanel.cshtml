@@ -1,0 +1,116 @@
+﻿<style>
+    table#ListPhanQuyenOption label {
+        padding-right: 10px;
+    }
+</style>
+<script type="text/javascript">
+   
+    //Hàm lấy các node đang được check ở tree PhanQuyen
+    function PhanQuyenTreeOnSelectionChanged(s, e) {
+        PhanQuyenTreeList.GetSelectedNodeValues("Menu_Id", GetSelectedNodesValuesCallback);
+    }
+    function GetSelectedNodesValuesCallback(values) {
+        selectedIDs = values.join(',');
+    }
+
+    var selectedIDs = "";
+    //Gán thông tin về server
+    function PhanQuyenTreeOnBeginCallback(s, e) {
+        e.customArgs["UserID"] = ID;
+        e.customArgs["selectedIDs"] = selectedIDs;
+
+
+        e.customArgs["tatCaQuyen"] = $("#tatCaQuyen").prop("checked");
+        e.customArgs["quyenXem"] = $("#quyenXem").prop("checked");
+        e.customArgs["quyenThem"] = $("#quyenThem").prop("checked");
+        e.customArgs["quyenSua"] = $("#quyenSua").prop("checked");
+        e.customArgs["quyenXoa"] = $("#quyenXoa").prop("checked");
+        e.customArgs["quyenLuu"] = $("#quyenLuu").prop("checked");
+        e.customArgs["quyenIn"] = $("#quyenIn").prop("checked");
+
+        
+    }
+    function OnSubmitClick(s, e) { 
+        if (ID == null) {
+            alert("Bạn chưa chọn người dùng muốn phân quyền.");
+            e.processOnServer = false;
+            return false;
+        } 
+        var checkboxes = $("#ListPhanQuyenOption input:checkbox");
+        var NerverCheck = true;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                NerverCheck = false;
+            }
+        }
+        if (NerverCheck == true) {
+            alert("Bạn chưa chọn quyền muốn gán.");
+            e.processOnServer = false;
+            return false;
+        }
+        if (selectedIDs == "") {
+            alert("Bạn chưa chọn menu cần phân quyền.");
+            e.processOnServer = false;
+            return false;
+        }
+        PhanQuyenTreeList.PerformCallback();
+        selectedIDs = "";
+        alert("Đã gán quyền thành công!");
+    }
+
+    //Check nút toàn bộ quyền thì check/uncheck toàn bộ các checkbox
+    function checkAll(e) {
+        var checkboxes = $("#ListPhanQuyenOption input:checkbox");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (e.checked) {
+                checkboxes[i].checked = true;
+            }
+            else {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+</script>
+
+@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "PhanQuyenTreeListCommandPanel";
+    settings.RequiredMarkDisplayMode = RequiredMarkMode.None;
+    settings.Width = Unit.Percentage(100);
+    settings.Items.AddGroupItem(group =>
+    {
+        group.Caption = "Chọn quyền truy cập menu để gán cho người dùng";
+        group.GroupBoxDecoration = GroupBoxDecoration.Box;
+        group.Width = Unit.Percentage(100);
+        group.Items.Add(item =>
+        {
+            item.ShowCaption = DefaultBoolean.False;
+            item.SetNestedContent(() =>
+            {
+
+                ViewContext.Writer.Write("<table id='ListPhanQuyenOption'><tr><td >");
+                ViewContext.Writer.Write("<label ><input id=\"tatCaQuyen\" type=\"checkbox\" onchange=\"checkAll(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Toàn bộ quyền</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenXem\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Xem</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenThem\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Thêm</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenSua\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Sửa</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenXoa\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Xóa</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenLuu\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Lưu</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenIn\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền In</label>");
+                Html.DevExpress().Button(
+             myButton =>
+             {
+                 myButton.Name = "btnTaCaQuyen";
+                 myButton.Text = "Gán Quyền";
+                 myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                 myButton.Images.Image.Url = "~/Content/icon/32/BOPosition2_32x32.png";
+                 myButton.ToolTip = "Gán tất cả quyền cho toàn bộ các menu đã được chọn (tick) ở bên dưới";
+
+                 myButton.ClientSideEvents.Click = "OnSubmitClick";
+                 myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+             }).GetHtml();
+                ViewContext.Writer.Write("</td></tr></table>");
+
+            });
+        });
+    });
+}).GetHtml() 

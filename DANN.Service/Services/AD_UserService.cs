@@ -16,7 +16,11 @@ namespace DANN.Service
             _context = context;
             _dbset = _context.Set<AD_User>();
         }
-    }
 
+        public void Create(AD_User_Menu entity)
+        {
+           
 
+        }
+    } 
 }

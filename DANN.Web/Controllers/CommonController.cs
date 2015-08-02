@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,7 +38,12 @@ namespace DANN.Web.Controllers
         public ActionResult Load()
         {
             ViewBag.ListImages = Common.ListAllImage32();
-            ViewBag.MaxId = _service.MaxId();
+
+            PropertyInfo pInfo = typeof(T).GetProperties()[0];
+            if (pInfo.PropertyType == typeof(int))
+            {
+                ViewBag.MaxId = _service.MaxId();
+            } 
             var model = _service.GetAll();
             string viewName = typeof(T).Name.Split('_')[1];
             return PartialView(viewName, model);
@@ -52,8 +58,7 @@ namespace DANN.Web.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Update(T item)
         {
-            return CommonAction(_service, "update", item);
-
+            return CommonAction(_service, "update", item); 
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult Delete(T item)
@@ -105,7 +110,15 @@ namespace DANN.Web.Controllers
                         }
                         if (action == "update")
                         {
-                            s.Update(item);
+                            PropertyInfo pInfo = typeof(T).GetProperties()[0];
+                            if (pInfo.PropertyType == typeof(int))
+                            {
+                                  s.Update(item);
+                            }
+                            else
+                            {
+                                s.Update(item);
+                            }
                         }
                     }
                     catch (Exception e)
@@ -131,7 +144,7 @@ namespace DANN.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Load1()
         {
-            int s = Request.Params["ID"] + "" != "" ? Convert.ToInt32(Request.Params["ID"]) : 0;
+            //int s = Request.Params["ID"] + "" != "" ? Convert.ToInt32(Request.Params["ID"]) : 0;
             int ID = CommonFunctions.TryParseObjectToInt(Request.Params["ID"]);
             var model = _service1.SearchToList("CodeKind_Id = " + ID);
             ViewBag.MaxCodeValue = _service1.MaxCodeValue(ID);
@@ -224,7 +237,6 @@ namespace DANN.Web.Controllers
         public ActionResult Load2()
         {
             ViewBag.ListImages = Common.ListAllImage32();
-            ViewBag.MaxId = _service2.MaxId();
             var model = _service2.GetAll();
             string viewName = typeof(T2).Name.Split('_')[1];
             return PartialView(viewName, model);
@@ -245,6 +257,8 @@ namespace DANN.Web.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Delete2(T2 item)
         {
+
+
             return CommonAction2(_service2, "delete", item);
 
         }
@@ -266,22 +280,11 @@ namespace DANN.Web.Controllers
 
         private ActionResult CommonAction2(IEntityService<T2> s, string action, T2 item)
         {
-            if (ModelState.IsValid)
+            if (action == "delete")
             {
                 try
                 {
-                    switch (action)
-                    {
-                        case "addnew":
-                            s.Create(item);
-                            break;
-                        case "update":
-                            s.Update(item);
-                            break;
-                        case "delete":
-                            s.Delete(item);
-                            break;
-                    }
+                    s.Delete(item);
                 }
                 catch (Exception e)
                 {
@@ -289,7 +292,31 @@ namespace DANN.Web.Controllers
                 }
             }
             else
-                ViewData["EditError"] = "Có lỗi xảy ra";
+            {
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        if (action == "addnew")
+                        {
+                            s.Create(item);
+                        }
+                        if (action == "update")
+                        {
+                            s.Update(item);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        ViewData["EditError"] = e.Message;
+                    }
+                }
+                else
+                    ViewData["EditError"] = (from itemError in ModelState
+                                             where itemError.Value.Errors.Any()
+                                             select itemError.Value.Errors[0].ErrorMessage).FirstOrDefault();
+            }
             var model = _service2.GetAll();
             string viewName = typeof(T2).Name.Split('_')[1];
             return PartialView(viewName, model);

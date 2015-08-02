@@ -69,7 +69,7 @@ namespace DANN.Test.Services
         public void DM_CodeKind_GetByID()
         {
             //Act 
-            DM_CodeKind max = _service.GetById(99100);
+            DM_CodeKind max = _service.GetEntityById(99100);
             //Assert 
             Assert.AreEqual(99100, max.CodeKind_Id);
         }
@@ -105,7 +105,7 @@ namespace DANN.Test.Services
             _service.Delete(new DM_CodeKind() { CodeKind_Id = 1, CodeKindName = "UK" });
 
             //Assert
-            Assert.IsNull(_service.GetById(1));
+            Assert.IsNull(_service.GetEntityById(1));
             _mockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
     }

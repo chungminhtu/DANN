@@ -14,6 +14,11 @@ namespace DANN.Model
     
     public partial class AD_User
     {
+        public AD_User()
+        {
+            this.AD_User_Menu = new HashSet<AD_User_Menu>();
+        }
+    
         public string User_Id { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
@@ -22,5 +27,7 @@ namespace DANN.Model
         public string SoDienThoai { get; set; }
         public string ChucVu { get; set; }
         public string PhongBan { get; set; }
+    
+        public virtual ICollection<AD_User_Menu> AD_User_Menu { get; set; }
     }
 }

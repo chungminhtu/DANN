@@ -129,6 +129,13 @@
         if (dk) { s.UpdateEdit(); }
         else{ s.CancelEdit();}
     }
+      
+
+    //Kích vào node sẽ edit row và lưu trực tiếp
+    function NodeClickToEditAndSave(s, e) {
+        s.UpdateEdit();
+        s.StartEdit(e.nodeKey);
+    }
 
 
     //Hiển thị popup menu ở vị trí phải chuột lên màn hình

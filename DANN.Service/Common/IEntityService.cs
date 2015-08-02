@@ -14,12 +14,18 @@ namespace DANN.Service
         void CreateWithParentID(T entity, int ParentID);
         void Delete(T entity);
         void Update(T entity);
+
+        void InsertOrUpdate(T entity);
+        void InsertOrUpdate2Key(T entity);
         void UpdateWithParentID(T entity, int ParentID);
         void Move(T entity);
 
         int MaxId();
         int MaxCodeValue(int CodeKindID);
-        T GetById(int Id);
+        T GetEntityById(object Id);
+        T GetEntityBy2Key(object Id1, object Id2);
+
+        List<T> GetListById(object Id);
         List<T> GetAll();
         IQueryable<T> GetAllAsQueryable();
         IEnumerable<T> GetAllAsIEnumerable();

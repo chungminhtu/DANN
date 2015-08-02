@@ -22,6 +22,19 @@ namespace DANN.Service
             }
         }
 
+        public static bool ObjectIsInteger(object s)
+        {
+            int i;
+            if (!int.TryParse(s + "", out i))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public static int TryParseId(string s)
         {
             int i;

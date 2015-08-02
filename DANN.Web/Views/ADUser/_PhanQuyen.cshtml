@@ -1,0 +1,118 @@
+﻿@{
+    var treeList = Html.DevExpress().TreeList<DANN.Model.Quyen>(settings =>
+    {
+        settings.Name = "PhanQuyenTreeList";
+
+        /*Data binding*/
+        settings.CallbackRouteValues = new { Controller = "ADUser", Action = "LoadPhanQuyen" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "ADUser", Action = "UpdatePhanQuyen" };
+
+
+        /*Settings*/
+        settings.SettingsEditing.Mode = TreeListEditMode.Inline;
+
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        settings.SettingsPager.PageSize = 50;
+
+        settings.CommandColumn.Visible = false;
+
+        settings.SettingsSelection.Enabled = true;
+        settings.SettingsSelection.AllowSelectAll = true;
+        settings.SettingsSelection.Recursive = true;
+
+        settings.SettingsBehavior.AllowSort = false;
+        settings.SettingsBehavior.AllowDragDrop = false;
+        settings.SettingsBehavior.AllowFocusedNode = true;
+        settings.SettingsBehavior.FocusNodeOnLoad = false;
+        settings.SettingsBehavior.AutoExpandAllNodes = true;
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+
+        settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
+        settings.KeyboardSupport = true;
+
+        /*Events*/
+        settings.ClientSideEvents.BeginCallback = "PhanQuyenTreeOnBeginCallback"; 
+        //settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
+        //settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
+        //settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
+        settings.ClientSideEvents.NodeClick = "function (s, e){  NodeClickToEditAndSave(s,e); }";
+        settings.ClientSideEvents.SelectionChanged = "PhanQuyenTreeOnSelectionChanged";
+
+        /*Fields*/
+        settings.KeyFieldName = "Menu_Id";
+        settings.ParentFieldName = "Menu_ParentId";
+
+
+        settings.Columns.Add(c=>c.MenuText,
+                            column =>
+                            {
+                                column.Width = 300;
+                                column.AllowSort = DefaultBoolean.False;
+                                column.ReadOnly = true;
+                            });
+        settings.Columns.Add(c => c.TatCaQuyen,
+                            column =>
+                            {
+                                column.AllowSort = DefaultBoolean.False;
+                                column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                            });
+        settings.Columns.Add(c => c.QuyenXem,
+                            column =>
+                            {
+                                column.AllowSort = DefaultBoolean.False;
+                                column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                            });
+        settings.Columns.Add(c => c.QuyenThem,
+                             column =>
+                             {
+                                 column.AllowSort = DefaultBoolean.False;
+                                 column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                             });
+        settings.Columns.Add(c => c.QuyenSua,
+                            column =>
+                            {
+                                column.AllowSort = DefaultBoolean.False;
+                                column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                            });
+        settings.Columns.Add(c => c.QuyenXoa,
+                            column =>
+                            {
+                                column.AllowSort = DefaultBoolean.False;
+                                column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                            });
+        settings.Columns.Add(c => c.QuyenLuu,
+                            column =>
+                            {
+                                column.AllowSort = DefaultBoolean.False;
+                                column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                            });
+        settings.Columns.Add(c => c.QuyenIn,
+                            column =>
+                            {
+                                column.AllowSort = DefaultBoolean.False;
+                                column.ColumnType = MVCxTreeListColumnType.CheckBox;
+                            });
+
+        settings.Columns.Add(c => c.MenuSort,
+                            column =>
+                            {
+                                column.Visible = false;
+                                column.SortIndex = 0;
+                                column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+                            });
+
+
+        //settings.InitNewNode = (s, e) =>
+        //{
+        //    e.NewValues["Menu_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1;
+        //};
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        treeList.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@treeList.Bind(Model).GetHtml()

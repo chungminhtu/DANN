@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="User_Id" />
           </Key>
-          <Property Name="User_Id" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="20" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
@@ -45,8 +45,15 @@
             <PropertyRef Name="User_Id" />
             <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="User_Id" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Menu_Id" Type="int" Nullable="false" />
+          <Property Name="TatCaQuyen" Type="bit" />
+          <Property Name="QuyenXem" Type="bit" />
+          <Property Name="QuyenThem" Type="bit" />
+          <Property Name="QuyenSua" Type="bit" />
+          <Property Name="QuyenXoa" Type="bit" />
+          <Property Name="QuyenLuu" Type="bit" />
+          <Property Name="QuyenIn" Type="bit" />
         </EntityType>
         <EntityType Name="BM_BieuMau">
           <Key>
@@ -79,8 +86,8 @@
           </Key>
           <Property Name="Code_Id" Type="int" Nullable="false" />
           <Property Name="CodeKind_Id" Type="int" Nullable="false" />
-          <Property Name="CodeValue" Type="int" Nullable="false" />
           <Property Name="CodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodeValue" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DM_CodeKind">
           <Key>
@@ -171,17 +178,31 @@
           <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
           <Property Name="GiaTriThongKe" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_DM_Code_DM_CodeKind">
-          <End Role="DM_CodeKind" Type="Self.DM_CodeKind" Multiplicity="1">
+        <Association Name="FK_AD_User_Menu_AD_Menu">
+          <End Role="AD_Menu" Type="Self.AD_Menu" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="DM_Code" Type="Self.DM_Code" Multiplicity="*" />
+          <End Role="AD_User_Menu" Type="Self.AD_User_Menu" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DM_CodeKind">
-              <PropertyRef Name="CodeKind_Id" />
+            <Principal Role="AD_Menu">
+              <PropertyRef Name="Menu_Id" />
             </Principal>
-            <Dependent Role="DM_Code">
-              <PropertyRef Name="CodeKind_Id" />
+            <Dependent Role="AD_User_Menu">
+              <PropertyRef Name="Menu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AD_User_Menu_AD_User">
+          <End Role="AD_User" Type="Self.AD_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AD_User_Menu" Type="Self.AD_User_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="AD_User_Menu">
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -273,9 +294,13 @@
           <EntitySet Name="TK_ChiTieu" EntityType="Self.TK_ChiTieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_DoiTuong" EntityType="Self.TK_DoiTuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_ThongKe" EntityType="Self.TK_ThongKe" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_DM_Code_DM_CodeKind" Association="Self.FK_DM_Code_DM_CodeKind">
-            <End Role="DM_CodeKind" EntitySet="DM_CodeKind" />
-            <End Role="DM_Code" EntitySet="DM_Code" />
+          <AssociationSet Name="FK_AD_User_Menu_AD_Menu" Association="Self.FK_AD_User_Menu_AD_Menu">
+            <End Role="AD_Menu" EntitySet="AD_Menu" />
+            <End Role="AD_User_Menu" EntitySet="AD_User_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AD_User_Menu_AD_User" Association="Self.FK_AD_User_Menu_AD_User">
+            <End Role="AD_User" EntitySet="AD_User" />
+            <End Role="AD_User_Menu" EntitySet="AD_User_Menu" />
           </AssociationSet>
           <AssociationSet Name="FK_TK_ChiTieu_DM_DonViTinh" Association="Self.FK_TK_ChiTieu_DM_DonViTinh">
             <End Role="DM_DonViTinh" EntitySet="DM_DonViTinh" />
@@ -320,9 +345,13 @@
           <EntitySet Name="TK_ChiTieu" EntityType="DBDANNModel.TK_ChiTieu" />
           <EntitySet Name="TK_DoiTuong" EntityType="DBDANNModel.TK_DoiTuong" />
           <EntitySet Name="TK_ThongKe" EntityType="DBDANNModel.TK_ThongKe" />
-          <AssociationSet Name="FK_DM_Code_DM_CodeKind" Association="DBDANNModel.FK_DM_Code_DM_CodeKind">
-            <End Role="DM_CodeKind" EntitySet="DM_CodeKind" />
-            <End Role="DM_Code" EntitySet="DM_Code" />
+          <AssociationSet Name="FK_AD_User_Menu_AD_Menu" Association="DBDANNModel.FK_AD_User_Menu_AD_Menu">
+            <End Role="AD_Menu" EntitySet="AD_Menu" />
+            <End Role="AD_User_Menu" EntitySet="AD_User_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AD_User_Menu_AD_User" Association="DBDANNModel.FK_AD_User_Menu_AD_User">
+            <End Role="AD_User" EntitySet="AD_User" />
+            <End Role="AD_User_Menu" EntitySet="AD_User_Menu" />
           </AssociationSet>
           <AssociationSet Name="FK_TK_ChiTieu_DM_DonViTinh" Association="DBDANNModel.FK_TK_ChiTieu_DM_DonViTinh">
             <End Role="DM_DonViTinh" EntitySet="DM_DonViTinh" />
@@ -366,12 +395,13 @@
           <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MenuSort" Type="Int32" />
           <Property Name="MenuSeparator" Type="Boolean" />
+          <NavigationProperty Name="AD_User_Menu" Relationship="DBDANNModel.FK_AD_User_Menu_AD_Menu" FromRole="AD_Menu" ToRole="AD_User_Menu" />
         </EntityType>
         <EntityType Name="AD_User">
           <Key>
             <PropertyRef Name="User_Id" />
           </Key>
-          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -379,14 +409,24 @@
           <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ChucVu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PhongBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AD_User_Menu" Relationship="DBDANNModel.FK_AD_User_Menu_AD_User" FromRole="AD_User" ToRole="AD_User_Menu" />
         </EntityType>
         <EntityType Name="AD_User_Menu">
           <Key>
             <PropertyRef Name="User_Id" />
             <PropertyRef Name="Menu_Id" />
           </Key>
-          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Menu_Id" Type="Int32" Nullable="false" />
+          <Property Name="TatCaQuyen" Type="Boolean" />
+          <Property Name="QuyenXem" Type="Boolean" />
+          <Property Name="QuyenThem" Type="Boolean" />
+          <Property Name="QuyenSua" Type="Boolean" />
+          <Property Name="QuyenXoa" Type="Boolean" />
+          <Property Name="QuyenLuu" Type="Boolean" />
+          <Property Name="QuyenIn" Type="Boolean" />
+          <NavigationProperty Name="AD_Menu" Relationship="DBDANNModel.FK_AD_User_Menu_AD_Menu" FromRole="AD_User_Menu" ToRole="AD_Menu" />
+          <NavigationProperty Name="AD_User" Relationship="DBDANNModel.FK_AD_User_Menu_AD_User" FromRole="AD_User_Menu" ToRole="AD_User" />
         </EntityType>
         <EntityType Name="BM_BieuMau">
           <Key>
@@ -419,9 +459,8 @@
           </Key>
           <Property Name="Code_Id" Type="Int32" Nullable="false" />
           <Property Name="CodeKind_Id" Type="Int32" Nullable="false" />
-          <Property Name="CodeValue" Type="Int32" Nullable="false" />
           <Property Name="CodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DM_CodeKind" Relationship="DBDANNModel.FK_DM_Code_DM_CodeKind" FromRole="DM_Code" ToRole="DM_CodeKind" />
+          <Property Name="CodeValue" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DM_CodeKind">
           <Key>
@@ -429,7 +468,6 @@
           </Key>
           <Property Name="CodeKind_Id" Type="Int32" Nullable="false" />
           <Property Name="CodeKindName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DM_Code" Relationship="DBDANNModel.FK_DM_Code_DM_CodeKind" FromRole="DM_CodeKind" ToRole="DM_Code" />
         </EntityType>
         <EntityType Name="DM_DiaPhuong">
           <Key>
@@ -523,17 +561,31 @@
           <NavigationProperty Name="TK_ChiTieu" Relationship="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu" FromRole="TK_ThongKe" ToRole="TK_ChiTieu" />
           <NavigationProperty Name="TK_DoiTuong" Relationship="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" FromRole="TK_ThongKe" ToRole="TK_DoiTuong" />
         </EntityType>
-        <Association Name="FK_DM_Code_DM_CodeKind">
-          <End Type="DBDANNModel.DM_CodeKind" Role="DM_CodeKind" Multiplicity="1">
+        <Association Name="FK_AD_User_Menu_AD_Menu">
+          <End Type="DBDANNModel.AD_Menu" Role="AD_Menu" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="DBDANNModel.DM_Code" Role="DM_Code" Multiplicity="*" />
+          <End Type="DBDANNModel.AD_User_Menu" Role="AD_User_Menu" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DM_CodeKind">
-              <PropertyRef Name="CodeKind_Id" />
+            <Principal Role="AD_Menu">
+              <PropertyRef Name="Menu_Id" />
             </Principal>
-            <Dependent Role="DM_Code">
-              <PropertyRef Name="CodeKind_Id" />
+            <Dependent Role="AD_User_Menu">
+              <PropertyRef Name="Menu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AD_User_Menu_AD_User">
+          <End Type="DBDANNModel.AD_User" Role="AD_User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBDANNModel.AD_User_Menu" Role="AD_User_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AD_User">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="AD_User_Menu">
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -654,6 +706,13 @@
           <EntitySetMapping Name="AD_User_Menu">
             <EntityTypeMapping TypeName="DBDANNModel.AD_User_Menu">
               <MappingFragment StoreEntitySet="AD_User_Menu">
+                <ScalarProperty Name="QuyenIn" ColumnName="QuyenIn" />
+                <ScalarProperty Name="QuyenLuu" ColumnName="QuyenLuu" />
+                <ScalarProperty Name="QuyenXoa" ColumnName="QuyenXoa" />
+                <ScalarProperty Name="QuyenSua" ColumnName="QuyenSua" />
+                <ScalarProperty Name="QuyenThem" ColumnName="QuyenThem" />
+                <ScalarProperty Name="QuyenXem" ColumnName="QuyenXem" />
+                <ScalarProperty Name="TatCaQuyen" ColumnName="TatCaQuyen" />
                 <ScalarProperty Name="Menu_Id" ColumnName="Menu_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
               </MappingFragment>
@@ -688,8 +747,8 @@
           <EntitySetMapping Name="DM_Code">
             <EntityTypeMapping TypeName="DBDANNModel.DM_Code">
               <MappingFragment StoreEntitySet="DM_Code">
-                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
                 <ScalarProperty Name="CodeValue" ColumnName="CodeValue" />
+                <ScalarProperty Name="CodeName" ColumnName="CodeName" />
                 <ScalarProperty Name="CodeKind_Id" ColumnName="CodeKind_Id" />
                 <ScalarProperty Name="Code_Id" ColumnName="Code_Id" />
               </MappingFragment>

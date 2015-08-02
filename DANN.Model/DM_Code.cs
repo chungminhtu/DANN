@@ -16,9 +16,7 @@ namespace DANN.Model
     {
         public int Code_Id { get; set; }
         public int CodeKind_Id { get; set; }
-        public int CodeValue { get; set; }
         public string CodeName { get; set; }
-    
-        public virtual DM_CodeKind DM_CodeKind { get; set; }
+        public int CodeValue { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DANN.Model;
+﻿using DevExpress.Web.Mvc;
+using DANN.Model;
 using DANN.Service;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace DANN.Web.Controllers
             : base(service, service1, service2)
         {
             _service = service;
-        }
-        }
-   
+        } 
+    }
+
 }

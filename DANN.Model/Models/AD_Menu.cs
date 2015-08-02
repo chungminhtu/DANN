@@ -24,13 +24,11 @@ namespace DANN.Model
             public string MenuAction { get; set; }
 
             [DisplayName("Biểu tượng Menu")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(50, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            //[Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
+            //[StringLength(50, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string MenuIcon { get; set; }
 
             [DisplayName("Sắp xếp Menu")]
-            [Required(ErrorMessage = "Bạn chưa\"{0}\"")]
-            [Range(0, int.MaxValue, ErrorMessage = DANN.Service.CommonMessages.Range)]
             public Nullable<int> MenuSort { get; set; }
 
             [DisplayName("Ngăn cách menu")]

@@ -16,5 +16,15 @@ namespace DANN.Model
     {
         public string User_Id { get; set; }
         public int Menu_Id { get; set; }
+        public Nullable<bool> TatCaQuyen { get; set; }
+        public Nullable<bool> QuyenXem { get; set; }
+        public Nullable<bool> QuyenThem { get; set; }
+        public Nullable<bool> QuyenSua { get; set; }
+        public Nullable<bool> QuyenXoa { get; set; }
+        public Nullable<bool> QuyenLuu { get; set; }
+        public Nullable<bool> QuyenIn { get; set; }
+    
+        public virtual AD_Menu AD_Menu { get; set; }
+        public virtual AD_User AD_User { get; set; }
     }
 }

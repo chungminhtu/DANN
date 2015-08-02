@@ -1,14 +1,16 @@
-﻿@Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
-                                            {
-                                                controlIndex = 1,
-                                                controlName = "LichSuGridView", 
-                                                Add = true,
-                                                Edit = true,
-                                                Delete = true,
-                                                Save = true,
-                                                Reload = true,
-                                                Print = true,
-                                                CondictionToAutoSave = "$('#LichSuGridView_DXEditor0_I').val() != ''&& $('#LichSuGridView_DXEditor1_I').val() != ''",
-                                            })
+﻿
+@Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+{
+    controlIndex = 1,
+    controlName = "LichSuGridView",
+    Add = true,
+    Edit = true,
+    Delete = true,
+    Save = true,
+    Reload = true,
+    Print = true,
+    CondictionToAutoSave = "$('#LichSuGridView_DXEditor0_I').val() != ''&& $('#LichSuGridView_DXEditor1_I').val() != ''",
+})
+
 
 @Html.Action("Load")

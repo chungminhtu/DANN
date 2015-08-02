@@ -9,6 +9,7 @@ using DANN.Model;
 using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Data.Entity.Infrastructure;
 
 namespace DANN.Service
 {
@@ -34,7 +35,11 @@ namespace DANN.Service
             {
                 throw new ArgumentNullException("entity");
             }
-            CommonFunctions.TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
+            PropertyInfo pInfo = typeof(T).GetProperties()[0]; 
+            if (pInfo.PropertyType == typeof(int))
+            {
+                CommonFunctions.TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
+            }
             _dbset.Add(entity);
             _context.SaveChanges();
         }
@@ -59,6 +64,49 @@ namespace DANN.Service
             _context.SaveChanges();
         }
 
+        public virtual void InsertOrUpdate(T entity)
+        {
+            var cEntity = GetEntityById(GetIdGeneric(entity));
+            if (cEntity != null)
+            {
+                _context.Entry(entity).State = EntityState.Modified;
+            }
+            else
+            {
+                _dbset.Add(entity);
+            } 
+            _context.SaveChanges();
+        }
+
+        public virtual void InsertOrUpdate2Key(T entity)
+        {
+            var cEntity = GetEntityBy2Key(GetIdGeneric(entity),GetId1Generic(entity));
+            if (cEntity != null)
+            {
+                var entry = _context.Entry<T>(entity);
+
+                if (entry.State == EntityState.Detached)
+                {
+                    var set = _context.Set<T>();
+                    T attachedEntity = set.Local.AsQueryable<T>().Where(typeof(T).GetProperties()[0].Name + " = @0 and " + typeof(T).GetProperties()[1].Name + " = @1", GetIdGeneric(entity), GetId1Generic(entity)).SingleOrDefault();  // You need to have access to key
+                    if (attachedEntity != null)
+                    {
+                        var attachedEntry = _context.Entry(attachedEntity);
+                        attachedEntry.CurrentValues.SetValues(entity);
+                    }
+                    else
+                    {
+                        entry.State = EntityState.Modified; // This should attach entity
+                    }
+                }
+            }
+            else
+            {
+                _dbset.Add(entity);
+            }
+            _context.SaveChanges();
+        }
+
         public virtual void UpdateWithParentID(T entity, int ParentID)
         {
             if (entity == null) throw new ArgumentNullException("entity");
@@ -69,7 +117,7 @@ namespace DANN.Service
 
         public virtual void Delete(T entity)
         {
-            var curentEntity = GetById(GetIdGeneric(entity));
+            var curentEntity = GetEntityById(GetIdGeneric(entity));
             if (curentEntity == null) throw new ArgumentNullException("entity");
             _dbset.Remove(curentEntity);
             _context.SaveChanges();
@@ -77,10 +125,10 @@ namespace DANN.Service
 
         public void Move(T entity)
         {
-            var cEntity = GetById(GetIdGeneric(entity));
+            var cEntity = GetEntityById(GetIdGeneric(entity));
             if (cEntity != null)
             {
-                int? cP = GetParentIdGeneric(entity);
+                object cP = GetParentIdGeneric(entity);
                 CommonFunctions.TrySetProperty(cEntity, typeof(T).GetProperties()[1].Name, cP);
             }
             _context.SaveChanges();
@@ -118,6 +166,11 @@ namespace DANN.Service
             return _dbset.ToList<T>();
         }
 
+        public virtual List<T> GetListById(object Id)
+        {
+            return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0", Id).ToList<T>();
+        }
+
         public virtual IQueryable<T> GetAllAsQueryable()
         {
             return _dbset.AsQueryable<T>();
@@ -129,9 +182,14 @@ namespace DANN.Service
 
         }
 
-        public virtual T GetById(int Id)
+        public virtual T GetEntityById(object Id)
         {
             return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0", Id).FirstOrDefault();
+        }
+
+        public virtual T GetEntityBy2Key(object Id1, object Id2)
+        {
+            return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0 and "+ typeof(T).GetProperties()[1].Name + " = @1", Id1, Id2).FirstOrDefault();
         }
 
         public virtual T SearchFirst(string searchTerm)
@@ -150,19 +208,26 @@ namespace DANN.Service
 
 
         //Hàm lấy giá trị Id của 1 entity Generic
-        private int GetIdGeneric(T entity)
+        private object GetIdGeneric(T entity)
         {
             var id = typeof(T).GetProperties()[0].GetValue(entity);
-            int result = CommonFunctions.TryParseId(id + "");
-            return result;
+            //int result = CommonFunctions.TryParseId(id + "");
+            return id;
+        }
+
+        private object GetId1Generic(T entity)
+        {
+            var id = typeof(T).GetProperties()[1].GetValue(entity);
+            //int result = CommonFunctions.TryParseId(id + "");
+            return id;
         }
 
         //Hàm lấy giá trị ParentId của 1 entity Generic
-        private int? GetParentIdGeneric(T entity)
+        private object GetParentIdGeneric(T entity)
         {
             var id = typeof(T).GetProperties()[1].GetValue(entity);
-            int? result = CommonFunctions.TryParseParentId(id + "");
-            return result;
+           // int? result = CommonFunctions.TryParseParentId(id + "");
+            return id;
         }
 
 

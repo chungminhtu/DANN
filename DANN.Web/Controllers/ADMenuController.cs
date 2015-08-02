@@ -11,10 +11,15 @@ namespace DANN.Web.Controllers
 {
 
 
-    public static class MenuCommon
+    public  class MenuCommon
     {
-        public static DANNContext db = new DANNContext();
-        public static IEnumerable<AD_Menu> GetList(int? parentID = null)
+        public DANNContext db { get; set; }
+        public MenuCommon()
+        {
+            db = new DANNContext();
+        } 
+
+        public  IEnumerable<AD_Menu> GetList(int? parentID = null)
         {
             var temp = db.AD_Menu
                        .Where(x => x.Menu_ParentId == parentID)
@@ -31,7 +36,7 @@ namespace DANN.Web.Controllers
             }
         }
 
-        public static ASPxMenu BuildMenu(ASPxMenu menu)
+        public  ASPxMenu BuildMenu(ASPxMenu menu)
         {
             List<AD_Menu> menus = GetList().ToList();
 
@@ -58,7 +63,7 @@ namespace DANN.Web.Controllers
 
             return menu;
         }
-        public static void GetNodes(MenuItemCollection menus, string parentID, MenuItem item)
+        public  void GetNodes(MenuItemCollection menus, string parentID, MenuItem item)
         {
             if (menus == null)
             {
