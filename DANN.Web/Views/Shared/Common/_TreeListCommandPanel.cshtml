@@ -39,7 +39,9 @@
                             myButton.Text = "Xóa (Delete)";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/Close_16x16.png";
-                            myButton.ClientSideEvents.Click = "function( ) { if(confirm('Bạn có chắc chắn xóa dữ liệu này không?')) " + @Model.controlName + ".DeleteNode(" + @Model.controlName + ".GetFocusedNodeKey()); }";
+                            myButton.ClientSideEvents.Click = "function( ) {  bootbox.confirm('Bạn có chắc chắn xóa dữ liệu này không?', "
+                                + "function(result) { if(result == true) { " + @Model.controlName + ".DeleteNode(" + @Model.controlName + ".GetFocusedNodeKey()); }" + "}); }";
+                            
                             myButton.ClientVisible = @Model.Delete;
                             myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                         }).GetHtml();
