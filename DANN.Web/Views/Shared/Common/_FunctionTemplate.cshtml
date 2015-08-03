@@ -28,6 +28,19 @@
         e.customArgs['ID'] = ID;
     }
 
+    function GridEndCallbackShowMessage(s, e) {
+        if (s.cpMessage == "CreateOK") {
+            toastr["success"]("Đã thêm mới vào cơ sở dữ liệu thành công!");
+        }
+        if (s.cpMessage == "UpdateOK") {
+            toastr["success"]("Đã cập nhật vào cơ sở dữ liệu thành công!");
+        }
+        if (s.cpMessage == "DeleteOK") {
+            toastr["success"]("Đã xóa dữ liệu thành công!");
+        }
+        s.cpMessage = null;
+    }
+
     //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu
     function GridEndCallbackFocusToAddNew(s, e) {
         if (s.IsEditing()) {
@@ -116,6 +129,10 @@
         if (s.IsEditing()) {
             s.FocusEditor(0);
         }
+    }
+
+    function TreeEndCallbackShowMessage(s, e) {
+        toastr["success"]("Đã lưu toàn bộ vào cơ sở dữ liệu thành công!")
     }
 
     //Kích đúp thì sẽ edit row trực tiếp

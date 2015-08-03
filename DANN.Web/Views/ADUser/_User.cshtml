@@ -20,7 +20,7 @@
 
         // settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
-        settings.SettingsBehavior.AllowFocusedRow = true; 
+        settings.SettingsBehavior.AllowFocusedRow = true;
         //settings.Settings.ShowTitlePanel = true;
         //settings.Settings.ShowGroupPanel = true;
         //settings.Settings.ShowFilterRow = true;
@@ -36,7 +36,7 @@
 
         /*Events*/
         // settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
-        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.EndCallback = "GridEndCallbackShowMessage";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
@@ -47,6 +47,18 @@
         //{
         //    e.NewValues["UserValue"] = Convert.ToInt32(ViewBag.MaxUserValue) + 1;
         //};
+
+        /*Fields*/
+
+
+        settings.CustomJSProperties = (s, e) =>
+        {
+            if (ViewData["Success"] != null)
+            {
+                e.Properties["cpMessage"] = ViewData["Success"] + "";
+            }
+        };
+
 
         settings.KeyFieldName = "User_Id";
 

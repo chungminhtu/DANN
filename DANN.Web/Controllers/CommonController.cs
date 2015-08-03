@@ -36,14 +36,14 @@ namespace DANN.Web.Controllers
 
         [ValidateInput(false)]
         public ActionResult Load()
-        {
+        { 
             ViewBag.ListImages = Common.ListAllImage32();
 
             PropertyInfo pInfo = typeof(T).GetProperties()[0];
             if (pInfo.PropertyType == typeof(int))
             {
                 ViewBag.MaxId = _service.MaxId();
-            } 
+            }
             var model = _service.GetAll();
             string viewName = typeof(T).Name.Split('_')[1];
             return PartialView(viewName, model);
@@ -58,7 +58,7 @@ namespace DANN.Web.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Update(T item)
         {
-            return CommonAction(_service, "update", item); 
+            return CommonAction(_service, "update", item);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult Delete(T item)
@@ -91,6 +91,7 @@ namespace DANN.Web.Controllers
                 try
                 {
                     s.Delete(item);
+                    ViewData["Success"] = "DeleteOK";
                 }
                 catch (Exception e)
                 {
@@ -107,18 +108,20 @@ namespace DANN.Web.Controllers
                         if (action == "addnew")
                         {
                             s.Create(item);
+                            ViewData["Success"] = "CreateOK";
                         }
                         if (action == "update")
                         {
-                            PropertyInfo pInfo = typeof(T).GetProperties()[0];
-                            if (pInfo.PropertyType == typeof(int))
-                            {
-                                  s.Update(item);
-                            }
-                            else
-                            {
-                                s.Update(item);
-                            }
+                            //PropertyInfo pInfo = typeof(T).GetProperties()[0];
+                            //if (pInfo.PropertyType == typeof(int))
+                            //{
+                            //      s.Update(item);
+                            //}
+                            //else
+                            //{
+                            s.Update(item);
+                            ViewData["Success"] = "UpdateOK";
+                            //}
                         }
                     }
                     catch (Exception e)
