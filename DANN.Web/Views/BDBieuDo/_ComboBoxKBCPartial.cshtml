@@ -1,0 +1,13 @@
+@Html.DevExpress().ComboBox(
+ settings =>
+ {
+     settings.Name = "ComboxKBC";
+     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+     settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+     settings.CallbackRouteValues = new { Controller = "BDBieuDo", Action = "ComboBoxPartial" };
+     settings.ShowModelErrors = true;
+     settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;  
+     settings.Properties.CallbackPageSize = 50;
+     settings.Properties.ValueField = "KyBaoCao_Id";
+     settings.Properties.TextField = "TenKyBaoCao";
+ }).BindList(Model).GetHtml()

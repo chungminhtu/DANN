@@ -1413,6 +1413,11 @@
     <Content Include="Views\ADUser\Index.cshtml" />
     <Content Include="Views\ADUser\_PhanQuyen.cshtml" />
     <Content Include="Views\ADUser\_PhanQuyenCommandPanel.cshtml" />
+    <Content Include="Views\BDBieuDo\Index.cshtml" />
+    <Content Include="Views\BDBieuDo\_ComboBoxKBCPartial.cshtml" />
+    <Content Include="Views\BDBieuDo\_ComboBoxPhanHePartial.cshtml" />
+    <Content Include="Views\BDBieuDo\_TreeListChiTieuPartial.cshtml" />
+    <Content Include="Views\BDBieuDo\_TreeListDiaPhuongPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1426,6 +1431,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ADUserController.cs" />
+    <Compile Include="Controllers\BDBieuDoController.cs" />
     <Compile Include="Controllers\DMCodeController.cs" />
     <Compile Include="Controllers\BMBieuMauController.cs" />
     <Compile Include="Controllers\CommonController.cs" />

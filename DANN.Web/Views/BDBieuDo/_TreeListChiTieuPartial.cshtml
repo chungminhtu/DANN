@@ -1,0 +1,20 @@
+﻿@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
+        settings.Name = "TreeList";
+        settings.CallbackRouteValues = new { Controller = "BDBieuDo", Action = "TreeListChiTieuPartial" };
+        settings.Width = 500;
+        settings.Height = 100;
+        settings.KeyFieldName = "Tên chỉ tiêu";
+        settings.ParentFieldName = "ChiTieu_ParentId";
+        settings.Columns.Add(
+           column =>
+           {
+               column.FieldName = "TenChiTieu";
+           }
+        );
+        settings.SettingsPager.Visible = true;
+        settings.SettingsSelection.Enabled = true;
+    });
+}
+@treeList.Bind(Model).GetHtml()

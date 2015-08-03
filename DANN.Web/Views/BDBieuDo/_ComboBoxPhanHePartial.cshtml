@@ -1,0 +1,13 @@
+@Html.DevExpress().ComboBox(
+ settings =>
+ {
+     settings.Name = "ComboxPhanHe";
+     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+     settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+     settings.CallbackRouteValues = new { Controller = "BDBieuDo", Action = "ComboBoxPhanHePartial" };
+     settings.ShowModelErrors = true;
+     settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;  
+     settings.Properties.CallbackPageSize = 50;
+     settings.Properties.ValueField = "PhanHe_Id";
+     settings.Properties.TextField = "TenPhanHe";
+ }).BindList(Model).GetHtml()
