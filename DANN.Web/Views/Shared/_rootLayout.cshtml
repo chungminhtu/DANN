@@ -16,6 +16,13 @@
     new StyleSheet { ExtensionSuite = ExtensionSuite.Report },
     new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList }
 )
+
+    <!-- JS dependencies -->
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/toastr.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootbox.min.js")"></script>
+
     @Html.DevExpress().GetScripts(
     new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
     new Script { ExtensionSuite = ExtensionSuite.GridView },
@@ -25,11 +32,7 @@
     new Script { ExtensionSuite = ExtensionSuite.Report },
     new Script { ExtensionSuite = ExtensionSuite.TreeList }
 )
-    <!-- JS dependencies --> 
-    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/toastr.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootbox.min.js")"></script>
+
     <script>
         toastr.options = {
             "closeButton": false,
