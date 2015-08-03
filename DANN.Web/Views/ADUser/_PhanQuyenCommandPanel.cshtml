@@ -17,14 +17,15 @@
     //Reload lại tree Phân quyền, truyền các tham số vào hàm CallBack tự động
     function PhanQuyenTreeOnBeginCallback(s, e) {
         e.customArgs["UserID"] = ID;
-        e.customArgs["selectedIDs"] = selectedIDs; 
+        e.customArgs["selectedIDs"] = selectedIDs;
     }
 
 
     //Hàm thực hiện lưu hàng loạt quyền của nhiều menu, và reload lại tree Phân Quyền
     function OnSubmitClick(s, e) {
         if (ID == null) {
-            alert("Bạn chưa chọn người dùng muốn phân quyền.");
+            toastr["error"]("Bạn chưa chọn người dùng muốn phân quyền.")
+
             e.processOnServer = false;
             return false;
         }
@@ -34,16 +35,17 @@
             if (checkboxes[i].checked) {
                 NerverCheck = false;
             }
-        } 
+        }
         if (selectedIDs == "") {
-            alert("Bạn chưa chọn menu cần phân quyền.");
+            toastr["error"]("Bạn chưa chọn menu cần phân quyền..")
+
             e.processOnServer = false;
             return false;
         }
 
         if (NerverCheck == true) {
-            alert("Nếu chưa chọn quyền thì toàn bộ menu bên dưới sẽ bị loại bỏ toàn bộ quyền!");
-         }
+            toastr["info"]("Nếu chưa chọn quyền thì toàn bộ menu bên dưới sẽ bị loại bỏ toàn bộ quyền!")
+        }
         $.ajax({
             type: "POST",
             url: "@Url.Action("UpdatePhanQuyenByListMenuIDs")",
@@ -61,9 +63,9 @@
             success: function (response) {
                 $("#container").html(response);
             }
-        }); 
+        });
         selectedIDs = "";
-        alert("Đã gán quyền thành công!");
+        toastr.success('Đã gán quyền thành công!', 'Thông báo');
     }
 
     //Check nút toàn bộ quyền thì check/uncheck toàn bộ các checkbox
@@ -79,7 +81,6 @@
         }
     }
 </script>
-
 @Html.DevExpress().FormLayout(settings =>
 {
     settings.Name = "PhanQuyenTreeListCommandPanel";

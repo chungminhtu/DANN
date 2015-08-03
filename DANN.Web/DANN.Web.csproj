@@ -456,6 +456,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\spectrum.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="maps\us\jquery-jvectormap-data-us-ak-lcc-en.js" />
@@ -1291,6 +1293,11 @@
     <Content Include="Scripts\html2canvas.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <None Include="Scripts\jquery-1.6.3-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.3.js" />
+    <Content Include="Scripts\jquery-1.6.3.min.js" />
     <Content Include="Scripts\jquery-jvectormap-2.0.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
@@ -1329,6 +1336,8 @@
     <Content Include="Scripts\spectrum.js" />
     <Content Include="ASPxScriptIntelliSense.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
