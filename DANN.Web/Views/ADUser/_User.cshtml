@@ -36,20 +36,14 @@
 
         /*Events*/
         // settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
-        settings.ClientSideEvents.EndCallback = "GridEndCallbackShowMessage";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = UserGridView ;}";
         settings.ClientSideEvents.Init = "function (s, e) { UserGridView.FocusedRowIndex = -1; }";
 
-        //settings.InitNewRow = (s, e) =>
-        //{
-        //    e.NewValues["UserValue"] = Convert.ToInt32(ViewBag.MaxUserValue) + 1;
-        //};
-
-        /*Fields*/
-
+        /*Hiển thị thông báo sau từ server sau khi Callback*/
+        settings.ClientSideEvents.EndCallback = "GridEndCallbackShowMessage";
 
         settings.CustomJSProperties = (s, e) =>
         {
@@ -58,7 +52,14 @@
                 e.Properties["cpMessage"] = ViewData["Success"] + "";
             }
         };
+        /*--------------------------------------------------*/
 
+        //settings.InitNewRow = (s, e) =>
+        //{
+        //    e.NewValues["UserValue"] = Convert.ToInt32(ViewBag.MaxUserValue) + 1;
+        //};
+
+        /*Fields*/
 
         settings.KeyFieldName = "User_Id";
 
