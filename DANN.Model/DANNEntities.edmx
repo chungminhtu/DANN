@@ -26,6 +26,7 @@
           <Property Name="MenuIcon" Type="varchar" MaxLength="50" />
           <Property Name="MenuSort" Type="int" />
           <Property Name="MenuSeparator" Type="bit" />
+          <Property Name="PhanHe" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="AD_User">
           <Key>
@@ -395,6 +396,7 @@
           <Property Name="MenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MenuSort" Type="Int32" />
           <Property Name="MenuSeparator" Type="Boolean" />
+          <Property Name="PhanHe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AD_User_Menu" Relationship="DBDANNModel.FK_AD_User_Menu_AD_Menu" FromRole="AD_Menu" ToRole="AD_User_Menu" />
         </EntityType>
         <EntityType Name="AD_User">
@@ -679,6 +681,7 @@
           <EntitySetMapping Name="AD_Menu">
             <EntityTypeMapping TypeName="DBDANNModel.AD_Menu">
               <MappingFragment StoreEntitySet="AD_Menu">
+                <ScalarProperty Name="PhanHe" ColumnName="PhanHe" />
                 <ScalarProperty Name="MenuSeparator" ColumnName="MenuSeparator" />
                 <ScalarProperty Name="MenuSort" ColumnName="MenuSort" />
                 <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />

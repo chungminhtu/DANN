@@ -36,9 +36,7 @@ namespace DANN.Web.Controllers
 
         [ValidateInput(false)]
         public ActionResult Load()
-        { 
-            ViewBag.ListImages = Common.ListAllImage32();
-
+        {  
             PropertyInfo pInfo = typeof(T).GetProperties()[0];
             if (pInfo.PropertyType == typeof(int))
             {
@@ -146,8 +144,7 @@ namespace DANN.Web.Controllers
 
         [ValidateInput(false)]
         public ActionResult Load1()
-        {
-            //int s = Request.Params["ID"] + "" != "" ? Convert.ToInt32(Request.Params["ID"]) : 0;
+        { 
             int ID = CommonFunctions.TryParseObjectToInt(Request.Params["ID"]);
             var model = _service1.SearchToList("CodeKind_Id = " + ID);
             ViewBag.MaxCodeValue = _service1.MaxCodeValue(ID);

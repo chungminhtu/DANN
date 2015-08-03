@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using DANN.Model.Common;
 using DevExpress.Web.Mvc;
 using DANN.Service;
+using System.Reflection;
+
 namespace DANN.Web.Controllers
 {
 
@@ -83,13 +85,22 @@ namespace DANN.Web.Controllers
 
     public class ADMenuController : CommonController<AD_Menu, AD_Menu, AD_Menu>
     {
-        IEntityService<AD_Menu> _service;
-        IAD_MenuService _menuService;
-        public ADMenuController(IEntityService<AD_Menu> service, IEntityService<AD_Menu> service1, IEntityService<AD_Menu> service2, IAD_MenuService menuService)
+        IEntityService<AD_Menu> _service; 
+        IEntityService<DM_PhanHe> _phanheService;
+        public ADMenuController(IEntityService<AD_Menu> service, IEntityService<AD_Menu> service1, IEntityService<AD_Menu> service2, IEntityService<DM_PhanHe> phanheService)
             : base(service, service1, service2)
         {
             _service = service;
-            _menuService = menuService;
+            _phanheService = phanheService;
+        }
+
+        [ValidateInput(false)]
+        public ActionResult LoadMenu()
+        {
+            ViewBag.ListPhanHe = _phanheService.GetAll();
+            ViewBag.ListImages = Common.ListAllImage32();
+            var model = _service.GetAll(); 
+            return PartialView("Menu", model);
         }
     }
 

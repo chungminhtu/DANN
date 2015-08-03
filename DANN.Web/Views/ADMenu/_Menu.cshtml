@@ -4,7 +4,7 @@
         settings.Name = "MenuTreeList";
 
         /*Data binding*/
-        settings.CallbackRouteValues = new { Controller = "ADMenu", Action = "Load" };
+        settings.CallbackRouteValues = new { Controller = "ADMenu", Action = "LoadMenu" };
         settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "ADMenu", Action = "AddNew" };
         settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "ADMenu", Action = "Update" };
         settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "ADMenu", Action = "Delete" };
@@ -13,14 +13,14 @@
 
         /*Settings*/
         settings.SettingsEditing.Mode = TreeListEditMode.Inline;
-        
+
         settings.SettingsPager.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Visible = true;
         settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
         settings.SettingsPager.PageSize = 25;
-        
-        settings.CommandColumn.Visible = false; 
-        
+
+        settings.CommandColumn.Visible = false;
+
         settings.SettingsSelection.Enabled = true;
         settings.SettingsSelection.AllowSelectAll = true;
         settings.SettingsSelection.Recursive = true;
@@ -28,12 +28,12 @@
         settings.SettingsBehavior.AllowSort = false;
         settings.SettingsBehavior.AllowDragDrop = true;
         settings.SettingsBehavior.AllowFocusedNode = true;
-        settings.SettingsBehavior.FocusNodeOnLoad = false; 
+        settings.SettingsBehavior.FocusNodeOnLoad = false;
         settings.SettingsBehavior.AutoExpandAllNodes = false;
         settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
-        
+
         settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
-        settings.KeyboardSupport = true; 
+        settings.KeyboardSupport = true;
 
         /*Events*/
         settings.ClientSideEvents.EndCallback = "function (s, e) { TreeEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); } ";
@@ -55,23 +55,24 @@
         settings.KeyFieldName = "Menu_Id";
         settings.ParentFieldName = "Menu_ParentId";
 
-          
-        settings.Columns.Add(c=>c.MenuText,
+
+        settings.Columns.Add(c => c.MenuText,
                             column =>
-                            { 
-                                column.Width = 300;
+                            {
+                                column.Width = Unit.Percentage(30);
                                 column.AllowSort = DefaultBoolean.False;
                             });
         settings.Columns.Add(c => c.MenuAction,
                             column =>
-                            { 
+                            {
+                                column.Width = Unit.Percentage(10);
                                 column.AllowSort = DefaultBoolean.False;
                             });
 
         settings.Columns.Add(c => c.MenuIcon,
                             column =>
-                            { 
-                                column.Width = 100;
+                            {
+                                column.Width = Unit.Percentage(5);
                                 column.ColumnType = MVCxTreeListColumnType.ComboBox;
                                 column.AllowSort = DefaultBoolean.False;
                                 column.SetDataCellTemplateContent(c =>
@@ -85,7 +86,7 @@
                                     }).GetHtml();
                                 });
                                 var properties = column.PropertiesEdit as ComboBoxProperties;
-             
+
                                 properties.TextField = "imageName";
                                 properties.ValueField = "imageURL";
                                 properties.ImageUrlField = "imageURL";
@@ -96,27 +97,38 @@
                                 properties.Height = Unit.Pixel(16);
                                 properties.ItemImage.Height = Unit.Pixel(16);
                             });
-
         settings.Columns.Add(c => c.MenuSeparator,
                             column =>
-                            { 
+                            {
+                                column.Width = Unit.Percentage(5);
                                 column.ColumnType = MVCxTreeListColumnType.CheckBox;
                             });
-
+        settings.Columns.Add(c => c.PhanHe,
+                            column =>
+                            {
+                                column.Width = Unit.Percentage(20);
+                                column.ColumnType = MVCxTreeListColumnType.ComboBox;
+                                column.AllowSort = DefaultBoolean.False;
+                                var properties = column.PropertiesEdit as ComboBoxProperties;
+                                properties.DataSource = ViewBag.ListPhanHe;
+                                properties.TextField = "TenPhanHe";
+                                properties.ValueField = "TenPhanHe";
+                                properties.ValueType = typeof(string);
+                                properties.DropDownStyle = DropDownStyle.DropDownList;
+                            });
         settings.Columns.Add(c => c.MenuSort,
                             column =>
-                            { 
-                                //column.Visible = false;
+                            {
+                                column.Visible = false;
                                 column.SortIndex = 0;
                                 column.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
                             });
-
 
         //settings.InitNewNode = (s, e) =>
         //{
         //    e.NewValues["Menu_Id"] = Convert.ToInt32(ViewBag.MaxId) + 1;
         //};
-         
+
     });
     if (ViewData["EditError"] != null)
     {
@@ -124,3 +136,10 @@
     }
 }
 @treeList.Bind(Model).GetHtml()
+
+<script>
+    if ('@(ViewBag.ListPhanHe)' != '') {
+        $("#ListCacPhanHe").html('@(Html.Raw(Html.DropDownList("NameListPhanHe", new SelectList(ViewBag.ListPhanHe, "TenPhanHe", "TenPhanHe"),new { @id = "SelectListPhanHe", @class= "form-control" }).ToString().Replace("\r\n"," ")))');
+    }
+</script>
+

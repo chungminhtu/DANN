@@ -1,16 +1,61 @@
-﻿@Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
-                                    {
-                                        controlIndex = 1,
-                                        controlName = "MenuTreeList",
-                                        Add = true,
-                                        Edit = true,
-                                        Delete = true,
-                                        Save = true,
-                                        Cancel = true,
-                                        Reload = true,
-                                        Print = true,
-                                        CondictionToAutoSave = "$('#MenuTreeList_DXEDITOR0_I').val() != ''&& $('#MenuTreeList_DXEDITOR0_I').val() != ''",
-                                    })
- 
-@Html.Action("Load")
- 
+﻿<script>
+    function OnSubmitClick(s, e) {
+        bootbox.dialog({
+            title: "Chọn phân hệ muốn gán cho các menu đã chọn:",
+            message: $("#ListCacPhanHe").html(),
+            buttons: {
+                success: {
+                    label: "Lưu lại",
+                    className: "btn-success",
+                    callback: function () {
+                        var name = $('#name').val();
+                        var answer = $("input[name='awesomeness']:checked").val()
+                        Example.show("Hello " + name + ". You've chosen <b>" + answer + "</b>");
+                    }
+                }
+            }
+        });
+    }
+</script>
+<table>
+    <tr>
+        <td style="white-space: nowrap;">
+
+            @Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
+       {
+           controlIndex = 1,
+           controlName = "MenuTreeList",
+           Add = true,
+           Edit = true,
+           Delete = true,
+           Save = true,
+           Cancel = true,
+           Reload = true,
+           Print = true,
+           CondictionToAutoSave = "$('#MenuTreeList_DXEDITOR0_I').val() != ''&& $('#MenuTreeList_DXEDITOR0_I').val() != ''",
+       })
+        </td>
+        <td align="left">
+            @Html.DevExpress().Button(myButton =>
+                   {
+                       myButton.Name = "btnGanPhanHeChoMenu";
+                       myButton.Text = "Gán phân hệ";
+                       myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
+                       myButton.Images.Image.Url = "~/Content/icon/32/BOPosition2_32x32.png";
+                       myButton.ToolTip = "Gán tên phân hệ cho các menu đã chọn bên dưới.";
+                       myButton.ClientSideEvents.Click = "OnSubmitClick";
+                       myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                   }).GetHtml()
+
+            <div id="ListCacPhanHe" style="display:none;"></div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            @Html.Action("LoadMenu")
+        </td>
+    </tr>
+</table>
+
+
+

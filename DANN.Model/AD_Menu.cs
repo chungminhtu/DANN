@@ -26,6 +26,7 @@ namespace DANN.Model
         public string MenuIcon { get; set; }
         public Nullable<int> MenuSort { get; set; }
         public Nullable<bool> MenuSeparator { get; set; }
+        public string PhanHe { get; set; }
     
         public virtual ICollection<AD_User_Menu> AD_User_Menu { get; set; }
     }
