@@ -36,7 +36,7 @@
         settings.KeyboardSupport = true; 
 
         /*Events*/
-        settings.ClientSideEvents.EndCallback = "function (s, e) { TreeEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); ";
+        settings.ClientSideEvents.EndCallback = "function (s, e) { TreeEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); } ";
         settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
         settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
         settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
