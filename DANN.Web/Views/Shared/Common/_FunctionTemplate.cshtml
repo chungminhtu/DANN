@@ -21,13 +21,6 @@
             currentControl.CancelEdit();
     });
 
-    /*----------------------GRID FUNCTION---------------------*/
-
-    var ID = 0;
-    function GridBeginCallbackWithID(s, e) {
-        e.customArgs['ID'] = ID;
-    }
-
     function EndCallbackShowMessage(s, e) {
         if (s.cpMessage == "CreateOK") {
             toastr["success"]("Đã thêm mới vào cơ sở dữ liệu thành công!");
@@ -39,6 +32,14 @@
             toastr["success"]("Đã xóa dữ liệu thành công!");
         }
         s.cpMessage = null;
+    }
+
+
+    /*----------------------GRID FUNCTION---------------------*/
+
+    var ID = 0;
+    function GridBeginCallbackWithID(s, e) {
+        e.customArgs['ID'] = ID;
     }
 
     //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu

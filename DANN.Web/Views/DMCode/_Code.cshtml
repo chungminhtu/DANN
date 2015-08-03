@@ -37,12 +37,22 @@
 
         /*Events*/
         settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
-        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave2";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu2";
         settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = CodeGridView ;}";
 
+        /*Hiển thị thông báo sau từ server sau khi Callback*/
+        settings.ClientSideEvents.EndCallback = "function (s, e) { GridEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); }";
+        settings.CustomJSProperties = (s, e) =>
+        {
+            if (ViewData["Success"] != null)
+            {
+                e.Properties["cpMessage"] = ViewData["Success"] + "";
+            }
+        };
+        /*--------------------------------------------------*/
+        
         settings.InitNewRow = (s, e) =>
         {
             e.NewValues["CodeValue"] = Convert.ToInt32(ViewBag.MaxCodeValue) + 1;

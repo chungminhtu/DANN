@@ -1,4 +1,4 @@
-
+﻿
 @{
     var grid = Html.DevExpress().GridView<DANN.Model.AD_LichSu>(settings =>
     {
@@ -36,12 +36,21 @@
 
         /*Events*/
         //settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
-        settings.ClientSideEvents.EndCallback = "GridEndCallbackFocusToAddNew";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = LichSuGridView ; }";
 
+        /*Hiển thị thông báo sau từ server sau khi Callback*/
+        settings.ClientSideEvents.EndCallback = "function (s, e) { GridEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); }";
+        settings.CustomJSProperties = (s, e) =>
+        {
+            if (ViewData["Success"] != null)
+            {
+                e.Properties["cpMessage"] = ViewData["Success"] + "";
+            }
+        };
+        /*--------------------------------------------------*/
 
         /*Fields*/
         settings.KeyFieldName = "LichSu_Id";

@@ -1,4 +1,4 @@
-@{
+﻿@{
     var grid = Html.DevExpress().GridView<DANN.Model.DM_DonViTinh>(settings =>
     {
         settings.Name = "DonViTinhGridView";
@@ -39,6 +39,18 @@
         settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
         settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = DonViTinhGridView ; }";
+
+
+        /*Hiển thị thông báo sau từ server sau khi Callback*/
+        settings.ClientSideEvents.EndCallback = "function (s, e) { GridEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); }";
+        settings.CustomJSProperties = (s, e) =>
+        {
+            if (ViewData["Success"] != null)
+            {
+                e.Properties["cpMessage"] = ViewData["Success"] + "";
+            }
+        };
+        /*--------------------------------------------------*/
 
 
         /*Fields*/

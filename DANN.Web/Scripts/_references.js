@@ -1,3 +1,4 @@
+﻿/// <reference path="jquery-1.9.1.js" />
 MVCxClientDashboardViewer = function() {
     ///<summary>
     ///A client-side counterpart of the DashboardViewer extension.

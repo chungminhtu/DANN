@@ -32,14 +32,24 @@
         settings.Styles.AlternatingNode.Enabled = DevExpress.Utils.DefaultBoolean.True;
         settings.KeyboardSupport = true;
 
-        /*Events*/
-        settings.ClientSideEvents.EndCallback = "TreeEndCallbackFocusToAddNew";
+        /*Events*/ 
+        
         settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
         settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
         settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
         settings.ClientSideEvents.NodeClick = "function (s, e){ currentControlType = 'Tree';currentControl = DiaPhuongTreeList ; }";
 
-
+        /*Hiển thị thông báo sau từ server sau khi Callback*/
+        settings.ClientSideEvents.EndCallback = "function (s, e) { TreeEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); }";
+        settings.CustomJSProperties = (s, e) =>
+        {
+            if (ViewData["Success"] != null)
+            {
+                e.Properties["cpMessage"] = ViewData["Success"] + "";
+            }
+        };
+        /*--------------------------------------------------*/
+        
         /*Fields*/
         settings.KeyFieldName = "DiaPhuong_Id";
         settings.ParentFieldName = "DiaPhuong_ParentId";

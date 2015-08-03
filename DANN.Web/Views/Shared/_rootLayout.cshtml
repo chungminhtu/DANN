@@ -5,6 +5,7 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/toastr.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
 
     @Html.DevExpress().GetStyleSheets(
     new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
@@ -24,8 +25,11 @@
     new Script { ExtensionSuite = ExtensionSuite.Report },
     new Script { ExtensionSuite = ExtensionSuite.TreeList }
 )
-
-    <script src="@Url.Content("~/Scripts/toastr.js")"></script>
+    <!-- JS dependencies --> 
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/toastr.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootbox.min.js")"></script>
     <script>
         toastr.options = {
             "closeButton": false,
@@ -45,10 +49,10 @@
             "hideMethod": "fadeOut"
         }
     </script>
-    
+
     </head>
 <body>
- 
+
     @Html.DevExpress().Panel(settings =>
 {
     settings.Name = "HeaderPane";
@@ -56,14 +60,14 @@
     settings.Collapsible = true;
     settings.SettingsCollapsing.ExpandButton.Visible = true;
     settings.SettingsCollapsing.AnimationType = AnimationType.Slide;
-    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 500; 
+    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 500;
     settings.ControlStyle.CssClass = "headerPane";
     settings.Styles.Panel.CssClass = "panel";
     settings.Styles.ExpandBar.CssClass = "bar";
     settings.SetContent(() =>
-    { 
+    {
         Html.RenderPartial("HeaderPartialView");
-    }); 
+    });
 }).GetHtml()
 
     @Html.DevExpress().Panel(settings =>

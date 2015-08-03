@@ -36,13 +36,21 @@
         settings.KeyboardSupport = true; 
 
         /*Events*/
-        settings.ClientSideEvents.EndCallback = "TreeEndCallbackFocusToAddNew";
+        settings.ClientSideEvents.EndCallback = "function (s, e) { TreeEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); ";
         settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
         settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
         settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
         settings.ClientSideEvents.NodeClick = "function (s, e){ currentControlType = 'Tree';currentControl = MenuTreeList ; }";
-       
 
+        /*Hiển thị thông báo sau từ server sau khi Callback*/
+        settings.CustomJSProperties = (s, e) =>
+        {
+            if (ViewData["Success"] != null)
+            {
+                e.Properties["cpMessage"] = ViewData["Success"] + "";
+            }
+        };
+        /*--------------------------------------------------*/
         /*Fields*/
         settings.KeyFieldName = "Menu_Id";
         settings.ParentFieldName = "Menu_ParentId";
