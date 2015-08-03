@@ -24,8 +24,7 @@
     //Hàm thực hiện lưu hàng loạt quyền của nhiều menu, và reload lại tree Phân Quyền
     function OnSubmitClick(s, e) {
         if (ID == null) {
-            toastr["error"]("Bạn chưa chọn người dùng muốn phân quyền.")
-
+            toastr["error"]("Bạn chưa chọn người dùng muốn phân quyền.") 
             e.processOnServer = false;
             return false;
         }
