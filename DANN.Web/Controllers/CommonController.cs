@@ -191,6 +191,7 @@ namespace DANN.Web.Controllers
                 try
                 {
                     s.Delete(item);
+                    ViewData["Success"] = "DeleteOK";
                 }
                 catch (Exception e)
                 {
@@ -207,10 +208,12 @@ namespace DANN.Web.Controllers
                         if (action == "addnew")
                         {
                             s.CreateWithParentID(item, ID);
+                            ViewData["Success"] = "CreateOK";
                         }
                         if (action == "update")
                         {
                             s.UpdateWithParentID(item, ID);
+                            ViewData["Success"] = "UpdateOK";
                         }
                     }
                     catch (Exception e)
@@ -285,6 +288,7 @@ namespace DANN.Web.Controllers
                 try
                 {
                     s.Delete(item);
+                    ViewData["Success"] = "DeleteOK";
                 }
                 catch (Exception e)
                 {
@@ -301,10 +305,12 @@ namespace DANN.Web.Controllers
                         if (action == "addnew")
                         {
                             s.Create(item);
+                            ViewData["Success"] = "CreateOK";
                         }
                         if (action == "update")
                         {
                             s.Update(item);
+                            ViewData["Success"] = "UpdateOK";
                         }
                     }
                     catch (Exception e)

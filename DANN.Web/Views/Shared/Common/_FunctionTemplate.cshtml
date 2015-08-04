@@ -112,7 +112,9 @@
                 @(Model.controlName).StartEdit(nodeKey);
                 break;
             case "Delete":
-                if (confirm('Bạn có chắc chắn xóa dữ liệu này không?')) { @(Model.controlName).DeleteNode(nodeKey); }
+                //   if (confirm('Bạn có chắc chắn xóa dữ liệu này không?')) { @(Model.controlName).DeleteNode(nodeKey); }
+
+                bootbox.confirm('Bạn có chắc chắn xóa dữ liệu này không?',function(result) { if(result == true) {  @(Model.controlName).DeleteNode(nodeKey); } })
                 break;
         }
     }
@@ -198,10 +200,10 @@
                 @(Model.controlName).StartEdit(nodeKey);
                 break;
             case "Delete":
-              //  if (confirm('Bạn có chắc chắn xóa dữ liệu này không?')) { @(Model.controlName).DeleteNode(nodeKey); }
+                //  if (confirm('Bạn có chắc chắn xóa dữ liệu này không?')) { @(Model.controlName).DeleteNode(nodeKey); }
                 bootbox.confirm('Bạn có chắc chắn xóa dữ liệu này không?',function(result) { if(result == true) {  @(Model.controlName).DeleteNode(nodeKey); } })
-    break;
-    }
+                break;
+        }
     }
     /*----------------------END TREE FUNCTION---------------------*/
 </script>
