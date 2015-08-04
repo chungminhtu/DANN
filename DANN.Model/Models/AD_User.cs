@@ -46,7 +46,7 @@ namespace DANN.Model
             [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string ChucVu { get; set; }
 
-            [DisplayName("Thuộc Phòng ban")]
+            [DisplayName("Đơn vị")]
             // [Required("Bạn chưa nhập Phòng ban!")]
             [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
             public string PhongBan { get; set; }

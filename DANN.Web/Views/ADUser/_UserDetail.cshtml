@@ -42,8 +42,8 @@
             Html.DevExpress().TextBoxFor(i => i.Password, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
-                //mySettings.Properties.Password = true;
             }).Render();
+
         });
     });
     groupItem.Items.Add(c => c.UserName, m =>
@@ -109,47 +109,23 @@
     //        }).Render();
     //    });
     //});
-    groupItem.Items.Add(c => c.ChucVu, m =>
+    groupItem.Items.Add(a => a.ChucVu, m =>
     {
         m.ColSpan = 1;
         m.Width = Unit.Percentage(100);
         m.SetNestedContent(() =>
         {
-            //Html.RenderAction("LoadComboChucVu", "DMCode", Model);
-
-            @Html.DevExpress().ComboBoxFor(c => c.ChucVu, n =>
-            {
-                n.Name = "ComboboxChucVu";
-                n.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
-                n.Properties.DropDownStyle = DropDownStyle.DropDownList;
-                n.CallbackRouteValues = new { Controller = "DMCode", Action = "LoadComboChucVu" };
-                n.Properties.CallbackPageSize = 50;
-                n.Properties.ValueField = "CodeName";
-                n.Properties.TextField = "CodeName";
-                n.Properties.ValueType = typeof(string);
-            }).BindList(ViewData["ComboListChucVu"]).GetHtml();
+            Html.RenderAction("LoadComboChucVu", "DMCode", new { Name = "ChucVu" }); 
         });
     });
 
-    groupItem.Items.Add(c => c.PhongBan, m =>
+    groupItem.Items.Add(a => a.PhongBan, m =>
     {
         m.ColSpan = 1;
         m.Width = Unit.Percentage(100);
         m.SetNestedContent(() =>
         {
-            // Html.RenderAction("LoadComboPhanHe", "DMPhanHe", Model);
-
-            @Html.DevExpress().ComboBoxFor(c => c.PhongBan, n =>
-            {
-                n.Name = "ComboboxPhanHe";
-                n.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
-                n.Properties.DropDownStyle = DropDownStyle.DropDownList;
-                n.CallbackRouteValues = new { Controller = "DMPhanHe", Action = "LoadComboPhanHe" };
-                n.Properties.CallbackPageSize = 50;
-                n.Properties.ValueField = "TenPhanHe";
-                n.Properties.TextField = "TenPhanHe";
-                n.Properties.ValueType = typeof(string);
-            }).BindList(ViewData["ComboListPhanHe"]).GetHtml();
+            Html.RenderAction("LoadComboPhanHe", "DMPhanHe", new { Name = "PhongBan" }); 
         });
     });
 

@@ -2,7 +2,7 @@
     var grid = Html.DevExpress().GridView<DANN.Model.AD_User>(settings =>
     {
         settings.Name = "UserGridView";
-        settings.CallbackRouteValues = new { Controller = "ADUser", Action = "LoadUser" };
+        settings.CallbackRouteValues = new { Controller = "ADUser", Action = "Load" };
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADUser", Action = "AddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADUser", Action = "Update" };
@@ -10,7 +10,7 @@
 
 
         //Settings
-        settings.Width = Unit.Percentage(100);
+        settings.Width = Unit.Pixel(300);
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         settings.SettingsBehavior.ConfirmDelete = true;
 
