@@ -1,0 +1,156 @@
+﻿@model DANN.Model.AD_User
+
+@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "UserFormLayout";
+    settings.Width = Unit.Percentage(100);
+    settings.ColCount = 2;
+    var groupItem = settings.Items.AddGroupItem(groupSettings =>
+    {
+        groupSettings.Caption = "Thông tin chi tiết";
+        groupSettings.ShowCaption = DefaultBoolean.True;
+        groupSettings.GroupBoxDecoration = GroupBoxDecoration.Box;
+        groupSettings.CellStyle.Paddings.Padding = Unit.Pixel(0);
+
+    });
+
+    groupItem.SettingsItems.ShowCaption = DefaultBoolean.True;
+    //groupItem.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
+    groupItem.ParentContainerStyle.Paddings.Padding = Unit.Pixel(0);
+
+    groupItem.ColCount = 2;
+    groupItem.ColSpan = 2;
+
+    groupItem.Items.Add(c => c.User_Id, m =>
+    {
+        m.ColSpan = 1;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.User_Id, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+                mySettings.ReadOnly = Convert.ToBoolean(Session["CanEditUserId"]);
+                mySettings.ControlStyle.BackColor = Convert.ToBoolean(Session["CanEditUserId"]) ? System.Drawing.Color.LightGray : System.Drawing.Color.White;
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(c => c.Password, m =>
+    {
+        m.ColSpan = 1;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.Password, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+                //mySettings.Properties.Password = true;
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(c => c.UserName, m =>
+    {
+        m.ColSpan = 1;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.UserName, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(c => c.Email, m =>
+    {
+        m.ColSpan = 1;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.Email, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(c => c.DiaChi, m =>
+    {
+        m.ColSpan = 1;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().MemoFor(i => i.DiaChi, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    groupItem.Items.Add(c => c.SoDienThoai, m =>
+    {
+        m.ColSpan = 1;
+        m.SetNestedContent(() =>
+        {
+            Html.DevExpress().TextBoxFor(i => i.SoDienThoai, mySettings =>
+            {
+                mySettings.Width = Unit.Percentage(100);
+            }).Render();
+        });
+    });
+    //groupItem.Items.Add(m =>
+    //{
+    //    m.FieldName = "GioiTinh";
+    //    m.ColSpan = 1;
+    //    //m.CaptionStyle.Font.Bold = true;
+    //    m.SetNestedContent(() =>
+    //    {
+    //        Html.DevExpress().RadioButtonListFor(i => i., mySettings =>
+    //        {
+    //            mySettings.Width = Unit.Percentage(100);
+    //            mySettings.Properties.ValueType = typeof(bool);
+    //            mySettings.Properties.RepeatLayout = RepeatLayout.Flow;
+    //            mySettings.Properties.RepeatDirection = RepeatDirection.Horizontal;
+    //            mySettings.Properties.RepeatColumns = 2;
+    //            mySettings.Properties.Items.Add("Nam", true);
+    //            mySettings.Properties.Items.Add("Nữ", false);
+    //        }).Render();
+    //    });
+    //});
+    groupItem.Items.Add(c => c.ChucVu, m =>
+    {
+        m.ColSpan = 1;
+        m.Width = Unit.Percentage(100);
+        m.SetNestedContent(() =>
+        {
+            //Html.RenderAction("LoadComboChucVu", "DMCode", Model);
+
+            @Html.DevExpress().ComboBoxFor(c => c.ChucVu, n =>
+            {
+                n.Name = "ComboboxChucVu";
+                n.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                n.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                n.CallbackRouteValues = new { Controller = "DMCode", Action = "LoadComboChucVu" };
+                n.Properties.CallbackPageSize = 50;
+                n.Properties.ValueField = "CodeName";
+                n.Properties.TextField = "CodeName";
+                n.Properties.ValueType = typeof(string);
+            }).BindList(ViewData["ComboListChucVu"]).GetHtml();
+        });
+    });
+
+    groupItem.Items.Add(c => c.PhongBan, m =>
+    {
+        m.ColSpan = 1;
+        m.Width = Unit.Percentage(100);
+        m.SetNestedContent(() =>
+        {
+            // Html.RenderAction("LoadComboPhanHe", "DMPhanHe", Model);
+
+            @Html.DevExpress().ComboBoxFor(c => c.PhongBan, n =>
+            {
+                n.Name = "ComboboxPhanHe";
+                n.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+                n.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                n.CallbackRouteValues = new { Controller = "DMPhanHe", Action = "LoadComboPhanHe" };
+                n.Properties.CallbackPageSize = 50;
+                n.Properties.ValueField = "TenPhanHe";
+                n.Properties.TextField = "TenPhanHe";
+                n.Properties.ValueType = typeof(string);
+            }).BindList(ViewData["ComboListPhanHe"]).GetHtml();
+        });
+    });
+
+}).GetHtml()

@@ -27,7 +27,7 @@
 
         settings.SettingsBehavior.AllowSort = false;
         settings.SettingsBehavior.AllowDragDrop = true;
-        settings.SettingsBehavior.AllowFocusedNode = true;
+        settings.SettingsBehavior.AllowFocusedNode = false;
         settings.SettingsBehavior.FocusNodeOnLoad = false;
         settings.SettingsBehavior.AutoExpandAllNodes = false;
         settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.NextColumn;
@@ -36,13 +36,14 @@
         settings.KeyboardSupport = true;
 
         /*Events*/
-        settings.ClientSideEvents.EndCallback = "function (s, e) { TreeEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); } ";
         settings.ClientSideEvents.NodeDblClick = "NodeDoubleClickToEdit";
         settings.ClientSideEvents.FocusedNodeChanged = "NodeFocusedChangedToSave";
         settings.ClientSideEvents.ContextMenu = "ShowTreeContextMenu";
         settings.ClientSideEvents.NodeClick = "function (s, e){ currentControlType = 'Tree';currentControl = MenuTreeList ; }";
+        settings.ClientSideEvents.SelectionChanged = "MenuTreeOnSelectionChanged";
 
         /*Hiển thị thông báo sau từ server sau khi Callback*/
+        settings.ClientSideEvents.EndCallback = "function (s, e) { TreeEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); } ";
         settings.CustomJSProperties = (s, e) =>
         {
             if (ViewData["Success"] != null)
@@ -134,12 +135,12 @@
     {
         treeList.SetEditErrorText((string)ViewData["EditError"]);
     }
-}
+} 
 @treeList.Bind(Model).GetHtml()
-
 <script>
-    if ('@(ViewBag.ListPhanHe)' != '') {
-        $("#ListCacPhanHe").html('@(Html.Raw(Html.DropDownList("NameListPhanHe", new SelectList(ViewBag.ListPhanHe, "TenPhanHe", "TenPhanHe"),new { @id = "SelectListPhanHe", @class= "form-control" }).ToString().Replace("\r\n"," ")))');
-    }
+     if ('@(ViewBag.ListPhanHe)' != '') {
+         $("#ListCacPhanHe").html('@(Html.Raw(Html.DropDownList("NameListPhanHe", new SelectList(ViewBag.ListPhanHe, "TenPhanHe", "TenPhanHe"),new { @id = "SelectListPhanHe", @class= "form-control" }).ToString().Replace("\r\n"," ")))');
+     }
 </script>
+
 

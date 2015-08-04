@@ -15,47 +15,35 @@ namespace DANN.Web.Controllers
         IEntityService<AD_User> _serviceUser { get; set; }
         IEntityService<AD_Menu> _serviceMenu { get; set; }
         IEntityService<AD_User_Menu> _serviceUserMenu { get; set; }
+        IEntityService<DM_Code> _serviceCode { get; set; }
+        IEntityService<DM_PhanHe> _servicePhanHe { get; set; }
 
-        public ADUserController(IEntityService<AD_User> service, IEntityService<AD_User_Menu> service1, IEntityService<AD_Menu> service2)
+        public ADUserController(IEntityService<AD_User> service, IEntityService<AD_User_Menu> service1, IEntityService<AD_Menu> service2,
+            IEntityService<DM_Code> serviceCode, IEntityService<DM_PhanHe> servicePhanHe)
             : base(service, service1, service2)
         {
             _serviceUser = service;
             _serviceUserMenu = service1;
             _serviceMenu = service2;
+            _serviceCode = serviceCode;
+            _servicePhanHe = servicePhanHe;
+        }
+
+        [ValidateInput(false)]
+        public ActionResult LoadUser()
+        {
+            var model = _serviceUser.GetAll();
+            ViewData["ComboListPhanHe"] = _servicePhanHe.GetAll();
+            ViewData["ComboListChucVu"] = _serviceCode.SearchToList("CodeKind_Id = 2");
+
+            return PartialView("_User", model);
         }
 
         [ValidateInput(false)]
         public ActionResult LoadPhanQuyen()
         {
             string UserID = Request.Params["UserID"] + "";
-            //string selectedMenuIDs = Request.Params["selectedIDs"] + "";
-            //if (selectedMenuIDs != "" && UserID != "" && Request.IsAjaxRequest())
-            //{
-            //    bool tatCaQuyen = Convert.ToBoolean(Request.Params["tatCaQuyen"]);
-            //    bool quyenXem = Convert.ToBoolean(Request.Params["quyenXem"]);
-            //    bool quyenThem = Convert.ToBoolean(Request.Params["quyenThem"]);
-            //    bool quyenSua = Convert.ToBoolean(Request.Params["quyenSua"]);
-            //    bool quyenXoa = Convert.ToBoolean(Request.Params["quyenXoa"]);
-            //    bool quyenLuu = Convert.ToBoolean(Request.Params["quyenLuu"]);
-            //    bool quyenIn = Convert.ToBoolean(Request.Params["quyenIn"]);
-            //    List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
-            //    foreach (var menuId in ListMenuIDs)
-            //    {
-            //        AD_User_Menu aum = new AD_User_Menu()
-            //        {
-            //            User_Id = UserID,
-            //            Menu_Id = Convert.ToInt32(menuId), 
-            //            TatCaQuyen = tatCaQuyen,
-            //            QuyenXem = quyenXem,
-            //            QuyenThem = quyenThem,
-            //            QuyenSua = quyenSua,
-            //            QuyenXoa = quyenXoa,
-            //            QuyenLuu = quyenLuu,
-            //            QuyenIn = quyenIn
-            //        };
-            //        _serviceUserMenu.InsertOrUpdate2Key(aum);
-            //    }
-            //}
+
             List<Quyen> model = new List<Quyen>();
             List<AD_Menu> ListMenus = _serviceMenu.GetAll();
             List<AD_User_Menu> ListUserMenu = _serviceUserMenu.GetListById(UserID);

@@ -2,7 +2,7 @@
     var grid = Html.DevExpress().GridView<DANN.Model.AD_User>(settings =>
     {
         settings.Name = "UserGridView";
-        settings.CallbackRouteValues = new { Controller = "ADUser", Action = "Load" };
+        settings.CallbackRouteValues = new { Controller = "ADUser", Action = "LoadUser" };
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADUser", Action = "AddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADUser", Action = "Update" };
@@ -13,6 +13,10 @@
         settings.Width = Unit.Percentage(100);
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.ButtonType = GridCommandButtonRenderMode.Button;
+        settings.CommandColumn.ShowUpdateButton = true;
+        settings.CommandColumn.ShowCancelButton = true;
 
         //settings.SettingsPager.PageSizeItemSettings.Visible = true;
         //settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
@@ -31,7 +35,6 @@
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = false;
         settings.KeyboardSupport = true;
-
 
 
         /*Events*/
@@ -118,6 +121,48 @@
                                 column.Visible = false;
                                 column.EditFormSettings.Visible = DefaultBoolean.True;
                             });
+
+        /*Edit Form*/
+        settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.SettingsPopup.EditForm.CloseOnEscape = AutoBoolean.True;
+        settings.SettingsText.PopupEditFormCaption = "Chỉnh sửa thông tin của người dùng";
+        settings.SetEditFormTemplateContent(c =>
+        {
+            DANN.Model.AD_User editItem;
+            if (c.Grid.IsNewRowEditing)
+            {
+                editItem = new DANN.Model.AD_User();
+                Session["CanEditUserId"] = false;
+            }
+            else
+            {
+                editItem = ViewData["Item"] != null ? (DANN.Model.AD_User)ViewData["Item"] : (DANN.Model.AD_User)c.Grid.GetRow(c.VisibleIndex);
+                Session["CanEditUserId"] = true;
+            }
+            Html.RenderPartial("_UserDetail", editItem);
+            ViewContext.Writer.Write("<div style='float:right; padding:5px;'>");
+
+            Html.DevExpress().Button(btnSettings =>
+            {
+                btnSettings.Name = "btnUpdate";
+                btnSettings.ControlStyle.CssClass = "button";
+                btnSettings.Text = "Cập nhật";
+                btnSettings.ClientSideEvents.Click = "function(s, e){ UserGridView.UpdateEdit(); }";
+            }).Render();
+            ViewContext.Writer.Write("  ");
+            Html.DevExpress().Button(
+                btnSettings =>
+                {
+                    btnSettings.Name = "btnCancel";
+                    btnSettings.ControlStyle.CssClass = "button";
+                    btnSettings.Text = "Hủy";
+                    btnSettings.ClientSideEvents.Click = "function(s, e){ UserGridView.CancelEdit(); }";
+                }).Render();
+            ViewContext.Writer.Write("</div>");
+
+        });
 
     });
     if (ViewData["EditError"] != null)

@@ -1418,6 +1418,9 @@
     <Content Include="Views\BDBieuDo\_ComboBoxPhanHePartial.cshtml" />
     <Content Include="Views\BDBieuDo\_TreeListChiTieuPartial.cshtml" />
     <Content Include="Views\BDBieuDo\_TreeListDiaPhuongPartial.cshtml" />
+    <Content Include="Views\ADUser\_UserDetail.cshtml" />
+    <Content Include="Views\Shared\Common\_ComboboxPhanHe.cshtml" />
+    <Content Include="Views\Shared\Common\_ComboboxChucVu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

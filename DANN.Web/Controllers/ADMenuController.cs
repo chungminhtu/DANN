@@ -102,6 +102,23 @@ namespace DANN.Web.Controllers
             var model = _service.GetAll(); 
             return PartialView("Menu", model);
         }
+
+        [HttpPost, ValidateInput(false)]
+        public void SetPhanHeToListMenuIDs()
+        {
+            string selectedMenuIDs = Request.Params["selectedIDs"] + "";
+            string TenPhanHeParam = Request.Params["TenPhanHeParam"] + "";
+            if (selectedMenuIDs != "")
+            { 
+                List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
+                foreach (var menuId in ListMenuIDs)
+                {
+                    var entity = (_service.GetEntityById(menuId));
+                    entity.PhanHe = TenPhanHeParam;
+                    _service.Update(entity);
+                }
+            }
+        }
     }
 
 }

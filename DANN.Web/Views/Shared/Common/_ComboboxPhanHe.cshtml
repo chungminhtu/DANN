@@ -1,0 +1,13 @@
+﻿@model DANN.Model.AD_User
+
+@Html.DevExpress().ComboBoxFor(c => c.PhongBan, settings =>
+{
+    settings.Name = "ComboboxPhanHe";
+    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+    settings.CallbackRouteValues = new { Controller = "DMPhanHe", Action = "LoadComboPhanHe" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "TenPhanHe";
+    settings.Properties.TextField = "TenPhanHe";
+    settings.Properties.ValueType = typeof(string); 
+}).BindList(ViewData["ComboListPhanHe"]).GetHtml()

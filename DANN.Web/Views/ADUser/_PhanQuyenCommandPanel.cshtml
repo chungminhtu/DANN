@@ -28,23 +28,26 @@
             e.processOnServer = false;
             return false;
         }
-        var checkboxes = $("#ListPhanQuyenOption input:checkbox");
-        var NerverCheck = true;
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                NerverCheck = false;
-            }
-        }
+        
         if (selectedIDs == "") {
-            toastr["error"]("Bạn chưa chọn menu cần phân quyền..")
+            toastr["error"]("Bạn chưa chọn menu cần phân quyền.")
 
             e.processOnServer = false;
             return false;
         }
 
-        if (NerverCheck == true) {
-            toastr["info"]("Nếu chưa chọn quyền thì toàn bộ menu bên dưới sẽ bị loại bỏ toàn bộ quyền!")
-        }
+        //var checkboxes = $("#ListPhanQuyenOption input:checkbox");
+        //var NerverCheck = true;
+        //for (var i = 0; i < checkboxes.length; i++) {
+        //    if (checkboxes[i].checked) {
+        //        NerverCheck = false;
+        //    }
+        //}
+        //if (NerverCheck == true) {
+        //    toastr["info"]("Nếu chưa chọn quyền thì toàn bộ menu bên dưới sẽ bị loại bỏ toàn bộ quyền!")
+        //}
+
+
         $.ajax({
             type: "POST",
             url: "@Url.Action("UpdatePhanQuyenByListMenuIDs")",
