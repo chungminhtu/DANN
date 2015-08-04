@@ -43,7 +43,7 @@
         settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = CodeGridView ;}";
 
         /*Hiển thị thông báo sau từ server sau khi Callback*/
-        settings.ClientSideEvents.EndCallback = "function (s, e) { GridEndCallbackFocusToAddNew(s,e); EndCallbackShowMessage(s,e); }";
+        settings.ClientSideEvents.EndCallback = "function (s, e) { GridEndCallbackFocusToAddNew(s, e); EndCallbackShowMessage(s,e); }";
         settings.CustomJSProperties = (s, e) =>
         {
             if (ViewData["Success"] != null)
