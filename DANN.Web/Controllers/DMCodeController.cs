@@ -19,10 +19,10 @@ namespace DANN.Web.Controllers
         }
 
         [ValidateInput(false)]
-        public ActionResult LoadComboChucVu(string Name)
+        public ActionResult LoadComboChucVu(ComboboxModel model)
         {
             ViewData["ComboListChucVu"] = _service.SearchToList("CodeKind_Id = 2");
-            return PartialView("_ComboboxChucVu", Name);
+            return PartialView("_ComboboxChucVu", model);
         }
     }
 }

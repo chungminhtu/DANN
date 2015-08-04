@@ -1,7 +1,8 @@
-﻿@model string
+﻿@model DANN.Model.ComboboxModel
+
 @Html.DevExpress().ComboBox(settings =>
 {
-    settings.Name = Model + "";
+    settings.Name = Model.Name;
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
     settings.Properties.DropDownStyle = DropDownStyle.DropDown;
     settings.CallbackRouteValues = new { Controller = "DMPhanHe", Action = "LoadComboPhanHe" };
@@ -9,4 +10,4 @@
     settings.Properties.ValueField = "TenPhanHe";
     settings.Properties.TextField = "TenPhanHe";
     settings.Properties.ValueType = typeof(string);
-}).BindList(ViewData["ComboListPhanHe"]).GetHtml()
+}).BindList(ViewData["ComboListPhanHe"]).Bind(Model.Object, Model.Name).GetHtml()

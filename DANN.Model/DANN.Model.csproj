@@ -138,6 +138,7 @@
     <Compile Include="TK_ThongKe.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ComboboxModel.cs" />
     <Compile Include="ViewModels\PhanQuyen.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,13 +10,13 @@
         groupSettings.Caption = "Thông tin chi tiết";
         groupSettings.ShowCaption = DefaultBoolean.True;
         groupSettings.GroupBoxDecoration = GroupBoxDecoration.Box;
-        groupSettings.CellStyle.Paddings.Padding = Unit.Pixel(0);
+        //groupSettings.CellStyle.Paddings.Padding = Unit.Pixel(0);
 
     });
 
     groupItem.SettingsItems.ShowCaption = DefaultBoolean.True;
     //groupItem.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
-    groupItem.ParentContainerStyle.Paddings.Padding = Unit.Pixel(0);
+    //groupItem.ParentContainerStyle.Paddings.Padding = Unit.Pixel(0);
 
     groupItem.ColCount = 2;
     groupItem.ColSpan = 2;
@@ -115,7 +115,7 @@
         m.Width = Unit.Percentage(100);
         m.SetNestedContent(() =>
         {
-            Html.RenderAction("LoadComboChucVu", "DMCode", new { Name = "ChucVu" }); 
+            Html.RenderAction("LoadComboChucVu", "DMCode", new DANN.Model.ComboboxModel { Name = "ChucVu" , Object = Model });
         });
     });
 
@@ -125,7 +125,7 @@
         m.Width = Unit.Percentage(100);
         m.SetNestedContent(() =>
         {
-            Html.RenderAction("LoadComboPhanHe", "DMPhanHe", new { Name = "PhongBan" }); 
+            Html.RenderAction("LoadComboPhanHe", "DMPhanHe", new DANN.Model.ComboboxModel  { Name = "PhongBan", Object = Model });
         });
     });
 

@@ -20,10 +20,10 @@ namespace DANN.Web.Controllers
         }
 
         [ValidateInput(false)]
-        public ActionResult LoadComboPhanHe(string Name)
+        public ActionResult LoadComboPhanHe(ComboboxModel model)
         {
             ViewData["ComboListPhanHe"] = _service.GetAll();
-            return PartialView("_ComboboxPhanHe", Name);
+            return PartialView("_ComboboxPhanHe", model);
         }
     }
 }

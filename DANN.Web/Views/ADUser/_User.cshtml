@@ -149,6 +149,7 @@
                 btnSettings.Name = "btnUpdate";
                 btnSettings.ControlStyle.CssClass = "button";
                 btnSettings.Text = "Cập nhật";
+                btnSettings.Images.Image.Url = "~/Content/icon/16/Save_16x16.png";
                 btnSettings.ClientSideEvents.Click = "function(s, e){ UserGridView.UpdateEdit(); }";
             }).Render();
             ViewContext.Writer.Write("  ");
@@ -158,6 +159,7 @@
                     btnSettings.Name = "btnCancel";
                     btnSettings.ControlStyle.CssClass = "button";
                     btnSettings.Text = "Hủy";
+                    btnSettings.Images.Image.Url = "~/Content/icon/16/Close_16x16.png";
                     btnSettings.ClientSideEvents.Click = "function(s, e){ UserGridView.CancelEdit(); }";
                 }).Render();
             ViewContext.Writer.Write("</div>");

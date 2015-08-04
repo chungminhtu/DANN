@@ -1,8 +1,8 @@
-﻿@model string
+﻿@model DANN.Model.ComboboxModel
 
     @Html.DevExpress().ComboBox(settings =>
 {
-    settings.Name = Model+"";
+    settings.Name = Model.Name;
     settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
     settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
     settings.CallbackRouteValues = new { Controller = "DMCode", Action = "LoadComboChucVu" };
@@ -10,4 +10,4 @@
     settings.Properties.ValueField = "CodeName";
     settings.Properties.TextField = "CodeName";
     settings.Properties.ValueType = typeof(string);
-}).BindList(ViewData["ComboListChucVu"]).GetHtml()
+}).BindList(ViewData["ComboListChucVu"]).Bind(Model.Object, Model.Name).GetHtml()
