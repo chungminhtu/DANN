@@ -13,15 +13,15 @@ namespace DANN.Web.Controllers
 {
 
 
-    public  class MenuCommon
+    public class MenuCommon
     {
         public DANNContext db { get; set; }
         public MenuCommon()
         {
             db = new DANNContext();
-        } 
+        }
 
-        public  IEnumerable<AD_Menu> GetList(int? parentID = null)
+        public IEnumerable<AD_Menu> GetList(int? parentID = null)
         {
             var temp = db.AD_Menu
                        .Where(x => x.Menu_ParentId == parentID)
@@ -38,7 +38,7 @@ namespace DANN.Web.Controllers
             }
         }
 
-        public  ASPxMenu BuildMenu(ASPxMenu menu)
+        public ASPxMenu BuildMenu(ASPxMenu menu)
         {
             List<AD_Menu> menus = GetList().ToList();
 
@@ -65,7 +65,7 @@ namespace DANN.Web.Controllers
 
             return menu;
         }
-        public  void GetNodes(MenuItemCollection menus, string parentID, MenuItem item)
+        public void GetNodes(MenuItemCollection menus, string parentID, MenuItem item)
         {
             if (menus == null)
             {
@@ -85,7 +85,7 @@ namespace DANN.Web.Controllers
 
     public class ADMenuController : CommonController<AD_Menu, AD_Menu, AD_Menu>
     {
-        IEntityService<AD_Menu> _service; 
+        IEntityService<AD_Menu> _service;
         IEntityService<DM_PhanHe> _phanheService;
         public ADMenuController(IEntityService<AD_Menu> service, IEntityService<AD_Menu> service1, IEntityService<AD_Menu> service2, IEntityService<DM_PhanHe> phanheService)
             : base(service, service1, service2)
@@ -97,24 +97,24 @@ namespace DANN.Web.Controllers
         [ValidateInput(false)]
         public ActionResult LoadMenu()
         {
-            ViewBag.ListPhanHe = _phanheService.GetAll();
+            Session["ListPhanHe"] = _phanheService.GetAll();
             ViewBag.ListImages = Common.ListAllImage32();
-            var model = _service.GetAll(); 
-            return PartialView("Menu", model);
+            var model = _service.GetAll();
+            return PartialView("_Menu", model);
         }
 
         [HttpPost, ValidateInput(false)]
         public void SetPhanHeToListMenuIDs()
         {
             string selectedMenuIDs = Request.Params["selectedIDs"] + "";
-            string TenPhanHeParam = Request.Params["TenPhanHeParam"] + "";
+            int PhanHeId = Convert.ToInt32( Request.Params["PhanHeId"] );
             if (selectedMenuIDs != "")
-            { 
+            {
                 List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
                 foreach (var menuId in ListMenuIDs)
                 {
-                    var entity = (_service.GetEntityById(menuId));
-                    entity.PhanHe = TenPhanHeParam;
+                    var entity = (_service.GetEntityById(Convert.ToInt32(menuId)));
+                    entity.PhanHe_Id = PhanHeId;
                     _service.Update(entity);
                 }
             }

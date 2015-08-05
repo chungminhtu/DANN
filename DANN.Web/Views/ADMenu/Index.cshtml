@@ -1,17 +1,26 @@
-﻿<script  type="text/javascript">
+﻿<script type="text/javascript">
 
-    @*if ('@(ViewBag.ListPhanHe)' != '') {
-        $("#ListCacPhanHe").html('@(Html.Raw(Html.DropDownList("NameListPhanHe", new SelectList(ViewBag.ListPhanHe, "TenPhanHe", "TenPhanHe"),new { @id = "SelectListPhanHe", @class= "form-control" }).ToString().Replace("\r\n"," ")))');
-    }*@
+    @*$(function () {
+        if ('@(ViewBag.ListPhanHe)' != '') {
+            $("#ListCacPhanHe").html('@(Html.Raw(Html.DropDownList("NameListPhanHe", new SelectList(ViewBag.ListPhanHe, "TenPhanHe", "TenPhanHe"),new { @id = "SelectListPhanHe", @class= "form-control" }).ToString().Replace("\r\n"," ")))');
+        }
+    });*@
+
 
     //Hàm lấy các node đang được check ở tree Menu
     var selectedIDs = "";
     function MenuTreeOnSelectionChanged(s, e) {
         MenuTreeList.GetSelectedNodeValues("Menu_Id", GetSelectedNodesValuesCallback);
     }
-    function GetSelectedNodesValuesCallback(values) { 
+    function GetSelectedNodesValuesCallback(values) {
         selectedIDs = values.join(',');
     }
+    var SelectedPhanHeID;
+
+    function getval(sel) {
+        SelectedPhanHeID = sel.value;
+    }
+
 
     //Hàm bật dialog chọn Phân hệ cho menu
     function OnSubmitClick(s, e) {
@@ -23,24 +32,20 @@
                     success: {
                         label: "Lưu lại",
                         className: "btn-success",
-                        callback: function () {
-                            //var name = $('#name').val();
-                            //var answer = $("input[name='awesomeness']:checked").val()
-                            //Example.show("Hello " + name + ". You've chosen <b>" + answer + "</b>");
-
+                        callback: function () { 
                             $.ajax({
                                 type: "POST",
                                 url: "@Url.Action("SetPhanHeToListMenuIDs")",
                                 data: {
                                     selectedIDs: selectedIDs,
-                                    TenPhanHeParam: "test"
+                                    PhanHeId: SelectedPhanHeID
                                 },
                                 success: function (response) {
-                                    MenuTree.PerformCallback();
+                                    $("#container").html(response);
+                                    toastr.success('Đã lưu vào cơ sở dữ liệu thành công!', 'Thông báo');
+                                    selectedIDs = "";
                                 }
                             });
-                            selectedIDs = "";
-                            toastr.success('Đã lưu vào cơ sở dữ liệu thành công!', 'Thông báo');
                         }
                     }
                 }
@@ -58,19 +63,19 @@
     <tr>
         <td style="white-space: nowrap;">
 
-            @Html.Partial("_TreeListCommandPanel",new DANN.Web.Models.CommandPanelOptions
-                       {
-                           controlIndex = 1,
-                           controlName = "MenuTreeList",
-                           Add = true,
-                           Edit = true,
-                           Delete = true,
-                           Save = true,
-                           Cancel = true,
-                           Reload = true,
-                           Print = true,
-                           CondictionToAutoSave = "$('#MenuTreeList_DXEDITOR0_I').val() != ''&& $('#MenuTreeList_DXEDITOR0_I').val() != ''",
-                       })
+            @Html.Partial("_TreeListCommandPanel", new DANN.Web.Models.CommandPanelOptions
+       {
+           controlIndex = 1,
+           controlName = "MenuTreeList",
+           Add = true,
+           Edit = true,
+           Delete = true,
+           Save = true,
+           Cancel = true,
+           Reload = true,
+           Print = true,
+           CondictionToAutoSave = "$('#MenuTreeList_DXEDITOR0_I').val() != ''&& $('#MenuTreeList_DXEDITOR0_I').val() != ''",
+       })
         </td>
         <td align="left">
             @Html.DevExpress().Button(myButton =>
@@ -78,18 +83,27 @@
                        myButton.Name = "btnGanPhanHeChoMenu";
                        myButton.Text = "Gán phân hệ";
                        myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
-                       myButton.Images.Image.Url = "~/Content/icon/32/BOPosition2_32x32.png";
+                       myButton.Images.Image.Url = "~/Content/icon/16/BOPosition2_16x16.png";
                        myButton.ToolTip = "Gán tên phân hệ cho các menu đã chọn bên dưới.";
                        myButton.ClientSideEvents.Click = "OnSubmitClick";
                        myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                    }).GetHtml()
 
-            <div id="ListCacPhanHe" style="display:none;"></div>
+          
         </td>
     </tr>
     <tr>
         <td colspan="2">
-            @Html.Action("LoadMenu")
+            <div id="container">@Html.Action("LoadMenu")</div> 
+
+            <div id="ListCacPhanHe" style="display:none;">
+                @(Html.Raw(Html.DropDownList("NameListPhanHe",
+                                                              new SelectList(Session["ListPhanHe"] != null ?
+                                                              (List<DANN.Model.DM_PhanHe>)Session["ListPhanHe"] :
+                                                              new List<DANN.Model.DM_PhanHe>(), "PhanHe_Id", "TenPhanHe"),
+                                                              new { @id = "SelectListPhanHe", @class = "form-control", @onchange ="getval(this)" }).ToString().Replace("\r\n", "")))
+        </div>
+
         </td>
     </tr>
 </table>

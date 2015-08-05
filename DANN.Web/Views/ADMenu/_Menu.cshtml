@@ -104,17 +104,17 @@
                                 column.Width = Unit.Percentage(5);
                                 column.ColumnType = MVCxTreeListColumnType.CheckBox;
                             });
-        settings.Columns.Add(c => c.PhanHe,
+        settings.Columns.Add(c => c.PhanHe_Id,
                             column =>
                             {
                                 column.Width = Unit.Percentage(20);
                                 column.ColumnType = MVCxTreeListColumnType.ComboBox;
                                 column.AllowSort = DefaultBoolean.False;
                                 var properties = column.PropertiesEdit as ComboBoxProperties;
-                                properties.DataSource = ViewBag.ListPhanHe;
+                                properties.DataSource = Session["ListPhanHe"];
                                 properties.TextField = "TenPhanHe";
-                                properties.ValueField = "TenPhanHe";
-                                properties.ValueType = typeof(string);
+                                properties.ValueField = "PhanHe_Id";
+                                properties.ValueType = typeof(int);
                                 properties.DropDownStyle = DropDownStyle.DropDownList;
                             });
         settings.Columns.Add(c => c.MenuSort,
@@ -137,10 +137,6 @@
     }
 } 
 @treeList.Bind(Model).GetHtml()
-<script>
-     if ('@(ViewBag.ListPhanHe)' != '') {
-         $("#ListCacPhanHe").html('@(Html.Raw(Html.DropDownList("NameListPhanHe", new SelectList(ViewBag.ListPhanHe, "TenPhanHe", "TenPhanHe"),new { @id = "SelectListPhanHe", @class= "form-control" }).ToString().Replace("\r\n"," ")))');
-     }
-</script>
+
 
 
