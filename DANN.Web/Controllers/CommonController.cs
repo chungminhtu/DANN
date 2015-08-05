@@ -27,6 +27,15 @@ namespace DANN.Web.Controllers
             _service2 = service2;
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["UserId"] == null)
+            {
+                filterContext.Result = new RedirectResult(Url.Action("Index", "Login"));
+            }
+            base.OnActionExecuting(filterContext);
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -36,7 +45,7 @@ namespace DANN.Web.Controllers
 
         [ValidateInput(false)]
         public ActionResult Load()
-        {  
+        {
             PropertyInfo pInfo = typeof(T).GetProperties()[0];
             if (pInfo.PropertyType == typeof(int))
             {
@@ -144,7 +153,7 @@ namespace DANN.Web.Controllers
 
         [ValidateInput(false)]
         public ActionResult Load1()
-        { 
+        {
             int ID = CommonFunctions.TryParseObjectToInt(Request.Params["ID"]);
             var model = _service1.SearchToList("CodeKind_Id = " + ID);
             ViewBag.MaxCodeValue = _service1.MaxCodeValue(ID);

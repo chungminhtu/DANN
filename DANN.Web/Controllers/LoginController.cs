@@ -21,8 +21,8 @@ namespace NTP_MVC.Controllers
 
             if (User != null)
             {
-
-                return RedirectToAction("Index", "Home");
+                Session["UserId"] = User.User_Id;
+                return RedirectToAction("Index", "ADMenu");
             }
             else
             {

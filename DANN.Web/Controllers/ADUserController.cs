@@ -28,17 +28,7 @@ namespace DANN.Web.Controllers
             _serviceCode = serviceCode;
             _servicePhanHe = servicePhanHe;
         }
-
-        //[ValidateInput(false)]
-        //public ActionResult LoadUser()
-        //{
-        //    var model = _serviceUser.GetAll();
-        //    ViewData["ComboListPhanHe"] = _servicePhanHe.GetAll();
-        //    ViewData["ComboListChucVu"] = _serviceCode.SearchToList("CodeKind_Id = 2");
-
-        //    return PartialView("_User", model);
-        //}
-
+        
         [ValidateInput(false)]
         public ActionResult LoadPhanQuyen()
         {

@@ -16,9 +16,12 @@ namespace DANN.Web.Controllers
     public class MenuCommon
     {
         public DANNContext db { get; set; }
+        public List<int> User_MenuId_Allow { get; set; }
         public MenuCommon()
         {
             db = new DANNContext();
+            string UserId = System.Web.HttpContext.Current.Session["UserId"] + "";
+            User_MenuId_Allow = db.AD_User_Menu.Where(a => a.User_Id == UserId).Select(a => a.Menu_Id).ToList();
         }
 
         public IEnumerable<AD_Menu> GetList(int? parentID = null)
@@ -53,7 +56,7 @@ namespace DANN.Web.Controllers
                 item.Image.Url = row.MenuIcon;
                 item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
 
-                if (i == 0 || row.Menu_ParentId + "" == "")
+                if ((i == 0 || row.Menu_ParentId + "" == "") && User_MenuId_Allow.Contains(Convert.ToInt32(item.Name)))
                 {
                     menu.Items.Add(item);
                 }
@@ -73,7 +76,7 @@ namespace DANN.Web.Controllers
             }
             foreach (MenuItem myitem in menus)
             {
-                if (myitem.Name == parentID)
+                if (myitem.Name == parentID && User_MenuId_Allow.Contains(Convert.ToInt32(item.Name)))
                 {
                     myitem.Items.Add(item);
                 }
@@ -94,6 +97,7 @@ namespace DANN.Web.Controllers
             _phanheService = phanheService;
         }
 
+
         [ValidateInput(false)]
         public ActionResult LoadMenu()
         {
@@ -107,7 +111,7 @@ namespace DANN.Web.Controllers
         public ActionResult SetPhanHeToListMenuIDs()
         {
             string selectedMenuIDs = Request.Params["selectedIDs"] + "";
-            int PhanHeId = Convert.ToInt32( Request.Params["PhanHeId"] );
+            int PhanHeId = Convert.ToInt32(Request.Params["PhanHeId"]);
             if (selectedMenuIDs != "")
             {
                 List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
@@ -118,7 +122,7 @@ namespace DANN.Web.Controllers
                     _service.Update(entity);
                 }
             }
-            return LoadMenu(); 
+            return LoadMenu();
         }
     }
 
