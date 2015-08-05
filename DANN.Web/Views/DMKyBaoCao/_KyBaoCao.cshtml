@@ -2,7 +2,7 @@
     var grid = Html.DevExpress().GridView<DANN.Model.DM_KyBaoCao>(settings =>
     {
         settings.Name = "KyBaoCaoGridView";
-        settings.CallbackRouteValues = new { Controller = "DMKyBaoCao", Action = "Load" };
+        settings.CallbackRouteValues = new { Controller = "DMKyBaoCao", Action = "LoadKBC" };
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMKyBaoCao", Action = "AddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMKyBaoCao", Action = "Update" };
@@ -63,11 +63,23 @@
                             column =>
                             {
                                 column.Width = Unit.Percentage(30);
+                                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+
+                                var properties = column.PropertiesEdit as ComboBoxProperties;
+                                properties.DataSource = ViewBag.ListKyBaoCao;
+                                properties.TextField = "CodeName";
+                                properties.ValueField = "CodeName"; 
                             });
         settings.Columns.Add(c=>c.NguonBaoCao,
                             column =>
                             { 
                                 column.Width = Unit.Percentage(30);
+                                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+
+                                var properties = column.PropertiesEdit as ComboBoxProperties;
+                                properties.DataSource = ViewBag.ListKyBaoCao1;
+                                properties.TextField = "CodeName";
+                                properties.ValueField = "CodeName"; 
                             });
     });
     if (ViewData["EditError"] != null)

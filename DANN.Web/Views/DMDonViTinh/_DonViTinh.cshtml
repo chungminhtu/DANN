@@ -2,7 +2,7 @@
     var grid = Html.DevExpress().GridView<DANN.Model.DM_DonViTinh>(settings =>
     {
         settings.Name = "DonViTinhGridView";
-        settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "Load" };
+        settings.CallbackRouteValues = new { Controller = "DMDonViTinh", Action = "LoadDVT" };
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "DMDonViTinh", Action = "AddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "DMDonViTinh", Action = "Update" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "DMDonViTinh", Action = "Delete" };
@@ -65,6 +65,17 @@
                             column =>
                             {
                                 column.Width = Unit.Percentage(30);
+
+                                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+
+                                var properties = column.PropertiesEdit as ComboBoxProperties;
+                                properties.DataSource = ViewBag.ListDonViTinh;
+                                properties.TextField = "CodeName";
+                                properties.ValueField = "CodeName"; 
+                                //properties.Items.Add("Vùng, Khu vực", "V");
+                                //properties.Items.Add("Tỉnh, Thành phố", "P");
+                                //properties.Items.Add("Quận, Huyện", "D");
+                                //properties.Items.Add("Xã, Phường, Thị Trấn", "W");
                             });
         settings.Columns.Add(c => c.ValueFormat,
                             column =>
