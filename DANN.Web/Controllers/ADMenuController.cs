@@ -100,11 +100,11 @@ namespace DANN.Web.Controllers
             Session["ListPhanHe"] = _phanheService.GetAll();
             ViewBag.ListImages = Common.ListAllImage32();
             var model = _service.GetAll();
-            return PartialView("_Menu", model);
+            return PartialView("Menu", model);
         }
 
         [HttpPost, ValidateInput(false)]
-        public void SetPhanHeToListMenuIDs()
+        public ActionResult SetPhanHeToListMenuIDs()
         {
             string selectedMenuIDs = Request.Params["selectedIDs"] + "";
             int PhanHeId = Convert.ToInt32( Request.Params["PhanHeId"] );
@@ -118,6 +118,7 @@ namespace DANN.Web.Controllers
                     _service.Update(entity);
                 }
             }
+            return LoadMenu(); 
         }
     }
 

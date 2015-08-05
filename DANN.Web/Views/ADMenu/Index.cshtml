@@ -1,12 +1,5 @@
 ﻿<script type="text/javascript">
 
-    @*$(function () {
-        if ('@(ViewBag.ListPhanHe)' != '') {
-            $("#ListCacPhanHe").html('@(Html.Raw(Html.DropDownList("NameListPhanHe", new SelectList(ViewBag.ListPhanHe, "TenPhanHe", "TenPhanHe"),new { @id = "SelectListPhanHe", @class= "form-control" }).ToString().Replace("\r\n"," ")))');
-        }
-    });*@
-
-
     //Hàm lấy các node đang được check ở tree Menu
     var selectedIDs = "";
     function MenuTreeOnSelectionChanged(s, e) {
@@ -25,6 +18,7 @@
     //Hàm bật dialog chọn Phân hệ cho menu
     function OnSubmitClick(s, e) {
         if (selectedIDs != "") {
+            SelectedPhanHeID = $("#SelectListPhanHe option:selected").val();
             bootbox.dialog({
                 title: "Chọn phân hệ muốn gán cho các menu đã chọn:",
                 message: $("#ListCacPhanHe").html(),
@@ -32,7 +26,7 @@
                     success: {
                         label: "Lưu lại",
                         className: "btn-success",
-                        callback: function () { 
+                        callback: function () {
                             $.ajax({
                                 type: "POST",
                                 url: "@Url.Action("SetPhanHeToListMenuIDs")",
@@ -55,9 +49,6 @@
             toastr["error"]("Bạn chưa chọn menu cần gán phân hệ.");
         }
     }
-
-
-
 </script>
 <table>
     <tr>
@@ -89,20 +80,20 @@
                        myButton.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
                    }).GetHtml()
 
-          
+
         </td>
     </tr>
     <tr>
         <td colspan="2">
-            <div id="container">@Html.Action("LoadMenu")</div> 
+            <div id="container">@Html.Action("LoadMenu")</div>
 
             <div id="ListCacPhanHe" style="display:none;">
                 @(Html.Raw(Html.DropDownList("NameListPhanHe",
                                                               new SelectList(Session["ListPhanHe"] != null ?
                                                               (List<DANN.Model.DM_PhanHe>)Session["ListPhanHe"] :
                                                               new List<DANN.Model.DM_PhanHe>(), "PhanHe_Id", "TenPhanHe"),
-                                                              new { @id = "SelectListPhanHe", @class = "form-control", @onchange ="getval(this)" }).ToString().Replace("\r\n", "")))
-        </div>
+                                                              new { @id = "SelectListPhanHe", @class = "form-control input-lg", @onchange = "getval(this)" }).ToString().Replace("\r\n", "")))
+            </div>
 
         </td>
     </tr>
