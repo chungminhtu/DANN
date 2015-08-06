@@ -6,7 +6,7 @@
 
         settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ADUser", Action = "AddNew" };
         settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ADUser", Action = "Update" };
-        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADUser", Action = "DeleteAdmin" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ADUser", Action = "Delete" };
 
 
         //Settings
@@ -121,7 +121,13 @@
                                 column.Visible = false;
                                 column.EditFormSettings.Visible = DefaultBoolean.True;
                             });
-
+        settings.Columns.Add(c => c.KhongDuocXoa,
+                           column =>
+                           {
+                               column.Width = Unit.Pixel(0);
+                               column.Visible = false;
+                               column.EditFormSettings.Visible = DefaultBoolean.False;
+                           });
         /*Edit Form*/
         settings.SettingsPopup.EditForm.Modal = true;
         settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;

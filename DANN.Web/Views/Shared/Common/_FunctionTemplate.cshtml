@@ -32,13 +32,13 @@
             toastr["success"]("Đã xóa dữ liệu thành công!");
 
         }
-        if (s.cpMessage == "NotDeleteOK") {
-            toastr["error"]("Không được xóa Admin!");
+        if (s.cpMessage == "CannotDelete") {
+            toastr["error"]("Đây là dữ liệu hệ thống nên không được quyền xóa!");
         }
-         if (s.cpMessage == "NotDeleteOK1"){
-             toastr["error"]("Không xóa được vì tồn tại bảng con!");
+        if (s.cpMessage == "CannotDeleteParent") {
+            toastr["error"]("Không xóa được vì tồn tại dữ liệu con!");
         }
-        s.cpMessage = null;
+         s.cpMessage = null;
     }
 
 

@@ -142,22 +142,5 @@ namespace DANN.Web.Controllers
             }
             return LoadPhanQuyen();
         }
-
-        [HttpPost, ValidateInput(false)]
-        public ActionResult DeleteAdmin(AD_User item)
-        {
-            if (item.User_Id == "a")
-            {
-                ViewData["Success"] = "NotDeleteOK";
-
-            }
-            else
-            {
-                _serviceUser.Delete(item);
-                ViewData["Success"] = "DeleteOK";
-            }
-            var model = _serviceUser.GetAll();
-            return PartialView("User", model);
-        }
     }
 }

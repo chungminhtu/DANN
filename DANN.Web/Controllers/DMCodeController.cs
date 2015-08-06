@@ -28,17 +28,16 @@ namespace DANN.Web.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult DeleteCode(DM_CodeKind item)
+        public ActionResult DeleteCodeKind(DM_CodeKind item)
         {
            int dem = _service.SearchToList("CodeKind_Id = "+item.CodeKind_Id).Count();
             if (dem!=0) 
            {
-               ViewData["Success"] = "NotDeleteOK1";
+               ViewData["Success"] = "CannotDeleteParent";
            }
             else 
-            {
-                _serviceCodeKind.Delete(item);
-                ViewData["Success"] = "DeleteOK";
+            { 
+                Delete(item);
             }
             var model = _serviceCodeKind.GetAll();
             return PartialView("CodeKind", model);
