@@ -185,6 +185,22 @@
           <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
           <Property Name="GiaTriThongKe" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DBDANN.dbo.View_ThongKeNienGiam' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_ThongKeNienGiam">
+          <Key>
+            <PropertyRef Name="ChiTieu_Id" />
+            <PropertyRef Name="KyBaoCao_Id" />
+            <PropertyRef Name="DiaPhuong_Id" />
+          </Key>
+          <Property Name="TenKyBaoCao" Type="nvarchar" MaxLength="100" />
+          <Property Name="TenChiTieu" Type="nvarchar" MaxLength="300" />
+          <Property Name="ChiTieu_Id" Type="int" Nullable="false" />
+          <Property Name="KyBaoCao_Id" Type="int" Nullable="false" />
+          <Property Name="DiaPhuong_Id" Type="int" Nullable="false" />
+          <Property Name="GiaTriThongKe" Type="varchar" MaxLength="50" />
+          <Property Name="TenDiaPhuong" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <Association Name="FK_AD_User_Menu_AD_Menu">
           <End Role="AD_Menu" Type="Self.AD_Menu" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -301,6 +317,17 @@
           <EntitySet Name="TK_ChiTieu" EntityType="Self.TK_ChiTieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_DoiTuong" EntityType="Self.TK_DoiTuong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_ThongKe" EntityType="Self.TK_ThongKe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_ThongKeNienGiam" EntityType="Self.View_ThongKeNienGiam" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_ThongKeNienGiam].[TenKyBaoCao] AS [TenKyBaoCao], 
+    [View_ThongKeNienGiam].[TenChiTieu] AS [TenChiTieu], 
+    [View_ThongKeNienGiam].[ChiTieu_Id] AS [ChiTieu_Id], 
+    [View_ThongKeNienGiam].[KyBaoCao_Id] AS [KyBaoCao_Id], 
+    [View_ThongKeNienGiam].[DiaPhuong_Id] AS [DiaPhuong_Id], 
+    [View_ThongKeNienGiam].[GiaTriThongKe] AS [GiaTriThongKe], 
+    [View_ThongKeNienGiam].[TenDiaPhuong] AS [TenDiaPhuong]
+    FROM [dbo].[View_ThongKeNienGiam] AS [View_ThongKeNienGiam]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AD_User_Menu_AD_Menu" Association="Self.FK_AD_User_Menu_AD_Menu">
             <End Role="AD_Menu" EntitySet="AD_Menu" />
             <End Role="AD_User_Menu" EntitySet="AD_User_Menu" />
@@ -352,6 +379,7 @@
           <EntitySet Name="TK_ChiTieu" EntityType="DBDANNModel.TK_ChiTieu" />
           <EntitySet Name="TK_DoiTuong" EntityType="DBDANNModel.TK_DoiTuong" />
           <EntitySet Name="TK_ThongKe" EntityType="DBDANNModel.TK_ThongKe" />
+          <EntitySet Name="View_ThongKeNienGiam" EntityType="DBDANNModel.View_ThongKeNienGiam" />
           <AssociationSet Name="FK_AD_User_Menu_AD_Menu" Association="DBDANNModel.FK_AD_User_Menu_AD_Menu">
             <End Role="AD_Menu" EntitySet="AD_Menu" />
             <End Role="AD_User_Menu" EntitySet="AD_User_Menu" />
@@ -574,6 +602,20 @@
           <NavigationProperty Name="DM_PhanHe" Relationship="DBDANNModel.FK_TK_ThongKe_DM_Nhom" FromRole="TK_ThongKe" ToRole="DM_PhanHe" />
           <NavigationProperty Name="TK_ChiTieu" Relationship="DBDANNModel.FK_TK_ThongKe_TK_ChiTieu" FromRole="TK_ThongKe" ToRole="TK_ChiTieu" />
           <NavigationProperty Name="TK_DoiTuong" Relationship="DBDANNModel.FK_TK_ThongKe_TK_DoiTuong" FromRole="TK_ThongKe" ToRole="TK_DoiTuong" />
+        </EntityType>
+        <EntityType Name="View_ThongKeNienGiam">
+          <Key>
+            <PropertyRef Name="ChiTieu_Id" />
+            <PropertyRef Name="KyBaoCao_Id" />
+            <PropertyRef Name="DiaPhuong_Id" />
+          </Key>
+          <Property Name="TenKyBaoCao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TenChiTieu" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ChiTieu_Id" Type="Int32" Nullable="false" />
+          <Property Name="KyBaoCao_Id" Type="Int32" Nullable="false" />
+          <Property Name="DiaPhuong_Id" Type="Int32" Nullable="false" />
+          <Property Name="GiaTriThongKe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenDiaPhuong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_AD_User_Menu_AD_Menu">
           <End Type="DBDANNModel.AD_Menu" Role="AD_Menu" Multiplicity="1">
@@ -866,6 +908,19 @@
                 <ScalarProperty Name="KyBaoCao_Id" ColumnName="KyBaoCao_Id" />
                 <ScalarProperty Name="DoiTuong_Id" ColumnName="DoiTuong_Id" />
                 <ScalarProperty Name="ChiTieu_Id" ColumnName="ChiTieu_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_ThongKeNienGiam">
+            <EntityTypeMapping TypeName="DBDANNModel.View_ThongKeNienGiam">
+              <MappingFragment StoreEntitySet="View_ThongKeNienGiam">
+                <ScalarProperty Name="TenDiaPhuong" ColumnName="TenDiaPhuong" />
+                <ScalarProperty Name="GiaTriThongKe" ColumnName="GiaTriThongKe" />
+                <ScalarProperty Name="DiaPhuong_Id" ColumnName="DiaPhuong_Id" />
+                <ScalarProperty Name="KyBaoCao_Id" ColumnName="KyBaoCao_Id" />
+                <ScalarProperty Name="ChiTieu_Id" ColumnName="ChiTieu_Id" />
+                <ScalarProperty Name="TenChiTieu" ColumnName="TenChiTieu" />
+                <ScalarProperty Name="TenKyBaoCao" ColumnName="TenKyBaoCao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

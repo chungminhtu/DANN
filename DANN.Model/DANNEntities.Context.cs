@@ -42,5 +42,6 @@ namespace DANN.Model
         public virtual DbSet<TK_ChiTieu> TK_ChiTieu { get; set; }
         public virtual DbSet<TK_DoiTuong> TK_DoiTuong { get; set; }
         public virtual DbSet<TK_ThongKe> TK_ThongKe { get; set; }
+        public virtual DbSet<View_ThongKeNienGiam> View_ThongKeNienGiam { get; set; }
     }
 }
