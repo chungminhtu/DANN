@@ -24,11 +24,11 @@
     //Hàm thực hiện lưu hàng loạt quyền của nhiều menu, và reload lại tree Phân Quyền
     function OnSubmitClick(s, e) {
         if (ID == null) {
-            toastr["error"]("Bạn chưa chọn người dùng muốn phân quyền.") 
+            toastr["error"]("Bạn chưa chọn người dùng muốn phân quyền.")
             e.processOnServer = false;
             return false;
         }
-        
+
         if (selectedIDs == "") {
             toastr["error"]("Bạn chưa chọn menu cần phân quyền.")
 
@@ -64,10 +64,10 @@
             },
             success: function (response) {
                 $("#container").html(response);
+                selectedIDs = "";
+                toastr.success('Đã gán quyền thành công!', 'Thông báo');
             }
-        });
-        selectedIDs = "";
-        toastr.success('Đã gán quyền thành công!', 'Thông báo');
+        }); 
     }
 
     //Check nút toàn bộ quyền thì check/uncheck toàn bộ các checkbox
@@ -82,6 +82,39 @@
             }
         }
     }
+
+    //Check nút toàn bộ quyền thì check/uncheck toàn bộ các checkbox
+    function checkQuyenXem(e) {
+        if (e.checked) {
+            var checkboxes = $("#ListPhanQuyenOption input:checkbox");
+            checkboxes[1].checked = true;
+        }
+    }
+
+    //Check một trong các nút thêm sửa xóa thì đồng thời check nút xem (để vào đc màn hình)
+    function checkQuyenCRUD(e) {
+        if (e.checked) {
+            var checkboxes = $("#ListPhanQuyenOption input:checkbox");
+            checkboxes[1].checked = true;
+            checkboxes[2].checked = true;
+            checkboxes[3].checked = true;
+            checkboxes[4].checked = true;
+            checkboxes[5].checked = true;
+        }
+    }
+
+    //Bỏ check nút xem thì bỏ toàn bộ các nút khác
+    function uncheckQuyenCRUD(e) {
+        if (!e.checked) {
+            var checkboxes = $("#ListPhanQuyenOption input:checkbox");
+            checkboxes[1].checked = false;
+            checkboxes[2].checked = false;
+            checkboxes[3].checked = false;
+            checkboxes[4].checked = false;
+            checkboxes[5].checked = false;
+        }
+    }
+
 </script>
 @Html.DevExpress().FormLayout(settings =>
 {
@@ -101,12 +134,12 @@
 
                 ViewContext.Writer.Write("<table id='ListPhanQuyenOption'><tr><td >");
                 ViewContext.Writer.Write("<label ><input id=\"tatCaQuyen\" type=\"checkbox\" onchange=\"checkAll(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Toàn bộ quyền</label>");
-                ViewContext.Writer.Write("<label ><input id=\"quyenXem\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Xem</label>");
-                ViewContext.Writer.Write("<label ><input id=\"quyenThem\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Thêm</label>");
-                ViewContext.Writer.Write("<label ><input id=\"quyenSua\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Sửa</label>");
-                ViewContext.Writer.Write("<label ><input id=\"quyenXoa\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Xóa</label>");
-                ViewContext.Writer.Write("<label ><input id=\"quyenLuu\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Lưu</label>");
-                ViewContext.Writer.Write("<label ><input id=\"quyenIn\" type=\"checkbox\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền In</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenXem\" type=\"checkbox\" onchange=\"uncheckQuyenCRUD(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Xem</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenThem\" type=\"checkbox\" onchange=\"checkQuyenCRUD(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Thêm</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenSua\" type=\"checkbox\" onchange=\"checkQuyenCRUD(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Sửa</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenXoa\" type=\"checkbox\" onchange=\"checkQuyenCRUD(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Xóa</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenLuu\" type=\"checkbox\" onchange=\"checkQuyenCRUD(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền Lưu</label>");
+                ViewContext.Writer.Write("<label ><input id=\"quyenIn\" type=\"checkbox\" onchange=\"checkQuyenXem(this)\" class=\"dxICheckBox_Aqua dxichSys\" name=\"phanquyen\" />Quyền In</label>");
                 Html.DevExpress().Button(
              myButton =>
              {

@@ -21,7 +21,7 @@ namespace DANN.Web.Controllers
         {
             db = new DANNContext();
             string UserId = System.Web.HttpContext.Current.Session["UserId"] + "";
-            User_MenuId_Allow = db.AD_User_Menu.Select(a => a.Menu_Id).ToList();
+            User_MenuId_Allow = db.AD_User_Menu.Where(a => a.User_Id == UserId).Where(a => a.QuyenXem == true).Select(a => a.Menu_Id).ToList();
         }
 
         public IEnumerable<AD_Menu> GetList(int? parentID = null)

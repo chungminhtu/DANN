@@ -125,6 +125,17 @@ namespace DANN.Web.Controllers
                 List<string> ListMenuIDs = selectedMenuIDs.Split(',').ToList();
                 foreach (var menuId in ListMenuIDs)
                 {
+                    int? p = _serviceMenu.GetEntityById(Convert.ToInt32(menuId)).Menu_ParentId;
+                    if (p != null)
+                    {
+                        AD_User_Menu pmu = new AD_User_Menu()
+                        {
+                            User_Id = UserID,
+                            Menu_Id = p.Value,
+                            QuyenXem = true
+                        };
+                        _serviceUserMenu.InsertOrUpdate2Key(pmu);
+                    }
                     AD_User_Menu aum = new AD_User_Menu()
                     {
                         User_Id = UserID,
