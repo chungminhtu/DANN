@@ -1,11 +1,6 @@
 ﻿
 <div>
-    <div>
-        <span>
-            &raquo;
-            Biểu đồ chỉ tiêu
-        </span>
-    </div>
+
     <div>
         <div>
             @using (Html.BeginForm("Index", "BDBieuDo"))
@@ -29,7 +24,12 @@
                         </tr>
                         <tr>
                             <td style="width: 150px;">Chỉ tiêu</td>
-                            <td>@Html.Action("TreeListChiTieuPartial")</td>
+                            <td>
+                                @Html.Action("TreeListChiTieuPartial")
+
+
+                            </td>
+
                         </tr>
                         <tr>
                             <td style="width: 150px;">Địa phương</td>
@@ -51,20 +51,6 @@
 <script type="text/javascript">
     // Kiểm tra xem các dropdownload đã được chọn chưa
     $(document).ready(function () {
-        $('#submit').click(function () {
-            if ($("input[name='ListCheckBox']:checked").length == 0) {
-                alert("Bạn chưa chọn kỳ báo cáo");
-                return false;
-            }
-
-            if ($('#idChiTieus').val() == '') {
-                alert("Bạn chưa chọn chỉ tiêu");
-                return false;
-            }
-            if ($('#idMaDiaPhuongs').val() == '' | $('#idMaDiaPhuongs').val() == null) {
-                alert("Bạn chưa chọn địa phương");
-                return false;
-            }
-        });
+       
     });
 </script>

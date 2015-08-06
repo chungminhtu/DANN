@@ -71,6 +71,7 @@
     <Compile Include="Services\DM_PhanHeService.cs" />
     <Compile Include="Services\TK_ChiTieuService.cs" />
     <Compile Include="Services\TK_DoiTuongService.cs" />
+    <Compile Include="Services\View_ThongKeNienGiamService.cs" />
     <Compile Include="Services\TK_ThongKeService.cs" />
     <Compile Include="Services\BM_CotService.cs" />
     <Compile Include="Services\AD_MenuService.cs" />

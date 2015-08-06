@@ -14,7 +14,14 @@
            }
         );
         settings.SettingsPager.Visible = true;
-        settings.SettingsSelection.Enabled = true;
+        settings.SettingsSelection.Enabled = false;
+        settings.CommandColumn.Visible = false;
+        settings.Settings.ScrollableHeight = 250;
+        settings.Settings.VerticalScrollBarMode =
+          ScrollBarMode.Auto;
+        settings.SettingsBehavior.AllowFocusedNode = true;
+ 
+
     });
 }
 @treeList.Bind(Model).GetHtml()

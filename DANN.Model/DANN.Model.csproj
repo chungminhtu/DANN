@@ -109,6 +109,7 @@
     <Compile Include="DM_PhanHe.cs">
       <DependentUpon>DANNEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\View_ThongKeNienGiam.cs" />
     <Compile Include="Models\AD_LichSu.cs" />
     <Compile Include="Models\AD_Menu.cs" />
     <Compile Include="Models\AD_User.cs" />
@@ -140,6 +141,9 @@
     </Compile>
     <Compile Include="ViewModels\ComboboxModel.cs" />
     <Compile Include="ViewModels\PhanQuyen.cs" />
+    <Compile Include="View_ThongKeNienGiam.cs">
+      <DependentUpon>DANNEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
