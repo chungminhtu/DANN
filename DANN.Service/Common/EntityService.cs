@@ -199,7 +199,7 @@ namespace DANN.Service
 
         public virtual List<T> SearchToList(string searchTerm)
         {
-            return _dbset.AsQueryable().Where(searchTerm).ToList();
+            return _dbset.Where(searchTerm).ToList();
         }
 
         #endregion

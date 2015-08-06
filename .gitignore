@@ -823,3 +823,4 @@ packages/repositories.config
 /DANN/obj/Debug
 /.vs/DANN/v14/.suo
 /packages
+/DANN.Model/obj/Debug
