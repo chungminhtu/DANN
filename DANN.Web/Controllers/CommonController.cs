@@ -70,10 +70,7 @@ namespace DANN.Web.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Delete(T item)
         {
-
-
             return CommonAction(_service, "delete", item);
-
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult Move(T item)
@@ -97,8 +94,17 @@ namespace DANN.Web.Controllers
             {
                 try
                 {
-                    s.Delete(item);
-                    ViewData["Success"] = "DeleteOK";
+                    var temp = s.GetEntityById(typeof(T).GetProperties()[0].GetValue(item));
+                    PropertyInfo pInfo = typeof(T).GetProperty("KhongDuocXoa");
+                    if (pInfo != null && pInfo.GetValue(temp) != null && Convert.ToBoolean(pInfo.GetValue(temp)) == true)
+                    {
+                        ViewData["Success"] = "CannotDelete";
+                    }
+                    else
+                    {
+                        s.Delete(item);
+                        ViewData["Success"] = "DeleteOK";
+                    }
                 }
                 catch (Exception e)
                 {
@@ -119,16 +125,8 @@ namespace DANN.Web.Controllers
                         }
                         if (action == "update")
                         {
-                            //PropertyInfo pInfo = typeof(T).GetProperties()[0];
-                            //if (pInfo.PropertyType == typeof(int))
-                            //{
-                            //      s.Update(item);
-                            //}
-                            //else
-                            //{
                             s.Update(item);
                             ViewData["Success"] = "UpdateOK";
-                            //}
                         }
                     }
                     catch (Exception e)
