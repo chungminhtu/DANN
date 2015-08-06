@@ -65,7 +65,7 @@ namespace DANN.Web.Controllers
             List<string> LstMaDiaPhuongCheck = new List<string>();
             List<int> a =new List<int>(){1,2,3};
 
-            List<View_ThongKeNienGiam> LstThongKe = _service6.SearchToList("MaDiaPhuong_Id In (" + string.Join(",", LstMaDiaPhuongCheck) + ")");
+            List<View_ThongKeNienGiam> LstThongKe = _service6.SearchToList("DiaPhuong_Id In (" + string.Join(",", a) + ")");
             return View();
         }
 
