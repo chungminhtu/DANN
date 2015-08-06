@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DANN.Model;
+using System.Data.Entity;
 
 namespace DANN.Service
 {
 
     public class View_ThongKeNienGiamService : EntityService<View_ThongKeNienGiam>
-    {
+    {   
         public View_ThongKeNienGiamService(IContext context)
             : base(context)
         {

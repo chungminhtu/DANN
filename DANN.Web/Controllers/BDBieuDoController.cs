@@ -9,7 +9,7 @@ using DANN.Model;
 
 namespace DANN.Web.Controllers
 {
-    public class BDBieuDoController : CommonController<TK_ChiTieu,TK_ThongKe,DM_KyBaoCao>
+    public class BDBieuDoController : CommonController<TK_ChiTieu, TK_ThongKe, DM_KyBaoCao>
     {
 
         IEntityService<TK_ChiTieu> _service1;
@@ -20,7 +20,7 @@ namespace DANN.Web.Controllers
         IEntityService<View_ThongKeNienGiam> _service6;
         public BDBieuDoController(IEntityService<TK_ChiTieu> service1, IEntityService<TK_ThongKe> service2,
             IEntityService<DM_KyBaoCao> service3, IEntityService<DM_PhanHe> service4,
-            IEntityService<DM_DiaPhuong> service5,  IEntityService<View_ThongKeNienGiam> service6)
+            IEntityService<DM_DiaPhuong> service5, IEntityService<View_ThongKeNienGiam> service6)
             : base(service1, service2, service3)
         {
             _service1 = service1;
@@ -29,7 +29,7 @@ namespace DANN.Web.Controllers
             _service4 = service4;
             _service5 = service5;
             _service6 = service6;
-        } 
+        }
 
         public ActionResult ComboBoxKBCPartial()
         {
@@ -63,9 +63,8 @@ namespace DANN.Web.Controllers
             string MaKyBaoCaoSelect;
             string MaChiTieuSelect;
             List<string> LstMaDiaPhuongCheck = new List<string>();
-            List<int> a =new List<int>(){1,2,3};
-
-            List<View_ThongKeNienGiam> LstThongKe = _service6.SearchToList("DiaPhuong_Id In (" + string.Join(",", a) + ")");
+            List<int> ListDP = new List<int>() { 1, 2, 3 };
+            List<View_ThongKeNienGiam> LstThongKe = _service6._dbset.Where(a => ListDP.Contains(a.DiaPhuong_Id)).ToList();
             return View();
         }
 

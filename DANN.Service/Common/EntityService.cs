@@ -15,8 +15,8 @@ namespace DANN.Service
 {
     public abstract class EntityService<T> : IEntityService<T> where T : BaseEntity
     {
-        public IContext _context;
-        public IDbSet<T> _dbset;
+        public IContext _context { get; set; }
+        public IDbSet<T> _dbset { get; set; }
 
         public string KeyName;
 
@@ -35,7 +35,7 @@ namespace DANN.Service
             {
                 throw new ArgumentNullException("entity");
             }
-            PropertyInfo pInfo = typeof(T).GetProperties()[0]; 
+            PropertyInfo pInfo = typeof(T).GetProperties()[0];
             if (pInfo.PropertyType == typeof(int))
             {
                 CommonFunctions.TrySetProperty(entity, typeof(T).GetProperties()[0].Name, MaxId() + 1);
@@ -74,13 +74,13 @@ namespace DANN.Service
             else
             {
                 _dbset.Add(entity);
-            } 
+            }
             _context.SaveChanges();
         }
 
         public virtual void InsertOrUpdate2Key(T entity)
         {
-            var cEntity = GetEntityBy2Key(GetIdGeneric(entity),GetId1Generic(entity));
+            var cEntity = GetEntityBy2Key(GetIdGeneric(entity), GetId1Generic(entity));
             if (cEntity != null)
             {
                 var entry = _context.Entry<T>(entity);
@@ -189,7 +189,7 @@ namespace DANN.Service
 
         public virtual T GetEntityBy2Key(object Id1, object Id2)
         {
-            return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0 And "+ typeof(T).GetProperties()[1].Name + " = @1", Id1, Id2).FirstOrDefault();
+            return _dbset.Where(typeof(T).GetProperties()[0].Name + " = @0 And " + typeof(T).GetProperties()[1].Name + " = @1", Id1, Id2).FirstOrDefault();
         }
 
         public virtual T SearchFirst(string searchTerm)
@@ -200,6 +200,10 @@ namespace DANN.Service
         public virtual List<T> SearchToList(string searchTerm)
         {
             return _dbset.Where(searchTerm).ToList();
+        }
+        public virtual IQueryable<T> WhereIn(object mList, string fieldName)
+        {
+            return _dbset.Where("@0.Contains(@1)", mList, fieldName);
         }
 
         #endregion
@@ -226,7 +230,7 @@ namespace DANN.Service
         private object GetParentIdGeneric(T entity)
         {
             var id = typeof(T).GetProperties()[1].GetValue(entity);
-           // int? result = CommonFunctions.TryParseParentId(id + "");
+            // int? result = CommonFunctions.TryParseParentId(id + "");
             return id;
         }
 

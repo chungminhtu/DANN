@@ -29,11 +29,11 @@ namespace DANN.Web.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (Session["UserId"] == null)
-            {
-                filterContext.Result = new RedirectResult(Url.Action("Index", "Login"));
-            }
-            base.OnActionExecuting(filterContext);
+            //if (Session["UserId"] == null)
+            //{
+            //    filterContext.Result = new RedirectResult(Url.Action("Index", "Login"));
+            //}
+            //base.OnActionExecuting(filterContext);
         }
 
         public ActionResult Index()

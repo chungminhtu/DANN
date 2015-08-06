@@ -5,11 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using DANN.Model;
 using System.Linq.Expressions;
+using System.Data.Entity;
 
 namespace DANN.Service
 {
     public interface IEntityService<T> where T : BaseEntity
     {
+        IContext _context { get; set; }
+        IDbSet<T> _dbset { get; set; }
+
         void Create(T entity);
         void CreateWithParentID(T entity, int ParentID);
         void Delete(T entity);
@@ -32,6 +36,6 @@ namespace DANN.Service
         T SearchFirst(string searchTerm);
 
         List<T> SearchToList(string searchTerm);
-
+        IQueryable<T> WhereIn(object mList, string fieldName);
     }
 }
