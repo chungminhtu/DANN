@@ -21,6 +21,7 @@ namespace DANN.Model
     
         public int PhanHe_Id { get; set; }
         public string TenPhanHe { get; set; }
+        public Nullable<bool> KhongDuocXoa { get; set; }
     
         public virtual ICollection<TK_ThongKe> TK_ThongKe { get; set; }
     }

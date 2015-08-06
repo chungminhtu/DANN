@@ -52,7 +52,7 @@ namespace DANN.Web.Controllers
                 MenuItem item = new MenuItem();
                 item.Name = row.Menu_Id + "";
                 item.Text = row.MenuText;
-                item.NavigateUrl = DevExpressHelper.GetUrl(new { Controller = row.MenuAction, Action = "Index" }); ;
+                item.NavigateUrl = DevExpressHelper.GetUrl(new { Controller = row.MenuAction, Action = "Index" });
                 item.Image.Url = row.MenuIcon;
                 item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
 

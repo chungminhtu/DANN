@@ -23,6 +23,7 @@ namespace DANN.Model
         public string TenDonViTinh { get; set; }
         public string LoaiDonViTinh { get; set; }
         public string ValueFormat { get; set; }
+        public Nullable<bool> KhongDuocXoa { get; set; }
     
         public virtual ICollection<TK_ChiTieu> TK_ChiTieu { get; set; }
     }

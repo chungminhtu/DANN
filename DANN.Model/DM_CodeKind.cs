@@ -16,5 +16,6 @@ namespace DANN.Model
     {
         public int CodeKind_Id { get; set; }
         public string CodeKindName { get; set; }
+        public Nullable<bool> KhongDuocXoa { get; set; }
     }
 }

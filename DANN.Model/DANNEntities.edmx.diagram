@@ -15,9 +15,9 @@
         <EntityTypeShape EntityType="DBDANNModel.DM_Code" Width="1.5" PointX="10.75" PointY="3.75" />
         <EntityTypeShape EntityType="DBDANNModel.DM_CodeKind" Width="1.5" PointX="10.75" PointY="6.75" />
         <EntityTypeShape EntityType="DBDANNModel.DM_DiaPhuong" Width="1.5" PointX="11.75" PointY="9.75" />
-        <EntityTypeShape EntityType="DBDANNModel.DM_DonViTinh" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="DBDANNModel.DM_DonViTinh" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="DBDANNModel.DM_KyBaoCao" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="DBDANNModel.DM_PhanHe" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="DBDANNModel.DM_PhanHe" Width="1.5" PointX="3" PointY="10.875" />
         <EntityTypeShape EntityType="DBDANNModel.sysdiagram" Width="1.5" PointX="11.75" PointY="0.75" />
         <EntityTypeShape EntityType="DBDANNModel.TK_ChiTieu" Width="1.5" PointX="3" PointY="1.25" />
         <EntityTypeShape EntityType="DBDANNModel.TK_DoiTuong" Width="1.5" PointX="3" PointY="5.125" />
