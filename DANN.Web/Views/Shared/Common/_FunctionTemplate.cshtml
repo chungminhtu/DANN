@@ -30,6 +30,13 @@
         }
         if (s.cpMessage == "DeleteOK") {
             toastr["success"]("Đã xóa dữ liệu thành công!");
+
+        }
+        if (s.cpMessage == "NotDeleteOK") {
+            toastr["error"]("Không được xóa Admin!");
+        }
+         if (s.cpMessage == "NotDeleteOK1"){
+             toastr["error"]("Không xóa được vì tồn tại bảng con!");
         }
         s.cpMessage = null;
     }
