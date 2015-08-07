@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DANN.Service
+namespace DANN.Model
 {
     public static class CommonFunctions
     {

@@ -13,8 +13,8 @@ namespace DANN.Model
             public int BieuMau_Id { get; set; }
 
             [DisplayName("Tên biểu mẫu")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(100, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string TenBieuMau { get; set; }
         }
     }

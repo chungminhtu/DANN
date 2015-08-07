@@ -22,8 +22,8 @@ namespace DANN.Model
             public int DiaPhuong_Id { get; set; }
 
             [DisplayName("Giá trị Thống kê")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(50, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(50, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string GiaTriThongKe { get; set; }
 
             public virtual DM_KyBaoCao DM_KyBaoCao { get; set; }

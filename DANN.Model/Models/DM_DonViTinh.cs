@@ -14,13 +14,13 @@ namespace DANN.Model
             public int DonViTinh_Id { get; set; }
 
             [DisplayName("Tên Đơn Vị Tính")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(100, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string TenDonViTinh { get; set; }
 
             [DisplayName("Loại Đơn Vị Tính")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(20, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(20, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string LoaiDonViTinh { get; set; }
 
 

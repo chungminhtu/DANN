@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using DANN.Model.Common;
 using DevExpress.Web.Mvc;
-using DANN.Service;
+using DANN.Model;
 using System.Reflection;
 
 namespace DANN.Web.Controllers

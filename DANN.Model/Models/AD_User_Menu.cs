@@ -11,13 +11,13 @@ namespace DANN.Model
         public class AD_User_MenuMetadata
         {
             [DisplayName("Tên đăng nhập")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(30, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(30, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string User_Id { get; set; }
 
             [DisplayName("Quyền truy cập")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [Range(0,int.MaxValue,ErrorMessage=DANN.Service.CommonMessages.Required)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [Range(0,int.MaxValue,ErrorMessage=DANN.Model.CommonMessages.Required)]
             public int Menu_Id { get; set; }
         }
     }

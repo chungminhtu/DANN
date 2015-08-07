@@ -14,8 +14,8 @@ namespace DANN.Model
             public int PhanHe_Id { get; set; }
 
             [DisplayName("Tên Phân hệ")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(200, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(200, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string TenPhanHe { get; set; }
 
             public virtual ICollection<TK_ThongKe> TK_ThongKe { get; set; }

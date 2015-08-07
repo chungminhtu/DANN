@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
 using DANN.Model;
-using DANN.Service;
+using DANN.Model;
 namespace DANN.Web.Controllers
 {
     public class DMDiaPhuongController : CommonController<DM_DiaPhuong, DM_DiaPhuong, DM_DiaPhuong>

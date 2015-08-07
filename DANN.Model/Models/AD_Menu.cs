@@ -15,12 +15,12 @@ namespace DANN.Model
 
             [DisplayName("Tên Menu")]
             [Required(ErrorMessage = "Bạn chưa nhập\" {0}\"")]
-            [StringLength(250, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [StringLength(250, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string MenuText { get; set; }
 
             [DisplayName("Tên URL")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(100, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string MenuAction { get; set; }
 
             [DisplayName("Biểu tượng Menu")]
