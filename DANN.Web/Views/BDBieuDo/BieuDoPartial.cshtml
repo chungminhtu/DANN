@@ -1,0 +1,39 @@
+﻿@{
+    DANN.Web.Controllers.ChartBarViewsDemoOptions options = (DANN.Web.Controllers.ChartBarViewsDemoOptions)ViewData[DANN.Web.Controllers.ChartDemoHelper.OptionsKey];
+    ChartControlSettings settings = new ChartControlSettings { SeriesDataMember = "TenKyBaoCao", CrosshairEnabled = DefaultBoolean.True, SeriesTemplate = { ArgumentDataMember = "TenDiaPhuong" } };
+    settings.Name = "chart";
+    settings.BorderOptions.Visibility = DefaultBoolean.False;
+    settings.Height = 600;
+    settings.Width = 1000;
+    settings.EnableClientSideAPI = true;
+    settings.Titles.Add(new ChartTitle()
+    {
+        Font = new System.Drawing.Font("Tahoma", 14),
+        Text = ViewBag.TenChiTieu,
+        WordWrap = true
+    });
+    settings.Titles.Add(new ChartTitle()
+    {
+        Alignment = System.Drawing.StringAlignment.Far,
+        Dock = ChartTitleDockStyle.Bottom,
+        Font = new System.Drawing.Font("Tahoma", 14),
+        TextColor = System.Drawing.Color.Gray,
+        Text = "Tỉnh ủy Bình Thuận"
+    });
+    settings.CallbackRouteValues = new { Controller = "BDBieuDo", Action = "BieuDoPartial" };
+    if (options != null)
+    {
+        settings.SeriesTemplate.ChangeView(options.View);
+    }
+    settings.SeriesTemplate.LabelsVisibility = DefaultBoolean.True;
+    settings.SeriesTemplate.ValueDataMembers[0] = "GiaTriThongKe";
+    settings.SeriesTemplate.Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+    settings.SeriesTemplate.Label.TextPattern = "{VP:P0}";
+    settings.Legend.AlignmentHorizontal = LegendAlignmentHorizontal.Left;
+    settings.Legend.AlignmentVertical = LegendAlignmentVertical.BottomOutside;
+    settings.Legend.Direction = LegendDirection.LeftToRight;
+    settings.Legend.MaxHorizontalPercentage = 70;
+
+}
+
+@Html.DevExpress().Chart(settings).Bind(Model).GetHtml()

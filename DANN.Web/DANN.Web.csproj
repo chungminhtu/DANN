@@ -1414,13 +1414,15 @@
     <Content Include="Views\ADUser\_PhanQuyen.cshtml" />
     <Content Include="Views\ADUser\_PhanQuyenCommandPanel.cshtml" />
     <Content Include="Views\BDBieuDo\Index.cshtml" />
-    <Content Include="Views\BDBieuDo\_ComboBoxKBCPartial.cshtml" />
+    <Content Include="Views\BDBieuDo\_ListChecBoxKBCPartial.cshtml" />
     <Content Include="Views\BDBieuDo\_ComboBoxPhanHePartial.cshtml" />
     <Content Include="Views\BDBieuDo\_TreeListChiTieuPartial.cshtml" />
     <Content Include="Views\BDBieuDo\_TreeListDiaPhuongPartial.cshtml" />
     <Content Include="Views\ADUser\_UserDetail.cshtml" />
     <Content Include="Views\Shared\Common\_ComboboxPhanHe.cshtml" />
     <Content Include="Views\Shared\Common\_ComboboxChucVu.cshtml" />
+    <Content Include="Views\BDBieuDo\BieuDo.cshtml" />
+    <Content Include="Views\BDBieuDo\BieuDoPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1435,6 +1437,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ADUserController.cs" />
     <Compile Include="Controllers\BDBieuDoController.cs" />
+    <Compile Include="Controllers\ChartTypesController.cs" />
     <Compile Include="Controllers\DMCodeController.cs" />
     <Compile Include="Controllers\BMBieuMauController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -1523,7 +1526,9 @@
       <Name>DANN.Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\ChartTypes\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

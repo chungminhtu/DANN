@@ -1,0 +1,80 @@
+﻿@model  List<DANN.Web.Controllers.BieuDoNienGiam>
+<div>
+    <div>
+        <span style="font-size:20px">
+            Biểu đồ chỉ tiêu so sánh
+        </span>
+    </div>
+    <div>
+        <div>
+            @using (Html.BeginForm("BieuDo", "BDBieuDo", new { CallBack = "True" }))
+            {
+                DANN.Web.Controllers.ChartBarViewsDemoOptions options = (DANN.Web.Controllers.ChartBarViewsDemoOptions)ViewData[DANN.Web.Controllers.ChartDemoHelper.OptionsKey];
+                <table>
+                    <tr>
+                        <td>Nhóm chỉ tiêu</td>
+                        <td>
+                            <input value="@ViewBag.TenPhanHe" readonly="readonly"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Loại biểu đồ</td>
+                        <td>
+                            @Html.DropDownList("view", DANN.Web.Controllers.ChartDemoHelper.GetBarViews(), new { onchange = "UpdateRotationCheckBox()", style = "padding:3px; width:150px;" })
+                            <input style="padding: 5px;" type="submit" value="Áp dụng" />
+                        </td>
+                    </tr>
+                </table>
+                //Biểu đồ
+                @Html.Partial("BieuDoPartial", Model)
+                //máy in
+                <div style="margin-bottom: 8px">
+                    @{
+                var settings2 = new MenuSettings
+                                         {
+                                             ClientSideEvents =
+                                                 {
+                                                     ItemClick = "function(s, e) { if (e.item.name == 'mnuPrint') " +
+                                                                 "chart.Print();" +
+                                                                 "if (e.item.name == 'mnuSaveToDisk') " +
+                                                                 "chart.SaveToDisk(cbFormat.GetText()); " +
+                                                                 "if (e.item.name == 'mnuSaveToWindow') " +
+                                                                 "chart.SaveToWindow(cbFormat.GetText()); }"
+                                                 }
+                                         };
+                settings2.Name = "toolbar";
+                settings2.ShowAsToolbar = true;
+
+                settings2.Items.Add(new MVCxMenuItem(string.Empty, "mnuPrint", "../../Content/Images/BtnPrint.png")
+                                        {
+                                            ToolTip = "Print the chart"
+                                        });
+
+                settings2.Items.Add(new MVCxMenuItem(string.Empty, "mnuSaveToDisk", "../Content/Images/BtnSave.png")
+                                        {
+                                            ToolTip = "Export a chart and save it to the disk",
+                                            BeginGroup = true
+                                        });
+
+                settings2.Items.Add(new MVCxMenuItem(string.Empty, "mnuSaveToWindow", "../../Content/Images/BtnSaveWindow.png")
+                                        {
+                                            ToolTip = "Export a chart and show it in a new window"
+                                        });
+
+                var mnuFormat = new MVCxMenuItem();
+                mnuFormat.Name = "mnuFormat";
+                ComboBoxSettings cbFormatSettings = new ComboBoxSettings();
+                cbFormatSettings.Name = "cbFormat";
+                cbFormatSettings.SelectedIndex = 0;
+                cbFormatSettings.Width = 60;
+
+                settings2.Items.Add(mnuFormat);
+
+                    }
+
+                    @Html.DevExpress().Menu(settings2).GetHtml()
+                </div>
+            }
+        </div>
+    </div>
+</div>
