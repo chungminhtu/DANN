@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DANN.Model;
 
-namespace DANN.Service
+namespace DANN.Model
 {
 
     public class DM_KyBaoCaoService : EntityService<DM_KyBaoCao>

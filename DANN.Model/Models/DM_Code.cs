@@ -21,14 +21,14 @@ namespace DANN.Model
             public int CodeKind_Id { get; set; }
 
             [DisplayName("Mã giá trị")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [Range(1, 100, ErrorMessage = DANN.Service.CommonMessages.Range)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [Range(1, 100, ErrorMessage = DANN.Model.CommonMessages.Range)]
             public int CodeValue { get; set; }
 
 
             [DisplayName("Tên giá trị")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(100, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(100, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string CodeName { get; set; }
 
         }

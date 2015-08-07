@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DANN.Model;
 
-namespace DANN.Service
+namespace DANN.Model
 {
 
     public class TK_ThongKeService : EntityService<TK_ThongKe>

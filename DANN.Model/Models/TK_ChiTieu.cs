@@ -15,8 +15,8 @@ namespace DANN.Model
             public Nullable<int> ChiTieu_ParentId { get; set; }
 
             [DisplayName("Tên Chỉ tiêu")]
-            [Required(ErrorMessage = DANN.Service.CommonMessages.Required)]
-            [StringLength(300, ErrorMessage = DANN.Service.CommonMessages.StringLenght)]
+            [Required(ErrorMessage = DANN.Model.CommonMessages.Required)]
+            [StringLength(300, ErrorMessage = DANN.Model.CommonMessages.StringLenght)]
             public string TenChiTieu { get; set; }
 
 
