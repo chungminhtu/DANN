@@ -26,7 +26,7 @@ namespace DANN.Model
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }
         public string ChucVu { get; set; }
-        public string PhongBan { get; set; }
+        public string PhanHe { get; set; }
         public Nullable<bool> KhongDuocXoa { get; set; }
     
         public virtual ICollection<AD_User_Menu> AD_User_Menu { get; set; }

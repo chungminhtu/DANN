@@ -6,8 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="7ea0784906974ddd83da4683cbc6b4f7" Name="Diagram1">
         <EntityTypeShape EntityType="DBDANNModel.AD_LichSu" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBDANNModel.AD_Menu" Width="1.5" PointX="5.75" PointY="9.125" />
-        <EntityTypeShape EntityType="DBDANNModel.AD_User" Width="1.5" PointX="5.75" PointY="5.125" />
+        <EntityTypeShape EntityType="DBDANNModel.AD_Menu" Width="1.5" PointX="5.75" PointY="5.125" />
+        <EntityTypeShape EntityType="DBDANNModel.AD_User" Width="1.5" PointX="5.75" PointY="9.125" />
         <EntityTypeShape EntityType="DBDANNModel.AD_User_Menu" Width="1.5" PointX="8" PointY="5" />
         <EntityTypeShape EntityType="DBDANNModel.BM_BieuMau" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="DBDANNModel.BM_Cot" Width="1.5" PointX="7.75" PointY="9.75" />
@@ -16,11 +16,11 @@
         <EntityTypeShape EntityType="DBDANNModel.DM_CodeKind" Width="1.5" PointX="10.75" PointY="6.75" />
         <EntityTypeShape EntityType="DBDANNModel.DM_DiaPhuong" Width="1.5" PointX="11.75" PointY="9.75" />
         <EntityTypeShape EntityType="DBDANNModel.DM_DonViTinh" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="DBDANNModel.DM_KyBaoCao" Width="1.5" PointX="3" PointY="7.5" />
-        <EntityTypeShape EntityType="DBDANNModel.DM_PhanHe" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="DBDANNModel.DM_KyBaoCao" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="DBDANNModel.DM_PhanHe" Width="1.5" PointX="3" PointY="7.875" />
         <EntityTypeShape EntityType="DBDANNModel.sysdiagram" Width="1.5" PointX="11.75" PointY="0.75" />
         <EntityTypeShape EntityType="DBDANNModel.TK_ChiTieu" Width="1.5" PointX="3" PointY="1.25" />
-        <EntityTypeShape EntityType="DBDANNModel.TK_DoiTuong" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="DBDANNModel.TK_DoiTuong" Width="1.5" PointX="3" PointY="5.125" />
         <EntityTypeShape EntityType="DBDANNModel.TK_ThongKe" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="DBDANNModel.View_ThongKeNienGiam" Width="1.5" PointX="12.75" PointY="3.75" />
         <AssociationConnector Association="DBDANNModel.FK_AD_User_Menu_AD_Menu" />

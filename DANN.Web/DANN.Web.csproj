@@ -1509,6 +1509,7 @@
       <DependentUpon>BDVTW_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\EFModule.cs" />
+    <Compile Include="Modules\MvcExtensions.cs" />
     <Compile Include="Modules\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

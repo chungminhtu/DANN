@@ -3,11 +3,15 @@
 @Html.DevExpress().ComboBox(settings =>
 {
     settings.Name = Model.Name;
-    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Width = Unit.Percentage(100);
+    settings.ShowModelErrors = true;
+    //settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
     settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
     //settings.CallbackRouteValues = new { Controller = "DMPhanHe", Action = "LoadComboPhanHe" };
+    //settings.Properties.ClientSideEvents.BeginCallback = "function(s,e){e.customArgs['xxx'] = {Name : 'PhanHe', Object: '' }}";
     settings.Properties.CallbackPageSize = 50;
     settings.Properties.ValueField = "TenPhanHe";
     settings.Properties.TextField = "TenPhanHe";
     settings.Properties.ValueType = typeof(string);
 }).BindList(ViewData["ComboListPhanHe"]).Bind(Model.Object, Model.Name).GetHtml()
+

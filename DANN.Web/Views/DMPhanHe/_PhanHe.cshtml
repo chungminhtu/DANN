@@ -10,12 +10,13 @@
 
 
         /*Settings*/
+        settings.Width = Unit.Percentage(100);
         settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
-        
-        settings.SettingsPager.Visible = true;
-        settings.SettingsPager.PageSizeItemSettings.Visible = true;
-        settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
-        settings.SettingsPager.PageSize = 25;
+
+        //settings.SettingsPager.Visible = true;
+        //settings.SettingsPager.PageSizeItemSettings.Visible = true;
+        //settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "15", "25", "50" };
+        //settings.SettingsPager.PageSize = 25;
 
         settings.SettingsBehavior.AllowSelectByRowClick = false;
         settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
@@ -27,16 +28,16 @@
         settings.SettingsSearchPanel.Visible = false;
         settings.Settings.ShowTitlePanel = false;
         settings.Settings.ShowGroupPanel = false;
-        settings.Settings.ShowFilterRow = false; 
-        
+        settings.Settings.ShowFilterRow = false;
+
         settings.KeyboardSupport = true;
 
 
         /*Events*/
         //settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
-        settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave1";
-        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.FocusedRowChanged = "GridFocusedChangedToSave_PhanHeGridView";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu_PhanHeGridView";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid';currentControl = PhanHeGridView ; }";
 
 
@@ -50,7 +51,7 @@
             }
         };
         /*--------------------------------------------------*/
-   
+
         /*Fields*/
         settings.KeyFieldName = "PhanHe_Id";
 
@@ -58,7 +59,7 @@
                             column =>
                             {
                                 column.Width = Unit.Percentage(100);
-                            }); 
+                            });
     });
     if (ViewData["EditError"] != null)
     {

@@ -16,13 +16,13 @@ namespace DANN.Web.Models
             controlIndex = 0;
             controlName = "null";
             control2Name = "null";
-            Add = true;
-            Edit = true;
-            Delete = true;
-            Save = true;
-            Reload = true;
-            Cancel = true;
-            Print = true;
+            Add = false;
+            Edit = false;
+            Delete = false;
+            Save = false;
+            Reload = false;
+            Cancel = false;
+            Print = false;
             CondictionToAutoSave = "";
         }
         public int controlIndex { get; set; }

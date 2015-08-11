@@ -7,7 +7,7 @@ using DANN.Model;
 using System.Linq.Expressions;
 using System.Data.Entity;
 
-namespace DANN.Model
+namespace DANN.Service
 {
     public interface IEntityService<T> where T : BaseEntity
     {

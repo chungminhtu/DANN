@@ -4,7 +4,7 @@
 
 @Html.DevExpress().Panel(panelButton =>
         {
-            panelButton.Name = "GridCommandPanel" + @Model.controlIndex;
+            panelButton.Name = "GridCommandPanel_" + @Model.controlName;
             panelButton.FixedPosition = PanelFixedPosition.None;
             panelButton.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Auto;
 
@@ -13,7 +13,7 @@
                 Html.DevExpress().Button(
                     myButton =>
                     {
-                        myButton.Name = "gridbtnThemMoi" + @Model.controlIndex;
+                        myButton.Name = "gridbtnThemMoi_" + @Model.controlName;
                         myButton.Text = "Thêm";
                         myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                         myButton.Images.Image.Url = "~/Content/icon/16/Add_16x16.png";
@@ -24,7 +24,7 @@
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "gridbtnSua" + @Model.controlIndex;
+                            myButton.Name = "gridbtnSua_" + @Model.controlName;
                             myButton.Text = "Sửa";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/Edit_16x16.png";
@@ -35,7 +35,7 @@
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "gridbtnXoa" + @Model.controlIndex;
+                            myButton.Name = "gridbtnXoa_" + @Model.controlName;
                             myButton.Text = "Xóa";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/Close_16x16.png";
@@ -48,7 +48,7 @@
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "gridbtnLuu" + @Model.controlIndex;
+                            myButton.Name = "gridbtnLuu_" + @Model.controlName;
                             myButton.Text = "Lưu";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/SaveAll_16x16.png";
@@ -59,7 +59,7 @@
                 Html.DevExpress().Button(
                         myButton =>
                         {
-                            myButton.Name = "gridbtnHuy" + @Model.controlIndex;
+                            myButton.Name = "gridbtnHuy_" + @Model.controlName;
                             myButton.Text = "Hủy";
                             myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                             myButton.Images.Image.Url = "~/Content/icon/16/Reset2_16x16.png";
@@ -70,7 +70,7 @@
                 Html.DevExpress().Button(
                      myButton =>
                      {
-                         myButton.Name = "gridbtnPrint" + @Model.controlIndex;
+                         myButton.Name = "gridbtnPrint_" + @Model.controlName;
                          myButton.Text = "In";
                          myButton.ControlStyle.Border.BorderWidth = Unit.Pixel(0);
                          myButton.Images.Image.Url = "~/Content/icon/16/Printer_16x16.png";
@@ -82,7 +82,7 @@
         }).GetHtml()
 @Html.DevExpress().PopupMenu(settings =>
 {
-    settings.Name = "GridPopupMenu" + @Model.controlIndex;
+    settings.Name = "GridPopupMenu_" + @Model.controlName;
     settings.AllowSelectItem = false;
     settings.Items.Add("Mở rộng nút này", "Expand", "~/Content/icon/16/Merge_16x16.png");
     settings.Items.Add("Mở rộng toàn bộ", "ExpandAll", "~/Content/icon/16/Group2_16x16.png");

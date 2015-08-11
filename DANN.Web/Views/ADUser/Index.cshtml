@@ -1,21 +1,74 @@
-﻿
+﻿<style>
+    .content {
+        padding: 2px !important;
+    }
+
+    div#btnEditChucVu_CD, div#btnEditPhanHe_CD {
+        padding: 0px !important;
+    }
+</style>
+
+<script>
+
+    function UpdateGridView() {
+        PrepareValidationScripts();
+
+        var validator = $.data($('#Form2')[0], 'validator');
+        if (validator.form())
+            UserGridView.UpdateEdit();
+    }
+    function PrepareValidationScripts() {
+        var form = $('#Form2');
+        if (form.executed)
+            return; 
+        form.removeData("validator");
+        $.validator.unobtrusive.parse(document);
+        form.executed = true;
+    }
+
+    function GridBeginCallbackWithID(s, e) {
+        e.customArgs['ID'] = 2;
+    }
+    function reloadCombobox(ComboBoxName) {
+        if (ComboBoxName = "PhanHe") {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("LoadComboPhanHe", "DMPhanHe", new DANN.Model.ComboboxModel { Name = "PhanHe", Object = Model })",
+                success: function (response) {
+                    $("#DivComboPhanHe").html(response);
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("LoadComboChucVu", "DMCode", new DANN.Model.ComboboxModel { Name = "ChucVu", Object = Model })",
+                success: function (response) {
+                    $("#DivComboChucVu").html(response);
+                }
+            });
+        }
+
+    }
+</script>
+
 <table>
     <tr>
-        <td >
+        <td>
             @Html.Partial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
-                                            {
-                                                controlIndex = 1,
-                                                controlName = "UserGridView",
-                                                control2Name = "PhanQuyenTreeList",
-                                                Add = true,
-                                                Edit = true,
-                                                Delete = true,
-                                                Save = false,
-                                                Reload = false,
-                                                Print = true,
-                                                CondictionToAutoSave = "$('#UserGridView_DXEditor0_I').val() != ''&& $('#UserGridView_DXEditor1_I').val() != ''",
-                                            })
-        </td> 
+       {
+           controlIndex = 1,
+           controlName = "UserGridView",
+           control2Name = "PhanQuyenTreeList",
+           Add = true,
+           Edit = true,
+           Delete = true,
+           Save = false,
+           Reload = false,
+           Print = true,
+           CondictionToAutoSave = "$('#UserGridView_DXEditor0_I').val() != ''&& $('#UserGridView_DXEditor1_I').val() != ''",
+       })
+        </td>
         <td></td>
         <td>
             @Html.Partial("_PhanQuyenCommandPanel")
@@ -27,18 +80,89 @@
         </td>
         <td></td>
         <td valign="top">
-            <div id="container">@Html.Action("LoadPhanQuyen")</div> 
+            <div id="container">@Html.Action("LoadPhanQuyen")</div>
+
         </td>
     </tr>
-</table> 
+</table>
 
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "popupEditChucVu";
+    settings.LoadContentViaCallback = LoadContentViaCallback.None;
+    settings.Modal = true;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.ShowFooter = false;
+    settings.AllowDragging = true;
+    settings.EnableHotTrack = true;
+    settings.Height = Unit.Pixel(200);
+    settings.Width = Unit.Pixel(500);
+    settings.PopupElementID = "ShowChucVu";
+    settings.HeaderText = "Cập nhật danh mục chức vụ";
+    settings.Styles.Content.CssClass = "content";
+    settings.ClientSideEvents.CloseButtonClick = "function(s, e){ reloadCombobox('ChucVu');}";
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+        {
+            controlIndex = 2,
+            controlName = "CodeGridView",
+            Add = true,
+            Edit = true,
+            Delete = true,
+            Save = true,
+            Reload = true,
+            CondictionToAutoSave = "$('#CodeGridView_DXEditor0_I').val() != '' && $('#CodeGridView_DXEditor1_I').val() != ''",
+        });
+        Html.RenderAction("Load1", "DMCode");
+    });
 
+    //settings.SetFooterTemplateContent(c =>
+    //{
+    //    ViewContext.Writer.Write("<div style=\"overflow: hidden\"><div style=\"padding: 0px; float: right;\">");
+    //    Html.DevExpress().Button(buttonsettings =>
+    //    {
+    //        buttonsettings.Name = "btnDongFormChucVu";
+    //        buttonsettings.Text = "Đóng";
+    //        buttonsettings.ClientSideEvents.Click = "function(s, e) { popupEditChucVu.Close(); }";
+    //    }).Render();
+    //    ViewContext.Writer.Write("</div></div>");
+    //});
+}).GetHtml()
 
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "popupEditPhanHe";
+    settings.LoadContentViaCallback = LoadContentViaCallback.None;
+    settings.Modal = true;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.ShowFooter = false;
+    settings.AllowDragging = true;
+    settings.EnableHotTrack = true;
+    settings.Height = Unit.Pixel(200);
+    settings.Width = Unit.Pixel(500);
+    settings.PopupElementID = "ShowPhanHe";
+    settings.HeaderText = "Cập nhật danh mục đơn vị (phòng ban)";
+    settings.Styles.Content.CssClass = "content";
+    settings.ClientSideEvents.CloseButtonClick = "function(s, e){ reloadCombobox('PhanHe');}";
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("_GridViewCommandPanel", new DANN.Web.Models.CommandPanelOptions
+        {
+            controlIndex = 2,
+            controlName = "PhanHeGridView",
+            Add = true,
+            Edit = true,
+            Delete = true,
+            Save = true,
+            Reload = true,
+            CondictionToAutoSave = "$('#PhanHeGridView_DXEditor0_I').val() != ''&& $('#PhanHeGridView_DXEditor1_I').val() != ''",
+        });
+        Html.RenderAction("Load", "DMPhanHe");
+    });
 
-
-
-
- 
-
-
-
+}).GetHtml()

@@ -40,7 +40,7 @@
           <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
           <Property Name="SoDienThoai" Type="varchar" MaxLength="50" />
           <Property Name="ChucVu" Type="nvarchar" MaxLength="100" />
-          <Property Name="PhongBan" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhanHe" Type="nvarchar" MaxLength="100" />
           <Property Name="KhongDuocXoa" Type="bit" />
         </EntityType>
         <EntityType Name="AD_User_Menu">
@@ -445,7 +445,7 @@ warning 6002: The table/view 'DBDANN.dbo.View_ThongKeNienGiam' does not have a p
           <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ChucVu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PhongBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhanHe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="KhongDuocXoa" Type="Boolean" />
           <NavigationProperty Name="AD_User_Menu" Relationship="DBDANNModel.FK_AD_User_Menu_AD_User" FromRole="AD_User" ToRole="AD_User_Menu" />
         </EntityType>
@@ -751,7 +751,7 @@ warning 6002: The table/view 'DBDANN.dbo.View_ThongKeNienGiam' does not have a p
             <EntityTypeMapping TypeName="DBDANNModel.AD_User">
               <MappingFragment StoreEntitySet="AD_User">
                 <ScalarProperty Name="KhongDuocXoa" ColumnName="KhongDuocXoa" />
-                <ScalarProperty Name="PhongBan" ColumnName="PhongBan" />
+                <ScalarProperty Name="PhanHe" ColumnName="PhanHe" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
                 <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />

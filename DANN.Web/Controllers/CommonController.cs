@@ -1,4 +1,4 @@
-﻿using DANN.Model;
+﻿using DANN.Service;
 using DANN.Model.Common;
 using DANN.Model;
 using System;
@@ -152,9 +152,9 @@ namespace DANN.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Load1()
         {
-            int ID = CommonFunctions.TryParseObjectToInt(Request.Params["ID"]);
-            var model = _service1.SearchToList("CodeKind_Id = " + ID);
-            ViewBag.MaxCodeValue = _service1.MaxCodeValue(ID);
+            int id = CommonFunctions.TryParseObjectToInt(Request.Params["ID"]);
+            var model = _service1.SearchToList("CodeKind_Id = " + id);
+            ViewBag.MaxCodeValue = _service1.MaxCodeValue(id);
             string viewName = typeof(T1).Name.Split('_')[1];
             return PartialView(viewName, model);
         }

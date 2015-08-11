@@ -31,6 +31,7 @@
                 mySettings.Width = Unit.Percentage(100);
                 mySettings.ReadOnly = Convert.ToBoolean(Session["CanEditUserId"]);
                 mySettings.ControlStyle.BackColor = Convert.ToBoolean(Session["CanEditUserId"]) ? System.Drawing.Color.LightGray : System.Drawing.Color.White;
+                mySettings.ShowModelErrors = true;
             }).Render();
         });
     });
@@ -42,6 +43,7 @@
             Html.DevExpress().TextBoxFor(i => i.Password, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.ShowModelErrors = true;
             }).Render();
 
         });
@@ -54,6 +56,7 @@
             Html.DevExpress().TextBoxFor(i => i.UserName, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.ShowModelErrors = true;
             }).Render();
         });
     });
@@ -65,6 +68,7 @@
             Html.DevExpress().TextBoxFor(i => i.Email, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.ShowModelErrors = true;
             }).Render();
         });
     });
@@ -76,6 +80,7 @@
             Html.DevExpress().MemoFor(i => i.DiaChi, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.ShowModelErrors = true;
             }).Render();
         });
     });
@@ -87,46 +92,55 @@
             Html.DevExpress().TextBoxFor(i => i.SoDienThoai, mySettings =>
             {
                 mySettings.Width = Unit.Percentage(100);
+                mySettings.ShowModelErrors = true;
             }).Render();
         });
     });
-    //groupItem.Items.Add(m =>
-    //{
-    //    m.FieldName = "GioiTinh";
-    //    m.ColSpan = 1;
-    //    //m.CaptionStyle.Font.Bold = true;
-    //    m.SetNestedContent(() =>
-    //    {
-    //        Html.DevExpress().RadioButtonListFor(i => i., mySettings =>
-    //        {
-    //            mySettings.Width = Unit.Percentage(100);
-    //            mySettings.Properties.ValueType = typeof(bool);
-    //            mySettings.Properties.RepeatLayout = RepeatLayout.Flow;
-    //            mySettings.Properties.RepeatDirection = RepeatDirection.Horizontal;
-    //            mySettings.Properties.RepeatColumns = 2;
-    //            mySettings.Properties.Items.Add("Nam", true);
-    //            mySettings.Properties.Items.Add("Nữ", false);
-    //        }).Render();
-    //    });
-    //});
+
     groupItem.Items.Add(a => a.ChucVu, m =>
     {
         m.ColSpan = 1;
-        m.Width = Unit.Percentage(100);
+        m.Width = Unit.Percentage(50);
         m.SetNestedContent(() =>
         {
+            ViewContext.Writer.Write("<div id='DivComboChucVu'>");
             Html.RenderAction("LoadComboChucVu", "DMCode", new DANN.Model.ComboboxModel { Name = "ChucVu" , Object = Model });
+            ViewContext.Writer.Write("</div>");
+            ViewContext.Writer.Write(" <div style='padding-top:2px;'>");
+            Html.DevExpress().Button(btnSettings =>
+            {
+                btnSettings.Name = "btnEditChucVu";
+                btnSettings.Width = Unit.Percentage(100);
+                btnSettings.Text = "Sửa danh sách chức vụ";
+                btnSettings.Images.Image.Url = "~/Content/icon/16/RecentlyUse_16x16.png";
+                btnSettings.ClientSideEvents.Click = "function(s, e){ popupEditChucVu.Show(); }";
+            }).Render();
+            ViewContext.Writer.Write("</div>");
         });
     });
 
-    groupItem.Items.Add(a => a.PhongBan, m =>
+    groupItem.Items.Add(a => a.PhanHe, m =>
     {
         m.ColSpan = 1;
-        m.Width = Unit.Percentage(100);
+        m.Width = Unit.Percentage(50);
         m.SetNestedContent(() =>
         {
-            Html.RenderAction("LoadComboPhanHe", "DMPhanHe", new DANN.Model.ComboboxModel  { Name = "PhongBan", Object = Model });
+            ViewContext.Writer.Write("<div id='DivComboPhanHe'>");
+            Html.RenderAction("LoadComboPhanHe", "DMPhanHe", new DANN.Model.ComboboxModel { Name = "PhanHe", Object = Model });
+            ViewContext.Writer.Write("</div>");
+            ViewContext.Writer.Write("<div style='padding-top:2px;'>");
+            Html.DevExpress().Button(btnSettings =>
+            {
+                btnSettings.Name = "btnEditPhanHe";
+                btnSettings.Width = Unit.Percentage(100);
+                btnSettings.Text = "Sửa danh sách đơn vị (phòng ban)";
+                btnSettings.Images.Image.Url = "~/Content/icon/16/DocumentMap_16x16.png";
+                btnSettings.ClientSideEvents.Click = "function(s, e){ popupEditPhanHe.Show(); }";
+            }).Render();
+            ViewContext.Writer.Write("</div>");
+
         });
     });
 
 }).GetHtml()
+

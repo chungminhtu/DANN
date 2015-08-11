@@ -43,11 +43,7 @@
 
 
     /*----------------------GRID FUNCTION---------------------*/
-
-    var ID = 0;
-    function GridBeginCallbackWithID(s, e) {
-        e.customArgs['ID'] = ID;
-    }
+     
 
     //Tự động focus vào item mới thêm vào để nhập nhanh dữ liệu
     function GridEndCallbackFocusToAddNew(s, e) {
@@ -62,14 +58,14 @@
     }
 
     //Tự động lưu sau khi focus sang nút khác
-    function GridFocusedChangedToSave@(Model.controlIndex)(s, e) {
+    function GridFocusedChangedToSave_@(Model.controlName)(s, e) {
         var dk = @Html.Raw(Model.CondictionToAutoSave);
         if (dk) { s.UpdateEdit(); }
         else{ s.CancelEdit();}
     }
 
     //Tự động reload control 2 sau khi focus row control 1
-    function GridFocusedChangedReloadControl@(Model.controlIndex)(s, e) {
+    function GridFocusedChangedReloadControl_@(Model.controlName)(s, e) {
         if (s.GetFocusedRowIndex() != -1) {
             ID = s.GetRowKey(s.GetFocusedRowIndex());
             var control = @Model.control2Name;
@@ -81,11 +77,11 @@
 
     //Hiển thị popup menu ở vị trí phải chuột lên màn hình
     //Tự động focus vào dòng dữ liệu gần vị trí đó nhất
-    function ShowGridContextMenu@(Model.controlIndex)(s, e) {
+    function ShowGridContextMenu_@(Model.controlName)(s, e) {
 
         var x = ASPxClientUtils.GetEventX(e.htmlEvent);
         var y = ASPxClientUtils.GetEventY(e.htmlEvent);
-        GridPopupMenu@(Model.controlIndex).ShowAtPos(x, y);
+        GridPopupMenu_@(Model.controlName).ShowAtPos(x, y);
 
         nodeKey = e.objectKey;
     }
@@ -167,7 +163,7 @@
         if (e.objectType === "Node") {
             var x = ASPxClientUtils.GetEventX(e.htmlEvent);
             var y = ASPxClientUtils.GetEventY(e.htmlEvent);
-            TreePopupMenu@(Model.controlIndex).ShowAtPos(x, y);
+            TreePopupMenu_@(Model.controlName).ShowAtPos(x, y);
 
             nodeKey = e.objectKey;
             var node = s.GetNodeHtmlElement(nodeKey);

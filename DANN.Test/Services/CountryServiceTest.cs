@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using DANN.Model;
-using DANN.Model;
+using DANN.Service;
 
 namespace DANN.Test.Services
 {

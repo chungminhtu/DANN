@@ -49,7 +49,7 @@ namespace DANN.Model
             [DisplayName("Đơn vị")]
             [Required(ErrorMessage = CommonMessages.Required)]
             [StringLength(100, ErrorMessage = CommonMessages.StringLenght)]
-            public string PhongBan { get; set; }
+            public string PhanHe { get; set; }
         }
     }
 }

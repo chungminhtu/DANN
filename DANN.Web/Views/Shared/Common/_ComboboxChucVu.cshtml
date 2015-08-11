@@ -3,9 +3,11 @@
     @Html.DevExpress().ComboBox(settings =>
 {
     settings.Name = Model.Name;
-    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+    settings.Width = Unit.Percentage(100);
+    settings.ShowModelErrors = true;
+   // settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
     settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
-   // settings.CallbackRouteValues = new { Controller = "DMCode", Action = "LoadComboChucVu" };
+    //settings.CallbackRouteValues = new { Controller = "DMCode", Action = "LoadComboChucVu", model = new DANN.Model.ComboboxModel { Name = "ChucVu", Object = new object() } };
     settings.Properties.CallbackPageSize = 50;
     settings.Properties.ValueField = "CodeName";
     settings.Properties.TextField = "CodeName";

@@ -1,4 +1,7 @@
-﻿@{
+﻿@{ 
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
     var grid = Html.DevExpress().GridView<DANN.Model.AD_User>(settings =>
     {
         settings.Name = "UserGridView";
@@ -10,6 +13,7 @@
 
 
         //Settings
+        settings.SettingsEditing.ShowModelErrorsForEditors = true;
         settings.Width = Unit.Pixel(300);
         settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
         settings.SettingsBehavior.ConfirmDelete = true;
@@ -31,7 +35,6 @@
         //settings.SettingsSearchPanel.Visible = true;
         settings.SettingsBehavior.AllowDragDrop = false;
         settings.SettingsBehavior.AutoExpandAllGroups = true;
-
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = false;
         settings.KeyboardSupport = true;
@@ -40,8 +43,8 @@
         /*Events*/
         // settings.ClientSideEvents.BeginCallback = "GridBeginCallbackWithID";
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
-        settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
-        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave_UserGridView(s,e); GridFocusedChangedReloadControl_UserGridView(s,e); }";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu_UserGridView";
         settings.ClientSideEvents.RowClick = "function (s, e){currentControlType = 'Grid';currentControl = UserGridView ;}";
         settings.ClientSideEvents.Init = "function (s, e) { UserGridView.FocusedRowIndex = -1; }";
 
@@ -66,7 +69,7 @@
 
         settings.KeyFieldName = "User_Id";
 
-        settings.Columns.Add(c => c.PhongBan,
+        settings.Columns.Add(c => c.PhanHe,
                        column =>
                        {
                            column.Width = Unit.Percentage(30);
@@ -130,6 +133,7 @@
                            });
         /*Edit Form*/
         settings.SettingsPopup.EditForm.Modal = true;
+        settings.SettingsPopup.EditForm.Width = Unit.Pixel(700);
         settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
         settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
         settings.SettingsPopup.EditForm.CloseOnEscape = AutoBoolean.True;
@@ -147,24 +151,27 @@
                 editItem = ViewData["Item"] != null ? (DANN.Model.AD_User)ViewData["Item"] : (DANN.Model.AD_User)c.Grid.GetRow(c.VisibleIndex);
                 Session["CanEditUserId"] = true;
             }
-            Html.RenderPartial("_UserDetail", editItem);
+            using (Html.BeginForm("Update","ADUser",FormMethod.Post,new { @id = "Form2" }))
+            {
+                Html.RenderPartial("_UserDetail", editItem);
+            };
             ViewContext.Writer.Write("<div style='float:right; padding:5px;'>");
 
             Html.DevExpress().Button(btnSettings =>
             {
                 btnSettings.Name = "btnUpdate";
                 btnSettings.ControlStyle.CssClass = "button";
-                btnSettings.Text = "Cập nhật";
+                btnSettings.Text = "Cập nhật"; 
                 btnSettings.Images.Image.Url = "~/Content/icon/16/Save_16x16.png";
-                btnSettings.ClientSideEvents.Click = "function(s, e){ UserGridView.UpdateEdit(); }";
+                btnSettings.ClientSideEvents.Click = "function(s, e){  UpdateGridView();  }";
             }).Render();
             ViewContext.Writer.Write("  ");
             Html.DevExpress().Button(
                 btnSettings =>
                 {
-                    btnSettings.Name = "btnCancel";
+                    btnSettings.Name = "btnClose";
                     btnSettings.ControlStyle.CssClass = "button";
-                    btnSettings.Text = "Hủy";
+                    btnSettings.Text = "Đóng";
                     btnSettings.Images.Image.Url = "~/Content/icon/16/Close_16x16.png";
                     btnSettings.ClientSideEvents.Click = "function(s, e){ UserGridView.CancelEdit(); }";
                 }).Render();

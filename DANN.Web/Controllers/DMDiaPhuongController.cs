@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
-using DANN.Model;
+using DANN.Service;
 using DANN.Model;
 namespace DANN.Web.Controllers
 {

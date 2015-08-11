@@ -38,8 +38,8 @@
         /*Events*/
         
         settings.ClientSideEvents.RowDblClick = "GridDoubleClickToEdit";
-        settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave1(s,e); GridFocusedChangedReloadControl1(s,e); }";
-        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu1";
+        settings.ClientSideEvents.FocusedRowChanged = "function(s,e) { GridFocusedChangedToSave_CodeKindGridView(s,e); GridFocusedChangedReloadControl_CodeKindGridView(s,e); }";
+        settings.ClientSideEvents.ContextMenu = "ShowGridContextMenu_CodeKindGridView";
         settings.ClientSideEvents.RowClick = "function (s, e){ currentControlType = 'Grid'; currentControl = CodeKindGridView ; }";
 
         /*Hiển thị thông báo sau từ server sau khi Callback*/

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DANN.Model;
 using System.Data.Entity;
 
-namespace DANN.Model
+namespace DANN.Service
 {
 
     public class View_ThongKeNienGiamService : EntityService<View_ThongKeNienGiam>

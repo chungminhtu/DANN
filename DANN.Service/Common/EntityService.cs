@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Data.Entity.Infrastructure;
 
-namespace DANN.Model
+namespace DANN.Service
 {
     public abstract class EntityService<T> : IEntityService<T> where T : BaseEntity
     {

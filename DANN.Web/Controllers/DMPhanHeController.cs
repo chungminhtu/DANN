@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevExpress.Web.Mvc;
-using DANN.Model;
+using DANN.Service;
 using DANN.Model;
 
 namespace DANN.Web.Controllers
@@ -22,8 +22,10 @@ namespace DANN.Web.Controllers
         [ValidateInput(false)]
         public ActionResult LoadComboPhanHe(ComboboxModel model)
         {
+            var x = Request.Params["xxx"] + "";
             ViewData["ComboListPhanHe"] = _service.GetAll();
             return PartialView("_ComboboxPhanHe", model);
-        }
+        } 
+
     }
 }
