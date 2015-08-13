@@ -42,12 +42,12 @@ namespace DANN.Model
             public string SoDienThoai { get; set; }
 
             [DisplayName("Chức vụ")]
-            [Required(ErrorMessage = CommonMessages.Required)]
+           // [Required(ErrorMessage = CommonMessages.Required)]
             [StringLength(100, ErrorMessage = CommonMessages.StringLenght)]
             public string ChucVu { get; set; }
 
             [DisplayName("Đơn vị")]
-            [Required(ErrorMessage = CommonMessages.Required)]
+          //  [Required(ErrorMessage = CommonMessages.Required)]
             [StringLength(100, ErrorMessage = CommonMessages.StringLenght)]
             public string PhanHe { get; set; }
         }

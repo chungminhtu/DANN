@@ -53,7 +53,7 @@ namespace DANN.Web.Controllers
                 item.Name = row.Menu_Id + "";
                 item.Text = row.MenuText;
                 item.NavigateUrl = DevExpressHelper.GetUrl(new { Controller = row.MenuAction, Action = "Index" });
-                item.Image.Url = row.MenuIcon;
+                item.Image.Url = row.MenuIcon;  
                 item.BeginGroup = row.MenuSeparator.HasValue ? row.MenuSeparator.Value : false;
 
                 if ((i == 0 || row.Menu_ParentId + "" == "") && User_MenuId_Allow.Contains(Convert.ToInt32(item.Name)))
@@ -64,8 +64,7 @@ namespace DANN.Web.Controllers
                 {
                     GetNodes(menu.Items, row.Menu_ParentId + "", item);
                 }
-            }
-
+            } 
             return menu;
         }
         public void GetNodes(MenuItemCollection menus, string parentID, MenuItem item)

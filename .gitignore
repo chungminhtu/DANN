@@ -824,3 +824,6 @@ packages/repositories.config
 /.vs/DANN/v14/.suo
 /packages
 /DANN.Model/obj/Debug
+/DANN.Test
+/DANN.Web/App_Themes/AquaDANN
+*.bak

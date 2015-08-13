@@ -29,6 +29,7 @@ namespace DANN.Web.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            Session["UserId"] = "admin"; //TODO
             if (Session["UserId"] == null)
             {
                 filterContext.Result = new RedirectResult(Url.Action("Index", "Login"));

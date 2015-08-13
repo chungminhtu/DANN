@@ -24,6 +24,7 @@
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UpgradeBackupLocation />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,43 +44,118 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AquaDANN">
-      <HintPath>D:\ClinicalStudyTheme\AquaDANN.dll</HintPath>
+    <Reference Include="AquaDANN, Version=15.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App_Data\AquaDANN.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Charts.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dashboard.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dashboard.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dashboard.v14.2.Web.Mvc5, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.PivotGrid.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.SpellChecker.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Spreadsheet.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxGauges.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxPivotGrid.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxScheduler.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxSpellChecker.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.ASPxThemes.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Web.ASPxTreeList.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.Mvc5.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGauges.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGauges.v14.2.Presets, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPivotGrid.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v14.2.Web, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraScheduler.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Web, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.1.Web.Mvc5, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGauges.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxRichEdit.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxScheduler.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.Mvc5.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.Web, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.1.Presets, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1.Web, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DotNetOpenAuth.AspNet">
       <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
     </Reference>
@@ -120,6 +196,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=2.1.0.0, Culture=neutral, PublicKeyToken=667e828eb982ff2d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AlanWay.System.Linq.Dynamic.0.0.1\lib\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -142,7 +222,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -152,25 +232,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.0\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.0\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -191,17 +271,162 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\NWind.mdf" />
+    <Content Include="App_Data\DANNDB.mdf" />
+    <Content Include="App_Data\DANNDB_log.ldf">
+      <DependentUpon>DANNDB.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\SideMenu.xml" />
+    <Content Include="App_Data\ImageList.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\TopMenu.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\handsontable.full.css" />
     <Content Include="Content\handsontable_20140331.css" />
-    <Content Include="Content\icon\settings.png" />
-    <Content Include="Content\icon\settings_16.png" />
+    <Content Include="Content\icon\16\Accounting_16x16.png" />
+    <Content Include="Content\icon\16\AddNewDataSource_16x16.png" />
+    <Content Include="Content\icon\16\Add_16x16.png" />
+    <Content Include="Content\icon\16\Apply_16x16.png" />
+    <Content Include="Content\icon\16\AutoExpand_16x16.png" />
+    <Content Include="Content\icon\16\BarArgument_16x16.png" />
+    <Content Include="Content\icon\16\BarSeries_16x16.png" />
+    <Content Include="Content\icon\16\BOCustomer_16x16.png" />
+    <Content Include="Content\icon\16\BOPosition2_16x16.png" />
+    <Content Include="Content\icon\16\Cancel_16x16.png" />
+    <Content Include="Content\icon\16\Chart2_16x16.png" />
+    <Content Include="Content\icon\16\CheckBox2_16x16.png" />
+    <Content Include="Content\icon\16\CheckBox_16x16.png" />
+    <Content Include="Content\icon\16\CheckButtons_16x16.png" />
+    <Content Include="Content\icon\16\Clear_16x16.png" />
+    <Content Include="Content\icon\16\Close_16x16.png" />
+    <Content Include="Content\icon\16\Copy_16x16.png" />
+    <Content Include="Content\icon\16\Currency2_16x16.png" />
+    <Content Include="Content\icon\16\Customer_16x16.png" />
+    <Content Include="Content\icon\16\Customization_16x16.png" />
+    <Content Include="Content\icon\16\Cut_16x16.png" />
+    <Content Include="Content\icon\16\DecreaseDecimal_16x16.png" />
+    <Content Include="Content\icon\16\DefaultMap_16x16.png" />
+    <Content Include="Content\icon\16\DeleteDataSource2_16x16.png" />
+    <Content Include="Content\icon\16\DeleteDataSource_16x16.png" />
+    <Content Include="Content\icon\16\Delete_16x16.png" />
+    <Content Include="Content\icon\16\DocumentMap_16x16.png" />
+    <Content Include="Content\icon\16\Download_16x16.png" />
+    <Content Include="Content\icon\16\EditName_16x16.png" />
+    <Content Include="Content\icon\16\Edit_16x16.png" />
+    <Content Include="Content\icon\16\Feeds_16x16.png" />
+    <Content Include="Content\icon\16\Find_16x16.png" />
+    <Content Include="Content\icon\16\FullStackedColumn3D_16x16.png" />
+    <Content Include="Content\icon\16\Group2_16x16.png" />
+    <Content Include="Content\icon\16\Group_16x16.png" />
+    <Content Include="Content\icon\16\Home_16x16.png" />
+    <Content Include="Content\icon\16\ImportImage_16x16.png" />
+    <Content Include="Content\icon\16\InlineSizeLegend_16x16.png" />
+    <Content Include="Content\icon\16\Insert_16x16.png" />
+    <Content Include="Content\icon\16\Logical_16x16.png" />
+    <Content Include="Content\icon\16\Map_16x16.png" />
+    <Content Include="Content\icon\16\Merge_16x16.png" />
+    <Content Include="Content\icon\16\Paste_16x16.png" />
+    <Content Include="Content\icon\16\PieMap_16x16.png" />
+    <Content Include="Content\icon\16\PieSeries_16x16.png" />
+    <Content Include="Content\icon\16\Printer_16x16.png" />
+    <Content Include="Content\icon\16\Reading_16x16.png" />
+    <Content Include="Content\icon\16\RecentlyUse_16x16.png" />
+    <Content Include="Content\icon\16\Refresh_16x16.png" />
+    <Content Include="Content\icon\16\Remove_16x16.png" />
+    <Content Include="Content\icon\16\Reset2_16x16.png" />
+    <Content Include="Content\icon\16\SaveAll_16x16.png" />
+    <Content Include="Content\icon\16\SaveAndNew_16x16.png" />
+    <Content Include="Content\icon\16\SaveTo_16x16.png" />
+    <Content Include="Content\icon\16\Save_16x16.png" />
+    <Content Include="Content\icon\16\UserGroup_16x16.png" />
+    <Content Include="Content\icon\16\Zoom_16x16.png" />
+    <Content Include="Content\icon\32\Accounting_32x32.png" />
+    <Content Include="Content\icon\32\AddNewDataSource_32x32.png" />
+    <Content Include="Content\icon\32\Add_32x32.png" />
+    <Content Include="Content\icon\32\Apply_32x32.png" />
+    <Content Include="Content\icon\32\AutoExpand_32x32.png" />
+    <Content Include="Content\icon\32\BarArgument_32x32.png" />
+    <Content Include="Content\icon\32\BarSeries_32x32.png" />
+    <Content Include="Content\icon\32\BOCustomer_32x32.png" />
+    <Content Include="Content\icon\32\BOPosition2_32x32.png" />
+    <Content Include="Content\icon\32\Cancel_32x32.png" />
+    <Content Include="Content\icon\32\Chart_32x32.png" />
+    <Content Include="Content\icon\32\CheckBox_32x32.png" />
+    <Content Include="Content\icon\32\CheckButtons_32x32.png" />
+    <Content Include="Content\icon\32\Clear_32x32.png" />
+    <Content Include="Content\icon\32\Close_32x32.png" />
+    <Content Include="Content\icon\32\Copy_32x32.png" />
+    <Content Include="Content\icon\32\Currency2_32x32.png" />
+    <Content Include="Content\icon\32\Customer_32x32.png" />
+    <Content Include="Content\icon\32\Customization_32x32.png" />
+    <Content Include="Content\icon\32\Cut_32x32.png" />
+    <Content Include="Content\icon\32\DecreaseDecimal_32x32.png" />
+    <Content Include="Content\icon\32\DefaultMap_32x32.png" />
+    <Content Include="Content\icon\32\DeleteDataSource_32x32.png" />
+    <Content Include="Content\icon\32\Delete_32x32.png" />
+    <Content Include="Content\icon\32\DocumentMap_32x32.png" />
+    <Content Include="Content\icon\32\Download_32x32.png" />
+    <Content Include="Content\icon\32\EditName_32x32.png" />
+    <Content Include="Content\icon\32\Edit_32x32.png" />
+    <Content Include="Content\icon\32\ExportFile_32x32.png" />
+    <Content Include="Content\icon\32\ExportModelDifferences_32x32.png" />
+    <Content Include="Content\icon\32\ExportToCSV_32x32.png" />
+    <Content Include="Content\icon\32\ExportToDOCX_32x32.png" />
+    <Content Include="Content\icon\32\ExportToDOC_32x32.png" />
+    <Content Include="Content\icon\32\ExportToPDF_32x32.png" />
+    <Content Include="Content\icon\32\ExportToTXT_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXLSX_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXLS_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXML_32x32.png" />
+    <Content Include="Content\icon\32\ExportToXPS_32x32.png" />
+    <Content Include="Content\icon\32\Export_32x32.png" />
+    <Content Include="Content\icon\32\Feeds_32x32.png" />
+    <Content Include="Content\icon\32\Financial_32x32.png" />
+    <Content Include="Content\icon\32\Find_32x32.png" />
+    <Content Include="Content\icon\32\FullStackedColumn3D_32x32.png" />
+    <Content Include="Content\icon\32\Home_32x32.png" />
+    <Content Include="Content\icon\32\ImportImage_32x32.png" />
+    <Content Include="Content\icon\32\InlineSizeLegend_32x32.png" />
+    <Content Include="Content\icon\32\Logical_32x32.png" />
+    <Content Include="Content\icon\32\LongDate_32x32.png" />
+    <Content Include="Content\icon\32\LookupReference_32x32.png" />
+    <Content Include="Content\icon\32\ManageDatasource_32x32.png" />
+    <Content Include="Content\icon\32\Map_32x32.png" />
+    <Content Include="Content\icon\32\Merge_32x32.png" />
+    <Content Include="Content\icon\32\Open2_32x32.png" />
+    <Content Include="Content\icon\32\Paste_32x32.png" />
+    <Content Include="Content\icon\32\PieMap_32x32.png" />
+    <Content Include="Content\icon\32\PieSeries_32x32.png" />
+    <Content Include="Content\icon\32\Printer_32x32.png" />
+    <Content Include="Content\icon\32\Print_32x32.png" />
+    <Content Include="Content\icon\32\Reading_32x32.png" />
+    <Content Include="Content\icon\32\RecentlyUse_32x32.png" />
+    <Content Include="Content\icon\32\Refresh2_32x32.png" />
+    <Content Include="Content\icon\32\Refresh_32x32.png" />
+    <Content Include="Content\icon\32\Remove_32x32.png" />
+    <Content Include="Content\icon\32\Reset2_32x32.png" />
+    <Content Include="Content\icon\32\Reset_32x32.png" />
+    <Content Include="Content\icon\32\SaveAll_32x32.png" />
+    <Content Include="Content\icon\32\SaveAndNew_32x32.png" />
+    <Content Include="Content\icon\32\SaveTo_32x32.png" />
+    <Content Include="Content\icon\32\Save_32x32.png" />
+    <Content Include="Content\icon\32\SelectData_32x32.png" />
+    <Content Include="Content\icon\32\settings.png" />
+    <Content Include="Content\icon\32\settings_16.png" />
+    <Content Include="Content\icon\32\ShapeLabels_32x32.png" />
+    <Content Include="Content\icon\32\Show_32x32.png" />
+    <Content Include="Content\icon\32\Stretch_32x32.png" />
+    <Content Include="Content\icon\32\Summary_32x32.png" />
+    <Content Include="Content\icon\32\Text_32x32.png" />
+    <Content Include="Content\icon\32\TreeView_32x32.png" />
+    <Content Include="Content\icon\32\Up_32x32.png" />
+    <Content Include="Content\icon\32\UserGroup_32x32.png" />
+    <Content Include="Content\icon\32\Zoom_32x32.png" />
     <Content Include="Content\Images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Content\Images\ui-bg_diagonals-thick_20_666666_40x40.png" />
     <Content Include="Content\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -232,6 +457,11 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\spectrum.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="maps\us\jquery-jvectormap-data-us-ak-lcc-en.js" />
     <Content Include="maps\us\jquery-jvectormap-data-us-al-lcc-en.js" />
@@ -1055,6 +1285,8 @@
     <Content Include="maps\vn\TỉnhBắcNinh\HuyệnGiaBình.js" />
     <Content Include="maps\vn\TỉnhBắcNinh\HuyệnQuếVõ.js" />
     <Content Include="maps\vn\TỉnhBắcNinh\thuanthanhh.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\canvg.js" />
@@ -1066,6 +1298,17 @@
     <Content Include="Scripts\html2canvas.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-jvectormap-2.0.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
@@ -1098,10 +1341,15 @@
     </Content>
     <Content Include="maps\vn\Ban Do 63 Tinh Full Connverted.rar" />
     <Content Include="maps\vn\SCALED_Edited.rar" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\rgbcolor.js" />
     <Content Include="Scripts\spectrum.js" />
+    <Content Include="ASPxScriptIntelliSense.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -1110,14 +1358,6 @@
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
-    <Content Include="Views\ChiTieuNghiepVu\Index.cshtml" />
-    <Content Include="Views\ChiTieuNghiepVu\_TreeListPartial.cshtml" />
-    <Content Include="Views\DanhMucNhomChiTieu\Index.cshtml" />
-    <Content Include="Views\DanhMucNhomChiTieu\_GridViewPartial.cshtml" />
-    <Content Include="Views\DanhMucDonViTinh\Index.cshtml" />
-    <Content Include="Views\DanhMucDonViTinh\_GridView1Partial.cshtml" />
-    <Content Include="Views\DanhMucNghiepVu\Index.cshtml" />
-    <Content Include="Views\DanhMucNghiepVu\_GridView3Partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -1127,10 +1367,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_lightLayout.cshtml" />
     <Content Include="Views\Shared\_mainLayout.cshtml" />
@@ -1143,9 +1379,50 @@
     <Content Include="Views\Home\GridViewPartialView.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Map\IndexRewriteId.cshtml" />
-    <Content Include="Views\DanhMucChiTieu\Index.cshtml" />
-    <Content Include="Views\DanhMucChiTieu\_TreeListPartial.cshtml" />
     <Content Include="Views\Grid\Index.cshtml" />
+    <Content Include="Views\TKChiTieu\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\HeaderPartialViewLogin.cshtml" />
+    <Content Include="Views\Shared\_rootLayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_loginLayout.cshtml" />
+    <Content Include="Views\ADMenu\Index.cshtml" />
+    <Content Include="Views\ADMenu\_Menu.cshtml" />
+    <Content Include="Views\DMDonViTinh\Index.cshtml" />
+    <Content Include="Views\DMKyBaoCao\Index.cshtml" />
+    <Content Include="Views\DMDiaPhuong\Index.cshtml" />
+    <Content Include="Views\TKDoiTuong\Index.cshtml" />
+    <Content Include="Views\DMPhanHe\Index.cshtml" />
+    <Content Include="Views\DMDiaPhuong\_DiaPhuong.cshtml" />
+    <Content Include="Views\DMDonViTinh\_DonViTinh.cshtml" />
+    <Content Include="Views\DMKyBaoCao\_KyBaoCao.cshtml" />
+    <Content Include="Views\DMPhanHe\_PhanHe.cshtml" />
+    <Content Include="Views\TKChiTieu\_ChiTieu.cshtml" />
+    <Content Include="Views\TKDoiTuong\_DoiTuong.cshtml" />
+    <Content Include="Views\Shared\Common\_TreeListCommandPanel.cshtml" />
+    <Content Include="Views\ADLichSu\Index.cshtml" />
+    <Content Include="Views\ADLichSu\_LichSu.cshtml" />
+    <Content Include="Views\THSoLieuDaNhap\Index.cshtml" />
+    <Content Include="Views\DMCode\Index.cshtml" />
+    <Content Include="Views\DMCode\_CodeKind.cshtml" />
+    <Content Include="Views\DMCode\_Code.cshtml" />
+    <Content Include="Views\Shared\Common\_GridViewCommandPanel.cshtml" />
+    <Content Include="Views\Shared\Common\_FunctionTemplate.cshtml" />
+    <Content Include="Views\BMBieuMau\Index.cshtml" />
+    <Content Include="Views\BMBieuMau\_BieuMau.cshtml" />
+    <Content Include="Views\ADUser\_User.cshtml" />
+    <Content Include="Views\ADUser\Index.cshtml" />
+    <Content Include="Views\ADUser\_PhanQuyen.cshtml" />
+    <Content Include="Views\ADUser\_PhanQuyenCommandPanel.cshtml" />
+    <Content Include="Views\BDBieuDo\Index.cshtml" />
+    <Content Include="Views\BDBieuDo\_ListChecBoxKBCPartial.cshtml" />
+    <Content Include="Views\BDBieuDo\_ComboBoxPhanHePartial.cshtml" />
+    <Content Include="Views\BDBieuDo\_TreeListChiTieuPartial.cshtml" />
+    <Content Include="Views\BDBieuDo\_TreeListDiaPhuongPartial.cshtml" />
+    <Content Include="Views\ADUser\_UserDetail.cshtml" />
+    <Content Include="Views\Shared\Common\_ComboboxPhanHe.cshtml" />
+    <Content Include="Views\Shared\Common\_ComboboxChucVu.cshtml" />
+    <Content Include="Views\BDBieuDo\BieuDo.cshtml" />
+    <Content Include="Views\BDBieuDo\BieuDoPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1158,15 +1435,25 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ChiTieuNghiepVuController.cs" />
-    <Compile Include="Controllers\DanhMucChiTieuController.cs" />
-    <Compile Include="Controllers\DanhMucDonViTinhController.cs" />
-    <Compile Include="Controllers\DanhMucNghiepVuController.cs" />
-    <Compile Include="Controllers\DanhMucNhomChiTieuController.cs" />
+    <Compile Include="Controllers\ADUserController.cs" />
+    <Compile Include="Controllers\BDBieuDoController.cs" />
+    <Compile Include="Controllers\ChartTypesController.cs" />
+    <Compile Include="Controllers\DMCodeController.cs" />
+    <Compile Include="Controllers\BMBieuMauController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\DMDiaPhuongController.cs" />
+    <Compile Include="Controllers\DMDonViTinhController.cs" />
+    <Compile Include="Controllers\DMKyBaoCaoController.cs" />
+    <Compile Include="Controllers\DMPhanHeController.cs" />
+    <Compile Include="Controllers\ADLichSuController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ADMenuController.cs" />
+    <Compile Include="Controllers\THSoLieuDaNhapController.cs" />
+    <Compile Include="Controllers\TKChiTieuController.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\TKDoiTuongController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1190,6 +1477,7 @@
     <Compile Include="Models\CapDiaPhuong.cs">
       <DependentUpon>BDVTW_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Common.cs" />
     <Compile Include="Models\DanhMucChiTieu.cs">
       <DependentUpon>BDVTW_DB.tt</DependentUpon>
     </Compile>
@@ -1220,6 +1508,9 @@
     <Compile Include="Models\VungDiaPhuong.cs">
       <DependentUpon>BDVTW_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\EFModule.cs" />
+    <Compile Include="Modules\MvcExtensions.cs" />
+    <Compile Include="Modules\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1231,10 +1522,20 @@
       <Project>{d58fb484-fa36-46ba-a2b4-8b23b89ba449}</Project>
       <Name>DANN.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DANN.Service\DANN.Service.csproj">
+      <Project>{dffab407-5349-4091-a652-b4c8fac25bdd}</Project>
+      <Name>DANN.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\ChartTypes\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
