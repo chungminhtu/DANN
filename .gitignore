@@ -828,3 +828,4 @@ packages/repositories.config
 /DANN.Web/App_Themes/AquaDANN
 *.bak
 /DANN.Web/maps/vn
+/DANN.Web/maps
