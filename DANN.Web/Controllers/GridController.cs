@@ -62,11 +62,11 @@ namespace DANN.Web.Controllers
         public string GetListDoiTuong()
         {
             var lstDoiTuong = _db.TK_DoiTuong.Select(dt => new HeaderObject
-                                                            {
-                                                                Id = dt.DoiTuong_Id,
-                                                                Title = dt.TenDoiTuong,
-                                                                ParentId = dt.DoiTuong_ParentId.Value
-                                                            }).ToList();
+            {
+                Id = dt.DoiTuong_Id,
+                Title = dt.TenDoiTuong,
+                ParentId = dt.DoiTuong_ParentId.Value
+            }).ToList();
             string result = new JavaScriptSerializer().Serialize(lstDoiTuong);
             return result;
         }
@@ -90,33 +90,38 @@ namespace DANN.Web.Controllers
 
         public string GetListThongKe(string lstChiTieu_Id, string lstId)
         {
+            List<DataObject> LstThongKe = new List<DataObject>();
             if (lstChiTieu_Id != null)
             {
-            }
-            var chiTieuData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstChiTieu_Id);
-            var doiTuongData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstId);
-            var lstIdChiTieu = chiTieuData.Select(ct => ct.Id).ToList();
-            var lstIdDoiTuong = doiTuongData.Select(dt => dt.Id).ToList();
-            var result = _db.TK_ThongKe
-                .Where(tk => lstIdChiTieu.Contains(tk.ChiTieu_Id) &&
-                             lstIdDoiTuong.Contains(tk.DoiTuong_Id)).ToList();
-            //.Select(tk => new DataObject
-            //                  {
-            //                      IdTop = tk.Id,
-            //                      IdLeft = tk.ChiTieu_Id,
-            //                      GiaTri = tk.GiaTriThongKe
-            //                  }).ToList();
-            List<DataObject> LstThongKe = new List<DataObject>();
-            foreach (var thongke in result)
-            {
-                LstThongKe.Add(new DataObject { IdTop = thongke.DoiTuong_Id, IdLeft = thongke.ChiTieu_Id, GiaTri = Convert.ToDecimal(thongke.GiaTriThongKe) });
-            }
 
+                var chiTieuData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstChiTieu_Id);
+                var doiTuongData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstId);
+                var lstIdChiTieu = chiTieuData.Select(ct => ct.Id).ToList();
+                var lstIdDoiTuong = doiTuongData.Select(dt => dt.Id).ToList();
+                var result = _db.TK_ThongKe
+                    .Where(tk => lstIdChiTieu.Contains(tk.ChiTieu_Id) &&
+                                 lstIdDoiTuong.Contains(tk.DoiTuong_Id)).ToList();
+                //.Select(tk => new DataObject
+                //                  {
+                //                      IdTop = tk.Id,
+                //                      IdLeft = tk.ChiTieu_Id,
+                //                      GiaTri = tk.GiaTriThongKe
+                //                  }).ToList();
+
+                foreach (var thongke in result)
+                {
+                    LstThongKe.Add(new DataObject { IdTop = thongke.DoiTuong_Id, IdLeft = thongke.ChiTieu_Id, GiaTri = Convert.ToDecimal(thongke.GiaTriThongKe) });
+                }
+            }
             return new JavaScriptSerializer().Serialize(LstThongKe);
         }
 
         public string GetListThongKe2(string lstChiTieu_Id, string lstId)
         {
+            if (lstChiTieu_Id == null)
+            {
+                lstChiTieu_Id = "";
+            }
             var chiTieuData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstChiTieu_Id);
             var doiTuongData = new JavaScriptSerializer().Deserialize<List<HeaderObject>>(lstId);
             var lstIdChiTieu = chiTieuData.Select(ct => ct.Id).ToList();
@@ -160,11 +165,11 @@ namespace DANN.Web.Controllers
             var data = _db.TK_ChiTieu
                 .Where(ct => lstIdChiTieu.Contains(ct.ChiTieu_Id))
                 .Select(ct => new DonViTinhObject
-                                  {
-                                      Id = ct.ChiTieu_Id,
-                                      Title = ct.DM_DonViTinh.TenDonViTinh,
-                                      Value = ct.DM_DonViTinh.ValueFormat
-                                  }).ToList();
+                {
+                    Id = ct.ChiTieu_Id,
+                    Title = ct.DM_DonViTinh.TenDonViTinh,
+                    Value = ct.DM_DonViTinh.ValueFormat
+                }).ToList();
             lstIdChiTieu.ForEach(ict =>
             {
                 var item = data.FirstOrDefault(d => d.Id == ict);

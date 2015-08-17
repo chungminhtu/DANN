@@ -123,6 +123,13 @@ namespace DANN.Service
             _context.SaveChanges();
         }
 
+        public virtual void DeleteAll(Expression<Func<T, bool>> where)
+        {
+            IEnumerable<T> objects = _dbset.Where<T>(where).AsEnumerable();
+            foreach (T obj in objects)
+                _dbset.Remove(obj);
+        }
+
         public void Move(T entity)
         {
             var cEntity = GetEntityById(GetIdGeneric(entity));
@@ -164,6 +171,11 @@ namespace DANN.Service
         public virtual List<T> GetAll()
         {
             return _dbset.ToList<T>();
+        }
+
+        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
+        {
+            return _dbset.Where(where).ToList();
         }
 
         public virtual List<T> GetListById(object Id)

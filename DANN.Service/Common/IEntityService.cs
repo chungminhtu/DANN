@@ -17,6 +17,7 @@ namespace DANN.Service
         void Create(T entity);
         void CreateWithParentID(T entity, int ParentID);
         void Delete(T entity);
+        void DeleteAll(Expression<Func<T, bool>> where);
         void Update(T entity);
 
         void InsertOrUpdate(T entity);
@@ -31,6 +32,7 @@ namespace DANN.Service
 
         List<T> GetListById(object Id);
         List<T> GetAll();
+        IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
         IQueryable<T> GetAllAsQueryable();
         IEnumerable<T> GetAllAsIEnumerable();
         T SearchFirst(string searchTerm);

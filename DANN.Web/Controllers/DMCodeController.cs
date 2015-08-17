@@ -39,6 +39,7 @@ namespace DANN.Web.Controllers
             { 
                 Delete(item);
             }
+             
             var model = _serviceCodeKind.GetAll();
             return PartialView("CodeKind", model);
         }

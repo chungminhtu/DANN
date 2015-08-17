@@ -827,3 +827,4 @@ packages/repositories.config
 /DANN.Test
 /DANN.Web/App_Themes/AquaDANN
 *.bak
+/DANN.Web/maps/vn
